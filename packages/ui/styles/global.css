@@ -3,84 +3,92 @@
 @tailwind utilities;
 
 @layer base {
-  .border-gradient {
-    @apply bg-gradient-to-r from-[#3c3c3c] via-[#565656] to-[#3c3c3c]/50 py-[1px] px-[1px];
+  /* fontsize mobile  */
+
+  .mobile-subtitle {
+    @apply text-[8px] font-[400] leading-[12px];
+  }
+  .mobile-overline {
+    @apply text-[10px] font-[400] leading-[12px];
+  }
+  .mobile-description {
+    @apply text-[12px] font-[400] leading-[12px];
+  }
+  .mobile-title {
+    @apply text-[12px] font-[700] leading-[12px];
+  }
+  .mobile-h4 {
+    @apply text-[14px] font-[700] leading-[16px];
+  }
+  .mobile-h3 {
+    @apply text-[18px] font-[700] leading-[28px];
+  }
+  .mobile-h2 {
+    @apply text-[24px] font-[700] leading-[28px];
+  }
+  .mobile-h1 {
+    @apply text-[32px] font-[700] leading-[36px];
   }
 
-  .hover-button {
-    @apply duration-300 active:scale-95 hover:scale-105;
+  /* Font Size Tablet  */
+  .tablet-overline {
+    @apply text-[12px] font-[400] leading-[12px];
+  }
+  .tablet-subtitle {
+    @apply text-[12px] font-[400] leading-[12px];
+  }
+  .tablet-description {
+    @apply text-[14px] font-[400] leading-[12px];
+  }
+  .tablet-title {
+    @apply text-[14px] font-[700] leading-[12px];
+  }
+  .tablet-h4 {
+    @apply text-[18px] font-[700] leading-[20px];
+  }
+  .tablet-h3 {
+    @apply text-[22px] font-[700] leading-[31px];
+  }
+  .tablet-h2 {
+    @apply text-[36px] font-[700] leading-[51px];
+  }
+  .tablet-h1 {
+    @apply text-[64px] font-[700] leading-[91px];
   }
 
-  .hover-game {
-    @apply border-2 border-transparent rounded-2xl hover:border-[#36f1e6] duration-300 hover:scale-105 shadow hover:shadow-xl hover:shadow-[#36f1e6]/20;
+  /* font size web  */
+  .web-overline {
+    @apply text-[14px] font-[400] leading-[12px];
   }
-
-  .hover-amount {
-    @apply w-16 h-12 border-transparent font-bold text-center px-0 py-0 duration-300 
-    focus:text-black focus:bg-[#36f1e6]
-    hover:border-[#ffffff] active:scale-95 hover:scale-105 shadow hover:shadow-lg hover:shadow-[#ffffff]/10;
+  .web-subtitle {
+    @apply text-[14px] font-[400] leading-[12px];
   }
-}
-
-@font-face {
-  font-family: "Switzer-Bold";
-  src: url("./fonts/Switzer-Bold.otf");
-  font-style: normal;
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: "Switzer-Medium";
-  src: url("./fonts/Switzer-Medium.otf");
-  font-style: normal;
-  font-weight: 600;
+  .web-description {
+    @apply text-[16px] font-[400] leading-[12px];
+  }
+  .web-title {
+    @apply text-[16px] font-[700] leading-[12px];
+  }
+  .web-h4 {
+    @apply text-[20px] font-[700] leading-[28px];
+  }
+  .web-h3 {
+    @apply text-[24px] font-[700] leading-[34px];
+  }
+  .web-h2 {
+    @apply text-[48px] font-[700] leading-[68px];
+  }
+  .web-h1 {
+    @apply text-[96px] font-[700] leading-[136px];
+  }
 }
 
 @font-face {
   font-family: "Switzer-Regular";
   src: url("./fonts/Switzer-Regular.otf");
-  font-style: normal;
-  font-weight: 400;
 }
 
 @font-face {
-  font-family: "GeneralSans-Bold";
-  src: url("./fonts/GeneralSans-Bold.otf");
-  font-style: normal;
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: "GeneralSans-Medium";
-  src: url("./fonts/GeneralSans-Medium.otf");
-  font-style: normal;
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "GeneralSans-Regular";
-  src: url("./fonts/GeneralSans-Regular.otf");
-  font-style: normal;
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Chillax-Bold";
-  src: url("./fonts/Chillax-Bold.otf");
-  font-style: normal;
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: "Chillax-Medium";
-  src: url("./fonts/Chillax-Medium.otf");
-  font-style: normal;
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "Chillax-Regular";
-  src: url("./fonts/Chillax-Regular.otf");
-  font-style: normal;
-  font-weight: 400;
+  font-family: "Excon-Regular.otf";
+  src: url("./fonts/Excon-Regular.otf");
 }
