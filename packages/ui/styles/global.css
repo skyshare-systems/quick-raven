@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .border-gradient {
+    @apply bg-gradient-to-r from-[#3c3c3c] via-[#565656] to-[#3c3c3c]/50 py-[1px] px-[1px];
+  }
+
+  .hover-button {
+    @apply duration-300 active:scale-95 hover:scale-105;
+  }
+
+  .hover-game {
+    @apply border-2 border-transparent rounded-2xl hover:border-[#36f1e6] duration-300 hover:scale-105 shadow hover:shadow-xl hover:shadow-[#36f1e6]/20;
+  }
+
+  .hover-amount {
+    @apply w-16 h-12 border-transparent font-bold text-center px-0 py-0 duration-300 
+    focus:text-black focus:bg-[#36f1e6]
+    hover:border-[#ffffff] active:scale-95 hover:scale-105 shadow hover:shadow-lg hover:shadow-[#ffffff]/10;
+  }
+}
+
+@font-face {
+  font-family: "Switzer-Bold";
+  src: url("./fonts/Switzer-Bold.otf");
+  font-style: normal;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Switzer-Medium";
+  src: url("./fonts/Switzer-Medium.otf");
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Switzer-Regular";
+  src: url("./fonts/Switzer-Regular.otf");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "GeneralSans-Bold";
+  src: url("./fonts/GeneralSans-Bold.otf");
+  font-style: normal;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "GeneralSans-Medium";
+  src: url("./fonts/GeneralSans-Medium.otf");
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "GeneralSans-Regular";
+  src: url("./fonts/GeneralSans-Regular.otf");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Chillax-Bold";
+  src: url("./fonts/Chillax-Bold.otf");
+  font-style: normal;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Chillax-Medium";
+  src: url("./fonts/Chillax-Medium.otf");
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Chillax-Regular";
+  src: url("./fonts/Chillax-Regular.otf");
+  font-style: normal;
+  font-weight: 400;
+}
