@@ -1,3 +1,1 @@
-@tailwind base;
-@tailwind component;
-@tailwind utilities;
+@import "ui/styles/globals.css";
