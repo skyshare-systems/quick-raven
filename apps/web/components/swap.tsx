@@ -246,7 +246,7 @@ const SwapPage = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
-                    Birdge Fee:
+                    Bridge Fee:
                   </p>
                   <p className="mobile-description sm:tablet-description lg:web-description text-white">
                     2.50 USDT
