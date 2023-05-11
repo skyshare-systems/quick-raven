@@ -19,48 +19,7 @@ const SwapPage = () => {
   return (
     <section className="relative flex flex-col justify-center bg-gradial-gradient-v2 py-[5rem] items-center min-h-[100vh] gap-5">
       {/* <div className="hidden md:flex fixed bg-gradial-gradient-v2 h-full w-full -z-[1] opacity-50" /> */}
-      {/* Network Change  */}
-      <div className="flex flex-row justify-between gap-3 border-[1px] border-[#3b3b3b] bg-radial rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px] lg:max-w-[1020px]">
-        <div className="flex flex-col gap-2">
-          <p className="mobile-title sm:tablet-title lg:web-title text-[#545454] ">
-            Initial<br></br> Network
-          </p>
-          <Image
-            src={"/icons/chevron-down-solid-icon.svg"}
-            alt={"dropdown"}
-            height={35}
-            width={35}
-          />
-          <p className="mobile-title sm:tablet-title lg:web-title text-white ">
-            Destination <br></br>Network
-          </p>
-        </div>
 
-        <div className="flex flex-col gap-2">
-          <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-3 hover:brightness-125">
-            <Image
-              src={"/icons/eth-network-icon.svg"}
-              alt={"refresh"}
-              height={25}
-              width={25}
-            />
-            <p className="mobile-title sm:tablet-title lg:web-title">
-              Ethereum
-            </p>
-          </button>
-          <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-3 hover:brightness-125">
-            {/* <Image
-              src={"/icons/eth-network-icon.svg"}
-              alt={"refresh"}
-              height={25}
-              width={25}
-            /> */}
-            <p className="mobile-title sm:tablet-title lg:web-title text-[#7a7a7a]">
-              Select Network
-            </p>
-          </button>
-        </div>
-      </div>
       {isNetworkError && (
         <div className="hidden lg:flex flex-row justify-center items-center gap-2 px-[1rem] lg:px-[2rem] py-[13px] bg-[#534506] rounded-xl w-full max-w-[500px] lg:max-w-[1020px]">
           <Image
@@ -91,6 +50,25 @@ const SwapPage = () => {
               />
             </div>
           </div>
+
+          <div className="flex flex-row justify-between items-center w-full py-2 px-3 rounded-full bg-[#2e2e2e] border-[1px] border-[#3b3b3b]">
+            {/* Initial Network  */}
+            <p className="mobile-description sm:tablet-description lg:web-description grow text-[#7a7a7a]">
+              Initial Network
+            </p>
+
+            <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125">
+              <Image
+                src={"/icons/eth-network-icon.svg"}
+                alt={"refresh"}
+                height={25}
+                width={25}
+              />
+              <p className="mobile-title sm:tablet-title lg:web-title">
+                Ethereum
+              </p>
+            </button>
+          </div>
           <div className="relative flex flex-col w-full gap-3">
             <div className="center-absolute cursor-pointer">
               <Image
@@ -108,7 +86,7 @@ const SwapPage = () => {
                 placeholder="0.00"
                 className="w-full lg:grow bg-transparent"
               />
-              <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-3 hover:brightness-125">
+              <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-xl border-[#3b3b3b] px-3 py-3 hover:brightness-125">
                 <Image
                   src={"/icons/tether-icon.svg"}
                   alt={"refresh"}
@@ -125,30 +103,44 @@ const SwapPage = () => {
               </button>
             </div>
 
-            <div className="flex flex-row justify-between grow gap-5 px-[1rem] border-[1px] border-[#3b3b3b] py-3 rounded-xl ">
-              <input
-                type="number"
-                id="fname"
-                name="fname"
-                placeholder="0.00"
-                className="w-full lg:grow bg-transparent"
-              />
+            <div className="flex flex-row justify-between items-center w-full py-2 px-3 rounded-full bg-[#2e2e2e] border-[1px] border-[#3b3b3b]">
+              {/* Destination Network  */}
+              <p className="w-full sm:w-auto mobile-description sm:tablet-description lg:web-description grow text-[#7a7a7a]">
+                Destination Network
+              </p>
+
               <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-3 hover:brightness-125">
-                <Image
-                  src={"/icons/tether-icon.svg"}
-                  alt={"refresh"}
-                  height={55}
-                  width={55}
-                />
-                <p className="mobile-overline sm:mobile-h3">USDT</p>
-                <Image
-                  src={"/icons/dropdown-icon.svg"}
-                  alt={"refresh"}
-                  height={60}
-                  width={60}
-                />
+                <p className="mobile-title sm:tablet-title lg:web-title text-[#7a7a7a]">
+                  Select Network
+                </p>
               </button>
             </div>
+          </div>
+
+          <div className="flex flex-row justify-between grow gap-5 px-[1rem] border-[1px] border-[#3b3b3b] py-3 rounded-xl ">
+            <input
+              type="number"
+              id="fname"
+              name="fname"
+              placeholder="0.00"
+              className="w-full lg:grow bg-transparent"
+              disabled
+            />
+            <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-xl border-[#3b3b3b] px-3 py-3 hover:brightness-125">
+              <Image
+                src={"/icons/tether-icon.svg"}
+                alt={"refresh"}
+                height={55}
+                width={55}
+              />
+              <p className="mobile-overline sm:mobile-h3">USDT</p>
+              <Image
+                src={"/icons/dropdown-icon.svg"}
+                alt={"refresh"}
+                height={60}
+                width={60}
+              />
+            </button>
           </div>
           <motion.nav
             initial={false}
@@ -275,7 +267,7 @@ const SwapPage = () => {
                       </button>
                     </div>
                   </div>
-                  <div className="flex flex-col items-center xsm:items-start justify-center gap-3">
+                  <div className="flex flex-col items-center xsm:items-end justify-center gap-3">
                     <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
                       Slippage Tolerance
                     </p>
@@ -343,7 +335,9 @@ const SwapPage = () => {
           </button>
         </div>
         {/* pathway  */}
-        {/* <div className="flex flex-col justify-center items-center gap-3 border-[1px] border-[#3b3b3b] bg-radial rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]"></div> */}
+        {/* <div className="flex flex-col justify-center items-center gap-3 border-[1px] border-[#3b3b3b] bg-radial rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]">
+          Code Here
+        </div> */}
       </div>
     </section>
   );
