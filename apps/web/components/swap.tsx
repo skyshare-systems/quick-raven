@@ -1,7 +1,10 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import ConnectWallet from "components/ConnectWallet";
+import { network } from "./network";
 
 const itemVariants: Variants = {
   open: {
@@ -14,11 +17,116 @@ const itemVariants: Variants = {
 
 const SwapPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const [initNetwork, setInitNetwork] = useState("Polygon");
+  const [initNetworkUrl, setInitNetworkUrl] = useState(
+    "/icons/polygon-logo.svg"
+  );
+
+  const [destinationNetwork, setDestinationNetwork] = useState("");
+  const [destinationNetworkUrl, setDestinationNetworkUrl] = useState("");
+
+  const [labelNetwork, setLabelNetwork] = useState("");
   const [isNetworkError, setIsNetworkError] = useState(false);
+
+  const handleInitNetwork = (networkname: any, imgUrl: any) => {
+    setInitNetworkUrl(imgUrl);
+    setInitNetwork(networkname);
+    setShowModal(!showModal);
+  };
+
+  const handleDestinationNetwork = (networkname: any, imgUrl: any) => {
+    setDestinationNetwork(networkname);
+    setDestinationNetworkUrl(imgUrl);
+    setShowModal(!showModal);
+  };
+
+  const handleSelectNetwork = (networklabel: any) => {
+    setLabelNetwork(networklabel);
+    setShowModal(!showModal);
+  };
+
+  useEffect(() => {
+    if (destinationNetwork === initNetwork) {
+      setDestinationNetwork("");
+      setDestinationNetworkUrl("");
+    }
+  }, [initNetwork]);
 
   return (
     <section className="relative flex flex-col justify-center bg-gradial-gradient-v2 py-[5rem] items-center min-h-[100vh] gap-5">
-      {/* <div className="hidden md:flex fixed bg-gradial-gradient-v2 h-full w-full -z-[1] opacity-50" /> */}
+      {showModal && (
+        <div className="fixed top-0 h-full w-full flex flex-col justify-center items-center bg-black/30 backdrop-blur-sm z-[3]">
+          <div className="relative flex flex-col rounded-2xl h-full w-full max-w-[500px] max-h-[250px] bg-radial-modal  p-5">
+            <div className="absolute flex flex-col gap-5 z-[2]">
+              <p className="mobile-overline sm:tablet-overline lg:web-overline text-white">
+                Please choose your {labelNetwork}
+              </p>
+
+              <div className="flex flex-wrap gap-5">
+                {labelNetwork === "Destination Network" ? (
+                  <>
+                    {network
+                      .filter(
+                        (filterdata) => filterdata.networkname !== initNetwork
+                      )
+                      .map((data, index) => {
+                        return (
+                          <button
+                            onClick={() =>
+                              handleDestinationNetwork(
+                                data.networkname,
+                                data.imgUrl
+                              )
+                            }
+                            key={index}
+                            className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125"
+                          >
+                            <Image
+                              src={data.imgUrl}
+                              alt={"refresh"}
+                              height={25}
+                              width={25}
+                            />
+                            <p className="mobile-title sm:tablet-title lg:web-title text-white">
+                              {data.networkname}
+                            </p>
+                          </button>
+                        );
+                      })}
+                  </>
+                ) : (
+                  <>
+                    {network.map((data, index) => {
+                      return (
+                        <button
+                          onClick={() =>
+                            handleInitNetwork(data.networkname, data.imgUrl)
+                          }
+                          key={index}
+                          className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125"
+                        >
+                          <Image
+                            src={data.imgUrl}
+                            alt={"refresh"}
+                            height={25}
+                            width={25}
+                          />
+                          <p className="mobile-title sm:tablet-title lg:web-title text-white">
+                            {data.networkname}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="absolute top-0 left-0 border-[2px] border-[#3b3b3b] h-full w-full z-[1] rounded-2xl faded-bottom" />
+          </div>
+        </div>
+      )}
 
       {isNetworkError && (
         <div className="hidden lg:flex flex-row justify-center items-center gap-2 px-[1rem] lg:px-[2rem] py-[13px] bg-[#534506] rounded-xl w-full max-w-[500px] lg:max-w-[1020px]">
@@ -57,15 +165,18 @@ const SwapPage = () => {
               Initial Network
             </p>
 
-            <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125">
+            <button
+              onClick={() => handleSelectNetwork("Initial Network")}
+              className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125"
+            >
               <Image
-                src={"/icons/eth-network-icon.svg"}
+                src={initNetworkUrl}
                 alt={"refresh"}
                 height={25}
                 width={25}
               />
               <p className="mobile-title sm:tablet-title lg:web-title">
-                Ethereum
+                {initNetwork}
               </p>
             </button>
           </div>
@@ -109,10 +220,27 @@ const SwapPage = () => {
                 Destination Network
               </p>
 
-              <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-3 hover:brightness-125">
-                <p className="mobile-title sm:tablet-title lg:web-title text-[#7a7a7a]">
-                  Select Network
-                </p>
+              <button
+                onClick={() => handleSelectNetwork("Destination Network")}
+                className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-3 hover:brightness-125"
+              >
+                {destinationNetwork === "" ? (
+                  <p className="mobile-title sm:tablet-title lg:web-title text-[#7a7a7a]">
+                    Select Network
+                  </p>
+                ) : (
+                  <>
+                    <Image
+                      src={destinationNetworkUrl}
+                      alt={"refresh"}
+                      height={25}
+                      width={25}
+                    />
+                    <p className="mobile-title sm:tablet-title lg:web-title">
+                      {destinationNetwork}
+                    </p>
+                  </>
+                )}
               </button>
             </div>
           </div>

@@ -132,6 +132,25 @@
       rgba(20, 20, 20, 0.5);
   }
 
+  .bg-radial-modal {
+    background: radial-gradient(
+        80.98% 100% at 50% 0%,
+        rgba(84, 84, 84, 0.5) 0%,
+        rgba(84, 84, 84, 0) 100%
+      ),
+      #141414;
+  }
+
+  .faded-bottom {
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 20%,
+      transparent 100%
+    );
+  }
+
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
