@@ -3,84 +3,178 @@
 @tailwind utilities;
 
 @layer base {
-  .border-gradient {
-    @apply bg-gradient-to-r from-[#3c3c3c] via-[#565656] to-[#3c3c3c]/50 py-[1px] px-[1px];
+  /* fontsize mobile  */
+
+  .mobile-subtitle {
+    @apply text-[8px] font-[600] leading-[12px] font-[Switzer] tracking-[1px];
+  }
+  .mobile-overline {
+    @apply text-[10px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+  }
+  .mobile-description {
+    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+  }
+  .mobile-title {
+    @apply text-[12px] font-[700] leading-[12px] font-[Switzer] tracking-[1px];
+  }
+  .mobile-h4 {
+    @apply text-[14px] font-[700] leading-[16px] font-[Excon] tracking-[1px];
+  }
+  .mobile-h3 {
+    @apply text-[18px] font-[700] leading-[28px] font-[Excon] tracking-[1px];
+  }
+  .mobile-h2 {
+    @apply text-[24px] font-[700] leading-[28px] font-[Excon] tracking-[1px];
+  }
+  .mobile-h1 {
+    @apply text-[32px] font-[700] leading-[36px] font-[Excon] tracking-[1px];
   }
 
-  .hover-button {
-    @apply duration-300 active:scale-95 hover:scale-105;
+  /* Font Size Tablet  */
+  .tablet-overline {
+    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+  }
+  .tablet-subtitle {
+    @apply text-[12px] font-[600] leading-[12px] font-[Switzer] tracking-[1px];
+  }
+  .tablet-description {
+    @apply text-[14px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+  }
+  .tablet-title {
+    @apply text-[14px] font-[700] leading-[14px] font-[Switzer] tracking-[1px];
+  }
+  .tablet-h4 {
+    @apply text-[18px] font-[700] leading-[20px] font-[Excon] tracking-[1px];
+  }
+  .tablet-h3 {
+    @apply text-[22px] font-[700] leading-[31px] font-[Excon] tracking-[1px];
+  }
+  .tablet-h2 {
+    @apply text-[36px] font-[700] leading-[51px] font-[Excon] tracking-[1px];
+  }
+  .tablet-h1 {
+    @apply text-[64px] font-[700] leading-[91px] font-[Excon] tracking-[1px];
   }
 
-  .hover-game {
-    @apply border-2 border-transparent rounded-2xl hover:border-[#36f1e6] duration-300 hover:scale-105 shadow hover:shadow-xl hover:shadow-[#36f1e6]/20;
+  /* font size web  */
+  .web-overline {
+    @apply text-[14px] font-[400] leading-[15px] font-[Switzer] tracking-[1px];
+  }
+  .web-subtitle {
+    @apply text-[14px] font-[600] leading-[12px] font-[Switzer] tracking-[1px];
+  }
+  .web-description {
+    @apply text-[16px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+  }
+  .web-title {
+    @apply text-[16px] font-[700] leading-[16px] font-[Switzer] tracking-[1px];
+  }
+  .web-h4 {
+    @apply text-[20px] font-[700] leading-[28px] font-[Excon] tracking-[1px];
+  }
+  .web-h3 {
+    @apply text-[24px] font-[700] leading-[34px] font-[Excon] tracking-[1px];
+  }
+  .web-h2 {
+    @apply text-[48px] font-[700] leading-[68px] font-[Excon] tracking-[1px];
+  }
+  .web-h1 {
+    @apply text-[96px] font-[700] leading-[136px] font-[Excon] tracking-[1px];
   }
 
-  .hover-amount {
-    @apply w-16 h-12 border-transparent font-bold text-center px-0 py-0 duration-300 
-    focus:text-black focus:bg-[#36f1e6]
-    hover:border-[#ffffff] active:scale-95 hover:scale-105 shadow hover:shadow-lg hover:shadow-[#ffffff]/10;
+  .center-absolute {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-55%, -50%);
+  }
+
+  body {
+    background-color: #141414;
+  }
+
+  input {
+    background: none;
+    border: none;
+  }
+
+  input:focus {
+    outline: none;
+    background: none;
+  }
+
+  input:active {
+    background: none;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    background: none !important;
+  }
+
+  .bg-radial-button {
+    background: radial-gradient(
+        80.98% 100% at 50% 0%,
+        #1ddfff 0%,
+        rgba(29, 223, 255, 0) 100%
+      ),
+      #1dffae;
+  }
+
+  .bg-radial {
+    background: radial-gradient(
+        80.98% 100% at 50% 0%,
+        rgba(84, 84, 84, 0.2) 0%,
+        rgba(84, 84, 84, 0) 100%
+      ),
+      rgba(20, 20, 20, 0.5);
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .bg-gradial-gradient-v2 {
+    background: radial-gradient(
+          48.02% 72.13% at 81.63% 45.08%,
+          rgba(171, 60, 210, 0.2) 0%,
+          rgba(0, 0, 0, 0) 100%
+        )
+        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+      radial-gradient(
+          40.98% 34.55% at 14.08% 26.76%,
+          rgba(64, 212, 221, 0.2) 0%,
+          rgba(29, 223, 255, 0) 100%
+        )
+        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+      #141414;
+  }
+
+  .bg-radial-gradient {
+    background: radial-gradient(
+      35.02% 35.13% at 50.63% 35.08%,
+      rgba(171, 60, 210, 0.2) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
   }
 }
 
 @font-face {
-  font-family: "Switzer-Bold";
-  src: url("./fonts/Switzer-Bold.otf");
-  font-style: normal;
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: "Switzer-Medium";
-  src: url("./fonts/Switzer-Medium.otf");
-  font-style: normal;
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "Switzer-Regular";
+  font-family: "Switzer";
   src: url("./fonts/Switzer-Regular.otf");
-  font-style: normal;
-  font-weight: 400;
 }
 
 @font-face {
-  font-family: "GeneralSans-Bold";
-  src: url("./fonts/GeneralSans-Bold.otf");
-  font-style: normal;
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: "GeneralSans-Medium";
-  src: url("./fonts/GeneralSans-Medium.otf");
-  font-style: normal;
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "GeneralSans-Regular";
-  src: url("./fonts/GeneralSans-Regular.otf");
-  font-style: normal;
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Chillax-Bold";
-  src: url("./fonts/Chillax-Bold.otf");
-  font-style: normal;
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: "Chillax-Medium";
-  src: url("./fonts/Chillax-Medium.otf");
-  font-style: normal;
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "Chillax-Regular";
-  src: url("./fonts/Chillax-Regular.otf");
-  font-style: normal;
-  font-weight: 400;
+  font-family: "Excon";
+  src: url("./fonts/Excon-Regular.otf");
 }
