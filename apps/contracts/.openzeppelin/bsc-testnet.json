@@ -1,0 +1,179 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x0B7dC7bc639dB391B9aFbeec0Dd24f1D8745Fc38",
+    "txHash": "0xf99309062a7475d1a6e86d2d822d68f4cd0a25e441dc8ec4b748455f5efae8cc"
+  },
+  "proxies": [
+    {
+      "address": "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18",
+      "txHash": "0x61c25bec01d95d2301ccab12e449a2e9f8c11b0e3d5762a9ddf08b588889773b",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x45D463BFf2e01A125298BF9271B7BAFBdBeF001f",
+      "txHash": "0xb783fdce34a385ca0d0474d76f81b0be4c06b58214b35741e4db23b9d0eeb130",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x0518f7B2391916021111BB9Ce53F35a6f8C40Fe3",
+      "txHash": "0xf72defc76b04b5d14d86183ca9a363fa0b211ba677788ecfc2afa92fee3bd413",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x9570B7D0e54f2AAed59F6615e2be18637A82d881",
+      "txHash": "0x511463d403cfb06a73dd230edc5ebf252e805c65bf802384983a0d53852fc372",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x71e711Cd6b13125f53A5c238B015841a3c8315D7",
+      "txHash": "0x9c85aab5a9ea258099659455174d725ea79e71fbb94664b8c8a5b2717fbdd42f",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "e8dda2d526a85cb8ff5ccee671daf00c75f8a1dc17c662384f999a96763bf92b": {
+      "address": "0x17d27FFe2a67cBb5b0120e3102C4911BedAAa1a3",
+      "txHash": "0xb646c6d08da08a694809dff2a18790759dfdef5b0c8dc3a4da34cd35f2350d5e",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_balances",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:37"
+          },
+          {
+            "label": "_allowances",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:39"
+          },
+          {
+            "label": "_totalSupply",
+            "offset": 0,
+            "slot": "53",
+            "type": "t_uint256",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:41"
+          },
+          {
+            "label": "_name",
+            "offset": 0,
+            "slot": "54",
+            "type": "t_string_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:43"
+          },
+          {
+            "label": "_symbol",
+            "offset": 0,
+            "slot": "55",
+            "type": "t_string_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:44"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "56",
+            "type": "t_array(t_uint256)45_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:400"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)45_storage": {
+            "label": "uint256[45]",
+            "numberOfBytes": "1440"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(address => mapping(address => uint256))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "e99e91cdb3da3f9860a534fd24980ed8d9c3818e79aa1161cc3611feede88816": {
+      "address": "0x6dfad93Fa092a8Ad0769D16413aec02f3A19b60d",
+      "txHash": "0x9e692e2558ce8ab80b981ff08ff41545960f50eb8254b77cacd2764f3276e108",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "WETH",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "DexAggregator",
+            "src": "contracts/main/DexAggregator.sol:9"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          }
+        }
+      }
+    }
+  }
+}
