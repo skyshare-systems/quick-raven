@@ -3,11 +3,12 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectWallet } from "./ConnectWallet";
 
 const NavbarPage = () => {
   return (
     <nav className="fixed top-0 flex flex-row justify-center items-center backdrop-filter z-[2] w-full">
-      <div className="flex flex-row justify-between max-w-[80rem] px-5 lg:px-0 py-4 grow">
+      <div className="flex flex-row justify-between max-w-[80rem] xsm:px-5 lg:px-0 py-4 grow">
         {" "}
         <ul className="flex flex-row gap-5 md:gap-11 items-center">
           <Link href="/">
@@ -51,7 +52,8 @@ const NavbarPage = () => {
             />
           </Link>
         </ul>
-        <ConnectButton showBalance={false} label="Connect" />
+        {/* <ConnectButton showBalance={false} label="Connect" /> */}
+        <ConnectWallet />
       </div>
     </nav>
   );

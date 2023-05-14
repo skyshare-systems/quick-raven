@@ -1,1 +1,25 @@
 @import "ui/styles/global.css";
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  stroke-width: 2px;
+  border-bottom: none;
+  border-top: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #aaaaaa;
+  border-radius: 5px;
+  transition: all 3s ease-in;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #717171;
+}

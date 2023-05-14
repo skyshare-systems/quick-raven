@@ -7,13 +7,13 @@ import {
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { mainnet } from "wagmi/chains";
+import { mainnet, polygonMumbai, bscTestnet } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ReactNode } from "react";
 
 const { chains, publicClient } = configureChains(
-  [mainnet],
+  [polygonMumbai, bscTestnet],
   [
     // alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
     publicProvider(),

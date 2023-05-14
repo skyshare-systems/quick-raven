@@ -2,9 +2,11 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import ConnectWallet from "components/ConnectWallet";
+import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
+
 import { network } from "./network";
+import ModalNetworkPage from "./modal-network";
+import ModalTokenPage from "./modal-token";
 
 const itemVariants: Variants = {
   open: {
@@ -16,24 +18,22 @@ const itemVariants: Variants = {
 };
 
 const SwapPage = () => {
+  // States
   const [isOpen, setIsOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
-  const [initNetwork, setInitNetwork] = useState("Polygon");
-  const [initNetworkUrl, setInitNetworkUrl] = useState(
-    "/icons/polygon-logo.svg"
-  );
-
+  const [showModalToken, setShowModalToken] = useState(false);
+  const [initNetwork, setInitNetwork] = useState("");
+  const [initNetworkUrl, setInitNetworkUrl] = useState("");
   const [destinationNetwork, setDestinationNetwork] = useState("");
   const [destinationNetworkUrl, setDestinationNetworkUrl] = useState("");
-
   const [labelNetwork, setLabelNetwork] = useState("");
   const [isNetworkError, setIsNetworkError] = useState(false);
-
-  const handleInitNetwork = (networkname: any, imgUrl: any) => {
+  const { address, isConnected, connector: activeConnector } = useAccount();
+  // Functions
+  const handleInitNetwork = (networkname: any, imgUrl: any, id: any) => {
+    switchNetwork?.(id);
     setInitNetworkUrl(imgUrl);
     setInitNetwork(networkname);
-    setShowModal(!showModal);
   };
 
   const handleDestinationNetwork = (networkname: any, imgUrl: any) => {
@@ -54,94 +54,44 @@ const SwapPage = () => {
     }
   }, [initNetwork]);
 
+  const { chain } = useNetwork();
+  const { chains, error, isLoading, pendingChainId, switchNetwork } =
+    useSwitchNetwork();
+
+  useEffect(() => {
+    {
+      network.map((data) => {
+        if (chain?.name === data.networkname) {
+          setInitNetwork(data.shortname);
+          setInitNetworkUrl(data.imgUrl);
+        } else {
+        }
+      });
+      if (isConnected) setShowModal(false);
+    }
+  }, [chain]);
+
   return (
-    <section className="relative flex flex-col justify-center bg-gradial-gradient-v2 py-[5rem] items-center min-h-[100vh] gap-5">
-      {showModal && (
-        <div className="fixed top-0 h-full w-full flex flex-col justify-center items-center bg-black/30 backdrop-blur-sm z-[3]">
-          <div className="relative flex flex-col rounded-2xl h-full w-full max-w-[500px] max-h-[250px] bg-radial-modal  p-5">
-            <div className="absolute flex flex-col gap-5 z-[2]">
-              <p className="mobile-overline sm:tablet-overline lg:web-overline text-white">
-                Please choose your {labelNetwork}
-              </p>
+    <section className="relative flex flex-col justify-center py-[5rem] items-center min-h-[100vh] gap-5">
+      {/* Modal Network Choose  */}
 
-              <div className="flex flex-wrap gap-5">
-                {labelNetwork === "Destination Network" ? (
-                  <>
-                    {network
-                      .filter(
-                        (filterdata) => filterdata.networkname !== initNetwork
-                      )
-                      .map((data, index) => {
-                        return (
-                          <button
-                            onClick={() =>
-                              handleDestinationNetwork(
-                                data.networkname,
-                                data.imgUrl
-                              )
-                            }
-                            key={index}
-                            className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125"
-                          >
-                            <Image
-                              src={data.imgUrl}
-                              alt={"refresh"}
-                              height={25}
-                              width={25}
-                            />
-                            <p className="mobile-title sm:tablet-title lg:web-title text-white">
-                              {data.networkname}
-                            </p>
-                          </button>
-                        );
-                      })}
-                  </>
-                ) : (
-                  <>
-                    {network.map((data, index) => {
-                      return (
-                        <button
-                          onClick={() =>
-                            handleInitNetwork(data.networkname, data.imgUrl)
-                          }
-                          key={index}
-                          className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125"
-                        >
-                          <Image
-                            src={data.imgUrl}
-                            alt={"refresh"}
-                            height={25}
-                            width={25}
-                          />
-                          <p className="mobile-title sm:tablet-title lg:web-title text-white">
-                            {data.networkname}
-                          </p>
-                        </button>
-                      );
-                    })}
-                  </>
-                )}
-              </div>
-            </div>
-            <div className="absolute top-0 left-0 border-[2px] border-[#3b3b3b] h-full w-full z-[1] rounded-2xl faded-bottom" />
-          </div>
-        </div>
-      )}
+      {/* <div>{error && error.message}</div> */}
+      {/* {<div className="text-white">{chain?.name}</div>} */}
 
-      {isNetworkError && (
-        <div className="hidden lg:flex flex-row justify-center items-center gap-2 px-[1rem] lg:px-[2rem] py-[13px] bg-[#534506] rounded-xl w-full max-w-[500px] lg:max-w-[1020px]">
-          <Image
-            src={"/icons/warning-icon.svg"}
-            alt={"dropdown"}
-            height={35}
-            width={35}
-          />
-          <p className="mobile-overline sm:tablet-overline lg:web-overline grow">
-            Polygon Network is currently having a heavy network traffic.
-            Transactions may be delayed.
-          </p>
-        </div>
-      )}
+      <ModalNetworkPage
+        labelnetwork={labelNetwork}
+        initNetwork={initNetwork}
+        isOpen={showModal}
+        handleDestinationNetwork={handleDestinationNetwork}
+        handleInitNetwork={handleInitNetwork}
+      />
+
+      <ModalTokenPage
+        isOpen={showModalToken}
+        initNetwork={initNetwork}
+        onClose={() => setShowModalToken(!showModalToken)}
+      />
+
       <div className="flex flex-col lg:flex-row justify-center gap-5 w-full max-w-[500px] lg:max-w-[1020px]">
         {/* Swap  */}
         <div className="flex flex-col justify-center items-center gap-3 border-[1px] border-[#3b3b3b] bg-radial rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]">
@@ -166,18 +116,39 @@ const SwapPage = () => {
             </p>
 
             <button
+              disabled={initNetwork === ""}
               onClick={() => handleSelectNetwork("Initial Network")}
-              className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125"
+              className={`flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-2 
+                          ${
+                            initNetwork === ""
+                              ? "cursor-not-allowed"
+                              : "hover:brightness-125"
+                          }`}
             >
-              <Image
-                src={initNetworkUrl}
-                alt={"refresh"}
-                height={25}
-                width={25}
-              />
-              <p className="mobile-title sm:tablet-title lg:web-title">
-                {initNetwork}
-              </p>
+              {initNetwork === "" ? (
+                <p className="mobile-title py-1 sm:tablet-title lg:web-title text-[#7a7a7a]">
+                  Select Network
+                </p>
+              ) : (
+                <>
+                  {" "}
+                  {isLoading ? (
+                    "Switching Network"
+                  ) : (
+                    <>
+                      <Image
+                        src={initNetworkUrl}
+                        alt={"refresh"}
+                        height={25}
+                        width={25}
+                      />
+                      <p className="mobile-title sm:tablet-title lg:web-title">
+                        {initNetwork}
+                      </p>
+                    </>
+                  )}
+                </>
+              )}
             </button>
           </div>
           <div className="relative flex flex-col w-full gap-3">
@@ -192,12 +163,22 @@ const SwapPage = () => {
             <div className="flex flex-row justify-between grow gap-5 px-[1rem] border-[1px] border-[#3b3b3b] py-3 rounded-xl ">
               <input
                 type="number"
-                id="fname"
-                name="fname"
+                id="tokenvalue"
+                name="tokenvalue"
                 placeholder="0.00"
                 className="w-full lg:grow bg-transparent"
               />
-              <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-xl border-[#3b3b3b] px-3 py-3 hover:brightness-125">
+              {/* Select Token  */}
+              <button
+                onClick={() => setShowModalToken(!showModalToken)}
+                disabled={initNetwork === ""}
+                className={`flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-xl border-[#3b3b3b] px-3 py-3 
+                          ${
+                            initNetwork === ""
+                              ? "cursor-not-allowed"
+                              : "hover:brightness-125"
+                          }`}
+              >
                 <Image
                   src={"/icons/tether-icon.svg"}
                   alt={"refresh"}
@@ -221,8 +202,14 @@ const SwapPage = () => {
               </p>
 
               <button
+                disabled={destinationNetwork === ""}
                 onClick={() => handleSelectNetwork("Destination Network")}
-                className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-3 hover:brightness-125"
+                className={`flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-2 
+                          ${
+                            destinationNetwork === ""
+                              ? "cursor-not-allowed"
+                              : "hover:brightness-125"
+                          }`}
               >
                 {destinationNetwork === "" ? (
                   <p className="mobile-title sm:tablet-title lg:web-title text-[#7a7a7a]">
@@ -254,7 +241,17 @@ const SwapPage = () => {
               className="w-full lg:grow bg-transparent"
               disabled
             />
-            <button className="flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-xl border-[#3b3b3b] px-3 py-3 hover:brightness-125">
+            {/* Select Token v2  */}
+            <button
+              disabled={destinationNetwork === ""}
+              onClick={() => setShowModalToken(!showModalToken)}
+              className={`flex flex-row items-center gap-2 bg-[#1b181c] border-2 rounded-xl border-[#3b3b3b] 
+                          px-3 py-3 ${
+                            destinationNetwork === ""
+                              ? "cursor-not-allowed"
+                              : "hover:brightness-125"
+                          } `}
+            >
               <Image
                 src={"/icons/tether-icon.svg"}
                 alt={"refresh"}
