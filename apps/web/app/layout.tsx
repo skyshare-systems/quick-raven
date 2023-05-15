@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import WagmiProviders from "providers/WagmiProviders";
 import FooterPage from "components/footer";
+import ApolloProviders from "providers/ApolloProviders";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +25,11 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <WagmiProviders>
-          <NavbarPage />
-          {children}
-          <FooterPage />
+          <ApolloProviders>
+            <NavbarPage />
+            {children}
+            <FooterPage />
+          </ApolloProviders>
         </WagmiProviders>
       </body>
     </html>
