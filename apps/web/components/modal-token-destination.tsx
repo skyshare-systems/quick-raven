@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { tokenpolygon } from "./network";
+import { tokenbsc } from "./network";
 
-const ModalTokenPage = ({
+const ModalTokenDestinationPage = ({
   onClose,
   isOpen,
-  initNetwork,
-  handleSelectedTokenInit,
+  destinationNetwork,
+  handleSelectedTokenDestination,
 }: any) => {
   const hide = "hidden";
   const show = "auto";
@@ -18,7 +18,6 @@ const ModalTokenPage = ({
       ? (document.body.style.overflowY = hide)
       : (document.body.style.overflowY = show);
   }, [isOpen]);
-
   if (!isOpen) return null;
   return (
     <div className="fixed top-0 h-full w-full flex flex-col justify-center items-center bg-black/30 backdrop-blur-sm z-[3]">
@@ -58,17 +57,20 @@ const ModalTokenPage = ({
             </div>
             {/* white list token  */}
             <div className="flex flex-wrap gap-3">
-              {tokenpolygon.map((data, index) => {
+              {tokenbsc.map((data, index) => {
                 return (
                   <button
                     key={index}
                     onClick={() =>
-                      handleSelectedTokenInit(data.tokenName, data.imgUrl)
+                      handleSelectedTokenDestination(
+                        data.tokenName,
+                        data.imgUrl
+                      )
                     }
-                    disabled={initNetwork === ""}
+                    disabled={destinationNetwork === ""}
                     className={`flex flex-row items-center gap-2 justify-center bg-[#212121] border-2 rounded-xl border-[#3b3b3b] px-3 py-3 min-h-[50px]
                         ${
-                          initNetwork === ""
+                          destinationNetwork === ""
                             ? "cursor-not-allowed"
                             : "hover:brightness-125"
                         }`}
@@ -91,7 +93,7 @@ const ModalTokenPage = ({
             <hr className="border-[#3b3b3b]" />
 
             <div className="flex flex-col justify-center w-full gap-5">
-              {tokenpolygon
+              {tokenbsc
                 .filter((dataFilter) => {
                   return searchToken.toLowerCase() === "" ||
                     searchToken.toUpperCase() === ""
@@ -109,7 +111,10 @@ const ModalTokenPage = ({
                       key={index}
                       className="flex flex-row justify-between items-center duration-200 hover:bg-[#2e2e2e] px-3 py-4 rounded-lg"
                       onClick={() =>
-                        handleSelectedTokenInit(data.tokenName, data.imgUrl)
+                        handleSelectedTokenDestination(
+                          data.tokenName,
+                          data.imgUrl
+                        )
                       }
                     >
                       <div className="flex flex-row items-center gap-2">
@@ -146,4 +151,4 @@ const ModalTokenPage = ({
   );
 };
 
-export default ModalTokenPage;
+export default ModalTokenDestinationPage;

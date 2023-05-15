@@ -10,10 +10,11 @@ const ModalNetworkPage = ({
   isOpen,
   handleDestinationNetwork,
   handleInitNetwork,
+  isLoading,
+  pendingChainId,
 }: any) => {
   const { chain } = useNetwork();
-  const { chains, error, isLoading, pendingChainId, switchNetwork } =
-    useSwitchNetwork();
+  const { chains, switchNetwork } = useSwitchNetwork();
 
   if (!isOpen) return null;
   return (

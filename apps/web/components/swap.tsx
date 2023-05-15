@@ -7,6 +7,7 @@ import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
 import { network } from "./network";
 import ModalNetworkPage from "./modal-network";
 import ModalTokenPage from "./modal-token";
+import ModalTokenDestinationPage from "./modal-token-destination";
 
 const itemVariants: Variants = {
   open: {
@@ -20,15 +21,30 @@ const itemVariants: Variants = {
 const SwapPage = () => {
   // States
   const [isOpen, setIsOpen] = useState(false);
+  // States for Modal Init Network and Destination Network
   const [showModal, setShowModal] = useState(false);
-  const [showModalToken, setShowModalToken] = useState(false);
   const [initNetwork, setInitNetwork] = useState("");
   const [initNetworkUrl, setInitNetworkUrl] = useState("");
   const [destinationNetwork, setDestinationNetwork] = useState("");
   const [destinationNetworkUrl, setDestinationNetworkUrl] = useState("");
+  // States Token Init Network
+  const [showModalToken, setShowModalToken] = useState(false);
+  const [tokenInitName, setTokenInitName] = useState("");
+  const [tokenInitImgUrl, setTokenInitImgUrl] = useState("");
+  // States Token Destination Network
+  const [showModalTokenDestination, setShowModalTokenDestination] =
+    useState(false);
+  const [tokenDestinationName, setTokenDestinationName] = useState("");
+  const [tokenDestinationImgUrl, setTokenDestinationImgUrl] = useState("");
+
   const [labelNetwork, setLabelNetwork] = useState("");
   const [isNetworkError, setIsNetworkError] = useState(false);
-  const { address, isConnected, connector: activeConnector } = useAccount();
+  // wagmi hooks
+  const { isConnected } = useAccount();
+  const { chain } = useNetwork();
+  const { isLoading, pendingChainId, switchNetwork } = useSwitchNetwork();
+  //
+  const [tokenInputs, setTokenInputs] = useState<any>(0);
   // Functions
   const handleInitNetwork = (networkname: any, imgUrl: any, id: any) => {
     switchNetwork?.(id);
@@ -47,16 +63,25 @@ const SwapPage = () => {
     setShowModal(!showModal);
   };
 
+  const handleSelectedTokenInit = (tokenName: any, imgUrl: any) => {
+    setTokenInitName(tokenName);
+    setTokenInitImgUrl(imgUrl);
+    setShowModalToken(!showModalToken);
+  };
+
+  const handleSelectedTokenDestination = (tokenName: any, imgUrl: any) => {
+    setTokenDestinationName(tokenName);
+    setTokenDestinationImgUrl(imgUrl);
+    setShowModalTokenDestination(!showModalTokenDestination);
+  };
+
+  // useEffects
   useEffect(() => {
     if (destinationNetwork === initNetwork) {
       setDestinationNetwork("");
       setDestinationNetworkUrl("");
     }
   }, [initNetwork]);
-
-  const { chain } = useNetwork();
-  const { chains, error, isLoading, pendingChainId, switchNetwork } =
-    useSwitchNetwork();
 
   useEffect(() => {
     {
@@ -68,32 +93,49 @@ const SwapPage = () => {
         }
       });
       if (isConnected) setShowModal(false);
+      if (!isConnected) {
+        setInitNetwork("");
+        setInitNetworkUrl("");
+        setDestinationNetwork("");
+        setDestinationNetworkUrl("");
+        setTokenInitName("");
+        setTokenInitImgUrl("");
+        setTokenDestinationImgUrl("");
+        setTokenDestinationName("");
+      }
     }
   }, [chain]);
 
   return (
     <section className="relative flex flex-col justify-center py-[5rem] items-center min-h-[100vh] gap-5">
-      {/* Modal Network Choose  */}
-
       {/* <div>{error && error.message}</div> */}
-      {/* {<div className="text-white">{chain?.name}</div>} */}
 
+      {/* Modal  */}
       <ModalNetworkPage
         labelnetwork={labelNetwork}
         initNetwork={initNetwork}
         isOpen={showModal}
         handleDestinationNetwork={handleDestinationNetwork}
         handleInitNetwork={handleInitNetwork}
+        isLoading={isLoading}
+        pendingChainId={pendingChainId}
       />
 
       <ModalTokenPage
         isOpen={showModalToken}
         initNetwork={initNetwork}
         onClose={() => setShowModalToken(!showModalToken)}
+        handleSelectedTokenInit={handleSelectedTokenInit}
       />
 
+      <ModalTokenDestinationPage
+        isOpen={showModalTokenDestination}
+        initNetwork={initNetwork}
+        onClose={() => setShowModalTokenDestination(!showModalTokenDestination)}
+        handleSelectedTokenDestination={handleSelectedTokenDestination}
+      />
+      {/* Swap  */}
       <div className="flex flex-col lg:flex-row justify-center gap-5 w-full max-w-[500px] lg:max-w-[1020px]">
-        {/* Swap  */}
         <div className="flex flex-col justify-center items-center gap-3 border-[1px] border-[#3b3b3b] bg-radial rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]">
           <div className="flex flex-row justify-between w-full py-1">
             <h1 className="mobile-title sm:tablet-title lg:web-title grow">
@@ -108,9 +150,8 @@ const SwapPage = () => {
               />
             </div>
           </div>
-
+          {/* Initial Network  */}
           <div className="flex flex-row justify-between items-center w-full py-2 px-3 rounded-full bg-[#2e2e2e] border-[1px] border-[#3b3b3b]">
-            {/* Initial Network  */}
             <p className="mobile-description sm:tablet-description lg:web-description grow text-[#7a7a7a]">
               Initial Network
             </p>
@@ -131,7 +172,6 @@ const SwapPage = () => {
                 </p>
               ) : (
                 <>
-                  {" "}
                   {isLoading ? (
                     "Switching Network"
                   ) : (
@@ -167,8 +207,9 @@ const SwapPage = () => {
                 name="tokenvalue"
                 placeholder="0.00"
                 className="w-full lg:grow bg-transparent"
+                onChange={(e) => setTokenInputs(e.target.value)}
               />
-              {/* Select Token  */}
+              {/* Select Token Init Network*/}
               <button
                 onClick={() => setShowModalToken(!showModalToken)}
                 disabled={initNetwork === ""}
@@ -179,40 +220,50 @@ const SwapPage = () => {
                               : "hover:brightness-125"
                           }`}
               >
-                <Image
-                  src={"/icons/tether-icon.svg"}
-                  alt={"refresh"}
-                  height={55}
-                  width={55}
-                />
-                <p className="mobile-overline sm:mobile-h3">USDT</p>
-                <Image
-                  src={"/icons/dropdown-icon.svg"}
-                  alt={"refresh"}
-                  height={60}
-                  width={60}
-                />
+                {tokenInitName === "" ? (
+                  <p className="mobile-overline sm:tablet-overline lg:web-overline xsm:w-28">
+                    Select Token
+                  </p>
+                ) : (
+                  <>
+                    {" "}
+                    <Image
+                      src={tokenInitImgUrl}
+                      alt={"refresh"}
+                      height={20}
+                      width={20}
+                    />
+                    <p className="mobile-overline sm:mobile-h3">
+                      {tokenInitName}
+                    </p>
+                    <Image
+                      src={"/icons/dropdown-icon.svg"}
+                      alt={"refresh"}
+                      height={70}
+                      width={70}
+                    />
+                  </>
+                )}
               </button>
             </div>
-
+            {/* Destination Network  */}
             <div className="flex flex-row justify-between items-center w-full py-2 px-3 rounded-full bg-[#2e2e2e] border-[1px] border-[#3b3b3b]">
-              {/* Destination Network  */}
               <p className="w-full sm:w-auto mobile-description sm:tablet-description lg:web-description grow text-[#7a7a7a]">
                 Destination Network
               </p>
 
               <button
-                disabled={destinationNetwork === ""}
+                disabled={initNetwork === ""}
                 onClick={() => handleSelectNetwork("Destination Network")}
                 className={`flex flex-row items-center gap-2  bg-[#1b181c] border-2 rounded-full border-[#3b3b3b] px-3 py-2 
                           ${
-                            destinationNetwork === ""
+                            initNetwork === ""
                               ? "cursor-not-allowed"
                               : "hover:brightness-125"
                           }`}
               >
                 {destinationNetwork === "" ? (
-                  <p className="mobile-title sm:tablet-title lg:web-title text-[#7a7a7a]">
+                  <p className="mobile-title py-1 sm:tablet-title lg:web-title text-[#7a7a7a]">
                     Select Network
                   </p>
                 ) : (
@@ -232,7 +283,7 @@ const SwapPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-row justify-between grow gap-5 px-[1rem] border-[1px] border-[#3b3b3b] py-3 rounded-xl ">
+          <div className="flex flex-row justify-between grow gap-5 px-[1rem] border-[1px] border-[#3b3b3b] py-3 rounded-xl w-full">
             <input
               type="number"
               id="fname"
@@ -241,10 +292,12 @@ const SwapPage = () => {
               className="w-full lg:grow bg-transparent"
               disabled
             />
-            {/* Select Token v2  */}
+            {/* Select Token v2 Destination Network */}
             <button
               disabled={destinationNetwork === ""}
-              onClick={() => setShowModalToken(!showModalToken)}
+              onClick={() =>
+                setShowModalTokenDestination(!showModalTokenDestination)
+              }
               className={`flex flex-row items-center gap-2 bg-[#1b181c] border-2 rounded-xl border-[#3b3b3b] 
                           px-3 py-3 ${
                             destinationNetwork === ""
@@ -252,19 +305,30 @@ const SwapPage = () => {
                               : "hover:brightness-125"
                           } `}
             >
-              <Image
-                src={"/icons/tether-icon.svg"}
-                alt={"refresh"}
-                height={55}
-                width={55}
-              />
-              <p className="mobile-overline sm:mobile-h3">USDT</p>
-              <Image
-                src={"/icons/dropdown-icon.svg"}
-                alt={"refresh"}
-                height={60}
-                width={60}
-              />
+              {tokenDestinationName === "" ? (
+                <p className="mobile-overline sm:tablet-overline lg:web-overline xsm:w-28">
+                  Select Token
+                </p>
+              ) : (
+                <>
+                  {" "}
+                  <Image
+                    src={tokenDestinationImgUrl}
+                    alt={"refresh"}
+                    height={20}
+                    width={20}
+                  />
+                  <p className="mobile-overline sm:mobile-h3">
+                    {tokenDestinationName}
+                  </p>
+                  <Image
+                    src={"/icons/dropdown-icon.svg"}
+                    alt={"refresh"}
+                    height={70}
+                    width={70}
+                  />
+                </>
+              )}
             </button>
           </div>
           <motion.nav
@@ -277,7 +341,7 @@ const SwapPage = () => {
               className="flex flex-row items-center justify-between grow border-[1px] border-[#474747] bg-[#141414] rounded-xl py-2 px-3"
             >
               <div className="flex flex-wrap xsm:flex-row items-center gap-2">
-                {/* Token 1 */}
+                {/*Fetch Selected Token 1 init network*/}
                 <p className="mobile-description sm:tablet-description lg:web-description">
                   1 USDT
                 </p>
@@ -287,7 +351,7 @@ const SwapPage = () => {
                   height={12}
                   width={12}
                 />
-                {/* Token-2 */}
+                {/*Fetch Selected Token-2 destination network*/}
                 <p className="mobile-description sm:tablet-description lg:web-description">
                   1 AXS
                 </p>
@@ -372,7 +436,7 @@ const SwapPage = () => {
                       />
                     </div>
                     <div className="flex flex-wrap justify-center xsm:justify-start xsm:flex-row gap-2">
-                      <button className="flex items-center gap-2 text-black mobile-subtitle sm:tablet-subtitle lg:web-subtitle bg-[#1cef5f] px-4 py-2 rounded-full">
+                      <button className="flex items-center gap-2 text-black mobile-subtitle sm:tablet-subtitle lg:web-subtitle bg-[#1cef5f] px-4 py-2 rounded-full ">
                         <Image
                           src={"/icons/fastest-icon.svg"}
                           alt={"dropdown"}
@@ -455,7 +519,15 @@ const SwapPage = () => {
             </div>
           )}
 
-          <button className="mobile-title sm:tablet-title lg:web-title bg-radial-button w-full px-2 py-5 rounded-xl text-black cursor-pointer duration-300 hover:brightness-75">
+          <button
+            disabled={tokenInputs === ""}
+            className={`mobile-title sm:tablet-title lg:web-title w-full px-2 py-5 rounded-xl duration-300 
+            ${
+              tokenInputs === ""
+                ? "cursor-not-allowed bg-[#2e2e2e] text-[#777a7a]"
+                : "hover:brightness-75 cursor-pointer bg-radial-button text-black"
+            }`}
+          >
             Swap Now
           </button>
         </div>

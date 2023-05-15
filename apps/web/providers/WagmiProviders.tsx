@@ -10,6 +10,7 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { mainnet, polygonMumbai, bscTestnet } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { ReactNode } from "react";
 
 const { chains, publicClient } = configureChains(
