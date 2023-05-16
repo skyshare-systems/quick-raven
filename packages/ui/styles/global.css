@@ -6,80 +6,80 @@
   /* fontsize mobile  */
 
   .mobile-subtitle {
-    @apply text-[8px] font-[600] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[8px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .mobile-overline {
-    @apply text-[10px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[10px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .mobile-description {
-    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .mobile-title {
-    @apply text-[12px] font-[700] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[12px] font-[700] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .mobile-h4 {
-    @apply text-[14px] font-[700] leading-[16px] font-[Excon] tracking-[1px];
+    @apply text-[14px] font-[700] leading-[16px] font-[Excon] tracking-[0.5px];
   }
   .mobile-h3 {
-    @apply text-[18px] font-[700] leading-[28px] font-[Excon] tracking-[1px];
+    @apply text-[18px] font-[700] leading-[28px] font-[Excon] tracking-[0.5px];
   }
   .mobile-h2 {
-    @apply text-[24px] font-[700] leading-[28px] font-[Excon] tracking-[1px];
+    @apply text-[24px] font-[700] leading-[28px] font-[Excon] tracking-[0.5px];
   }
   .mobile-h1 {
-    @apply text-[32px] font-[700] leading-[36px] font-[Excon] tracking-[1px];
+    @apply text-[32px] font-[700] leading-[36px] font-[Excon] tracking-[0.5px];
   }
 
   /* Font Size Tablet  */
   .tablet-overline {
-    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .tablet-subtitle {
-    @apply text-[12px] font-[600] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[12px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .tablet-description {
-    @apply text-[14px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[14px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .tablet-title {
-    @apply text-[14px] font-[700] leading-[14px] font-[Switzer] tracking-[1px];
+    @apply text-[14px] font-[700] leading-[14px] font-[Switzer] tracking-[0.5px];
   }
   .tablet-h4 {
-    @apply text-[18px] font-[700] leading-[20px] font-[Excon] tracking-[1px];
+    @apply text-[18px] font-[700] leading-[20px] font-[Excon] tracking-[0.5px];
   }
   .tablet-h3 {
-    @apply text-[22px] font-[700] leading-[31px] font-[Excon] tracking-[1px];
+    @apply text-[22px] font-[700] leading-[31px] font-[Excon] tracking-[0.5px];
   }
   .tablet-h2 {
-    @apply text-[36px] font-[700] leading-[51px] font-[Excon] tracking-[1px];
+    @apply text-[36px] font-[700] leading-[51px] font-[Excon] tracking-[0.5px];
   }
   .tablet-h1 {
-    @apply text-[64px] font-[700] leading-[91px] font-[Excon] tracking-[1px];
+    @apply text-[64px] font-[700] leading-[91px] font-[Excon] tracking-[0.5px];
   }
 
   /* font size web  */
   .web-overline {
-    @apply text-[14px] font-[400] leading-[15px] font-[Switzer] tracking-[1px];
+    @apply text-[14px] font-[400] leading-[15px] font-[Switzer] tracking-[0.5px];
   }
   .web-subtitle {
-    @apply text-[14px] font-[600] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[14px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .web-description {
-    @apply text-[16px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[16px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .web-title {
-    @apply text-[16px] font-[700] leading-[16px] font-[Switzer] tracking-[1px];
+    @apply text-[16px] font-[700] leading-[16px] font-[Switzer] tracking-[0.5px];
   }
   .web-h4 {
-    @apply text-[20px] font-[700] leading-[28px] font-[Excon] tracking-[1px];
+    @apply text-[20px] font-[700] leading-[28px] font-[Excon] tracking-[0.5px];
   }
   .web-h3 {
-    @apply text-[24px] font-[700] leading-[34px] font-[Excon] tracking-[1px];
+    @apply text-[24px] font-[700] leading-[34px] font-[Excon] tracking-[0.5px];
   }
   .web-h2 {
-    @apply text-[48px] font-[700] leading-[68px] font-[Excon] tracking-[1px];
+    @apply text-[48px] font-[700] leading-[68px] font-[Excon] tracking-[0.5px];
   }
   .web-h1 {
-    @apply text-[96px] font-[700] leading-[136px] font-[Excon] tracking-[1px];
+    @apply text-[96px] font-[700] leading-[136px] font-[Excon] tracking-[0.5px];
   }
 
   body {
