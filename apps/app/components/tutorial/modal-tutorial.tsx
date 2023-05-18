@@ -1,21 +1,86 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useAccount } from "wagmi";
+import {
+  useDexAggregatorBscSwap,
+  useBscUsdtTokenMint,
+  useBscUsdcTokenMint,
+  useBscWethTokenMint,
+  useBscMaticTokenMint,
+} from "../../lib/blockchain";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ModalTutorialPage = ({ isOpen, onClose }: any) => {
-  const [openTab, setOpenTab] = useState(4);
-  const hide = "hidden";
-  const show = "auto";
+  const [openTab, setOpenTab] = useState(0);
+  const { isConnected, address: account } = useAccount();
 
   const handleClick = () => {
     onClose(false);
     setOpenTab(0);
   };
 
+  const spender = "0x71e711Cd6b13125f53A5c238B015841a3c8315D7";
+
+  const {
+    writeAsync: mintUsdc,
+    isError: isMintUsdcError,
+    error: mintUsdcError,
+    isSuccess: isMintUsdcSuccess,
+    isLoading: isMintUsdcLoading,
+  } = useBscUsdcTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
+
+  const {
+    writeAsync: mint,
+    isError: isMintError,
+    error: mintError,
+    isSuccess: isMintSuccess,
+    isLoading: isMintUsdtLoading,
+  } = useBscUsdtTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
+
+  const constructErrorMessage = () => {
+    if (isMintError) {
+      return toast(mintError?.message);
+    } else {
+      return "Something went wrong";
+    }
+  };
+
+  function constructSuccessMessage() {
+    if (isMintSuccess) {
+      return toast("Claiming Success");
+    } else {
+      return "Something went wrong";
+    }
+  }
+
   if (!isOpen) return null;
 
   return (
     <>
+      <div className="fixed top-0 right-0 z-[5]">
+        {isMintSuccess && constructSuccessMessage()}
+        {isMintError && constructErrorMessage()}
+
+        {isMintError && (
+          <>
+            <ToastContainer
+              position="top-right"
+              autoClose={1500}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              theme="dark"
+            />
+          </>
+        )}
+      </div>
+
       <section className="fixed flex flex-col items-center justify-center z-[3] min-h-[100vh] min-w-full bg-black/30 backdrop-blur-sm">
         <div className="relative flex flex-col p-5 max-w-[500px] h-full w-full bg-black rounded-xl border-[1px] border-[#2e2e2e] gap-4">
           <button
@@ -68,11 +133,11 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             )}
             {openTab === 4 && (
               <Image
-                src={"/image/step-0.svg"}
+                src={"/image/step-4.svg"}
                 alt={"cross"}
-                height={200}
-                width={200}
-                className="grow"
+                height={100}
+                width={100}
+                className="grow max-h-[350px]"
               />
             )}
           </div>
@@ -108,8 +173,16 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
 
                 <p className="text-white mobile-description sm:tablet-description lg:web-description">
                   Ensure you have a wallet that supports the Binance Smart Chain
-                  network, such as Metamask. This will enable you to securely
-                  interact with the Quick Raven Testnet.
+                  network, such as{" "}
+                  <Link
+                    href={"https://metamask.io/"}
+                    className="text-[#efc81c]"
+                    target="_blank"
+                  >
+                    Metamask
+                  </Link>
+                  . This will enable you to securely interact with the Quick
+                  Raven Testnet.
                 </p>
               </>
             )}
@@ -127,24 +200,49 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                 <p className="text-white mobile-description sm:tablet-description lg:web-description">
                   Acquire test tokens explicitly designed for the Binance Smart
                   Chain network. These tokens are exclusively available on the
-                  Binance Smart Chain Testnet.
+                  <Link
+                    href={"https://testnet.binance.org/faucet-smart/"}
+                    target="_blank"
+                    className="text-[#efc81c]"
+                  >
+                    {" "}
+                    Binance Smart Chain Testnet.
+                  </Link>
                 </p>
               </>
             )}
 
             {openTab === 3 && (
               <>
-                <div className="flex flex-wrap items-center justify-center w-full gap-5">
-                  <button className="px-6 py-3 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl grow">
-                    CLAIM 1000 USDC
+                <div
+                  className={`relative flex flex-wrap items-center justify-center w-full gap-5 ${
+                    !isConnected ? "p-5" : "p-0"
+                  }`}
+                >
+                  {!isConnected && (
+                    <div className="absolute flex items-center justify-center w-full h-full p-5 backdrop-blur-md bg-black/50 rounded-xl">
+                      <h3 className="text-center text-white">
+                        Connect Your Wallet First
+                      </h3>
+                    </div>
+                  )}
+
+                  <button
+                    onClick={() => mintUsdc()}
+                    className="px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl w-full max-w-[215px] "
+                  >
+                    {isMintUsdcLoading ? "Claiming USDC..." : "CLAIM 1000 USDC"}
                   </button>
-                  <button className="px-6 py-3 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl grow">
-                    CLAIM 1000 USDT
+                  <button
+                    onClick={() => mint()}
+                    className="px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl w-full max-w-[215px]"
+                  >
+                    {isMintUsdtLoading ? "Claiming USDT..." : "CLAIM 1000 USDT"}
                   </button>
-                  <button className="px-6 py-3 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl grow">
+                  <button className="px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl w-full max-w-[215px]">
                     CLAIM 1000 WETH
                   </button>
-                  <button className="px-6 py-3 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl grow">
+                  <button className="px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl w-full max-w-[215px]">
                     CLAIM 1000 MATIC
                   </button>
                 </div>
@@ -209,12 +307,6 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
               Back
             </button>
             <div className="flex flex-row justify-between gap-5">
-              <button
-                onClick={() => handleClick()}
-                className="px-6 py-3 text-white mobile-title sm:tablet-title lg:web-title"
-              >
-                Skip
-              </button>
               <button
                 disabled={openTab === 4}
                 onClick={() => setOpenTab(openTab + 1)}
