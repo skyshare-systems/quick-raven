@@ -1,0 +1,184 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x0B7dC7bc639dB391B9aFbeec0Dd24f1D8745Fc38",
+    "txHash": "0x0f22ab6bfb47c9459885bc9a6225c62dc5e5a264f3b38f627358806d98b308dd"
+  },
+  "proxies": [
+    {
+      "address": "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18",
+      "txHash": "0x5c06874f106e391f458d815657e31cbe281bb71787250f11c8e015831103eade",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b",
+      "txHash": "0x22643114722cb69a23b2c492da8426e635c9790af0cf4c10543ed93d1825e5c9",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xc1D7eC1a5320ed08b6B019cACC80f29905A7EEfA",
+      "txHash": "0xd1ffba339c9f8f99ba3ee61961dcb83aaa874f160b876775e3da8511ff49292f",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xe3aF098836c4641f8EcF9185E49F8C3E74d91348",
+      "txHash": "0x6a1f971d58759cb71dccd9728e55ade81e49af275f47450d1adb85cbb9944719",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
+      "txHash": "0x529453a2138efd26461e63759d7b3c4c9d87a0c96f792a97dc214cd20f129c90",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xE54da8864c14C924981a40E8B1C37109df4C2D33",
+      "txHash": "0xa4618b673dba8c115f00dadc20c9a3d894ce657e341ea7bcf94742a47da6c517",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "e8dda2d526a85cb8ff5ccee671daf00c75f8a1dc17c662384f999a96763bf92b": {
+      "address": "0x17d27FFe2a67cBb5b0120e3102C4911BedAAa1a3",
+      "txHash": "0xc8fad9e6f0e15628c69fe4a7325a69bb73a629898122fe26bfbae3c2903e2559",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_balances",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:37"
+          },
+          {
+            "label": "_allowances",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:39"
+          },
+          {
+            "label": "_totalSupply",
+            "offset": 0,
+            "slot": "53",
+            "type": "t_uint256",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:41"
+          },
+          {
+            "label": "_name",
+            "offset": 0,
+            "slot": "54",
+            "type": "t_string_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:43"
+          },
+          {
+            "label": "_symbol",
+            "offset": 0,
+            "slot": "55",
+            "type": "t_string_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:44"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "56",
+            "type": "t_array(t_uint256)45_storage",
+            "contract": "ERC20Upgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol:400"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)45_storage": {
+            "label": "uint256[45]",
+            "numberOfBytes": "1440"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+            "label": "mapping(address => mapping(address => uint256))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "e99e91cdb3da3f9860a534fd24980ed8d9c3818e79aa1161cc3611feede88816": {
+      "address": "0x71e711Cd6b13125f53A5c238B015841a3c8315D7",
+      "txHash": "0x59b455dbee23e25ee1be64676cb555f7a88980cfa00c521e3ab37ccd4f1c1e8f",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "WETH",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "DexAggregator",
+            "src": "contracts/main/DexAggregator.sol:9"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          }
+        }
+      }
+    }
+  }
+}
