@@ -6,80 +6,97 @@
   /* fontsize mobile  */
 
   .mobile-subtitle {
-    @apply text-[8px] font-[600] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[8px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .mobile-overline {
-    @apply text-[10px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[10px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .mobile-description {
-    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .mobile-title {
-    @apply text-[12px] font-[700] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[12px] font-[700] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .mobile-h4 {
-    @apply text-[14px] font-[700] leading-[16px] font-[Excon] tracking-[1px];
+    @apply text-[14px] font-[700] leading-[16px] font-[Excon] tracking-[0.5px];
   }
   .mobile-h3 {
-    @apply text-[18px] font-[700] leading-[28px] font-[Excon] tracking-[1px];
+    @apply text-[18px] font-[700] leading-[28px] font-[Excon] tracking-[0.5px];
   }
   .mobile-h2 {
-    @apply text-[24px] font-[700] leading-[28px] font-[Excon] tracking-[1px];
+    @apply text-[24px] font-[700] leading-[28px] font-[Excon] tracking-[0.5px];
   }
   .mobile-h1 {
-    @apply text-[32px] font-[700] leading-[36px] font-[Excon] tracking-[1px];
+    @apply text-[32px] font-[700] leading-[36px] font-[Excon] tracking-[0.5px];
   }
 
   /* Font Size Tablet  */
   .tablet-overline {
-    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .tablet-subtitle {
-    @apply text-[12px] font-[600] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[12px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .tablet-description {
-    @apply text-[14px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[14px] font-[400] leading-[14px] font-[Switzer] tracking-[0.5px];
   }
   .tablet-title {
-    @apply text-[14px] font-[700] leading-[14px] font-[Switzer] tracking-[1px];
+    @apply text-[14px] font-[700] leading-[14px] font-[Switzer] tracking-[0.5px];
   }
   .tablet-h4 {
-    @apply text-[18px] font-[700] leading-[20px] font-[Excon] tracking-[1px];
+    @apply text-[18px] font-[700] leading-[20px] font-[Excon] tracking-[0.5px];
   }
   .tablet-h3 {
-    @apply text-[22px] font-[700] leading-[31px] font-[Excon] tracking-[1px];
+    @apply text-[22px] font-[700] leading-[31px] font-[Excon] tracking-[0.5px];
   }
   .tablet-h2 {
-    @apply text-[36px] font-[700] leading-[51px] font-[Excon] tracking-[1px];
+    @apply text-[36px] font-[700] leading-[51px] font-[Excon] tracking-[0.5px];
   }
   .tablet-h1 {
-    @apply text-[64px] font-[700] leading-[91px] font-[Excon] tracking-[1px];
+    @apply text-[64px] font-[700] leading-[91px] font-[Excon] tracking-[0.5px];
   }
 
   /* font size web  */
   .web-overline {
-    @apply text-[14px] font-[400] leading-[15px] font-[Switzer] tracking-[1px];
+    @apply text-[14px] font-[400] leading-[15px] font-[Switzer] tracking-[0.5px];
   }
   .web-subtitle {
-    @apply text-[14px] font-[600] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[14px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .web-description {
-    @apply text-[16px] font-[400] leading-[12px] font-[Switzer] tracking-[1px];
+    @apply text-[16px] font-[400] leading-[16px] font-[Switzer] tracking-[0.5px];
   }
   .web-title {
-    @apply text-[16px] font-[700] leading-[16px] font-[Switzer] tracking-[1px];
+    @apply text-[16px] font-[700] leading-[16px] font-[Switzer] tracking-[0.5px];
   }
   .web-h4 {
-    @apply text-[20px] font-[700] leading-[28px] font-[Excon] tracking-[1px];
+    @apply text-[20px] font-[700] leading-[28px] font-[Excon] tracking-[0.5px];
   }
   .web-h3 {
-    @apply text-[24px] font-[700] leading-[34px] font-[Excon] tracking-[1px];
+    @apply text-[24px] font-[700] leading-[34px] font-[Excon] tracking-[0.5px];
   }
   .web-h2 {
-    @apply text-[48px] font-[700] leading-[68px] font-[Excon] tracking-[1px];
+    @apply text-[48px] font-[700] leading-[68px] font-[Excon] tracking-[0.5px];
   }
   .web-h1 {
-    @apply text-[96px] font-[700] leading-[136px] font-[Excon] tracking-[1px];
+    @apply text-[96px] font-[700] leading-[136px] font-[Excon] tracking-[0.5px];
+  }
+
+  body {
+    background: radial-gradient(
+          48.02% 72.13% at 81.63% 45.08%,
+          rgba(171, 60, 210, 0.2) 0%,
+          rgba(0, 0, 0, 0) 100%
+        )
+        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+      radial-gradient(
+          40.98% 34.55% at 14.08% 26.76%,
+          rgba(64, 212, 221, 0.2) 0%,
+          rgba(29, 223, 255, 0) 100%
+        )
+        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+      #141414;
+    background-attachment: fixed;
   }
 
   .center-absolute {
@@ -95,7 +112,6 @@
 
   input {
     background: none;
-    border: none;
   }
 
   input:focus {
@@ -130,6 +146,25 @@
         rgba(84, 84, 84, 0) 100%
       ),
       rgba(20, 20, 20, 0.5);
+  }
+
+  .bg-radial-modal {
+    background: radial-gradient(
+        80.98% 100% at 50% 0%,
+        rgba(84, 84, 84, 0.5) 0%,
+        rgba(84, 84, 84, 0) 100%
+      ),
+      #141414;
+  }
+
+  .faded-bottom {
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 20%,
+      transparent 100%
+    );
   }
 
   /* Chrome, Safari, Edge, Opera */
