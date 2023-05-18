@@ -2,14 +2,17 @@ import Link from "next/link";
 import classNames from "ui/utils/helpers/classNames";
 
 type ButtonVariant =
-  | "cyan"
-  | "secondary"
-  | "custom-black"
-  | "transparent"
-  | "disable-gray"
-  | "black-cyan-border"
-  | "purple-cyan"
-  | "custom-black-input";
+  | "forest"
+  | "green"
+  | "pink"
+  | "mint"
+  | "brown"
+  | "orange"
+  | "white"
+  | "custom-green"
+  | "custom-gray"
+  | "disabled"
+  | "custom-green-fusion";
 
 const getVariantSpecificButtonProps = (
   variant: ButtonVariant
@@ -18,50 +21,56 @@ const getVariantSpecificButtonProps = (
   HTMLButtonElement
 > => {
   switch (variant) {
-    case "cyan":
+    case "forest":
       return {
         className:
-          "bg-[#36f1e6] px-8 py-4  text-black border-0 drop-shadow-5xl",
+          "bg-[#223843] py-3 border-0 text-[#E8EFED] duration-300 hover:scale-[1.05] active:scale-[0.9] cursor-pointer  rounded-md",
       };
-    case "secondary":
+    case "custom-green":
       return {
         className:
-          "bg-[#141414] px-8 py-4  font-[Switzer-Regular]  text-[#E8EFED] ",
+          "bg-[#3ab65f] py-3 px-6 border-0 text-black font-[IntegralCF-Bold] duration-300 hover:text-white hover:scale-[1.05] active:scale-[0.95] cursor-pointer  rounded-md",
       };
-    case "custom-black":
+    case "custom-green-fusion":
       return {
         className:
-          "bg-[#212121] font-[Switzer-Regular] border-transparent border-[1px] text-[#ffffff] rounded-xl",
+          "bg-[#3ab65f] py-3 px-6 border-0 text-black font-[IntegralCF-Bold] duration-300 hover:text-white cursor-pointer hover:pr-[5rem] rounded-md",
       };
-    case "custom-black-input":
+    case "custom-gray":
       return {
         className:
-          "bg-[#212121] font-[Switzer-Regular] border-[#616161] border-[1px] text-[#ffffff] rounded-xl",
+          "bg-[#231f20] py-2 border-0 gap-3 px-3 text-[#3ab65f]  duration-300 hover:brightness-200 cursor-pointer font-semibold text-lg rounded-3xl",
       };
-    case "transparent":
+    case "pink":
+      return {
+        className: "bg-[#C089AC] py-3 border-0 text-[#E8EFED]  rounded-md",
+      };
+    case "mint":
+      return {
+        className: "bg-[#E8EFED] py-3 border-0 text-[#223843]  rounded-md",
+      };
+    case "brown":
+      return {
+        className: "bg-[#D8B4A0] py-3 border-0 text-[#E8EFED]  rounded-md",
+      };
+    case "orange":
       return {
         className:
-          "font-[Switzer-Regular] px-8 py-4  border-0 hover:text-[#36f1e6] hover:bg-[#36f1e6]/20 rounded-lg transition ease-out duration-200",
+          "bg-[#D77610] py-3 border-0 text-[#E8EFED] duration-300 hover:scale-[1.1] active:scale-[0.9] cursor-pointer  rounded-md",
       };
-    case "disable-gray":
+    case "white":
+      return {
+        className: "bg-[#FFFFFF] py-3 border-0 text-[#223843]  rounded-md",
+      };
+    case "disabled":
       return {
         className:
-          "font-[Switzer-Regular] border-0 text-white bg-[#2b2b2b] rounded-[1.2rem] py-5 cursor-no-drop",
+          "bg-[grey] py-3 border-0 text-[#223843] font-[IntegralCF-Bold] cursor-not-allowed disabled  rounded-md",
       };
-    case "purple-cyan":
-      return {
-        className:
-          "font-[Switzer-Regular] border-0 text-white bg-[#2b2b2b] rounded-[1.2rem] py-5 cursor-no-drop bg-gradient-to-l bg-gradient-to-l from-[#43bbd9] via-[#5479c9 ] to-purple-600",
-      };
-    case "black-cyan-border":
-      return {
-        className:
-          "bg-[#212121] font-[Switzer-Regular] border-[1px] text-[#ffffff] rounded-xl",
-      };
+    case "green":
     default:
       return {
-        className:
-          "bg-[#212121] font-[Switzer-Regular] border-[1px] text-[#ffffff] rounded-xl",
+        className: "bg-[#5D7A89] py-3 border-0 text-[#E8EFED]  rounded-md",
       };
   }
 };
@@ -74,14 +83,10 @@ interface ButtonProps
   variant?: ButtonVariant;
 }
 
-const defaultClassName = "rounded-lg font-[Switzer-Bold]";
+const defaultClassName =
+  "flex justify-center border border-transparent text-lg";
 
-const Button = ({
-  children,
-  variant = "cyan",
-  disabled = false,
-  ...props
-}: ButtonProps) => {
+const Button = ({ children, variant = "green", ...props }: ButtonProps) => {
   const variantProps = getVariantSpecificButtonProps(variant);
 
   const className = classNames(
@@ -91,7 +96,7 @@ const Button = ({
   );
 
   return (
-    <button {...props} className={className} disabled={disabled}>
+    <button {...props} className={className}>
       {children}
     </button>
   );
