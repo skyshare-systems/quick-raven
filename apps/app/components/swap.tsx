@@ -109,8 +109,6 @@ const SwapPage = () => {
 
   return (
     <section className="relative flex flex-col justify-between pb-[3rem] pt-[7rem] items-center min-h-[100vh] gap-5">
-      {/* <div>{error && error.message}</div> */}
-
       {/* Modal  */}
       <ModalNetworkPage
         labelnetwork={labelNetwork}
@@ -193,7 +191,7 @@ const SwapPage = () => {
             </button>
           </div>
           <div className="relative flex flex-col w-full gap-3">
-            <div className="cursor-pointer center-absolute">
+            <div className="hidden cursor-pointer center-absolute">
               <Image
                 src={"/icons/switch-icon.svg"}
                 alt={"refresh"}

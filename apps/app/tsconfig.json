@@ -8,8 +8,16 @@
         "name": "next"
       }
     ],
-    "module": "esnext"
+    "module": "esnext",
+    "target": "ESNext"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "./components/**/*.ts",
+    "./components/**/*.tsx"
+  ],
   "exclude": ["node_modules"]
 }
