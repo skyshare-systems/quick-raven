@@ -38,7 +38,7 @@
     @apply text-[12px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .tablet-description {
-    @apply text-[14px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
+    @apply text-[14px] font-[400] leading-[14px] font-[Switzer] tracking-[0.5px];
   }
   .tablet-title {
     @apply text-[14px] font-[700] leading-[14px] font-[Switzer] tracking-[0.5px];
@@ -64,7 +64,7 @@
     @apply text-[14px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
   }
   .web-description {
-    @apply text-[16px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
+    @apply text-[16px] font-[400] leading-[16px] font-[Switzer] tracking-[0.5px];
   }
   .web-title {
     @apply text-[16px] font-[700] leading-[16px] font-[Switzer] tracking-[0.5px];

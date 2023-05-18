@@ -8,6 +8,7 @@ import { network } from "./network";
 import ModalNetworkPage from "./modal-network";
 import ModalTokenPage from "./modal-token";
 import ModalTokenDestinationPage from "./modal-token-destination";
+import FooterPage from "./footer";
 
 const itemVariants: Variants = {
   open: {
@@ -107,7 +108,7 @@ const SwapPage = () => {
   }, [chain]);
 
   return (
-    <section className="relative flex flex-col justify-center py-[5rem] items-center min-h-[100vh] gap-5">
+    <section className="relative flex flex-col justify-between pb-[3rem] pt-[7rem] items-center min-h-[100vh] gap-5">
       {/* <div>{error && error.message}</div> */}
 
       {/* Modal  */}
@@ -192,7 +193,7 @@ const SwapPage = () => {
             </button>
           </div>
           <div className="relative flex flex-col w-full gap-3">
-            <div className="center-absolute cursor-pointer">
+            <div className="cursor-pointer center-absolute">
               <Image
                 src={"/icons/switch-icon.svg"}
                 alt={"refresh"}
@@ -206,7 +207,7 @@ const SwapPage = () => {
                 id="tokenvalue"
                 name="tokenvalue"
                 placeholder="0.00"
-                className="w-full lg:grow bg-transparent"
+                className="w-full bg-transparent lg:grow"
                 onChange={(e) => setTokenInputs(e.target.value)}
               />
               {/* Select Token Init Network*/}
@@ -289,7 +290,7 @@ const SwapPage = () => {
               id="fname"
               name="fname"
               placeholder="0.00"
-              className="w-full lg:grow bg-transparent"
+              className="w-full bg-transparent lg:grow"
               disabled
             />
             {/* Select Token v2 Destination Network */}
@@ -340,7 +341,7 @@ const SwapPage = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="flex flex-row items-center justify-between grow border-[1px] border-[#474747] bg-[#141414] rounded-xl py-2 px-3"
             >
-              <div className="flex flex-wrap xsm:flex-row items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2 xsm:flex-row">
                 {/*Fetch Selected Token 1 init network*/}
                 <p className="mobile-description sm:tablet-description lg:web-description">
                   1 USDT
@@ -361,7 +362,7 @@ const SwapPage = () => {
                 </p>
               </div>
               {/* Gas Fees  */}
-              <div className="flex flex-wrap justify-end xsm:flex-row items-center gap-4">
+              <div className="flex flex-wrap items-center justify-end gap-4 xsm:flex-row">
                 <div className="flex gap-2">
                   <Image
                     src={"/icons/gas-fee-icon.svg"}
@@ -422,9 +423,9 @@ const SwapPage = () => {
                 variants={itemVariants}
                 className="flex flex-col justify-center bg-[#212121] border-[1px] border-[#474747] my-2 rounded-xl px-3 py-5 gap-4"
               >
-                <div className="flex flex-col xsm:flex-row gap-2">
+                <div className="flex flex-col gap-2 xsm:flex-row">
                   <div className="flex flex-col justify-center gap-2 grow">
-                    <div className="flex flex-row justify-center xsm:justify-start items-center gap-2">
+                    <div className="flex flex-row items-center justify-center gap-2 xsm:justify-start">
                       <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
                         Default Pathway
                       </p>
@@ -435,7 +436,7 @@ const SwapPage = () => {
                         width={20}
                       />
                     </div>
-                    <div className="flex flex-wrap justify-center xsm:justify-start xsm:flex-row gap-2">
+                    <div className="flex flex-wrap justify-center gap-2 xsm:justify-start xsm:flex-row">
                       <button className="flex items-center gap-2 text-black mobile-subtitle sm:tablet-subtitle lg:web-subtitle bg-[#1cef5f] px-4 py-2 rounded-full ">
                         <Image
                           src={"/icons/fastest-icon.svg"}
@@ -456,7 +457,7 @@ const SwapPage = () => {
                       </button>
                     </div>
                   </div>
-                  <div className="flex flex-col items-center xsm:items-end justify-center gap-3">
+                  <div className="flex flex-col items-center justify-center gap-3 xsm:items-end">
                     <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
                       Slippage Tolerance
                     </p>
@@ -475,12 +476,12 @@ const SwapPage = () => {
                 </div>
                 <hr className="border-[#474747]" />
 
-                <div className="flex flex-wrap xsm:flex-row justify-between gap-2">
+                <div className="flex flex-wrap justify-between gap-2 xsm:flex-row">
                   <div className="flex flex-col gap-2">
                     <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
                       Estimated Time:
                     </p>
-                    <p className="mobile-description sm:tablet-description lg:web-description text-white">
+                    <p className="text-white mobile-description sm:tablet-description lg:web-description">
                       15 minutes
                     </p>
                   </div>
@@ -488,7 +489,7 @@ const SwapPage = () => {
                     <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
                       Bridge Fee:
                     </p>
-                    <p className="mobile-description sm:tablet-description lg:web-description text-white">
+                    <p className="text-white mobile-description sm:tablet-description lg:web-description">
                       2.50 USDT
                     </p>
                   </div>
@@ -496,7 +497,7 @@ const SwapPage = () => {
                     <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
                       Estimated Gas Cost:
                     </p>
-                    <p className="mobile-description sm:tablet-description lg:web-description text-white">
+                    <p className="text-white mobile-description sm:tablet-description lg:web-description">
                       12.47 USDT
                     </p>
                   </div>
@@ -536,6 +537,7 @@ const SwapPage = () => {
           Code Here
         </div> */}
       </div>
+      <FooterPage />
     </section>
   );
 };
