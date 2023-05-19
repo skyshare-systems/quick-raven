@@ -1,13 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "./interface/Uniswap.sol";
 
-contract DexAggregator is Ownable {
+contract DexAggregator is OwnableUpgradeable {
+
+    function initialize() external initializer {
+        __Ownable_init();
+        __Context_init();
+    }
 
     function swapToQr(
         address _dexRouter,
@@ -19,9 +23,9 @@ contract DexAggregator is Ownable {
         IERC20(_tokenIn).transferFrom(msg.sender, address(this), _amountIn);
         IERC20(_tokenIn).approve(_dexRouter, _amountIn);
 
-        address[] memory path = new address[](3);
+        address[] memory path = new address[](2);
         path[0] = _tokenIn;
-        path[2] = _tokenOut;
+        path[1] = _tokenOut;
 
         IUniswapV2Router(_dexRouter).swapExactTokensForTokens(
             _amountIn, 
@@ -43,9 +47,9 @@ contract DexAggregator is Ownable {
         IERC20(_tokenIn).transferFrom(msg.sender, address(this), _amountIn);
         IERC20(_tokenIn).approve(_dexRouter, _amountIn);
 
-        address[] memory path = new address[](3);
+        address[] memory path = new address[](2);
         path[0] = _tokenIn;
-        path[2] = _tokenOut;
+        path[1] = _tokenOut;
 
         IUniswapV2Router(_dexRouter).swapExactTokensForTokens(
             _amountIn, 
