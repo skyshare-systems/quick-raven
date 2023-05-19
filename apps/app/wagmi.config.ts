@@ -1,6 +1,6 @@
 import { defineConfig } from "@wagmi/cli";
 import { react } from "@wagmi/cli/plugins";
-import { DexAggregatorABI, TokenABI } from "./abi";
+import { DexAggregatorABI, TokenABI, LPTokenABI } from "./abi";
 
 export default defineConfig({
   out: "lib/blockchain.ts",
@@ -8,8 +8,15 @@ export default defineConfig({
     {
       name: "DexAggregatorBSC",
       abi: DexAggregatorABI as any,
-      address: "0x71e711Cd6b13125f53A5c238B015841a3c8315D7",
+      address: "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3",
     },
+
+    {
+      name: "DexAggregatorMumbai",
+      abi: DexAggregatorABI as any,
+      address: "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4",
+    },
+
     {
       name: "BscUsdtToken",
       abi: TokenABI as any,
@@ -32,27 +39,27 @@ export default defineConfig({
     },
     {
       name: "BscLpUsdtUsdcLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0xfF0B599Cb9514064dE1e29a85FC32E9b0e59a65f",
     },
     {
       name: "BscLpUsdtMaticLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0x7a36666c7e02ED1F3517f7A921612d03B916C8DF",
     },
     {
       name: "BscLpUsdtWethLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0x0d64d8c32844d3565C8109105e2346e92E305A98",
     },
     {
       name: "BscLpUsdcWethLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0x1d4405431F1fB20993315950890646aEE7675E3f",
     },
     {
       name: "BscLpUsdcMaticLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0xF041F264B08fBF105e697D812a12C7D0EB6E3F6F",
     },
     {
@@ -60,11 +67,7 @@ export default defineConfig({
       abi: TokenABI as any,
       address: "0xDD19e92F0877a8d4A61B55c6fBE6B204fa39eFC2",
     },
-    {
-      name: "DexAggregatorMumbai",
-      abi: DexAggregatorABI as any,
-      address: "0xE54da8864c14C924981a40E8B1C37109df4C2D33",
-    },
+
     {
       name: "MumbaiUsdtToken",
       abi: TokenABI as any,
@@ -87,32 +90,32 @@ export default defineConfig({
     },
     {
       name: "MumbaiUsdtUsdcLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0xf98809B88c5143cd6abcBb7431CE5F9A76e53126",
     },
     {
       name: "MumbaiUsdtWethLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0xF3eC1ce03b6a2EC17e90FA0340DcB8E260922D00",
     },
     {
       name: "MumbaiUsdtMaticLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b",
     },
     {
       name: "MumbaiUsdcWethLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0x0ceD130cdb3966b04B46d0E08776b71ce65230BF",
     },
     {
       name: "MumbaiUsdcMaticLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0x12f0E87724054057c240f39cc3466bbD9b6Ef9AF",
     },
     {
       name: "MumbaiWethMaticLP",
-      abi: TokenABI as any,
+      abi: LPTokenABI as any,
       address: "0x0b5249aA44039a6305597C329E2d790E0DfF6142",
     },
   ],
