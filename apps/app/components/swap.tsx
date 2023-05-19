@@ -20,6 +20,7 @@ import {
   useMumbaiMaticTokenAllowance,
   useMumbaiUsdtMaticLpGetReserves,
 } from "../lib/blockchain";
+import { TokenABI } from "abi";
 
 const itemVariants: Variants = {
   open: {
@@ -61,7 +62,7 @@ const SwapPage = () => {
   const { isLoading, pendingChainId, switchNetwork } = useSwitchNetwork();
   //
   const [tokenInputs, setTokenInputs] = useState<any>(0);
-  const [minReceiveToken, setMinReceiveToken] = useState<any>(0);
+  const [minReceiveToken, setMinReceiveToken] = useState<any>(1);
 
   // Functions
   const handleInitNetwork = (networkname: any, imgUrl: any, id: any) => {
@@ -105,7 +106,10 @@ const SwapPage = () => {
 
   const { data: getReserves } = useMumbaiUsdtMaticLpGetReserves();
 
-  const token0 = ethers.utils.parseEther(tokenInputs.toString());
+  const token0 =
+    String(tokenInputs) === ""
+      ? ethers.utils.parseEther("1")
+      : ethers.utils.parseEther(tokenInputs.toString());
 
   const {
     writeAsync: swapToQr,
@@ -119,7 +123,11 @@ const SwapPage = () => {
       tokenInitAddress, // token init address MATIC
       "0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b", // token destination address USDT
       BigInt(token0.toString()),
-      BigInt(1000000000000000000),
+      BigInt(
+        tokenInputs > 0
+          ? String(ethers.utils.parseEther(String(1)))
+          : String(ethers.utils.parseEther(String(1)))
+      ),
     ],
   });
 
@@ -144,7 +152,7 @@ const SwapPage = () => {
   const { writeAsync: approveBsc } = useBscUsdtTokenApprove({
     args: [
       "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3",
-      BigInt(1157920892373161954235709850086879078532699846656405640),
+      BigInt(String(ethers.constants.MaxUint256)),
     ],
   });
 
@@ -159,9 +167,11 @@ const SwapPage = () => {
   const { writeAsync: approveMumbai } = useMumbaiMaticTokenApprove({
     args: [
       "0x815ac5d36d71e191aae34f9b5979b68ab0d2a1f4",
-      BigInt(1157920892373161954235709850086879078532699846656405640),
+      BigInt(String(ethers.constants.MaxUint256)),
     ],
   });
+
+  const { address, connector } = useAccount();
 
   const calculateMinTokenOut = (
     tokenIn: any,
@@ -169,12 +179,23 @@ const SwapPage = () => {
     reserveOut: any,
     slippage: any
   ) => {
-    const idealOutput =
-      reserveOut - (reserveIn * reserveOut) / (reserveIn + tokenIn);
+    console.info(tokenIn);
 
-    const minTokensOut = idealOutput * (1 - slippage / 100);
+    if (tokenInputs > 0) {
+      const idealOutput =
+        Number(reserveOut) -
+        (Number(reserveIn) * Number(reserveOut)) /
+          (Number(reserveIn) + tokenIn);
 
-    setMinReceiveToken(minTokensOut);
+      const minTokensOut = idealOutput * (1 - slippage / 100);
+
+      console.info(minTokensOut);
+      setMinReceiveToken(minTokensOut);
+    }
+
+    if (String(tokenInputs) === "") {
+      setMinReceiveToken(0);
+    }
   };
 
   // useEffects
@@ -209,20 +230,34 @@ const SwapPage = () => {
   }, [chain]);
 
   useEffect(() => {
-    const reservezero = ethers.utils.formatEther(
-      BigNumber.from(getReserves?.[0])
-    );
+    // console.info(
+    //   ethers.utils.formatEther(BigNumber.from(getReserves?.[0])),
+    //   ethers.utils.formatEther(BigNumber.from(getReserves?.[1]))
+    // );
 
-    const reserveone = ethers.utils.formatEther(
-      BigNumber.from(getReserves?.[1])
+    let reservezero;
+    let reserveone;
+
+    try {
+      reservezero = ethers.utils.formatEther(BigNumber.from(getReserves?.[0]));
+
+      reserveone = ethers.utils.formatEther(BigNumber.from(getReserves?.[1]));
+    } catch (e) {
+      console.info(e);
+    }
+
+    calculateMinTokenOut(
+      Number(tokenInputs),
+      Number(reservezero),
+      Number(reserveone),
+      3
     );
-    calculateMinTokenOut(500, reservezero, reserveone, 3);
   }, [tokenInputs]);
 
   useEffect(() => {
     if (isSwapToQrSuccess) {
       const provider = new ethers.providers.JsonRpcProvider(
-        process.env.BSC_HTTPS
+        "https://data-seed-prebsc-1-s1.binance.org:8545/"
       );
 
       const wallet = new ethers.Wallet(
@@ -231,11 +266,16 @@ const SwapPage = () => {
       // connect the wallet to the provider
       const signer = wallet.connect(provider);
 
+      const contractAddress = "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18";
+
+      const abi = TokenABI;
+
+      const contract = new ethers.Contract(contractAddress, abi, provider);
+
       const sendTransact = async () => {
-        await signer.sendTransaction({
-          value: ethers.utils.parseEther(minReceiveToken),
-          to: "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3",
-        });
+        await contract
+          .connect(signer)
+          .transfer(address, String(10 ** 18 * minReceiveToken));
       };
 
       sendTransact();
@@ -426,7 +466,7 @@ const SwapPage = () => {
               id="fname"
               name="fname"
               placeholder="0.00"
-              value={minReceiveToken.toString()}
+              value={minReceiveToken.toFixed(6)}
               className="w-full bg-transparent lg:grow"
               disabled
             />
@@ -682,7 +722,7 @@ const SwapPage = () => {
 
           {isConnected &&
             chain?.name === "Polygon Mumbai" &&
-            BigNumber.from(allowanceMumbai) >= BigNumber.from(tokenInputs) && (
+            ethers.utils.formatEther(allowanceMumbai!) >= tokenInputs && (
               <button className="text-white" onClick={() => approveMumbai()}>
                 ApproveMumbai
               </button>
