@@ -1,23 +1,24 @@
 import { ethers, run, upgrades } from "hardhat";
 
+const dexAddress = "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4";
+
 async function main() {
   const Dex = await ethers.getContractFactory("DexAggregator");
-  const dex = await upgrades.deployProxy(Dex, []);
+  const dex = await upgrades.upgradeProxy(dexAddress, Dex);
 
-  console.info("Deploying dex...");
+  console.info("Upgrading dex...");
   await dex.deployed();
-  console.info("Dex deployed at address: ", dex.address);
+  console.info("Done!");
 
-  console.info("\nVerify contract", dex.address);
+  console.info("Verify Contract...");
   try {
     await run("verify:verify", {
-      address: dex.address,
+      address: dexAddress,
       arguments: [],
     });
   } catch (e) {
     console.info(e);
   }
-  console.info("Done!");
 }
 
 main();
