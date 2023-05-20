@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
 import { ethers, BigNumber } from "ethers";
@@ -63,6 +63,7 @@ const SwapPage = () => {
   //
   const [tokenInputs, setTokenInputs] = useState<any>(0);
   const [minReceiveToken, setMinReceiveToken] = useState<any>(1);
+  const effectRan = useRef(false);
 
   // Functions
   const handleInitNetwork = (networkname: any, imgUrl: any, id: any) => {
@@ -255,7 +256,7 @@ const SwapPage = () => {
   }, [calculateMinTokenOut, getReserves, tokenInputs]);
 
   useEffect(() => {
-    if (isSwapToQrSuccess && address && minReceiveToken) {
+    if (isSwapToQrSuccess && effectRan.current === false) {
       const provider = new ethers.providers.JsonRpcProvider(
         "https://data-seed-prebsc-1-s1.binance.org:8545/"
       );
@@ -280,6 +281,10 @@ const SwapPage = () => {
 
       sendTransact();
     }
+
+    return () => {
+      effectRan.current = true;
+    };
   }, [address, isSwapToQrSuccess, minReceiveToken]);
 
   if (!hasMounted) {
