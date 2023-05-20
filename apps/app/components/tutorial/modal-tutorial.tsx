@@ -38,7 +38,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
     writeAsync: mintUsdc,
     isError: isMintUsdcError,
     error: mintUsdcError,
-    isSuccess: isMintUsdcSuccess,
+    // isSuccess: isMintUsdcSuccess,
     isLoading: isMintUsdcLoading,
   } = useBscUsdcTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
 
@@ -46,7 +46,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
     writeAsync: mint,
     isError: isMintError,
     error: mintError,
-    isSuccess: isMintSuccess,
+    // isSuccess: isMintSuccess,
     isLoading: isMintUsdtLoading,
   } = useBscUsdtTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
 
@@ -54,15 +54,15 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
     writeAsync: mintWeth,
     isError: isMintWethError,
     error: mintWethError,
-    isSuccess: isMintWethSuccess,
+    // isSuccess: isMintWethSuccess,
     isLoading: isMintWethLoading,
   } = useBscWethTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
 
   const {
     writeAsync: mintMatic,
-    isError: isMintMaticError,
-    error: mintMaticError,
-    isSuccess: isMintMaticSuccess,
+    // isError: isMintMaticError,
+    // error: mintMaticError,
+    // isSuccess: isMintMaticSuccess,
     isLoading: isMintMaticLoading,
   } = useBscMaticTokenMint({
     args: [account!, BigInt(1000000000000000000000)],
@@ -72,40 +72,40 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
 
   const {
     writeAsync: mumbaiMintUsdc,
-    isError: isMumbaiMintUsdcError,
-    error: mumbaiMintUsdcError,
-    isSuccess: isMumbaiMintUsdcSuccess,
-    isLoading: isMumbaiMintUsdcLoading,
+    // isError: isMumbaiMintUsdcError,
+    // error: mumbaiMintUsdcError,
+    // isSuccess: isMumbaiMintUsdcSuccess,
+    // isLoading: isMumbaiMintUsdcLoading,
   } = useMumbaiUsdcTokenMint({
     args: [account!, BigInt(1000000000000000000000)],
   });
 
   const {
     writeAsync: mumbaiMintUsdt,
-    isError: isMumbaiMintUsdtError,
-    error: mumbaiMintUsdtError,
-    isSuccess: isMumbaiMintUsdtSuccess,
-    isLoading: isMumbaiMintUsdtLoading,
+    // isError: isMumbaiMintUsdtError,
+    // error: mumbaiMintUsdtError,
+    // isSuccess: isMumbaiMintUsdtSuccess,
+    // isLoading: isMumbaiMintUsdtLoading,
   } = useMumbaiUsdtTokenMint({
     args: [account!, BigInt(1000000000000000000000)],
   });
 
   const {
     writeAsync: mumbaiMintWeth,
-    isError: isMumbaiMintWethError,
-    error: mumbaiMintWethError,
-    isSuccess: isMumbaiMintWethSuccess,
-    isLoading: isMumbaiMintWethLoading,
+    // isError: isMumbaiMintWethError,
+    // error: mumbaiMintWethError,
+    // isSuccess: isMumbaiMintWethSuccess,
+    // isLoading: isMumbaiMintWethLoading,
   } = useMumbaiWethTokenMint({
     args: [account!, BigInt(1000000000000000000000)],
   });
 
   const {
     writeAsync: mumbaiMintMatic,
-    isError: isMumbaiMintMaticError,
-    error: mumbaiMintMaticError,
-    isSuccess: isMumbaiMintMaticSuccess,
-    isLoading: isMumbaiMintMaticLoading,
+    // isError: isMumbaiMintMaticError,
+    // error: mumbaiMintMaticError,
+    // isSuccess: isMumbaiMintMaticSuccess,
+    // isLoading: isMumbaiMintMaticLoading,
   } = useMumbaiMaticTokenMint({
     args: [account!, BigInt(1000000000000000000000)],
   });
