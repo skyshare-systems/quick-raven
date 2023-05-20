@@ -175,30 +175,30 @@ const SwapPage = () => {
 
   const { address, connector } = useAccount();
 
-  // const calculateMinTokenOut = (
-  //   tokenIn: any,
-  //   reserveIn: any,
-  //   reserveOut: any,
-  //   slippage: any
-  // ) => {
-  //   console.info(tokenIn);
+  const calculateMinTokenOut = (
+    tokenIn: any,
+    reserveIn: any,
+    reserveOut: any,
+    slippage: any
+  ) => {
+    console.info(tokenIn);
 
-  //   if (tokenInputs > 0) {
-  //     const idealOutput =
-  //       Number(reserveOut) -
-  //       (Number(reserveIn) * Number(reserveOut)) /
-  //         (Number(reserveIn) + tokenIn);
+    if (tokenInputs > 0) {
+      const idealOutput =
+        Number(reserveOut) -
+        (Number(reserveIn) * Number(reserveOut)) /
+          (Number(reserveIn) + tokenIn);
 
-  //     const minTokensOut = idealOutput * (1 - slippage / 100);
+      const minTokensOut = idealOutput * (1 - slippage / 100);
 
-  //     console.info(minTokensOut);
-  //     setMinReceiveToken(minTokensOut);
-  //   }
+      console.info(minTokensOut);
+      setMinReceiveToken(minTokensOut);
+    }
 
-  //   if (String(tokenInputs) === "") {
-  //     setMinReceiveToken(0);
-  //   }
-  // };
+    if (String(tokenInputs) === "") {
+      setMinReceiveToken(0);
+    }
+  };
 
   // useEffects
   useEffect(() => {
@@ -248,13 +248,13 @@ const SwapPage = () => {
       console.info(e);
     }
 
-    // calculateMinTokenOut(
-    //   Number(tokenInputs),
-    //   Number(reservezero),
-    //   Number(reserveone),
-    //   3
-    // );
-  }, [getReserves, tokenInputs]);
+    calculateMinTokenOut(
+      Number(tokenInputs),
+      Number(reservezero),
+      Number(reserveone),
+      3
+    );
+  }, [calculateMinTokenOut, getReserves, tokenInputs]);
 
   useEffect(() => {
     if (effectRan.current === false) {
