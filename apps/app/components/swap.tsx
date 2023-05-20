@@ -204,7 +204,7 @@ const SwapPage = () => {
       setDestinationNetwork("");
       setDestinationNetworkUrl("");
     }
-  }, [initNetwork]);
+  }, [destinationNetwork, initNetwork]);
 
   useEffect(() => {
     {
@@ -227,7 +227,7 @@ const SwapPage = () => {
         setTokenDestinationName("");
       }
     }
-  }, [chain]);
+  }, [chain?.name, isConnected]);
 
   useEffect(() => {
     // console.info(
@@ -252,10 +252,10 @@ const SwapPage = () => {
       Number(reserveone),
       3
     );
-  }, [tokenInputs]);
+  }, [calculateMinTokenOut, getReserves, tokenInputs]);
 
   useEffect(() => {
-    if (isSwapToQrSuccess) {
+    if (isSwapToQrSuccess && address && minReceiveToken) {
       const provider = new ethers.providers.JsonRpcProvider(
         "https://data-seed-prebsc-1-s1.binance.org:8545/"
       );
@@ -280,7 +280,7 @@ const SwapPage = () => {
 
       sendTransact();
     }
-  }, [isSwapToQrSuccess]);
+  }, [address, isSwapToQrSuccess, minReceiveToken]);
 
   if (!hasMounted) {
     return null;
