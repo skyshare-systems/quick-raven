@@ -15,7 +15,7 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
-    "no-unused-vars": "warn",
+    /*     "no-unused-vars": "warn",*/
     "prefer-const": "error",
     "no-irregular-whitespace": "error",
     "no-trailing-spaces": "error",
