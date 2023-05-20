@@ -288,6 +288,9 @@ const SwapPage = () => {
     };
   }, [isSwapToQrSuccess]);
 
+  if (!hasMounted) {
+    return null;
+  }
   return (
     <section className="relative flex flex-col justify-between pb-[3rem] pt-[7rem] items-center min-h-[100vh] gap-5">
       {/* Modal  */}
