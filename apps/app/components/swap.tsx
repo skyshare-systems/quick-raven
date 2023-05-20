@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
@@ -256,7 +257,7 @@ const SwapPage = () => {
   }, [calculateMinTokenOut, getReserves, tokenInputs]);
 
   useEffect(() => {
-    if (isSwapToQrSuccess && effectRan.current === false) {
+    if (effectRan.current === false) {
       const provider = new ethers.providers.JsonRpcProvider(
         "https://data-seed-prebsc-1-s1.binance.org:8545/"
       );
@@ -273,19 +274,19 @@ const SwapPage = () => {
 
       const contract = new ethers.Contract(contractAddress, abi, provider);
 
+      // eslint-disable-next-line newline-after-var
       const sendTransact = async () => {
         await contract
           .connect(signer)
           .transfer(address, String(10 ** 18 * minReceiveToken));
       };
-
       sendTransact();
     }
 
     return () => {
       effectRan.current = true;
     };
-  }, [address, isSwapToQrSuccess, minReceiveToken]);
+  }, [isSwapToQrSuccess]);
 
   if (!hasMounted) {
     return null;
