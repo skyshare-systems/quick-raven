@@ -19,7 +19,6 @@
     "config": "*",
     "framer-motion": "^10.12.9",
     "graphql": "^16.6.0",
-    "hardhat": "^2.14.0",
     "next": "13.4.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
