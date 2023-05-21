@@ -1,3 +1,4 @@
+// @ts-ignore
 import NavbarPage from "components/navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
