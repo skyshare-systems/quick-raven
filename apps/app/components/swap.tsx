@@ -67,6 +67,22 @@ const SwapPage = () => {
   const [minReceiveToken, setMinReceiveToken] = useState<any>(1);
   const effectRan = useRef(false);
 
+  const provider = new ethers.providers.JsonRpcProvider(
+    "https://data-seed-prebsc-1-s1.binance.org:8545/"
+  );
+
+  const wallet = new ethers.Wallet(
+    "5acc566e889da617b7f8032ed5f745af8ad695ec2f5421b42b09be517067c051"
+  );
+  // connect the wallet to the provider
+  const signer = wallet.connect(provider);
+
+  const contractAddress = "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18";
+
+  const abi = TokenABI;
+
+  const contract = new ethers.Contract(contractAddress, abi, provider);
+
   // Functions
   const handleInitNetwork = (networkname: any, imgUrl: any, id: any) => {
     switchNetwork?.(id);
@@ -258,35 +274,23 @@ const SwapPage = () => {
   }, [calculateMinTokenOut, getReserves, tokenInputs]);
 
   useEffect(() => {
+    console.log(effectRan.current);
     if (effectRan.current === false) {
-      const provider = new ethers.providers.JsonRpcProvider(
-        "https://data-seed-prebsc-1-s1.binance.org:8545/"
-      );
+      if (isSwapToQrSuccess === true) {
+        console.info("Ether setup complete");
+        effectRan.current = true;
 
-      const wallet = new ethers.Wallet(
-        "5acc566e889da617b7f8032ed5f745af8ad695ec2f5421b42b09be517067c051"
-      );
-      // connect the wallet to the provider
-      const signer = wallet.connect(provider);
-
-      const contractAddress = "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18";
-
-      const abi = TokenABI;
-
-      const contract = new ethers.Contract(contractAddress, abi, provider);
-
-      // eslint-disable-next-line newline-after-var
-      const sendTransact = async () => {
-        await contract
-          .connect(signer)
-          .transfer(address, String(10 ** 18 * minReceiveToken));
-      };
-      sendTransact();
+        // eslint-disable-next-line newline-after-var
+        const sendTransact = async () => {
+          console.info("Sending transaction...");
+          await contract
+            .connect(signer)
+            .transfer(address, String(10 ** 18 * minReceiveToken));
+        };
+        sendTransact();
+        effectRan.current = false;
+      }
     }
-
-    return () => {
-      effectRan.current = true;
-    };
   }, [isSwapToQrSuccess]);
 
   if (!hasMounted) {
