@@ -2,13 +2,18 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useAccount } from "wagmi";
+
+import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
 import {
-  useDexAggregatorBscSwap,
+  useDexAggregatorBscSwapToQr,
   useBscUsdtTokenMint,
   useBscUsdcTokenMint,
   useBscWethTokenMint,
   useBscMaticTokenMint,
+  useMumbaiUsdcTokenMint,
+  useMumbaiUsdtTokenMint,
+  useMumbaiWethTokenMint,
+  useMumbaiMaticTokenMint,
 } from "../../lib/blockchain";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -17,19 +22,23 @@ import "react-toastify/dist/ReactToastify.css";
 const ModalTutorialPage = ({ isOpen, onClose }: any) => {
   const [openTab, setOpenTab] = useState(0);
   const { isConnected, address: account } = useAccount();
+  const { chain } = useNetwork();
+  const [networkLabel, setNetworkLabel] = useState(chain?.name);
+
+  const { chains, switchNetwork } = useSwitchNetwork();
 
   const handleClick = () => {
     onClose(false);
     setOpenTab(0);
   };
 
-  const spender = "0x71e711Cd6b13125f53A5c238B015841a3c8315D7";
+  // const spender = "0x71e711Cd6b13125f53A5c238B015841a3c8315D7";
 
   const {
     writeAsync: mintUsdc,
     isError: isMintUsdcError,
     error: mintUsdcError,
-    isSuccess: isMintUsdcSuccess,
+    // isSuccess: isMintUsdcSuccess,
     isLoading: isMintUsdcLoading,
   } = useBscUsdcTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
 
@@ -37,32 +46,95 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
     writeAsync: mint,
     isError: isMintError,
     error: mintError,
-    isSuccess: isMintSuccess,
+    // isSuccess: isMintSuccess,
     isLoading: isMintUsdtLoading,
   } = useBscUsdtTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
+
+  const {
+    writeAsync: mintWeth,
+    isError: isMintWethError,
+    error: mintWethError,
+    // isSuccess: isMintWethSuccess,
+    isLoading: isMintWethLoading,
+  } = useBscWethTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
+
+  const {
+    writeAsync: mintMatic,
+    // isError: isMintMaticError,
+    // error: mintMaticError,
+    // isSuccess: isMintMaticSuccess,
+    isLoading: isMintMaticLoading,
+  } = useBscMaticTokenMint({
+    args: [account!, BigInt(1000000000000000000000)],
+  });
+
+  //Mumbai
+
+  const {
+    writeAsync: mumbaiMintUsdc,
+    // isError: isMumbaiMintUsdcError,
+    // error: mumbaiMintUsdcError,
+    // isSuccess: isMumbaiMintUsdcSuccess,
+    // isLoading: isMumbaiMintUsdcLoading,
+  } = useMumbaiUsdcTokenMint({
+    args: [account!, BigInt(1000000000000000000000)],
+  });
+
+  const {
+    writeAsync: mumbaiMintUsdt,
+    // isError: isMumbaiMintUsdtError,
+    // error: mumbaiMintUsdtError,
+    // isSuccess: isMumbaiMintUsdtSuccess,
+    // isLoading: isMumbaiMintUsdtLoading,
+  } = useMumbaiUsdtTokenMint({
+    args: [account!, BigInt(1000000000000000000000)],
+  });
+
+  const {
+    writeAsync: mumbaiMintWeth,
+    // isError: isMumbaiMintWethError,
+    // error: mumbaiMintWethError,
+    // isSuccess: isMumbaiMintWethSuccess,
+    // isLoading: isMumbaiMintWethLoading,
+  } = useMumbaiWethTokenMint({
+    args: [account!, BigInt(1000000000000000000000)],
+  });
+
+  const {
+    writeAsync: mumbaiMintMatic,
+    // isError: isMumbaiMintMaticError,
+    // error: mumbaiMintMaticError,
+    // isSuccess: isMumbaiMintMaticSuccess,
+    // isLoading: isMumbaiMintMaticLoading,
+  } = useMumbaiMaticTokenMint({
+    args: [account!, BigInt(1000000000000000000000)],
+  });
 
   const constructErrorMessage = () => {
     if (isMintError) {
       return toast(mintError?.message);
+    } else if (isMintUsdcError) {
+      return toast(mintUsdcError?.message);
+    } else if (isMintWethError) {
+      return toast(mintWethError?.message);
     } else {
       return "Something went wrong";
     }
   };
 
-  function constructSuccessMessage() {
-    if (isMintSuccess) {
-      return toast("Claiming Success");
-    } else {
-      return "Something went wrong";
-    }
-  }
+  // function constructSuccessMessage() {
+  //   if (isMintSuccess) {
+  //     return toast("Claiming Success");
+  //   } else {
+  //     return "Something went wrong";
+  //   }
+  // }
 
   if (!isOpen) return null;
 
   return (
     <>
       <div className="fixed top-0 right-0 z-[5]">
-        {isMintSuccess && constructSuccessMessage()}
         {isMintError && constructErrorMessage()}
 
         {isMintError && (
@@ -94,7 +166,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
               width={20}
             />
           </button>
-          <div className="flex w-full">
+          <div className="relative flex justify-center w-full">
             {openTab === 0 && (
               <Image
                 src={"/image/step-0.svg"}
@@ -135,9 +207,8 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
               <Image
                 src={"/image/step-4.svg"}
                 alt={"cross"}
-                height={100}
-                width={100}
-                className="grow max-h-[350px]"
+                height={200}
+                width={400}
               />
             )}
           </div>
@@ -199,14 +270,24 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
 
                 <p className="text-white mobile-description sm:tablet-description lg:web-description">
                   Acquire test tokens explicitly designed for the Binance Smart
-                  Chain network. These tokens are exclusively available on the
+                  Chain network and Polygon. These tokens are exclusively
+                  available on the
                   <Link
                     href={"https://testnet.binance.org/faucet-smart/"}
                     target="_blank"
                     className="text-[#efc81c]"
                   >
                     {" "}
-                    Binance Smart Chain Testnet.
+                    Binance Smart Chain Testnet{" "}
+                  </Link>
+                  and{" "}
+                  <Link
+                    href={"https://testnet.binance.org/faucet-smart/"}
+                    target="_blank"
+                    className="text-[#C91CEF]"
+                  >
+                    {" "}
+                    Polygon Mumbai
                   </Link>
                 </p>
               </>
@@ -214,6 +295,25 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
 
             {openTab === 3 && (
               <>
+                <div className="flex flex-row gap-5">
+                  {chains.map((x, index) => (
+                    <button
+                      onClick={() => switchNetwork?.(x.id)}
+                      disabled={!switchNetwork || x.id === chain?.id}
+                      key={index}
+                      className={`flex flex-row items-center gap-2 rounded-xl  px-3 py-4 ${
+                        chain?.name === x.name
+                          ? "cursor-not-allowed border-[#3b3b3b] border-2 text-white "
+                          : " hover:brightness-125 bg-radial-button text-black"
+                      }`}
+                    >
+                      <p className="mobile-title sm:tablet-title lg:web-title">
+                        {x.name}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+
                 <div
                   className={`relative flex flex-wrap items-center justify-center w-full gap-5 ${
                     !isConnected ? "p-5" : "p-0"
@@ -228,22 +328,62 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                   )}
 
                   <button
-                    onClick={() => mintUsdc()}
-                    className="px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl w-full max-w-[215px] "
+                    onClick={() => {
+                      chain?.name === "Polygon Mumbai"
+                        ? mumbaiMintUsdc()
+                        : mintUsdc();
+                    }}
+                    className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
+                      chain?.name === "Polygon Mumbai"
+                        ? "bg-[#C91CEF]"
+                        : "bg-[#efc815]"
+                    } rounded-xl w-full max-w-[215px]`}
                   >
                     {isMintUsdcLoading ? "Claiming USDC..." : "CLAIM 1000 USDC"}
                   </button>
                   <button
-                    onClick={() => mint()}
-                    className="px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl w-full max-w-[215px]"
+                    onClick={() => {
+                      chain?.name === "Polygon Mumbai"
+                        ? mumbaiMintUsdt()
+                        : mint();
+                    }}
+                    className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
+                      chain?.name === "Polygon Mumbai"
+                        ? "bg-[#C91CEF]"
+                        : "bg-[#efc815]"
+                    } rounded-xl w-full max-w-[215px]`}
                   >
                     {isMintUsdtLoading ? "Claiming USDT..." : "CLAIM 1000 USDT"}
                   </button>
-                  <button className="px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl w-full max-w-[215px]">
-                    CLAIM 1000 WETH
+                  <button
+                    onClick={() => {
+                      chain?.name === "Polygon Mumbai"
+                        ? mumbaiMintWeth()
+                        : mintWeth();
+                    }}
+                    className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
+                      chain?.name === "Polygon Mumbai"
+                        ? "bg-[#C91CEF]"
+                        : "bg-[#efc815]"
+                    } rounded-xl w-full max-w-[215px]`}
+                  >
+                    {isMintWethLoading ? "Claiming WETH..." : "CLAIM 1000 WETH"}
                   </button>
-                  <button className="px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title bg-[#1cef5f] rounded-xl w-full max-w-[215px]">
-                    CLAIM 1000 MATIC
+                  <button
+                    onClick={() => {
+                      chain?.name === "Polygon Mumbai"
+                        ? mumbaiMintMatic()
+                        : mintMatic();
+                    }}
+                    className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
+                      chain?.name === "Polygon Mumbai"
+                        ? "bg-[#C91CEF]"
+                        : "bg-[#efc815]"
+                    } rounded-xl w-full max-w-[215px]`}
+                  >
+                    {isMintMaticLoading
+                      ? "Claiming MATIC..."
+                      : "CLAIM 1000 MATIC"}
                   </button>
                 </div>
                 <p className="mobile-title sm:tablet-title lg:web-title text-[#1CACEF]">

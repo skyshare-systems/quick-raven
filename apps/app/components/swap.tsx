@@ -1,14 +1,28 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
+import { ethers, BigNumber } from "ethers";
+import useMounted from "hooks/useMounted";
 
 import { network } from "./network";
 import ModalNetworkPage from "./modal-network";
 import ModalTokenPage from "./modal-token";
 import ModalTokenDestinationPage from "./modal-token-destination";
 import FooterPage from "./footer";
+import {
+  useDexAggregatorMumbaiSwapToQr,
+  useDexAggregatorBscSwapToQr,
+  usePrepareMumbaiMaticTokenApprove,
+  useBscUsdtTokenApprove,
+  useBscUsdtTokenAllowance,
+  useMumbaiMaticTokenApprove,
+  useMumbaiMaticTokenAllowance,
+  useMumbaiUsdtMaticLpGetReserves,
+} from "../lib/blockchain";
+import { TokenABI } from "abi";
 
 const itemVariants: Variants = {
   open: {
@@ -20,6 +34,7 @@ const itemVariants: Variants = {
 };
 
 const SwapPage = () => {
+  const { hasMounted } = useMounted();
   // States
   const [isOpen, setIsOpen] = useState(false);
   // States for Modal Init Network and Destination Network
@@ -32,20 +47,42 @@ const SwapPage = () => {
   const [showModalToken, setShowModalToken] = useState(false);
   const [tokenInitName, setTokenInitName] = useState("");
   const [tokenInitImgUrl, setTokenInitImgUrl] = useState("");
+  const [tokenInitAddress, setTokenInitAddress] = useState<any>("");
   // States Token Destination Network
   const [showModalTokenDestination, setShowModalTokenDestination] =
     useState(false);
   const [tokenDestinationName, setTokenDestinationName] = useState("");
   const [tokenDestinationImgUrl, setTokenDestinationImgUrl] = useState("");
+  const [tokenDestinationAddress, setTokenDestinationAddress] =
+    useState<any>("");
 
   const [labelNetwork, setLabelNetwork] = useState("");
   const [isNetworkError, setIsNetworkError] = useState(false);
   // wagmi hooks
-  const { isConnected } = useAccount();
+  const { isConnected, address: account } = useAccount();
   const { chain } = useNetwork();
   const { isLoading, pendingChainId, switchNetwork } = useSwitchNetwork();
   //
   const [tokenInputs, setTokenInputs] = useState<any>(0);
+  const [minReceiveToken, setMinReceiveToken] = useState<any>(1);
+  const effectRan = useRef(false);
+
+  const provider = new ethers.providers.JsonRpcProvider(
+    "https://data-seed-prebsc-1-s1.binance.org:8545/"
+  );
+
+  const wallet = new ethers.Wallet(
+    "5acc566e889da617b7f8032ed5f745af8ad695ec2f5421b42b09be517067c051"
+  );
+  // connect the wallet to the provider
+  const signer = wallet.connect(provider);
+
+  const contractAddress = "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18";
+
+  const abi = TokenABI;
+
+  const contract = new ethers.Contract(contractAddress, abi, provider);
+
   // Functions
   const handleInitNetwork = (networkname: any, imgUrl: any, id: any) => {
     switchNetwork?.(id);
@@ -64,16 +101,120 @@ const SwapPage = () => {
     setShowModal(!showModal);
   };
 
-  const handleSelectedTokenInit = (tokenName: any, imgUrl: any) => {
+  const handleSelectedTokenInit = (
+    tokenName: any,
+    imgUrl: any,
+    address: any
+  ) => {
     setTokenInitName(tokenName);
     setTokenInitImgUrl(imgUrl);
+    setTokenInitAddress(address);
     setShowModalToken(!showModalToken);
   };
 
-  const handleSelectedTokenDestination = (tokenName: any, imgUrl: any) => {
+  const handleSelectedTokenDestination = (
+    tokenName: any,
+    imgUrl: any,
+    address: any
+  ) => {
     setTokenDestinationName(tokenName);
     setTokenDestinationImgUrl(imgUrl);
+    setTokenDestinationAddress(address);
     setShowModalTokenDestination(!showModalTokenDestination);
+  };
+
+  const { data: getReserves } = useMumbaiUsdtMaticLpGetReserves();
+
+  const token0 =
+    String(tokenInputs) === ""
+      ? ethers.utils.parseEther("1")
+      : ethers.utils.parseEther(tokenInputs.toString());
+
+  const {
+    writeAsync: swapToQr,
+    isError: isSwapToQrError,
+    error: swapToQrError,
+    isLoading: isSwapToQrLoading,
+    isSuccess: isSwapToQrSuccess,
+  } = useDexAggregatorMumbaiSwapToQr({
+    args: [
+      "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff", // dex router address
+      tokenInitAddress, // token init address MATIC
+      "0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b", // token destination address USDT
+      BigInt(token0.toString()),
+      BigInt(
+        tokenInputs > 0
+          ? String(ethers.utils.parseEther(String(1)))
+          : String(ethers.utils.parseEther(String(1)))
+      ),
+    ],
+  });
+
+  // const token0 = ethers.utils.parseEther(tokenInputs.toString());
+
+  // const {
+  //   writeAsync: swapToQrBsc,
+  //   isError: isSwapToQrBscError,
+  //   error: swapToQrBscError,
+  //   isLoading: isSwapToQrBscLoading,
+  //   isSuccess: isSwapToQrBscSuccess,
+  // } = useDexAggregatorBscSwapToQr({
+  //   args: [
+  //     "0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF", // dex router address
+  //     tokenInitAddress, // token init address MATIC
+  //     tokenDestinationAddress, // token destination address USDT
+  //     BigInt(token0.toString()),
+  //     BigInt(1000000000000000000),
+  //   ],
+  // });
+
+  const { writeAsync: approveBsc } = useBscUsdtTokenApprove({
+    args: [
+      "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3",
+      BigInt(String(ethers.constants.MaxUint256)),
+    ],
+  });
+
+  const { data: allowanceBsc } = useBscUsdtTokenAllowance({
+    args: [account!, "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3"],
+  });
+
+  const { data: allowanceMumbai } = useMumbaiMaticTokenAllowance({
+    args: [account!, "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4"],
+  });
+
+  const { writeAsync: approveMumbai } = useMumbaiMaticTokenApprove({
+    args: [
+      "0x815ac5d36d71e191aae34f9b5979b68ab0d2a1f4",
+      BigInt(String(ethers.constants.MaxUint256)),
+    ],
+  });
+
+  const { address, connector } = useAccount();
+
+  const calculateMinTokenOut = (
+    tokenIn: any,
+    reserveIn: any,
+    reserveOut: any,
+    slippage: any
+  ) => {
+    console.info(tokenIn);
+
+    if (tokenInputs > 0) {
+      const idealOutput =
+        Number(reserveOut) -
+        (Number(reserveIn) * Number(reserveOut)) /
+          (Number(reserveIn) + tokenIn);
+
+      const minTokensOut = idealOutput * (1 - slippage / 100);
+
+      console.info(minTokensOut);
+      setMinReceiveToken(minTokensOut);
+    }
+
+    if (String(tokenInputs) === "") {
+      setMinReceiveToken(0);
+    }
   };
 
   // useEffects
@@ -82,7 +223,7 @@ const SwapPage = () => {
       setDestinationNetwork("");
       setDestinationNetworkUrl("");
     }
-  }, [initNetwork]);
+  }, [destinationNetwork, initNetwork]);
 
   useEffect(() => {
     {
@@ -105,8 +246,56 @@ const SwapPage = () => {
         setTokenDestinationName("");
       }
     }
-  }, [chain]);
+  }, [chain?.name, isConnected]);
 
+  useEffect(() => {
+    // console.info(
+    //   ethers.utils.formatEther(BigNumber.from(getReserves?.[0])),
+    //   ethers.utils.formatEther(BigNumber.from(getReserves?.[1]))
+    // );
+
+    let reservezero;
+    let reserveone;
+
+    try {
+      reservezero = ethers.utils.formatEther(BigNumber.from(getReserves?.[0]));
+
+      reserveone = ethers.utils.formatEther(BigNumber.from(getReserves?.[1]));
+    } catch (e) {
+      console.info(e);
+    }
+
+    calculateMinTokenOut(
+      Number(tokenInputs),
+      Number(reservezero),
+      Number(reserveone),
+      3
+    );
+  }, [calculateMinTokenOut, getReserves, tokenInputs]);
+
+  useEffect(() => {
+    console.log(effectRan.current);
+    if (effectRan.current === false) {
+      if (isSwapToQrSuccess === true) {
+        console.info("Ether setup complete");
+        effectRan.current = true;
+
+        // eslint-disable-next-line newline-after-var
+        const sendTransact = async () => {
+          console.info("Sending transaction...");
+          await contract
+            .connect(signer)
+            .transfer(address, String(10 ** 18 * minReceiveToken));
+        };
+        sendTransact();
+        effectRan.current = false;
+      }
+    }
+  }, [isSwapToQrSuccess]);
+
+  if (!hasMounted) {
+    return null;
+  }
   return (
     <section className="relative flex flex-col justify-between pb-[3rem] pt-[7rem] items-center min-h-[100vh] gap-5">
       {/* Modal  */}
@@ -288,6 +477,7 @@ const SwapPage = () => {
               id="fname"
               name="fname"
               placeholder="0.00"
+              value={minReceiveToken.toFixed(6)}
               className="w-full bg-transparent lg:grow"
               disabled
             />
@@ -519,6 +709,9 @@ const SwapPage = () => {
           )}
 
           <button
+            onClick={() => {
+              swapToQr();
+            }}
             disabled={tokenInputs === ""}
             className={`mobile-title sm:tablet-title lg:web-title w-full px-2 py-5 rounded-xl duration-300 
             ${
@@ -529,6 +722,22 @@ const SwapPage = () => {
           >
             Swap Now
           </button>
+
+          {isConnected &&
+            chain?.name !== "Polygon Mumbai" &&
+            BigNumber.from(allowanceBsc) >= BigNumber.from(tokenInputs) && (
+              <button className="text-white" onClick={() => approveBsc()}>
+                ApproveBsc
+              </button>
+            )}
+
+          {isConnected &&
+            chain?.name === "Polygon Mumbai" &&
+            ethers.utils.formatEther(allowanceMumbai!) >= tokenInputs && (
+              <button className="text-white" onClick={() => approveMumbai()}>
+                ApproveMumbai
+              </button>
+            )}
         </div>
         {/* pathway  */}
         {/* <div className="flex flex-col justify-center items-center gap-3 border-[1px] border-[#3b3b3b] bg-radial rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]">

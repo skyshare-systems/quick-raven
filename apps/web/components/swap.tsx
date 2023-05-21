@@ -104,7 +104,7 @@ const SwapPage = () => {
         setTokenDestinationName("");
       }
     }
-  }, [chain]);
+  }, [chain?.name]);
 
   return (
     <section className="relative flex flex-col justify-center py-[5rem] items-center min-h-[100vh] gap-5">

@@ -8,8 +8,10 @@
         "name": "next"
       }
     ],
+
     "module": "esnext",
-    "target": "ESNext"
+    "target": "ESNext",
+    "lib": ["ES2017", "DOM", "DOM.Iterable", "ESNext"]
   },
   "include": [
     "next-env.d.ts",

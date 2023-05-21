@@ -24,7 +24,7 @@ const ModalTokenDestinationPage = ({
       <div className="relative flex flex-col rounded-2xl h-full w-full max-w-[500px] max-h-[500px] bg-[#212121] pr-2 py-2">
         <div className="relative flex flex-col p-5 z-[2] w-full gap-5 overflow-y-auto">
           <div className="relative flex flex-col p-5 z-[2] w-full gap-5 ">
-            <div className="flex flex-row justify-between items-center ">
+            <div className="flex flex-row items-center justify-between ">
               <h1 className="grow mobile-description sm:tablet-description lg:web-description text-[#7a7a7a]">
                 Select a token
               </h1>
@@ -51,7 +51,7 @@ const ModalTokenDestinationPage = ({
                 id="token-name"
                 name="token-name"
                 placeholder="Search Token Name:"
-                className="relative py-5 w-full grow h-full text-white"
+                className="relative w-full h-full py-5 text-white grow"
                 onChange={(e) => setSearchToken(e.target.value)}
               />
             </div>
@@ -64,7 +64,8 @@ const ModalTokenDestinationPage = ({
                     onClick={() =>
                       handleSelectedTokenDestination(
                         data.tokenName,
-                        data.imgUrl
+                        data.imgUrl,
+                        data.address
                       )
                     }
                     disabled={destinationNetwork === ""}
@@ -82,7 +83,7 @@ const ModalTokenDestinationPage = ({
                       width={20}
                       className="max-w-[20] max-h-[20]"
                     />
-                    <p className="mobile-title sm:tablet-title lg:web-title text-white">
+                    <p className="text-white mobile-title sm:tablet-title lg:web-title">
                       {data.tokenName}
                     </p>
                   </button>
@@ -125,7 +126,7 @@ const ModalTokenDestinationPage = ({
                           width={25}
                         />
                         <span className="flex flex-col justify-center gap-2">
-                          <p className="mobile-title sm:tablet-title lg:web-title text-white">
+                          <p className="text-white mobile-title sm:tablet-title lg:web-title">
                             {data.tokenName}
                           </p>
                           <p className="mobile-title sm:tablet-title lg:web-title text-[#7a7a7a]">
@@ -135,7 +136,7 @@ const ModalTokenDestinationPage = ({
                       </div>
 
                       <div className="flex flex-row">
-                        <p className="mobile-description sm:tablet-description lg:web-description text-white">
+                        <p className="text-white mobile-description sm:tablet-description lg:web-description">
                           $ 0.00
                         </p>
                       </div>
