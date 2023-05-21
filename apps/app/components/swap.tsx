@@ -19,7 +19,7 @@ import {
   useBscUsdtTokenAllowance,
   useMumbaiMaticTokenApprove,
   useMumbaiMaticTokenAllowance,
-  // useMumbaiUsdtMaticLpGetReserves,
+  useMumbaiUsdtMaticLpGetReserves,
 } from "../lib/blockchain";
 import { TokenABI } from "abi";
 
@@ -106,7 +106,7 @@ const SwapPage = () => {
     setShowModalTokenDestination(!showModalTokenDestination);
   };
 
-  // const { data: getReserves } = useMumbaiUsdtMaticLpGetReserves();
+  const { data: getReserves } = useMumbaiUsdtMaticLpGetReserves();
 
   const token0 =
     String(tokenInputs) === ""
@@ -231,30 +231,30 @@ const SwapPage = () => {
     }
   }, [chain?.name, isConnected]);
 
-  // useEffect(() => {
-  //   // console.info(
-  //   //   ethers.utils.formatEther(BigNumber.from(getReserves?.[0])),
-  //   //   ethers.utils.formatEther(BigNumber.from(getReserves?.[1]))
-  //   // );
+  useEffect(() => {
+    // console.info(
+    //   ethers.utils.formatEther(BigNumber.from(getReserves?.[0])),
+    //   ethers.utils.formatEther(BigNumber.from(getReserves?.[1]))
+    // );
 
-  //   let reservezero;
-  //   let reserveone;
+    let reservezero;
+    let reserveone;
 
-  //   try {
-  //     reservezero = ethers.utils.formatEther(BigNumber.from(getReserves?.[0]));
+    try {
+      reservezero = ethers.utils.formatEther(BigNumber.from(getReserves?.[0]));
 
-  //     reserveone = ethers.utils.formatEther(BigNumber.from(getReserves?.[1]));
-  //   } catch (e) {
-  //     console.info(e);
-  //   }
+      reserveone = ethers.utils.formatEther(BigNumber.from(getReserves?.[1]));
+    } catch (e) {
+      console.info(e);
+    }
 
-  //   calculateMinTokenOut(
-  //     Number(tokenInputs),
-  //     Number(reservezero),
-  //     Number(reserveone),
-  //     3
-  //   );
-  // }, [calculateMinTokenOut, getReserves, tokenInputs]);
+    calculateMinTokenOut(
+      Number(tokenInputs),
+      Number(reservezero),
+      Number(reserveone),
+      3
+    );
+  }, [calculateMinTokenOut, getReserves, tokenInputs]);
 
   useEffect(() => {
     if (effectRan.current === false) {
