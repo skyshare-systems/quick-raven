@@ -23,12 +23,12 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, user-scalable=no" />
       </head>
       <body>
-        {/* <WagmiProviders> */}
-        {/* <ApolloProviders> */}
-        {/* <NavbarPage /> */}
-        {children}
-        {/* </ApolloProviders> */}
-        {/* </WagmiProviders> */}
+        <WagmiProviders>
+          <ApolloProviders>
+            <NavbarPage />
+            {children}
+          </ApolloProviders>
+        </WagmiProviders>
       </body>
     </html>
   );
