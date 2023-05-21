@@ -8,8 +8,7 @@
         "name": "next"
       }
     ],
-    "module": "esnext",
-    "target": "ESNext"
+    "module": "esnext"
   },
   "include": [
     "next-env.d.ts",
