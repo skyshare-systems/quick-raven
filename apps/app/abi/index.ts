@@ -4,4 +4,4 @@ import LPToken from "./LPToken.json";
 
 export const DexAggregatorABI = DexAggregator.abi;
 export const TokenABI = Token.abi;
-export const LPTokenABI = LPToken;
+export const LPTokenABI = LPToken.abi;
