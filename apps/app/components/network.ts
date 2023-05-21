@@ -14,49 +14,55 @@ export const network = [
 ];
 
 export const tokenpolygon = [
+  // {
+  //   id: 1,
+  //   tokenName: "WETH",
+  //   address: "0xe3aF098836c4641f8EcF9185E49F8C3E74d91348",
+  //   imgUrl: "/icons/eth-icon.svg",
+  // },
+  // {
+  //   id: 2,
+  //   tokenName: "USDT",
+  //   address: "0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b",
+  //   imgUrl: "/icons/usdt-icon.svg",
+  // },
+  // {
+  //   id: 3,
+  //   tokenName: "USDC",
+  //   address: "0xc1D7eC1a5320ed08b6B019cACC80f29905A7EEfA",
+  //   imgUrl: "/icons/usdc-icon.svg",
+  // },
   {
     id: 1,
-    tokenName: "WETH",
-    address: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
-    imgUrl: "/icons/eth-icon.svg",
-  },
-  {
-    id: 2,
-    tokenName: "USDT",
-    address: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
-    imgUrl: "/icons/usdt-icon.svg",
-  },
-  {
-    id: 3,
-    tokenName: "USDC",
-    address: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-    imgUrl: "/icons/usdc-icon.svg",
-  },
-  {
-    id: 4,
     tokenName: "Matic",
-    address: "0x0000000000000000000000000000000000001010",
+    address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
     imgUrl: "/icons/matic-icon.svg",
   },
 ];
 
 export const tokenbsc = [
+  // {
+  //   id: 1,
+  //   tokenName: "WETH",
+  //   address: "0x0518f7B2391916021111BB9Ce53F35a6f8C40Fe3",
+  //   imgUrl: "/icons/eth-icon.svg",
+  // },
   {
     id: 1,
-    tokenName: "WETH",
-    address: "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
-    imgUrl: "/icons/eth-icon.svg",
+    tokenName: "USDT",
+    address: "0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b",
+    imgUrl: "/icons/usdt-icon.svg",
   },
-  {
-    id: 2,
-    tokenName: "USDC",
-    address: "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
-    imgUrl: "/icons/usdc-icon.svg",
-  },
-  {
-    id: 3,
-    tokenName: "Matic",
-    address: "0xCC42724C6683B7E57334c4E856f4c9965ED682bD",
-    imgUrl: "/icons/matic-icon.svg",
-  },
+  // {
+  //   id: 3,
+  //   tokenName: "USDC",
+  //   address: "0x45D463BFf2e01A125298BF9271B7BAFBdBeF001f",
+  //   imgUrl: "/icons/usdc-icon.svg",
+  // },
+  // {
+  //   id: 4,
+  //   tokenName: "Matic",
+  //   address: "0x9570B7D0e54f2AAed59F6615e2be18637A82d881",
+  //   imgUrl: "/icons/matic-icon.svg",
+  // },
 ];
