@@ -8,12 +8,12 @@ import {
   UsePrepareContractWriteConfig,
   useContractEvent,
   UseContractEventConfig,
-} from 'wagmi'
+} from "wagmi";
 import {
   ReadContractResult,
   WriteContractMode,
   PrepareWriteContractResult,
-} from 'wagmi/actions'
+} from "wagmi/actions";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DexAggregatorBSC
@@ -21,110 +21,110 @@ import {
 
 export const dexAggregatorBscABI = [
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+      { name: "version", internalType: "uint8", type: "uint8", indexed: false },
     ],
-    name: 'Initialized',
+    name: "Initialized",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'previousOwner',
-        internalType: 'address',
-        type: 'address',
+        name: "previousOwner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'newOwner',
-        internalType: 'address',
-        type: 'address',
+        name: "newOwner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
     ],
-    name: 'OwnershipTransferred',
+    name: "OwnershipTransferred",
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [],
-    name: 'initialize',
+    name: "initialize",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'owner',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: "owner",
+    outputs: [{ name: "", internalType: "address", type: "address" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [],
-    name: 'renounceOwnership',
+    name: "renounceOwnership",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_dexRouter', internalType: 'address', type: 'address' },
-      { name: '_tokenIn', internalType: 'address', type: 'address' },
-      { name: '_tokenOut', internalType: 'address', type: 'address' },
-      { name: '_amountIn', internalType: 'uint256', type: 'uint256' },
-      { name: '_amountOutMin', internalType: 'uint256', type: 'uint256' },
+      { name: "_dexRouter", internalType: "address", type: "address" },
+      { name: "_tokenIn", internalType: "address", type: "address" },
+      { name: "_tokenOut", internalType: "address", type: "address" },
+      { name: "_amountIn", internalType: "uint256", type: "uint256" },
+      { name: "_amountOutMin", internalType: "uint256", type: "uint256" },
     ],
-    name: 'swapToQr',
+    name: "swapToQr",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_dexRouter', internalType: 'address', type: 'address' },
-      { name: '_tokenIn', internalType: 'address', type: 'address' },
-      { name: '_tokenOut', internalType: 'address', type: 'address' },
-      { name: '_amountIn', internalType: 'uint256', type: 'uint256' },
-      { name: '_amountOutMin', internalType: 'uint256', type: 'uint256' },
-      { name: '_to', internalType: 'address', type: 'address' },
+      { name: "_dexRouter", internalType: "address", type: "address" },
+      { name: "_tokenIn", internalType: "address", type: "address" },
+      { name: "_tokenOut", internalType: "address", type: "address" },
+      { name: "_amountIn", internalType: "uint256", type: "uint256" },
+      { name: "_amountOutMin", internalType: "uint256", type: "uint256" },
+      { name: "_to", internalType: "address", type: "address" },
     ],
-    name: 'swapToUser',
+    name: "swapToUser",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
-    name: 'transferOwnership',
+    stateMutability: "nonpayable",
+    type: "function",
+    inputs: [{ name: "newOwner", internalType: "address", type: "address" }],
+    name: "transferOwnership",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [],
-    name: 'withdrawEther',
+    name: "withdrawEther",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: '_token', internalType: 'address', type: 'address' }],
-    name: 'withdrawToken',
+    stateMutability: "nonpayable",
+    type: "function",
+    inputs: [{ name: "_token", internalType: "address", type: "address" }],
+    name: "withdrawToken",
     outputs: [],
   },
-] as const
+] as const;
 
 export const dexAggregatorBscAddress =
-  '0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3' as const
+  "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3" as const;
 
 export const dexAggregatorBscConfig = {
   address: dexAggregatorBscAddress,
   abi: dexAggregatorBscABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DexAggregatorMumbai
@@ -132,110 +132,110 @@ export const dexAggregatorBscConfig = {
 
 export const dexAggregatorMumbaiABI = [
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+      { name: "version", internalType: "uint8", type: "uint8", indexed: false },
     ],
-    name: 'Initialized',
+    name: "Initialized",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'previousOwner',
-        internalType: 'address',
-        type: 'address',
+        name: "previousOwner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'newOwner',
-        internalType: 'address',
-        type: 'address',
+        name: "newOwner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
     ],
-    name: 'OwnershipTransferred',
+    name: "OwnershipTransferred",
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [],
-    name: 'initialize',
+    name: "initialize",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'owner',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: "owner",
+    outputs: [{ name: "", internalType: "address", type: "address" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [],
-    name: 'renounceOwnership',
+    name: "renounceOwnership",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_dexRouter', internalType: 'address', type: 'address' },
-      { name: '_tokenIn', internalType: 'address', type: 'address' },
-      { name: '_tokenOut', internalType: 'address', type: 'address' },
-      { name: '_amountIn', internalType: 'uint256', type: 'uint256' },
-      { name: '_amountOutMin', internalType: 'uint256', type: 'uint256' },
+      { name: "_dexRouter", internalType: "address", type: "address" },
+      { name: "_tokenIn", internalType: "address", type: "address" },
+      { name: "_tokenOut", internalType: "address", type: "address" },
+      { name: "_amountIn", internalType: "uint256", type: "uint256" },
+      { name: "_amountOutMin", internalType: "uint256", type: "uint256" },
     ],
-    name: 'swapToQr',
+    name: "swapToQr",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_dexRouter', internalType: 'address', type: 'address' },
-      { name: '_tokenIn', internalType: 'address', type: 'address' },
-      { name: '_tokenOut', internalType: 'address', type: 'address' },
-      { name: '_amountIn', internalType: 'uint256', type: 'uint256' },
-      { name: '_amountOutMin', internalType: 'uint256', type: 'uint256' },
-      { name: '_to', internalType: 'address', type: 'address' },
+      { name: "_dexRouter", internalType: "address", type: "address" },
+      { name: "_tokenIn", internalType: "address", type: "address" },
+      { name: "_tokenOut", internalType: "address", type: "address" },
+      { name: "_amountIn", internalType: "uint256", type: "uint256" },
+      { name: "_amountOutMin", internalType: "uint256", type: "uint256" },
+      { name: "_to", internalType: "address", type: "address" },
     ],
-    name: 'swapToUser',
+    name: "swapToUser",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
-    name: 'transferOwnership',
+    stateMutability: "nonpayable",
+    type: "function",
+    inputs: [{ name: "newOwner", internalType: "address", type: "address" }],
+    name: "transferOwnership",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [],
-    name: 'withdrawEther',
+    name: "withdrawEther",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: '_token', internalType: 'address', type: 'address' }],
-    name: 'withdrawToken',
+    stateMutability: "nonpayable",
+    type: "function",
+    inputs: [{ name: "_token", internalType: "address", type: "address" }],
+    name: "withdrawToken",
     outputs: [],
   },
-] as const
+] as const;
 
 export const dexAggregatorMumbaiAddress =
-  '0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4' as const
+  "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4" as const;
 
 export const dexAggregatorMumbaiConfig = {
   address: dexAggregatorMumbaiAddress,
   abi: dexAggregatorMumbaiABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BscUsdtToken
@@ -243,178 +243,178 @@ export const dexAggregatorMumbaiConfig = {
 
 export const bscUsdtTokenABI = [
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
+        name: "owner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'spender',
-        internalType: 'address',
-        type: 'address',
+        name: "spender",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Approval',
+    name: "Approval",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+      { name: "version", internalType: "uint8", type: "uint8", indexed: false },
     ],
-    name: 'Initialized',
+    name: "Initialized",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      { name: "from", internalType: "address", type: "address", indexed: true },
+      { name: "to", internalType: "address", type: "address", indexed: true },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Transfer',
+    name: "Transfer",
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [
-      { name: 'owner', internalType: 'address', type: 'address' },
-      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: "owner", internalType: "address", type: "address" },
+      { name: "spender", internalType: "address", type: "address" },
     ],
-    name: 'allowance',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "allowance",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'approve',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "approve",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "account", internalType: "address", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'decimals',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    name: "decimals",
+    outputs: [{ name: "", internalType: "uint8", type: "uint8" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "subtractedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'decreaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "decreaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "addedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'increaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "increaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_name', internalType: 'string', type: 'string' },
-      { name: '_ticker', internalType: 'string', type: 'string' },
+      { name: "_name", internalType: "string", type: "string" },
+      { name: "_ticker", internalType: "string", type: "string" },
     ],
-    name: 'initialize',
+    name: "initialize",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_account', internalType: 'address', type: 'address' },
-      { name: '_amount', internalType: 'uint256', type: 'uint256' },
+      { name: "_account", internalType: "address", type: "address" },
+      { name: "_amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'mint',
+    name: "mint",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'name',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "name",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'symbol',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "symbol",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "totalSupply",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transfer',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transfer",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transferFrom',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transferFrom",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
-] as const
+] as const;
 
 export const bscUsdtTokenAddress =
-  '0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18' as const
+  "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18" as const;
 
 export const bscUsdtTokenConfig = {
   address: bscUsdtTokenAddress,
   abi: bscUsdtTokenABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BscUsdcToken
@@ -422,178 +422,178 @@ export const bscUsdtTokenConfig = {
 
 export const bscUsdcTokenABI = [
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
+        name: "owner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'spender',
-        internalType: 'address',
-        type: 'address',
+        name: "spender",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Approval',
+    name: "Approval",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+      { name: "version", internalType: "uint8", type: "uint8", indexed: false },
     ],
-    name: 'Initialized',
+    name: "Initialized",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      { name: "from", internalType: "address", type: "address", indexed: true },
+      { name: "to", internalType: "address", type: "address", indexed: true },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Transfer',
+    name: "Transfer",
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [
-      { name: 'owner', internalType: 'address', type: 'address' },
-      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: "owner", internalType: "address", type: "address" },
+      { name: "spender", internalType: "address", type: "address" },
     ],
-    name: 'allowance',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "allowance",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'approve',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "approve",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "account", internalType: "address", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'decimals',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    name: "decimals",
+    outputs: [{ name: "", internalType: "uint8", type: "uint8" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "subtractedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'decreaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "decreaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "addedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'increaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "increaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_name', internalType: 'string', type: 'string' },
-      { name: '_ticker', internalType: 'string', type: 'string' },
+      { name: "_name", internalType: "string", type: "string" },
+      { name: "_ticker", internalType: "string", type: "string" },
     ],
-    name: 'initialize',
+    name: "initialize",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_account', internalType: 'address', type: 'address' },
-      { name: '_amount', internalType: 'uint256', type: 'uint256' },
+      { name: "_account", internalType: "address", type: "address" },
+      { name: "_amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'mint',
+    name: "mint",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'name',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "name",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'symbol',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "symbol",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "totalSupply",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transfer',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transfer",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transferFrom',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transferFrom",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
-] as const
+] as const;
 
 export const bscUsdcTokenAddress =
-  '0x45D463BFf2e01A125298BF9271B7BAFBdBeF001f' as const
+  "0x45D463BFf2e01A125298BF9271B7BAFBdBeF001f" as const;
 
 export const bscUsdcTokenConfig = {
   address: bscUsdcTokenAddress,
   abi: bscUsdcTokenABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BscWethToken
@@ -601,178 +601,178 @@ export const bscUsdcTokenConfig = {
 
 export const bscWethTokenABI = [
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
+        name: "owner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'spender',
-        internalType: 'address',
-        type: 'address',
+        name: "spender",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Approval',
+    name: "Approval",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+      { name: "version", internalType: "uint8", type: "uint8", indexed: false },
     ],
-    name: 'Initialized',
+    name: "Initialized",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      { name: "from", internalType: "address", type: "address", indexed: true },
+      { name: "to", internalType: "address", type: "address", indexed: true },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Transfer',
+    name: "Transfer",
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [
-      { name: 'owner', internalType: 'address', type: 'address' },
-      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: "owner", internalType: "address", type: "address" },
+      { name: "spender", internalType: "address", type: "address" },
     ],
-    name: 'allowance',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "allowance",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'approve',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "approve",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "account", internalType: "address", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'decimals',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    name: "decimals",
+    outputs: [{ name: "", internalType: "uint8", type: "uint8" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "subtractedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'decreaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "decreaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "addedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'increaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "increaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_name', internalType: 'string', type: 'string' },
-      { name: '_ticker', internalType: 'string', type: 'string' },
+      { name: "_name", internalType: "string", type: "string" },
+      { name: "_ticker", internalType: "string", type: "string" },
     ],
-    name: 'initialize',
+    name: "initialize",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_account', internalType: 'address', type: 'address' },
-      { name: '_amount', internalType: 'uint256', type: 'uint256' },
+      { name: "_account", internalType: "address", type: "address" },
+      { name: "_amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'mint',
+    name: "mint",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'name',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "name",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'symbol',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "symbol",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "totalSupply",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transfer',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transfer",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transferFrom',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transferFrom",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
-] as const
+] as const;
 
 export const bscWethTokenAddress =
-  '0x0518f7B2391916021111BB9Ce53F35a6f8C40Fe3' as const
+  "0x0518f7B2391916021111BB9Ce53F35a6f8C40Fe3" as const;
 
 export const bscWethTokenConfig = {
   address: bscWethTokenAddress,
   abi: bscWethTokenABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BscMaticToken
@@ -780,178 +780,178 @@ export const bscWethTokenConfig = {
 
 export const bscMaticTokenABI = [
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
+        name: "owner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'spender',
-        internalType: 'address',
-        type: 'address',
+        name: "spender",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Approval',
+    name: "Approval",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+      { name: "version", internalType: "uint8", type: "uint8", indexed: false },
     ],
-    name: 'Initialized',
+    name: "Initialized",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      { name: "from", internalType: "address", type: "address", indexed: true },
+      { name: "to", internalType: "address", type: "address", indexed: true },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Transfer',
+    name: "Transfer",
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [
-      { name: 'owner', internalType: 'address', type: 'address' },
-      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: "owner", internalType: "address", type: "address" },
+      { name: "spender", internalType: "address", type: "address" },
     ],
-    name: 'allowance',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "allowance",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'approve',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "approve",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "account", internalType: "address", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'decimals',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    name: "decimals",
+    outputs: [{ name: "", internalType: "uint8", type: "uint8" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "subtractedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'decreaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "decreaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "addedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'increaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "increaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_name', internalType: 'string', type: 'string' },
-      { name: '_ticker', internalType: 'string', type: 'string' },
+      { name: "_name", internalType: "string", type: "string" },
+      { name: "_ticker", internalType: "string", type: "string" },
     ],
-    name: 'initialize',
+    name: "initialize",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_account', internalType: 'address', type: 'address' },
-      { name: '_amount', internalType: 'uint256', type: 'uint256' },
+      { name: "_account", internalType: "address", type: "address" },
+      { name: "_amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'mint',
+    name: "mint",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'name',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "name",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'symbol',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "symbol",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "totalSupply",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transfer',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transfer",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transferFrom',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transferFrom",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
-] as const
+] as const;
 
 export const bscMaticTokenAddress =
-  '0x9570B7D0e54f2AAed59F6615e2be18637A82d881' as const
+  "0x9570B7D0e54f2AAed59F6615e2be18637A82d881" as const;
 
 export const bscMaticTokenConfig = {
   address: bscMaticTokenAddress,
   abi: bscMaticTokenABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MumbaiUsdtToken
@@ -959,178 +959,178 @@ export const bscMaticTokenConfig = {
 
 export const mumbaiUsdtTokenABI = [
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
+        name: "owner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'spender',
-        internalType: 'address',
-        type: 'address',
+        name: "spender",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Approval',
+    name: "Approval",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+      { name: "version", internalType: "uint8", type: "uint8", indexed: false },
     ],
-    name: 'Initialized',
+    name: "Initialized",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      { name: "from", internalType: "address", type: "address", indexed: true },
+      { name: "to", internalType: "address", type: "address", indexed: true },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Transfer',
+    name: "Transfer",
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [
-      { name: 'owner', internalType: 'address', type: 'address' },
-      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: "owner", internalType: "address", type: "address" },
+      { name: "spender", internalType: "address", type: "address" },
     ],
-    name: 'allowance',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "allowance",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'approve',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "approve",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "account", internalType: "address", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'decimals',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    name: "decimals",
+    outputs: [{ name: "", internalType: "uint8", type: "uint8" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "subtractedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'decreaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "decreaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "addedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'increaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "increaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_name', internalType: 'string', type: 'string' },
-      { name: '_ticker', internalType: 'string', type: 'string' },
+      { name: "_name", internalType: "string", type: "string" },
+      { name: "_ticker", internalType: "string", type: "string" },
     ],
-    name: 'initialize',
+    name: "initialize",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_account', internalType: 'address', type: 'address' },
-      { name: '_amount', internalType: 'uint256', type: 'uint256' },
+      { name: "_account", internalType: "address", type: "address" },
+      { name: "_amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'mint',
+    name: "mint",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'name',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "name",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'symbol',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "symbol",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "totalSupply",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transfer',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transfer",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transferFrom',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transferFrom",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
-] as const
+] as const;
 
 export const mumbaiUsdtTokenAddress =
-  '0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b' as const
+  "0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b" as const;
 
 export const mumbaiUsdtTokenConfig = {
   address: mumbaiUsdtTokenAddress,
   abi: mumbaiUsdtTokenABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MumbaiUsdcToken
@@ -1138,178 +1138,178 @@ export const mumbaiUsdtTokenConfig = {
 
 export const mumbaiUsdcTokenABI = [
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
+        name: "owner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'spender',
-        internalType: 'address',
-        type: 'address',
+        name: "spender",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Approval',
+    name: "Approval",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+      { name: "version", internalType: "uint8", type: "uint8", indexed: false },
     ],
-    name: 'Initialized',
+    name: "Initialized",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      { name: "from", internalType: "address", type: "address", indexed: true },
+      { name: "to", internalType: "address", type: "address", indexed: true },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Transfer',
+    name: "Transfer",
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [
-      { name: 'owner', internalType: 'address', type: 'address' },
-      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: "owner", internalType: "address", type: "address" },
+      { name: "spender", internalType: "address", type: "address" },
     ],
-    name: 'allowance',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "allowance",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'approve',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "approve",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "account", internalType: "address", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'decimals',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    name: "decimals",
+    outputs: [{ name: "", internalType: "uint8", type: "uint8" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "subtractedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'decreaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "decreaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "addedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'increaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "increaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_name', internalType: 'string', type: 'string' },
-      { name: '_ticker', internalType: 'string', type: 'string' },
+      { name: "_name", internalType: "string", type: "string" },
+      { name: "_ticker", internalType: "string", type: "string" },
     ],
-    name: 'initialize',
+    name: "initialize",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_account', internalType: 'address', type: 'address' },
-      { name: '_amount', internalType: 'uint256', type: 'uint256' },
+      { name: "_account", internalType: "address", type: "address" },
+      { name: "_amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'mint',
+    name: "mint",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'name',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "name",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'symbol',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "symbol",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "totalSupply",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transfer',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transfer",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transferFrom',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transferFrom",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
-] as const
+] as const;
 
 export const mumbaiUsdcTokenAddress =
-  '0xc1D7eC1a5320ed08b6B019cACC80f29905A7EEfA' as const
+  "0xc1D7eC1a5320ed08b6B019cACC80f29905A7EEfA" as const;
 
 export const mumbaiUsdcTokenConfig = {
   address: mumbaiUsdcTokenAddress,
   abi: mumbaiUsdcTokenABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MumbaiWethToken
@@ -1317,178 +1317,178 @@ export const mumbaiUsdcTokenConfig = {
 
 export const mumbaiWethTokenABI = [
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
+        name: "owner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'spender',
-        internalType: 'address',
-        type: 'address',
+        name: "spender",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Approval',
+    name: "Approval",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+      { name: "version", internalType: "uint8", type: "uint8", indexed: false },
     ],
-    name: 'Initialized',
+    name: "Initialized",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      { name: "from", internalType: "address", type: "address", indexed: true },
+      { name: "to", internalType: "address", type: "address", indexed: true },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Transfer',
+    name: "Transfer",
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [
-      { name: 'owner', internalType: 'address', type: 'address' },
-      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: "owner", internalType: "address", type: "address" },
+      { name: "spender", internalType: "address", type: "address" },
     ],
-    name: 'allowance',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "allowance",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'approve',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "approve",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "account", internalType: "address", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'decimals',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    name: "decimals",
+    outputs: [{ name: "", internalType: "uint8", type: "uint8" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "subtractedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'decreaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "decreaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "addedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'increaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "increaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_name', internalType: 'string', type: 'string' },
-      { name: '_ticker', internalType: 'string', type: 'string' },
+      { name: "_name", internalType: "string", type: "string" },
+      { name: "_ticker", internalType: "string", type: "string" },
     ],
-    name: 'initialize',
+    name: "initialize",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_account', internalType: 'address', type: 'address' },
-      { name: '_amount', internalType: 'uint256', type: 'uint256' },
+      { name: "_account", internalType: "address", type: "address" },
+      { name: "_amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'mint',
+    name: "mint",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'name',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "name",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'symbol',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "symbol",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "totalSupply",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transfer',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transfer",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transferFrom',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transferFrom",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
-] as const
+] as const;
 
 export const mumbaiWethTokenAddress =
-  '0xe3aF098836c4641f8EcF9185E49F8C3E74d91348' as const
+  "0xe3aF098836c4641f8EcF9185E49F8C3E74d91348" as const;
 
 export const mumbaiWethTokenConfig = {
   address: mumbaiWethTokenAddress,
   abi: mumbaiWethTokenABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MumbaiMaticToken
@@ -1496,178 +1496,178 @@ export const mumbaiWethTokenConfig = {
 
 export const mumbaiMaticTokenABI = [
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
       {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
+        name: "owner",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'spender',
-        internalType: 'address',
-        type: 'address',
+        name: "spender",
+        internalType: "address",
+        type: "address",
         indexed: true,
       },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Approval',
+    name: "Approval",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+      { name: "version", internalType: "uint8", type: "uint8", indexed: false },
     ],
-    name: 'Initialized',
+    name: "Initialized",
   },
   {
-    type: 'event',
+    type: "event",
     anonymous: false,
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      { name: "from", internalType: "address", type: "address", indexed: true },
+      { name: "to", internalType: "address", type: "address", indexed: true },
       {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
+        name: "value",
+        internalType: "uint256",
+        type: "uint256",
         indexed: false,
       },
     ],
-    name: 'Transfer',
+    name: "Transfer",
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [
-      { name: 'owner', internalType: 'address', type: 'address' },
-      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: "owner", internalType: "address", type: "address" },
+      { name: "spender", internalType: "address", type: "address" },
     ],
-    name: 'allowance',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "allowance",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'approve',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "approve",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: "view",
+    type: "function",
+    inputs: [{ name: "account", internalType: "address", type: "address" }],
+    name: "balanceOf",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'decimals',
-    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    name: "decimals",
+    outputs: [{ name: "", internalType: "uint8", type: "uint8" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "subtractedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'decreaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "decreaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+      { name: "spender", internalType: "address", type: "address" },
+      { name: "addedValue", internalType: "uint256", type: "uint256" },
     ],
-    name: 'increaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "increaseAllowance",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_name', internalType: 'string', type: 'string' },
-      { name: '_ticker', internalType: 'string', type: 'string' },
+      { name: "_name", internalType: "string", type: "string" },
+      { name: "_ticker", internalType: "string", type: "string" },
     ],
-    name: 'initialize',
+    name: "initialize",
     outputs: [],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: '_account', internalType: 'address', type: 'address' },
-      { name: '_amount', internalType: 'uint256', type: 'uint256' },
+      { name: "_account", internalType: "address", type: "address" },
+      { name: "_amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'mint',
+    name: "mint",
     outputs: [],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'name',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "name",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'symbol',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    name: "symbol",
+    outputs: [{ name: "", internalType: "string", type: "string" }],
   },
   {
-    stateMutability: 'view',
-    type: 'function',
+    stateMutability: "view",
+    type: "function",
     inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: "totalSupply",
+    outputs: [{ name: "", internalType: "uint256", type: "uint256" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transfer',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transfer",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
+    stateMutability: "nonpayable",
+    type: "function",
     inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: "from", internalType: "address", type: "address" },
+      { name: "to", internalType: "address", type: "address" },
+      { name: "amount", internalType: "uint256", type: "uint256" },
     ],
-    name: 'transferFrom',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    name: "transferFrom",
+    outputs: [{ name: "", internalType: "bool", type: "bool" }],
   },
-] as const
+] as const;
 
 export const mumbaiMaticTokenAddress =
-  '0xDe7B766c83ddd2177087d8f6F8916A3B18722669' as const
+  "0xDe7B766c83ddd2177087d8f6F8916A3B18722669" as const;
 
 export const mumbaiMaticTokenConfig = {
   address: mumbaiMaticTokenAddress,
   abi: mumbaiMaticTokenABI,
-} as const
+} as const;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // React
@@ -1678,7 +1678,7 @@ export const mumbaiMaticTokenConfig = {
  */
 export function useDexAggregatorBscRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof dexAggregatorBscABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof dexAggregatorBscABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -1686,26 +1686,22 @@ export function useDexAggregatorBscRead<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractRead({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
     ...config,
-  } as UseContractReadConfig<
-    typeof dexAggregatorBscABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof dexAggregatorBscABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link dexAggregatorBscABI}__ and `functionName` set to `"owner"`.
  */
 export function useDexAggregatorBscOwner<
-  TFunctionName extends 'owner',
-  TSelectData = ReadContractResult<typeof dexAggregatorBscABI, TFunctionName>,
+  TFunctionName extends "owner",
+  TSelectData = ReadContractResult<typeof dexAggregatorBscABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -1713,19 +1709,15 @@ export function useDexAggregatorBscOwner<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'owner',
+    functionName: "owner",
     ...config,
-  } as UseContractReadConfig<
-    typeof dexAggregatorBscABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof dexAggregatorBscABI, TFunctionName, TSelectData>);
 }
 
 /**
@@ -1733,14 +1725,14 @@ export function useDexAggregatorBscOwner<
  */
 export function useDexAggregatorBscWrite<
   TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorBscABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       >
@@ -1749,242 +1741,242 @@ export function useDexAggregatorBscWrite<
         TFunctionName,
         TMode
       > & {
-        abi?: never
-      } = {} as any,
+        abi?: never;
+      } = {} as any
 ) {
   return useContractWrite<typeof dexAggregatorBscABI, TFunctionName, TMode>({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorBscABI}__ and `functionName` set to `"initialize"`.
  */
 export function useDexAggregatorBscInitialize<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorBscABI,
-          'initialize'
-        >['request']['abi'],
-        'initialize',
+          "initialize"
+        >["request"]["abi"],
+        "initialize",
         TMode
-      > & { functionName?: 'initialize' }
+      > & { functionName?: "initialize" }
     : UseContractWriteConfig<
         typeof dexAggregatorBscABI,
-        'initialize',
+        "initialize",
         TMode
       > & {
-        abi?: never
-        functionName?: 'initialize'
-      } = {} as any,
+        abi?: never;
+        functionName?: "initialize";
+      } = {} as any
 ) {
-  return useContractWrite<typeof dexAggregatorBscABI, 'initialize', TMode>({
+  return useContractWrite<typeof dexAggregatorBscABI, "initialize", TMode>({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorBscABI}__ and `functionName` set to `"renounceOwnership"`.
  */
 export function useDexAggregatorBscRenounceOwnership<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorBscABI,
-          'renounceOwnership'
-        >['request']['abi'],
-        'renounceOwnership',
+          "renounceOwnership"
+        >["request"]["abi"],
+        "renounceOwnership",
         TMode
-      > & { functionName?: 'renounceOwnership' }
+      > & { functionName?: "renounceOwnership" }
     : UseContractWriteConfig<
         typeof dexAggregatorBscABI,
-        'renounceOwnership',
+        "renounceOwnership",
         TMode
       > & {
-        abi?: never
-        functionName?: 'renounceOwnership'
-      } = {} as any,
+        abi?: never;
+        functionName?: "renounceOwnership";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof dexAggregatorBscABI,
-    'renounceOwnership',
+    "renounceOwnership",
     TMode
   >({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'renounceOwnership',
+    functionName: "renounceOwnership",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorBscABI}__ and `functionName` set to `"swapToQr"`.
  */
 export function useDexAggregatorBscSwapToQr<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorBscABI,
-          'swapToQr'
-        >['request']['abi'],
-        'swapToQr',
+          "swapToQr"
+        >["request"]["abi"],
+        "swapToQr",
         TMode
-      > & { functionName?: 'swapToQr' }
-    : UseContractWriteConfig<typeof dexAggregatorBscABI, 'swapToQr', TMode> & {
-        abi?: never
-        functionName?: 'swapToQr'
-      } = {} as any,
+      > & { functionName?: "swapToQr" }
+    : UseContractWriteConfig<typeof dexAggregatorBscABI, "swapToQr", TMode> & {
+        abi?: never;
+        functionName?: "swapToQr";
+      } = {} as any
 ) {
-  return useContractWrite<typeof dexAggregatorBscABI, 'swapToQr', TMode>({
+  return useContractWrite<typeof dexAggregatorBscABI, "swapToQr", TMode>({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'swapToQr',
+    functionName: "swapToQr",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorBscABI}__ and `functionName` set to `"swapToUser"`.
  */
 export function useDexAggregatorBscSwapToUser<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorBscABI,
-          'swapToUser'
-        >['request']['abi'],
-        'swapToUser',
+          "swapToUser"
+        >["request"]["abi"],
+        "swapToUser",
         TMode
-      > & { functionName?: 'swapToUser' }
+      > & { functionName?: "swapToUser" }
     : UseContractWriteConfig<
         typeof dexAggregatorBscABI,
-        'swapToUser',
+        "swapToUser",
         TMode
       > & {
-        abi?: never
-        functionName?: 'swapToUser'
-      } = {} as any,
+        abi?: never;
+        functionName?: "swapToUser";
+      } = {} as any
 ) {
-  return useContractWrite<typeof dexAggregatorBscABI, 'swapToUser', TMode>({
+  return useContractWrite<typeof dexAggregatorBscABI, "swapToUser", TMode>({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'swapToUser',
+    functionName: "swapToUser",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorBscABI}__ and `functionName` set to `"transferOwnership"`.
  */
 export function useDexAggregatorBscTransferOwnership<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorBscABI,
-          'transferOwnership'
-        >['request']['abi'],
-        'transferOwnership',
+          "transferOwnership"
+        >["request"]["abi"],
+        "transferOwnership",
         TMode
-      > & { functionName?: 'transferOwnership' }
+      > & { functionName?: "transferOwnership" }
     : UseContractWriteConfig<
         typeof dexAggregatorBscABI,
-        'transferOwnership',
+        "transferOwnership",
         TMode
       > & {
-        abi?: never
-        functionName?: 'transferOwnership'
-      } = {} as any,
+        abi?: never;
+        functionName?: "transferOwnership";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof dexAggregatorBscABI,
-    'transferOwnership',
+    "transferOwnership",
     TMode
   >({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'transferOwnership',
+    functionName: "transferOwnership",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorBscABI}__ and `functionName` set to `"withdrawEther"`.
  */
 export function useDexAggregatorBscWithdrawEther<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorBscABI,
-          'withdrawEther'
-        >['request']['abi'],
-        'withdrawEther',
+          "withdrawEther"
+        >["request"]["abi"],
+        "withdrawEther",
         TMode
-      > & { functionName?: 'withdrawEther' }
+      > & { functionName?: "withdrawEther" }
     : UseContractWriteConfig<
         typeof dexAggregatorBscABI,
-        'withdrawEther',
+        "withdrawEther",
         TMode
       > & {
-        abi?: never
-        functionName?: 'withdrawEther'
-      } = {} as any,
+        abi?: never;
+        functionName?: "withdrawEther";
+      } = {} as any
 ) {
-  return useContractWrite<typeof dexAggregatorBscABI, 'withdrawEther', TMode>({
+  return useContractWrite<typeof dexAggregatorBscABI, "withdrawEther", TMode>({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'withdrawEther',
+    functionName: "withdrawEther",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorBscABI}__ and `functionName` set to `"withdrawToken"`.
  */
 export function useDexAggregatorBscWithdrawToken<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorBscABI,
-          'withdrawToken'
-        >['request']['abi'],
-        'withdrawToken',
+          "withdrawToken"
+        >["request"]["abi"],
+        "withdrawToken",
         TMode
-      > & { functionName?: 'withdrawToken' }
+      > & { functionName?: "withdrawToken" }
     : UseContractWriteConfig<
         typeof dexAggregatorBscABI,
-        'withdrawToken',
+        "withdrawToken",
         TMode
       > & {
-        abi?: never
-        functionName?: 'withdrawToken'
-      } = {} as any,
+        abi?: never;
+        functionName?: "withdrawToken";
+      } = {} as any
 ) {
-  return useContractWrite<typeof dexAggregatorBscABI, 'withdrawToken', TMode>({
+  return useContractWrite<typeof dexAggregatorBscABI, "withdrawToken", TMode>({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'withdrawToken',
+    functionName: "withdrawToken",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -1993,14 +1985,14 @@ export function useDexAggregatorBscWithdrawToken<
 export function usePrepareDexAggregatorBscWrite<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, TFunctionName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
     ...config,
-  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, TFunctionName>);
 }
 
 /**
@@ -2008,16 +2000,16 @@ export function usePrepareDexAggregatorBscWrite<TFunctionName extends string>(
  */
 export function usePrepareDexAggregatorBscInitialize(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, 'initialize'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "initialize">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, 'initialize'>)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "initialize">);
 }
 
 /**
@@ -2027,20 +2019,17 @@ export function usePrepareDexAggregatorBscRenounceOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof dexAggregatorBscABI,
-      'renounceOwnership'
+      "renounceOwnership"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'renounceOwnership',
+    functionName: "renounceOwnership",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorBscABI,
-    'renounceOwnership'
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "renounceOwnership">);
 }
 
 /**
@@ -2048,16 +2037,16 @@ export function usePrepareDexAggregatorBscRenounceOwnership(
  */
 export function usePrepareDexAggregatorBscSwapToQr(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, 'swapToQr'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "swapToQr">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'swapToQr',
+    functionName: "swapToQr",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, 'swapToQr'>)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "swapToQr">);
 }
 
 /**
@@ -2065,16 +2054,16 @@ export function usePrepareDexAggregatorBscSwapToQr(
  */
 export function usePrepareDexAggregatorBscSwapToUser(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, 'swapToUser'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "swapToUser">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'swapToUser',
+    functionName: "swapToUser",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, 'swapToUser'>)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "swapToUser">);
 }
 
 /**
@@ -2084,20 +2073,17 @@ export function usePrepareDexAggregatorBscTransferOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof dexAggregatorBscABI,
-      'transferOwnership'
+      "transferOwnership"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'transferOwnership',
+    functionName: "transferOwnership",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorBscABI,
-    'transferOwnership'
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "transferOwnership">);
 }
 
 /**
@@ -2105,19 +2091,16 @@ export function usePrepareDexAggregatorBscTransferOwnership(
  */
 export function usePrepareDexAggregatorBscWithdrawEther(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, 'withdrawEther'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "withdrawEther">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'withdrawEther',
+    functionName: "withdrawEther",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorBscABI,
-    'withdrawEther'
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "withdrawEther">);
 }
 
 /**
@@ -2125,19 +2108,16 @@ export function usePrepareDexAggregatorBscWithdrawEther(
  */
 export function usePrepareDexAggregatorBscWithdrawToken(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, 'withdrawToken'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "withdrawToken">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    functionName: 'withdrawToken',
+    functionName: "withdrawToken",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorBscABI,
-    'withdrawToken'
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorBscABI, "withdrawToken">);
 }
 
 /**
@@ -2146,14 +2126,14 @@ export function usePrepareDexAggregatorBscWithdrawToken(
 export function useDexAggregatorBscEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof dexAggregatorBscABI, TEventName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
     ...config,
-  } as UseContractEventConfig<typeof dexAggregatorBscABI, TEventName>)
+  } as UseContractEventConfig<typeof dexAggregatorBscABI, TEventName>);
 }
 
 /**
@@ -2161,16 +2141,16 @@ export function useDexAggregatorBscEvent<TEventName extends string>(
  */
 export function useDexAggregatorBscInitializedEvent(
   config: Omit<
-    UseContractEventConfig<typeof dexAggregatorBscABI, 'Initialized'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof dexAggregatorBscABI, "Initialized">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    eventName: 'Initialized',
+    eventName: "Initialized",
     ...config,
-  } as UseContractEventConfig<typeof dexAggregatorBscABI, 'Initialized'>)
+  } as UseContractEventConfig<typeof dexAggregatorBscABI, "Initialized">);
 }
 
 /**
@@ -2178,19 +2158,16 @@ export function useDexAggregatorBscInitializedEvent(
  */
 export function useDexAggregatorBscOwnershipTransferredEvent(
   config: Omit<
-    UseContractEventConfig<typeof dexAggregatorBscABI, 'OwnershipTransferred'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof dexAggregatorBscABI, "OwnershipTransferred">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: dexAggregatorBscABI,
     address: dexAggregatorBscAddress,
-    eventName: 'OwnershipTransferred',
+    eventName: "OwnershipTransferred",
     ...config,
-  } as UseContractEventConfig<
-    typeof dexAggregatorBscABI,
-    'OwnershipTransferred'
-  >)
+  } as UseContractEventConfig<typeof dexAggregatorBscABI, "OwnershipTransferred">);
 }
 
 /**
@@ -2198,10 +2175,7 @@ export function useDexAggregatorBscOwnershipTransferredEvent(
  */
 export function useDexAggregatorMumbaiRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<
-    typeof dexAggregatorMumbaiABI,
-    TFunctionName
-  >,
+  TSelectData = ReadContractResult<typeof dexAggregatorMumbaiABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -2209,29 +2183,22 @@ export function useDexAggregatorMumbaiRead<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractRead({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
     ...config,
-  } as UseContractReadConfig<
-    typeof dexAggregatorMumbaiABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof dexAggregatorMumbaiABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link dexAggregatorMumbaiABI}__ and `functionName` set to `"owner"`.
  */
 export function useDexAggregatorMumbaiOwner<
-  TFunctionName extends 'owner',
-  TSelectData = ReadContractResult<
-    typeof dexAggregatorMumbaiABI,
-    TFunctionName
-  >,
+  TFunctionName extends "owner",
+  TSelectData = ReadContractResult<typeof dexAggregatorMumbaiABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -2239,19 +2206,15 @@ export function useDexAggregatorMumbaiOwner<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'owner',
+    functionName: "owner",
     ...config,
-  } as UseContractReadConfig<
-    typeof dexAggregatorMumbaiABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof dexAggregatorMumbaiABI, TFunctionName, TSelectData>);
 }
 
 /**
@@ -2259,14 +2222,14 @@ export function useDexAggregatorMumbaiOwner<
  */
 export function useDexAggregatorMumbaiWrite<
   TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorMumbaiABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       >
@@ -2275,275 +2238,272 @@ export function useDexAggregatorMumbaiWrite<
         TFunctionName,
         TMode
       > & {
-        abi?: never
-      } = {} as any,
+        abi?: never;
+      } = {} as any
 ) {
   return useContractWrite<typeof dexAggregatorMumbaiABI, TFunctionName, TMode>({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorMumbaiABI}__ and `functionName` set to `"initialize"`.
  */
 export function useDexAggregatorMumbaiInitialize<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorMumbaiABI,
-          'initialize'
-        >['request']['abi'],
-        'initialize',
+          "initialize"
+        >["request"]["abi"],
+        "initialize",
         TMode
-      > & { functionName?: 'initialize' }
+      > & { functionName?: "initialize" }
     : UseContractWriteConfig<
         typeof dexAggregatorMumbaiABI,
-        'initialize',
+        "initialize",
         TMode
       > & {
-        abi?: never
-        functionName?: 'initialize'
-      } = {} as any,
+        abi?: never;
+        functionName?: "initialize";
+      } = {} as any
 ) {
-  return useContractWrite<typeof dexAggregatorMumbaiABI, 'initialize', TMode>({
+  return useContractWrite<typeof dexAggregatorMumbaiABI, "initialize", TMode>({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorMumbaiABI}__ and `functionName` set to `"renounceOwnership"`.
  */
 export function useDexAggregatorMumbaiRenounceOwnership<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorMumbaiABI,
-          'renounceOwnership'
-        >['request']['abi'],
-        'renounceOwnership',
+          "renounceOwnership"
+        >["request"]["abi"],
+        "renounceOwnership",
         TMode
-      > & { functionName?: 'renounceOwnership' }
+      > & { functionName?: "renounceOwnership" }
     : UseContractWriteConfig<
         typeof dexAggregatorMumbaiABI,
-        'renounceOwnership',
+        "renounceOwnership",
         TMode
       > & {
-        abi?: never
-        functionName?: 'renounceOwnership'
-      } = {} as any,
+        abi?: never;
+        functionName?: "renounceOwnership";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof dexAggregatorMumbaiABI,
-    'renounceOwnership',
+    "renounceOwnership",
     TMode
   >({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'renounceOwnership',
+    functionName: "renounceOwnership",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorMumbaiABI}__ and `functionName` set to `"swapToQr"`.
  */
 export function useDexAggregatorMumbaiSwapToQr<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorMumbaiABI,
-          'swapToQr'
-        >['request']['abi'],
-        'swapToQr',
+          "swapToQr"
+        >["request"]["abi"],
+        "swapToQr",
         TMode
-      > & { functionName?: 'swapToQr' }
+      > & { functionName?: "swapToQr" }
     : UseContractWriteConfig<
         typeof dexAggregatorMumbaiABI,
-        'swapToQr',
+        "swapToQr",
         TMode
       > & {
-        abi?: never
-        functionName?: 'swapToQr'
-      } = {} as any,
+        abi?: never;
+        functionName?: "swapToQr";
+      } = {} as any
 ) {
-  return useContractWrite<typeof dexAggregatorMumbaiABI, 'swapToQr', TMode>({
+  return useContractWrite<typeof dexAggregatorMumbaiABI, "swapToQr", TMode>({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'swapToQr',
+    functionName: "swapToQr",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorMumbaiABI}__ and `functionName` set to `"swapToUser"`.
  */
 export function useDexAggregatorMumbaiSwapToUser<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorMumbaiABI,
-          'swapToUser'
-        >['request']['abi'],
-        'swapToUser',
+          "swapToUser"
+        >["request"]["abi"],
+        "swapToUser",
         TMode
-      > & { functionName?: 'swapToUser' }
+      > & { functionName?: "swapToUser" }
     : UseContractWriteConfig<
         typeof dexAggregatorMumbaiABI,
-        'swapToUser',
+        "swapToUser",
         TMode
       > & {
-        abi?: never
-        functionName?: 'swapToUser'
-      } = {} as any,
+        abi?: never;
+        functionName?: "swapToUser";
+      } = {} as any
 ) {
-  return useContractWrite<typeof dexAggregatorMumbaiABI, 'swapToUser', TMode>({
+  return useContractWrite<typeof dexAggregatorMumbaiABI, "swapToUser", TMode>({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'swapToUser',
+    functionName: "swapToUser",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorMumbaiABI}__ and `functionName` set to `"transferOwnership"`.
  */
 export function useDexAggregatorMumbaiTransferOwnership<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorMumbaiABI,
-          'transferOwnership'
-        >['request']['abi'],
-        'transferOwnership',
+          "transferOwnership"
+        >["request"]["abi"],
+        "transferOwnership",
         TMode
-      > & { functionName?: 'transferOwnership' }
+      > & { functionName?: "transferOwnership" }
     : UseContractWriteConfig<
         typeof dexAggregatorMumbaiABI,
-        'transferOwnership',
+        "transferOwnership",
         TMode
       > & {
-        abi?: never
-        functionName?: 'transferOwnership'
-      } = {} as any,
+        abi?: never;
+        functionName?: "transferOwnership";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof dexAggregatorMumbaiABI,
-    'transferOwnership',
+    "transferOwnership",
     TMode
   >({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'transferOwnership',
+    functionName: "transferOwnership",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorMumbaiABI}__ and `functionName` set to `"withdrawEther"`.
  */
 export function useDexAggregatorMumbaiWithdrawEther<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorMumbaiABI,
-          'withdrawEther'
-        >['request']['abi'],
-        'withdrawEther',
+          "withdrawEther"
+        >["request"]["abi"],
+        "withdrawEther",
         TMode
-      > & { functionName?: 'withdrawEther' }
+      > & { functionName?: "withdrawEther" }
     : UseContractWriteConfig<
         typeof dexAggregatorMumbaiABI,
-        'withdrawEther',
+        "withdrawEther",
         TMode
       > & {
-        abi?: never
-        functionName?: 'withdrawEther'
-      } = {} as any,
+        abi?: never;
+        functionName?: "withdrawEther";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof dexAggregatorMumbaiABI,
-    'withdrawEther',
+    "withdrawEther",
     TMode
   >({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'withdrawEther',
+    functionName: "withdrawEther",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link dexAggregatorMumbaiABI}__ and `functionName` set to `"withdrawToken"`.
  */
 export function useDexAggregatorMumbaiWithdrawToken<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof dexAggregatorMumbaiABI,
-          'withdrawToken'
-        >['request']['abi'],
-        'withdrawToken',
+          "withdrawToken"
+        >["request"]["abi"],
+        "withdrawToken",
         TMode
-      > & { functionName?: 'withdrawToken' }
+      > & { functionName?: "withdrawToken" }
     : UseContractWriteConfig<
         typeof dexAggregatorMumbaiABI,
-        'withdrawToken',
+        "withdrawToken",
         TMode
       > & {
-        abi?: never
-        functionName?: 'withdrawToken'
-      } = {} as any,
+        abi?: never;
+        functionName?: "withdrawToken";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof dexAggregatorMumbaiABI,
-    'withdrawToken',
+    "withdrawToken",
     TMode
   >({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'withdrawToken',
+    functionName: "withdrawToken",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link dexAggregatorMumbaiABI}__.
  */
 export function usePrepareDexAggregatorMumbaiWrite<
-  TFunctionName extends string,
+  TFunctionName extends string
 >(
   config: Omit<
     UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, TFunctionName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorMumbaiABI,
-    TFunctionName
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, TFunctionName>);
 }
 
 /**
@@ -2551,19 +2511,16 @@ export function usePrepareDexAggregatorMumbaiWrite<
  */
 export function usePrepareDexAggregatorMumbaiInitialize(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, 'initialize'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, "initialize">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorMumbaiABI,
-    'initialize'
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, "initialize">);
 }
 
 /**
@@ -2573,20 +2530,17 @@ export function usePrepareDexAggregatorMumbaiRenounceOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof dexAggregatorMumbaiABI,
-      'renounceOwnership'
+      "renounceOwnership"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'renounceOwnership',
+    functionName: "renounceOwnership",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorMumbaiABI,
-    'renounceOwnership'
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, "renounceOwnership">);
 }
 
 /**
@@ -2594,16 +2548,16 @@ export function usePrepareDexAggregatorMumbaiRenounceOwnership(
  */
 export function usePrepareDexAggregatorMumbaiSwapToQr(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, 'swapToQr'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, "swapToQr">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'swapToQr',
+    functionName: "swapToQr",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, 'swapToQr'>)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, "swapToQr">);
 }
 
 /**
@@ -2611,19 +2565,16 @@ export function usePrepareDexAggregatorMumbaiSwapToQr(
  */
 export function usePrepareDexAggregatorMumbaiSwapToUser(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, 'swapToUser'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, "swapToUser">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'swapToUser',
+    functionName: "swapToUser",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorMumbaiABI,
-    'swapToUser'
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, "swapToUser">);
 }
 
 /**
@@ -2633,20 +2584,17 @@ export function usePrepareDexAggregatorMumbaiTransferOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof dexAggregatorMumbaiABI,
-      'transferOwnership'
+      "transferOwnership"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'transferOwnership',
+    functionName: "transferOwnership",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorMumbaiABI,
-    'transferOwnership'
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, "transferOwnership">);
 }
 
 /**
@@ -2656,20 +2604,17 @@ export function usePrepareDexAggregatorMumbaiWithdrawEther(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof dexAggregatorMumbaiABI,
-      'withdrawEther'
+      "withdrawEther"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'withdrawEther',
+    functionName: "withdrawEther",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorMumbaiABI,
-    'withdrawEther'
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, "withdrawEther">);
 }
 
 /**
@@ -2679,20 +2624,17 @@ export function usePrepareDexAggregatorMumbaiWithdrawToken(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof dexAggregatorMumbaiABI,
-      'withdrawToken'
+      "withdrawToken"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    functionName: 'withdrawToken',
+    functionName: "withdrawToken",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof dexAggregatorMumbaiABI,
-    'withdrawToken'
-  >)
+  } as UsePrepareContractWriteConfig<typeof dexAggregatorMumbaiABI, "withdrawToken">);
 }
 
 /**
@@ -2701,14 +2643,14 @@ export function usePrepareDexAggregatorMumbaiWithdrawToken(
 export function useDexAggregatorMumbaiEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof dexAggregatorMumbaiABI, TEventName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
     ...config,
-  } as UseContractEventConfig<typeof dexAggregatorMumbaiABI, TEventName>)
+  } as UseContractEventConfig<typeof dexAggregatorMumbaiABI, TEventName>);
 }
 
 /**
@@ -2716,16 +2658,16 @@ export function useDexAggregatorMumbaiEvent<TEventName extends string>(
  */
 export function useDexAggregatorMumbaiInitializedEvent(
   config: Omit<
-    UseContractEventConfig<typeof dexAggregatorMumbaiABI, 'Initialized'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof dexAggregatorMumbaiABI, "Initialized">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    eventName: 'Initialized',
+    eventName: "Initialized",
     ...config,
-  } as UseContractEventConfig<typeof dexAggregatorMumbaiABI, 'Initialized'>)
+  } as UseContractEventConfig<typeof dexAggregatorMumbaiABI, "Initialized">);
 }
 
 /**
@@ -2735,20 +2677,17 @@ export function useDexAggregatorMumbaiOwnershipTransferredEvent(
   config: Omit<
     UseContractEventConfig<
       typeof dexAggregatorMumbaiABI,
-      'OwnershipTransferred'
+      "OwnershipTransferred"
     >,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: dexAggregatorMumbaiABI,
     address: dexAggregatorMumbaiAddress,
-    eventName: 'OwnershipTransferred',
+    eventName: "OwnershipTransferred",
     ...config,
-  } as UseContractEventConfig<
-    typeof dexAggregatorMumbaiABI,
-    'OwnershipTransferred'
-  >)
+  } as UseContractEventConfig<typeof dexAggregatorMumbaiABI, "OwnershipTransferred">);
 }
 
 /**
@@ -2756,166 +2695,138 @@ export function useDexAggregatorMumbaiOwnershipTransferredEvent(
  */
 export function useBscUsdtTokenRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"allowance"`.
  */
 export function useBscUsdtTokenAllowance<
-  TFunctionName extends 'allowance',
-  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "allowance",
+  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'allowance',
+    functionName: "allowance",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"balanceOf"`.
  */
 export function useBscUsdtTokenBalanceOf<
-  TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "balanceOf",
+  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'balanceOf',
+    functionName: "balanceOf",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"decimals"`.
  */
 export function useBscUsdtTokenDecimals<
-  TFunctionName extends 'decimals',
-  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "decimals",
+  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'decimals',
+    functionName: "decimals",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"name"`.
  */
 export function useBscUsdtTokenName<
-  TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "name",
+  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'name',
+    functionName: "name",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"symbol"`.
  */
 export function useBscUsdtTokenSymbol<
-  TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "symbol",
+  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'symbol',
+    functionName: "symbol",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"totalSupply"`.
  */
 export function useBscUsdtTokenTotalSupply<
-  TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "totalSupply",
+  TSelectData = ReadContractResult<typeof bscUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'totalSupply',
+    functionName: "totalSupply",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
@@ -2923,230 +2834,230 @@ export function useBscUsdtTokenTotalSupply<
  */
 export function useBscUsdtTokenWrite<
   TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdtTokenABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       >
     : UseContractWriteConfig<typeof bscUsdtTokenABI, TFunctionName, TMode> & {
-        abi?: never
-      } = {} as any,
+        abi?: never;
+      } = {} as any
 ) {
   return useContractWrite<typeof bscUsdtTokenABI, TFunctionName, TMode>({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"approve"`.
  */
 export function useBscUsdtTokenApprove<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdtTokenABI,
-          'approve'
-        >['request']['abi'],
-        'approve',
+          "approve"
+        >["request"]["abi"],
+        "approve",
         TMode
-      > & { functionName?: 'approve' }
-    : UseContractWriteConfig<typeof bscUsdtTokenABI, 'approve', TMode> & {
-        abi?: never
-        functionName?: 'approve'
-      } = {} as any,
+      > & { functionName?: "approve" }
+    : UseContractWriteConfig<typeof bscUsdtTokenABI, "approve", TMode> & {
+        abi?: never;
+        functionName?: "approve";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdtTokenABI, 'approve', TMode>({
+  return useContractWrite<typeof bscUsdtTokenABI, "approve", TMode>({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"decreaseAllowance"`.
  */
 export function useBscUsdtTokenDecreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdtTokenABI,
-          'decreaseAllowance'
-        >['request']['abi'],
-        'decreaseAllowance',
+          "decreaseAllowance"
+        >["request"]["abi"],
+        "decreaseAllowance",
         TMode
-      > & { functionName?: 'decreaseAllowance' }
+      > & { functionName?: "decreaseAllowance" }
     : UseContractWriteConfig<
         typeof bscUsdtTokenABI,
-        'decreaseAllowance',
+        "decreaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'decreaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "decreaseAllowance";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdtTokenABI, 'decreaseAllowance', TMode>({
+  return useContractWrite<typeof bscUsdtTokenABI, "decreaseAllowance", TMode>({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"increaseAllowance"`.
  */
 export function useBscUsdtTokenIncreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdtTokenABI,
-          'increaseAllowance'
-        >['request']['abi'],
-        'increaseAllowance',
+          "increaseAllowance"
+        >["request"]["abi"],
+        "increaseAllowance",
         TMode
-      > & { functionName?: 'increaseAllowance' }
+      > & { functionName?: "increaseAllowance" }
     : UseContractWriteConfig<
         typeof bscUsdtTokenABI,
-        'increaseAllowance',
+        "increaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'increaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "increaseAllowance";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdtTokenABI, 'increaseAllowance', TMode>({
+  return useContractWrite<typeof bscUsdtTokenABI, "increaseAllowance", TMode>({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"initialize"`.
  */
 export function useBscUsdtTokenInitialize<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdtTokenABI,
-          'initialize'
-        >['request']['abi'],
-        'initialize',
+          "initialize"
+        >["request"]["abi"],
+        "initialize",
         TMode
-      > & { functionName?: 'initialize' }
-    : UseContractWriteConfig<typeof bscUsdtTokenABI, 'initialize', TMode> & {
-        abi?: never
-        functionName?: 'initialize'
-      } = {} as any,
+      > & { functionName?: "initialize" }
+    : UseContractWriteConfig<typeof bscUsdtTokenABI, "initialize", TMode> & {
+        abi?: never;
+        functionName?: "initialize";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdtTokenABI, 'initialize', TMode>({
+  return useContractWrite<typeof bscUsdtTokenABI, "initialize", TMode>({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"mint"`.
  */
 export function useBscUsdtTokenMint<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdtTokenABI,
-          'mint'
-        >['request']['abi'],
-        'mint',
+          "mint"
+        >["request"]["abi"],
+        "mint",
         TMode
-      > & { functionName?: 'mint' }
-    : UseContractWriteConfig<typeof bscUsdtTokenABI, 'mint', TMode> & {
-        abi?: never
-        functionName?: 'mint'
-      } = {} as any,
+      > & { functionName?: "mint" }
+    : UseContractWriteConfig<typeof bscUsdtTokenABI, "mint", TMode> & {
+        abi?: never;
+        functionName?: "mint";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdtTokenABI, 'mint', TMode>({
+  return useContractWrite<typeof bscUsdtTokenABI, "mint", TMode>({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"transfer"`.
  */
 export function useBscUsdtTokenTransfer<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdtTokenABI,
-          'transfer'
-        >['request']['abi'],
-        'transfer',
+          "transfer"
+        >["request"]["abi"],
+        "transfer",
         TMode
-      > & { functionName?: 'transfer' }
-    : UseContractWriteConfig<typeof bscUsdtTokenABI, 'transfer', TMode> & {
-        abi?: never
-        functionName?: 'transfer'
-      } = {} as any,
+      > & { functionName?: "transfer" }
+    : UseContractWriteConfig<typeof bscUsdtTokenABI, "transfer", TMode> & {
+        abi?: never;
+        functionName?: "transfer";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdtTokenABI, 'transfer', TMode>({
+  return useContractWrite<typeof bscUsdtTokenABI, "transfer", TMode>({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdtTokenABI}__ and `functionName` set to `"transferFrom"`.
  */
 export function useBscUsdtTokenTransferFrom<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdtTokenABI,
-          'transferFrom'
-        >['request']['abi'],
-        'transferFrom',
+          "transferFrom"
+        >["request"]["abi"],
+        "transferFrom",
         TMode
-      > & { functionName?: 'transferFrom' }
-    : UseContractWriteConfig<typeof bscUsdtTokenABI, 'transferFrom', TMode> & {
-        abi?: never
-        functionName?: 'transferFrom'
-      } = {} as any,
+      > & { functionName?: "transferFrom" }
+    : UseContractWriteConfig<typeof bscUsdtTokenABI, "transferFrom", TMode> & {
+        abi?: never;
+        functionName?: "transferFrom";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdtTokenABI, 'transferFrom', TMode>({
+  return useContractWrite<typeof bscUsdtTokenABI, "transferFrom", TMode>({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -3155,14 +3066,14 @@ export function useBscUsdtTokenTransferFrom<
 export function usePrepareBscUsdtTokenWrite<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, TFunctionName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, TFunctionName>);
 }
 
 /**
@@ -3170,16 +3081,16 @@ export function usePrepareBscUsdtTokenWrite<TFunctionName extends string>(
  */
 export function usePrepareBscUsdtTokenApprove(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'approve'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "approve">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'approve'>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "approve">);
 }
 
 /**
@@ -3187,19 +3098,16 @@ export function usePrepareBscUsdtTokenApprove(
  */
 export function usePrepareBscUsdtTokenDecreaseAllowance(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'decreaseAllowance'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "decreaseAllowance">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof bscUsdtTokenABI,
-    'decreaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "decreaseAllowance">);
 }
 
 /**
@@ -3207,19 +3115,16 @@ export function usePrepareBscUsdtTokenDecreaseAllowance(
  */
 export function usePrepareBscUsdtTokenIncreaseAllowance(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'increaseAllowance'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "increaseAllowance">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof bscUsdtTokenABI,
-    'increaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "increaseAllowance">);
 }
 
 /**
@@ -3227,16 +3132,16 @@ export function usePrepareBscUsdtTokenIncreaseAllowance(
  */
 export function usePrepareBscUsdtTokenInitialize(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'initialize'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "initialize">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'initialize'>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "initialize">);
 }
 
 /**
@@ -3244,16 +3149,16 @@ export function usePrepareBscUsdtTokenInitialize(
  */
 export function usePrepareBscUsdtTokenMint(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'mint'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "mint">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'mint'>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "mint">);
 }
 
 /**
@@ -3261,16 +3166,16 @@ export function usePrepareBscUsdtTokenMint(
  */
 export function usePrepareBscUsdtTokenTransfer(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'transfer'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "transfer">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'transfer'>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "transfer">);
 }
 
 /**
@@ -3278,16 +3183,16 @@ export function usePrepareBscUsdtTokenTransfer(
  */
 export function usePrepareBscUsdtTokenTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'transferFrom'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "transferFrom">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, 'transferFrom'>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdtTokenABI, "transferFrom">);
 }
 
 /**
@@ -3296,14 +3201,14 @@ export function usePrepareBscUsdtTokenTransferFrom(
 export function useBscUsdtTokenEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof bscUsdtTokenABI, TEventName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
     ...config,
-  } as UseContractEventConfig<typeof bscUsdtTokenABI, TEventName>)
+  } as UseContractEventConfig<typeof bscUsdtTokenABI, TEventName>);
 }
 
 /**
@@ -3311,16 +3216,16 @@ export function useBscUsdtTokenEvent<TEventName extends string>(
  */
 export function useBscUsdtTokenApprovalEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscUsdtTokenABI, 'Approval'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscUsdtTokenABI, "Approval">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    eventName: 'Approval',
+    eventName: "Approval",
     ...config,
-  } as UseContractEventConfig<typeof bscUsdtTokenABI, 'Approval'>)
+  } as UseContractEventConfig<typeof bscUsdtTokenABI, "Approval">);
 }
 
 /**
@@ -3328,16 +3233,16 @@ export function useBscUsdtTokenApprovalEvent(
  */
 export function useBscUsdtTokenInitializedEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscUsdtTokenABI, 'Initialized'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscUsdtTokenABI, "Initialized">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    eventName: 'Initialized',
+    eventName: "Initialized",
     ...config,
-  } as UseContractEventConfig<typeof bscUsdtTokenABI, 'Initialized'>)
+  } as UseContractEventConfig<typeof bscUsdtTokenABI, "Initialized">);
 }
 
 /**
@@ -3345,16 +3250,16 @@ export function useBscUsdtTokenInitializedEvent(
  */
 export function useBscUsdtTokenTransferEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscUsdtTokenABI, 'Transfer'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscUsdtTokenABI, "Transfer">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscUsdtTokenABI,
     address: bscUsdtTokenAddress,
-    eventName: 'Transfer',
+    eventName: "Transfer",
     ...config,
-  } as UseContractEventConfig<typeof bscUsdtTokenABI, 'Transfer'>)
+  } as UseContractEventConfig<typeof bscUsdtTokenABI, "Transfer">);
 }
 
 /**
@@ -3362,166 +3267,138 @@ export function useBscUsdtTokenTransferEvent(
  */
 export function useBscUsdcTokenRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"allowance"`.
  */
 export function useBscUsdcTokenAllowance<
-  TFunctionName extends 'allowance',
-  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "allowance",
+  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'allowance',
+    functionName: "allowance",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"balanceOf"`.
  */
 export function useBscUsdcTokenBalanceOf<
-  TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "balanceOf",
+  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'balanceOf',
+    functionName: "balanceOf",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"decimals"`.
  */
 export function useBscUsdcTokenDecimals<
-  TFunctionName extends 'decimals',
-  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "decimals",
+  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'decimals',
+    functionName: "decimals",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"name"`.
  */
 export function useBscUsdcTokenName<
-  TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "name",
+  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'name',
+    functionName: "name",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"symbol"`.
  */
 export function useBscUsdcTokenSymbol<
-  TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "symbol",
+  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'symbol',
+    functionName: "symbol",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"totalSupply"`.
  */
 export function useBscUsdcTokenTotalSupply<
-  TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "totalSupply",
+  TSelectData = ReadContractResult<typeof bscUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'totalSupply',
+    functionName: "totalSupply",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
@@ -3529,230 +3406,230 @@ export function useBscUsdcTokenTotalSupply<
  */
 export function useBscUsdcTokenWrite<
   TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdcTokenABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       >
     : UseContractWriteConfig<typeof bscUsdcTokenABI, TFunctionName, TMode> & {
-        abi?: never
-      } = {} as any,
+        abi?: never;
+      } = {} as any
 ) {
   return useContractWrite<typeof bscUsdcTokenABI, TFunctionName, TMode>({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"approve"`.
  */
 export function useBscUsdcTokenApprove<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdcTokenABI,
-          'approve'
-        >['request']['abi'],
-        'approve',
+          "approve"
+        >["request"]["abi"],
+        "approve",
         TMode
-      > & { functionName?: 'approve' }
-    : UseContractWriteConfig<typeof bscUsdcTokenABI, 'approve', TMode> & {
-        abi?: never
-        functionName?: 'approve'
-      } = {} as any,
+      > & { functionName?: "approve" }
+    : UseContractWriteConfig<typeof bscUsdcTokenABI, "approve", TMode> & {
+        abi?: never;
+        functionName?: "approve";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdcTokenABI, 'approve', TMode>({
+  return useContractWrite<typeof bscUsdcTokenABI, "approve", TMode>({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"decreaseAllowance"`.
  */
 export function useBscUsdcTokenDecreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdcTokenABI,
-          'decreaseAllowance'
-        >['request']['abi'],
-        'decreaseAllowance',
+          "decreaseAllowance"
+        >["request"]["abi"],
+        "decreaseAllowance",
         TMode
-      > & { functionName?: 'decreaseAllowance' }
+      > & { functionName?: "decreaseAllowance" }
     : UseContractWriteConfig<
         typeof bscUsdcTokenABI,
-        'decreaseAllowance',
+        "decreaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'decreaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "decreaseAllowance";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdcTokenABI, 'decreaseAllowance', TMode>({
+  return useContractWrite<typeof bscUsdcTokenABI, "decreaseAllowance", TMode>({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"increaseAllowance"`.
  */
 export function useBscUsdcTokenIncreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdcTokenABI,
-          'increaseAllowance'
-        >['request']['abi'],
-        'increaseAllowance',
+          "increaseAllowance"
+        >["request"]["abi"],
+        "increaseAllowance",
         TMode
-      > & { functionName?: 'increaseAllowance' }
+      > & { functionName?: "increaseAllowance" }
     : UseContractWriteConfig<
         typeof bscUsdcTokenABI,
-        'increaseAllowance',
+        "increaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'increaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "increaseAllowance";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdcTokenABI, 'increaseAllowance', TMode>({
+  return useContractWrite<typeof bscUsdcTokenABI, "increaseAllowance", TMode>({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"initialize"`.
  */
 export function useBscUsdcTokenInitialize<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdcTokenABI,
-          'initialize'
-        >['request']['abi'],
-        'initialize',
+          "initialize"
+        >["request"]["abi"],
+        "initialize",
         TMode
-      > & { functionName?: 'initialize' }
-    : UseContractWriteConfig<typeof bscUsdcTokenABI, 'initialize', TMode> & {
-        abi?: never
-        functionName?: 'initialize'
-      } = {} as any,
+      > & { functionName?: "initialize" }
+    : UseContractWriteConfig<typeof bscUsdcTokenABI, "initialize", TMode> & {
+        abi?: never;
+        functionName?: "initialize";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdcTokenABI, 'initialize', TMode>({
+  return useContractWrite<typeof bscUsdcTokenABI, "initialize", TMode>({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"mint"`.
  */
 export function useBscUsdcTokenMint<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdcTokenABI,
-          'mint'
-        >['request']['abi'],
-        'mint',
+          "mint"
+        >["request"]["abi"],
+        "mint",
         TMode
-      > & { functionName?: 'mint' }
-    : UseContractWriteConfig<typeof bscUsdcTokenABI, 'mint', TMode> & {
-        abi?: never
-        functionName?: 'mint'
-      } = {} as any,
+      > & { functionName?: "mint" }
+    : UseContractWriteConfig<typeof bscUsdcTokenABI, "mint", TMode> & {
+        abi?: never;
+        functionName?: "mint";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdcTokenABI, 'mint', TMode>({
+  return useContractWrite<typeof bscUsdcTokenABI, "mint", TMode>({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"transfer"`.
  */
 export function useBscUsdcTokenTransfer<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdcTokenABI,
-          'transfer'
-        >['request']['abi'],
-        'transfer',
+          "transfer"
+        >["request"]["abi"],
+        "transfer",
         TMode
-      > & { functionName?: 'transfer' }
-    : UseContractWriteConfig<typeof bscUsdcTokenABI, 'transfer', TMode> & {
-        abi?: never
-        functionName?: 'transfer'
-      } = {} as any,
+      > & { functionName?: "transfer" }
+    : UseContractWriteConfig<typeof bscUsdcTokenABI, "transfer", TMode> & {
+        abi?: never;
+        functionName?: "transfer";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdcTokenABI, 'transfer', TMode>({
+  return useContractWrite<typeof bscUsdcTokenABI, "transfer", TMode>({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscUsdcTokenABI}__ and `functionName` set to `"transferFrom"`.
  */
 export function useBscUsdcTokenTransferFrom<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscUsdcTokenABI,
-          'transferFrom'
-        >['request']['abi'],
-        'transferFrom',
+          "transferFrom"
+        >["request"]["abi"],
+        "transferFrom",
         TMode
-      > & { functionName?: 'transferFrom' }
-    : UseContractWriteConfig<typeof bscUsdcTokenABI, 'transferFrom', TMode> & {
-        abi?: never
-        functionName?: 'transferFrom'
-      } = {} as any,
+      > & { functionName?: "transferFrom" }
+    : UseContractWriteConfig<typeof bscUsdcTokenABI, "transferFrom", TMode> & {
+        abi?: never;
+        functionName?: "transferFrom";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscUsdcTokenABI, 'transferFrom', TMode>({
+  return useContractWrite<typeof bscUsdcTokenABI, "transferFrom", TMode>({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -3761,14 +3638,14 @@ export function useBscUsdcTokenTransferFrom<
 export function usePrepareBscUsdcTokenWrite<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, TFunctionName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, TFunctionName>);
 }
 
 /**
@@ -3776,16 +3653,16 @@ export function usePrepareBscUsdcTokenWrite<TFunctionName extends string>(
  */
 export function usePrepareBscUsdcTokenApprove(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'approve'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "approve">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'approve'>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "approve">);
 }
 
 /**
@@ -3793,19 +3670,16 @@ export function usePrepareBscUsdcTokenApprove(
  */
 export function usePrepareBscUsdcTokenDecreaseAllowance(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'decreaseAllowance'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "decreaseAllowance">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof bscUsdcTokenABI,
-    'decreaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "decreaseAllowance">);
 }
 
 /**
@@ -3813,19 +3687,16 @@ export function usePrepareBscUsdcTokenDecreaseAllowance(
  */
 export function usePrepareBscUsdcTokenIncreaseAllowance(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'increaseAllowance'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "increaseAllowance">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof bscUsdcTokenABI,
-    'increaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "increaseAllowance">);
 }
 
 /**
@@ -3833,16 +3704,16 @@ export function usePrepareBscUsdcTokenIncreaseAllowance(
  */
 export function usePrepareBscUsdcTokenInitialize(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'initialize'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "initialize">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'initialize'>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "initialize">);
 }
 
 /**
@@ -3850,16 +3721,16 @@ export function usePrepareBscUsdcTokenInitialize(
  */
 export function usePrepareBscUsdcTokenMint(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'mint'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "mint">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'mint'>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "mint">);
 }
 
 /**
@@ -3867,16 +3738,16 @@ export function usePrepareBscUsdcTokenMint(
  */
 export function usePrepareBscUsdcTokenTransfer(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'transfer'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "transfer">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'transfer'>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "transfer">);
 }
 
 /**
@@ -3884,16 +3755,16 @@ export function usePrepareBscUsdcTokenTransfer(
  */
 export function usePrepareBscUsdcTokenTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'transferFrom'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "transferFrom">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, 'transferFrom'>)
+  } as UsePrepareContractWriteConfig<typeof bscUsdcTokenABI, "transferFrom">);
 }
 
 /**
@@ -3902,14 +3773,14 @@ export function usePrepareBscUsdcTokenTransferFrom(
 export function useBscUsdcTokenEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof bscUsdcTokenABI, TEventName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
     ...config,
-  } as UseContractEventConfig<typeof bscUsdcTokenABI, TEventName>)
+  } as UseContractEventConfig<typeof bscUsdcTokenABI, TEventName>);
 }
 
 /**
@@ -3917,16 +3788,16 @@ export function useBscUsdcTokenEvent<TEventName extends string>(
  */
 export function useBscUsdcTokenApprovalEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscUsdcTokenABI, 'Approval'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscUsdcTokenABI, "Approval">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    eventName: 'Approval',
+    eventName: "Approval",
     ...config,
-  } as UseContractEventConfig<typeof bscUsdcTokenABI, 'Approval'>)
+  } as UseContractEventConfig<typeof bscUsdcTokenABI, "Approval">);
 }
 
 /**
@@ -3934,16 +3805,16 @@ export function useBscUsdcTokenApprovalEvent(
  */
 export function useBscUsdcTokenInitializedEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscUsdcTokenABI, 'Initialized'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscUsdcTokenABI, "Initialized">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    eventName: 'Initialized',
+    eventName: "Initialized",
     ...config,
-  } as UseContractEventConfig<typeof bscUsdcTokenABI, 'Initialized'>)
+  } as UseContractEventConfig<typeof bscUsdcTokenABI, "Initialized">);
 }
 
 /**
@@ -3951,16 +3822,16 @@ export function useBscUsdcTokenInitializedEvent(
  */
 export function useBscUsdcTokenTransferEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscUsdcTokenABI, 'Transfer'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscUsdcTokenABI, "Transfer">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscUsdcTokenABI,
     address: bscUsdcTokenAddress,
-    eventName: 'Transfer',
+    eventName: "Transfer",
     ...config,
-  } as UseContractEventConfig<typeof bscUsdcTokenABI, 'Transfer'>)
+  } as UseContractEventConfig<typeof bscUsdcTokenABI, "Transfer">);
 }
 
 /**
@@ -3968,166 +3839,138 @@ export function useBscUsdcTokenTransferEvent(
  */
 export function useBscWethTokenRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
     ...config,
-  } as UseContractReadConfig<
-    typeof bscWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"allowance"`.
  */
 export function useBscWethTokenAllowance<
-  TFunctionName extends 'allowance',
-  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>,
+  TFunctionName extends "allowance",
+  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'allowance',
+    functionName: "allowance",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"balanceOf"`.
  */
 export function useBscWethTokenBalanceOf<
-  TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>,
+  TFunctionName extends "balanceOf",
+  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'balanceOf',
+    functionName: "balanceOf",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"decimals"`.
  */
 export function useBscWethTokenDecimals<
-  TFunctionName extends 'decimals',
-  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>,
+  TFunctionName extends "decimals",
+  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'decimals',
+    functionName: "decimals",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"name"`.
  */
 export function useBscWethTokenName<
-  TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>,
+  TFunctionName extends "name",
+  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'name',
+    functionName: "name",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"symbol"`.
  */
 export function useBscWethTokenSymbol<
-  TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>,
+  TFunctionName extends "symbol",
+  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'symbol',
+    functionName: "symbol",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"totalSupply"`.
  */
 export function useBscWethTokenTotalSupply<
-  TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>,
+  TFunctionName extends "totalSupply",
+  TSelectData = ReadContractResult<typeof bscWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'totalSupply',
+    functionName: "totalSupply",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
@@ -4135,230 +3978,230 @@ export function useBscWethTokenTotalSupply<
  */
 export function useBscWethTokenWrite<
   TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscWethTokenABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       >
     : UseContractWriteConfig<typeof bscWethTokenABI, TFunctionName, TMode> & {
-        abi?: never
-      } = {} as any,
+        abi?: never;
+      } = {} as any
 ) {
   return useContractWrite<typeof bscWethTokenABI, TFunctionName, TMode>({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"approve"`.
  */
 export function useBscWethTokenApprove<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscWethTokenABI,
-          'approve'
-        >['request']['abi'],
-        'approve',
+          "approve"
+        >["request"]["abi"],
+        "approve",
         TMode
-      > & { functionName?: 'approve' }
-    : UseContractWriteConfig<typeof bscWethTokenABI, 'approve', TMode> & {
-        abi?: never
-        functionName?: 'approve'
-      } = {} as any,
+      > & { functionName?: "approve" }
+    : UseContractWriteConfig<typeof bscWethTokenABI, "approve", TMode> & {
+        abi?: never;
+        functionName?: "approve";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscWethTokenABI, 'approve', TMode>({
+  return useContractWrite<typeof bscWethTokenABI, "approve", TMode>({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"decreaseAllowance"`.
  */
 export function useBscWethTokenDecreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscWethTokenABI,
-          'decreaseAllowance'
-        >['request']['abi'],
-        'decreaseAllowance',
+          "decreaseAllowance"
+        >["request"]["abi"],
+        "decreaseAllowance",
         TMode
-      > & { functionName?: 'decreaseAllowance' }
+      > & { functionName?: "decreaseAllowance" }
     : UseContractWriteConfig<
         typeof bscWethTokenABI,
-        'decreaseAllowance',
+        "decreaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'decreaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "decreaseAllowance";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscWethTokenABI, 'decreaseAllowance', TMode>({
+  return useContractWrite<typeof bscWethTokenABI, "decreaseAllowance", TMode>({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"increaseAllowance"`.
  */
 export function useBscWethTokenIncreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscWethTokenABI,
-          'increaseAllowance'
-        >['request']['abi'],
-        'increaseAllowance',
+          "increaseAllowance"
+        >["request"]["abi"],
+        "increaseAllowance",
         TMode
-      > & { functionName?: 'increaseAllowance' }
+      > & { functionName?: "increaseAllowance" }
     : UseContractWriteConfig<
         typeof bscWethTokenABI,
-        'increaseAllowance',
+        "increaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'increaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "increaseAllowance";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscWethTokenABI, 'increaseAllowance', TMode>({
+  return useContractWrite<typeof bscWethTokenABI, "increaseAllowance", TMode>({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"initialize"`.
  */
 export function useBscWethTokenInitialize<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscWethTokenABI,
-          'initialize'
-        >['request']['abi'],
-        'initialize',
+          "initialize"
+        >["request"]["abi"],
+        "initialize",
         TMode
-      > & { functionName?: 'initialize' }
-    : UseContractWriteConfig<typeof bscWethTokenABI, 'initialize', TMode> & {
-        abi?: never
-        functionName?: 'initialize'
-      } = {} as any,
+      > & { functionName?: "initialize" }
+    : UseContractWriteConfig<typeof bscWethTokenABI, "initialize", TMode> & {
+        abi?: never;
+        functionName?: "initialize";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscWethTokenABI, 'initialize', TMode>({
+  return useContractWrite<typeof bscWethTokenABI, "initialize", TMode>({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"mint"`.
  */
 export function useBscWethTokenMint<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscWethTokenABI,
-          'mint'
-        >['request']['abi'],
-        'mint',
+          "mint"
+        >["request"]["abi"],
+        "mint",
         TMode
-      > & { functionName?: 'mint' }
-    : UseContractWriteConfig<typeof bscWethTokenABI, 'mint', TMode> & {
-        abi?: never
-        functionName?: 'mint'
-      } = {} as any,
+      > & { functionName?: "mint" }
+    : UseContractWriteConfig<typeof bscWethTokenABI, "mint", TMode> & {
+        abi?: never;
+        functionName?: "mint";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscWethTokenABI, 'mint', TMode>({
+  return useContractWrite<typeof bscWethTokenABI, "mint", TMode>({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"transfer"`.
  */
 export function useBscWethTokenTransfer<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscWethTokenABI,
-          'transfer'
-        >['request']['abi'],
-        'transfer',
+          "transfer"
+        >["request"]["abi"],
+        "transfer",
         TMode
-      > & { functionName?: 'transfer' }
-    : UseContractWriteConfig<typeof bscWethTokenABI, 'transfer', TMode> & {
-        abi?: never
-        functionName?: 'transfer'
-      } = {} as any,
+      > & { functionName?: "transfer" }
+    : UseContractWriteConfig<typeof bscWethTokenABI, "transfer", TMode> & {
+        abi?: never;
+        functionName?: "transfer";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscWethTokenABI, 'transfer', TMode>({
+  return useContractWrite<typeof bscWethTokenABI, "transfer", TMode>({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscWethTokenABI}__ and `functionName` set to `"transferFrom"`.
  */
 export function useBscWethTokenTransferFrom<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscWethTokenABI,
-          'transferFrom'
-        >['request']['abi'],
-        'transferFrom',
+          "transferFrom"
+        >["request"]["abi"],
+        "transferFrom",
         TMode
-      > & { functionName?: 'transferFrom' }
-    : UseContractWriteConfig<typeof bscWethTokenABI, 'transferFrom', TMode> & {
-        abi?: never
-        functionName?: 'transferFrom'
-      } = {} as any,
+      > & { functionName?: "transferFrom" }
+    : UseContractWriteConfig<typeof bscWethTokenABI, "transferFrom", TMode> & {
+        abi?: never;
+        functionName?: "transferFrom";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscWethTokenABI, 'transferFrom', TMode>({
+  return useContractWrite<typeof bscWethTokenABI, "transferFrom", TMode>({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -4367,14 +4210,14 @@ export function useBscWethTokenTransferFrom<
 export function usePrepareBscWethTokenWrite<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof bscWethTokenABI, TFunctionName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, TFunctionName>);
 }
 
 /**
@@ -4382,16 +4225,16 @@ export function usePrepareBscWethTokenWrite<TFunctionName extends string>(
  */
 export function usePrepareBscWethTokenApprove(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'approve'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscWethTokenABI, "approve">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'approve'>)
+  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, "approve">);
 }
 
 /**
@@ -4399,19 +4242,16 @@ export function usePrepareBscWethTokenApprove(
  */
 export function usePrepareBscWethTokenDecreaseAllowance(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'decreaseAllowance'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscWethTokenABI, "decreaseAllowance">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof bscWethTokenABI,
-    'decreaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, "decreaseAllowance">);
 }
 
 /**
@@ -4419,19 +4259,16 @@ export function usePrepareBscWethTokenDecreaseAllowance(
  */
 export function usePrepareBscWethTokenIncreaseAllowance(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'increaseAllowance'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscWethTokenABI, "increaseAllowance">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof bscWethTokenABI,
-    'increaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, "increaseAllowance">);
 }
 
 /**
@@ -4439,16 +4276,16 @@ export function usePrepareBscWethTokenIncreaseAllowance(
  */
 export function usePrepareBscWethTokenInitialize(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'initialize'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscWethTokenABI, "initialize">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'initialize'>)
+  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, "initialize">);
 }
 
 /**
@@ -4456,16 +4293,16 @@ export function usePrepareBscWethTokenInitialize(
  */
 export function usePrepareBscWethTokenMint(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'mint'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscWethTokenABI, "mint">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'mint'>)
+  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, "mint">);
 }
 
 /**
@@ -4473,16 +4310,16 @@ export function usePrepareBscWethTokenMint(
  */
 export function usePrepareBscWethTokenTransfer(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'transfer'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscWethTokenABI, "transfer">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'transfer'>)
+  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, "transfer">);
 }
 
 /**
@@ -4490,16 +4327,16 @@ export function usePrepareBscWethTokenTransfer(
  */
 export function usePrepareBscWethTokenTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'transferFrom'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscWethTokenABI, "transferFrom">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, 'transferFrom'>)
+  } as UsePrepareContractWriteConfig<typeof bscWethTokenABI, "transferFrom">);
 }
 
 /**
@@ -4508,14 +4345,14 @@ export function usePrepareBscWethTokenTransferFrom(
 export function useBscWethTokenEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof bscWethTokenABI, TEventName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
     ...config,
-  } as UseContractEventConfig<typeof bscWethTokenABI, TEventName>)
+  } as UseContractEventConfig<typeof bscWethTokenABI, TEventName>);
 }
 
 /**
@@ -4523,16 +4360,16 @@ export function useBscWethTokenEvent<TEventName extends string>(
  */
 export function useBscWethTokenApprovalEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscWethTokenABI, 'Approval'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscWethTokenABI, "Approval">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    eventName: 'Approval',
+    eventName: "Approval",
     ...config,
-  } as UseContractEventConfig<typeof bscWethTokenABI, 'Approval'>)
+  } as UseContractEventConfig<typeof bscWethTokenABI, "Approval">);
 }
 
 /**
@@ -4540,16 +4377,16 @@ export function useBscWethTokenApprovalEvent(
  */
 export function useBscWethTokenInitializedEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscWethTokenABI, 'Initialized'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscWethTokenABI, "Initialized">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    eventName: 'Initialized',
+    eventName: "Initialized",
     ...config,
-  } as UseContractEventConfig<typeof bscWethTokenABI, 'Initialized'>)
+  } as UseContractEventConfig<typeof bscWethTokenABI, "Initialized">);
 }
 
 /**
@@ -4557,16 +4394,16 @@ export function useBscWethTokenInitializedEvent(
  */
 export function useBscWethTokenTransferEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscWethTokenABI, 'Transfer'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscWethTokenABI, "Transfer">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscWethTokenABI,
     address: bscWethTokenAddress,
-    eventName: 'Transfer',
+    eventName: "Transfer",
     ...config,
-  } as UseContractEventConfig<typeof bscWethTokenABI, 'Transfer'>)
+  } as UseContractEventConfig<typeof bscWethTokenABI, "Transfer">);
 }
 
 /**
@@ -4574,166 +4411,138 @@ export function useBscWethTokenTransferEvent(
  */
 export function useBscMaticTokenRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
     ...config,
-  } as UseContractReadConfig<
-    typeof bscMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"allowance"`.
  */
 export function useBscMaticTokenAllowance<
-  TFunctionName extends 'allowance',
-  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>,
+  TFunctionName extends "allowance",
+  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'allowance',
+    functionName: "allowance",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"balanceOf"`.
  */
 export function useBscMaticTokenBalanceOf<
-  TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>,
+  TFunctionName extends "balanceOf",
+  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'balanceOf',
+    functionName: "balanceOf",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"decimals"`.
  */
 export function useBscMaticTokenDecimals<
-  TFunctionName extends 'decimals',
-  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>,
+  TFunctionName extends "decimals",
+  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'decimals',
+    functionName: "decimals",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"name"`.
  */
 export function useBscMaticTokenName<
-  TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>,
+  TFunctionName extends "name",
+  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'name',
+    functionName: "name",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"symbol"`.
  */
 export function useBscMaticTokenSymbol<
-  TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>,
+  TFunctionName extends "symbol",
+  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'symbol',
+    functionName: "symbol",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"totalSupply"`.
  */
 export function useBscMaticTokenTotalSupply<
-  TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>,
+  TFunctionName extends "totalSupply",
+  TSelectData = ReadContractResult<typeof bscMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'totalSupply',
+    functionName: "totalSupply",
     ...config,
-  } as UseContractReadConfig<
-    typeof bscMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof bscMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
@@ -4741,230 +4550,230 @@ export function useBscMaticTokenTotalSupply<
  */
 export function useBscMaticTokenWrite<
   TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscMaticTokenABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       >
     : UseContractWriteConfig<typeof bscMaticTokenABI, TFunctionName, TMode> & {
-        abi?: never
-      } = {} as any,
+        abi?: never;
+      } = {} as any
 ) {
   return useContractWrite<typeof bscMaticTokenABI, TFunctionName, TMode>({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"approve"`.
  */
 export function useBscMaticTokenApprove<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscMaticTokenABI,
-          'approve'
-        >['request']['abi'],
-        'approve',
+          "approve"
+        >["request"]["abi"],
+        "approve",
         TMode
-      > & { functionName?: 'approve' }
-    : UseContractWriteConfig<typeof bscMaticTokenABI, 'approve', TMode> & {
-        abi?: never
-        functionName?: 'approve'
-      } = {} as any,
+      > & { functionName?: "approve" }
+    : UseContractWriteConfig<typeof bscMaticTokenABI, "approve", TMode> & {
+        abi?: never;
+        functionName?: "approve";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscMaticTokenABI, 'approve', TMode>({
+  return useContractWrite<typeof bscMaticTokenABI, "approve", TMode>({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"decreaseAllowance"`.
  */
 export function useBscMaticTokenDecreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscMaticTokenABI,
-          'decreaseAllowance'
-        >['request']['abi'],
-        'decreaseAllowance',
+          "decreaseAllowance"
+        >["request"]["abi"],
+        "decreaseAllowance",
         TMode
-      > & { functionName?: 'decreaseAllowance' }
+      > & { functionName?: "decreaseAllowance" }
     : UseContractWriteConfig<
         typeof bscMaticTokenABI,
-        'decreaseAllowance',
+        "decreaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'decreaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "decreaseAllowance";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscMaticTokenABI, 'decreaseAllowance', TMode>({
+  return useContractWrite<typeof bscMaticTokenABI, "decreaseAllowance", TMode>({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"increaseAllowance"`.
  */
 export function useBscMaticTokenIncreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscMaticTokenABI,
-          'increaseAllowance'
-        >['request']['abi'],
-        'increaseAllowance',
+          "increaseAllowance"
+        >["request"]["abi"],
+        "increaseAllowance",
         TMode
-      > & { functionName?: 'increaseAllowance' }
+      > & { functionName?: "increaseAllowance" }
     : UseContractWriteConfig<
         typeof bscMaticTokenABI,
-        'increaseAllowance',
+        "increaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'increaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "increaseAllowance";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscMaticTokenABI, 'increaseAllowance', TMode>({
+  return useContractWrite<typeof bscMaticTokenABI, "increaseAllowance", TMode>({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"initialize"`.
  */
 export function useBscMaticTokenInitialize<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscMaticTokenABI,
-          'initialize'
-        >['request']['abi'],
-        'initialize',
+          "initialize"
+        >["request"]["abi"],
+        "initialize",
         TMode
-      > & { functionName?: 'initialize' }
-    : UseContractWriteConfig<typeof bscMaticTokenABI, 'initialize', TMode> & {
-        abi?: never
-        functionName?: 'initialize'
-      } = {} as any,
+      > & { functionName?: "initialize" }
+    : UseContractWriteConfig<typeof bscMaticTokenABI, "initialize", TMode> & {
+        abi?: never;
+        functionName?: "initialize";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscMaticTokenABI, 'initialize', TMode>({
+  return useContractWrite<typeof bscMaticTokenABI, "initialize", TMode>({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"mint"`.
  */
 export function useBscMaticTokenMint<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscMaticTokenABI,
-          'mint'
-        >['request']['abi'],
-        'mint',
+          "mint"
+        >["request"]["abi"],
+        "mint",
         TMode
-      > & { functionName?: 'mint' }
-    : UseContractWriteConfig<typeof bscMaticTokenABI, 'mint', TMode> & {
-        abi?: never
-        functionName?: 'mint'
-      } = {} as any,
+      > & { functionName?: "mint" }
+    : UseContractWriteConfig<typeof bscMaticTokenABI, "mint", TMode> & {
+        abi?: never;
+        functionName?: "mint";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscMaticTokenABI, 'mint', TMode>({
+  return useContractWrite<typeof bscMaticTokenABI, "mint", TMode>({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"transfer"`.
  */
 export function useBscMaticTokenTransfer<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscMaticTokenABI,
-          'transfer'
-        >['request']['abi'],
-        'transfer',
+          "transfer"
+        >["request"]["abi"],
+        "transfer",
         TMode
-      > & { functionName?: 'transfer' }
-    : UseContractWriteConfig<typeof bscMaticTokenABI, 'transfer', TMode> & {
-        abi?: never
-        functionName?: 'transfer'
-      } = {} as any,
+      > & { functionName?: "transfer" }
+    : UseContractWriteConfig<typeof bscMaticTokenABI, "transfer", TMode> & {
+        abi?: never;
+        functionName?: "transfer";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscMaticTokenABI, 'transfer', TMode>({
+  return useContractWrite<typeof bscMaticTokenABI, "transfer", TMode>({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link bscMaticTokenABI}__ and `functionName` set to `"transferFrom"`.
  */
 export function useBscMaticTokenTransferFrom<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof bscMaticTokenABI,
-          'transferFrom'
-        >['request']['abi'],
-        'transferFrom',
+          "transferFrom"
+        >["request"]["abi"],
+        "transferFrom",
         TMode
-      > & { functionName?: 'transferFrom' }
-    : UseContractWriteConfig<typeof bscMaticTokenABI, 'transferFrom', TMode> & {
-        abi?: never
-        functionName?: 'transferFrom'
-      } = {} as any,
+      > & { functionName?: "transferFrom" }
+    : UseContractWriteConfig<typeof bscMaticTokenABI, "transferFrom", TMode> & {
+        abi?: never;
+        functionName?: "transferFrom";
+      } = {} as any
 ) {
-  return useContractWrite<typeof bscMaticTokenABI, 'transferFrom', TMode>({
+  return useContractWrite<typeof bscMaticTokenABI, "transferFrom", TMode>({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -4973,14 +4782,14 @@ export function useBscMaticTokenTransferFrom<
 export function usePrepareBscMaticTokenWrite<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof bscMaticTokenABI, TFunctionName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, TFunctionName>);
 }
 
 /**
@@ -4988,16 +4797,16 @@ export function usePrepareBscMaticTokenWrite<TFunctionName extends string>(
  */
 export function usePrepareBscMaticTokenApprove(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'approve'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "approve">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'approve'>)
+  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "approve">);
 }
 
 /**
@@ -5005,19 +4814,16 @@ export function usePrepareBscMaticTokenApprove(
  */
 export function usePrepareBscMaticTokenDecreaseAllowance(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'decreaseAllowance'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "decreaseAllowance">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof bscMaticTokenABI,
-    'decreaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "decreaseAllowance">);
 }
 
 /**
@@ -5025,19 +4831,16 @@ export function usePrepareBscMaticTokenDecreaseAllowance(
  */
 export function usePrepareBscMaticTokenIncreaseAllowance(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'increaseAllowance'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "increaseAllowance">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof bscMaticTokenABI,
-    'increaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "increaseAllowance">);
 }
 
 /**
@@ -5045,16 +4848,16 @@ export function usePrepareBscMaticTokenIncreaseAllowance(
  */
 export function usePrepareBscMaticTokenInitialize(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'initialize'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "initialize">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'initialize'>)
+  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "initialize">);
 }
 
 /**
@@ -5062,16 +4865,16 @@ export function usePrepareBscMaticTokenInitialize(
  */
 export function usePrepareBscMaticTokenMint(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'mint'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "mint">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'mint'>)
+  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "mint">);
 }
 
 /**
@@ -5079,16 +4882,16 @@ export function usePrepareBscMaticTokenMint(
  */
 export function usePrepareBscMaticTokenTransfer(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'transfer'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "transfer">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'transfer'>)
+  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "transfer">);
 }
 
 /**
@@ -5096,16 +4899,16 @@ export function usePrepareBscMaticTokenTransfer(
  */
 export function usePrepareBscMaticTokenTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'transferFrom'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "transferFrom">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, 'transferFrom'>)
+  } as UsePrepareContractWriteConfig<typeof bscMaticTokenABI, "transferFrom">);
 }
 
 /**
@@ -5114,14 +4917,14 @@ export function usePrepareBscMaticTokenTransferFrom(
 export function useBscMaticTokenEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof bscMaticTokenABI, TEventName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
     ...config,
-  } as UseContractEventConfig<typeof bscMaticTokenABI, TEventName>)
+  } as UseContractEventConfig<typeof bscMaticTokenABI, TEventName>);
 }
 
 /**
@@ -5129,16 +4932,16 @@ export function useBscMaticTokenEvent<TEventName extends string>(
  */
 export function useBscMaticTokenApprovalEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscMaticTokenABI, 'Approval'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscMaticTokenABI, "Approval">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    eventName: 'Approval',
+    eventName: "Approval",
     ...config,
-  } as UseContractEventConfig<typeof bscMaticTokenABI, 'Approval'>)
+  } as UseContractEventConfig<typeof bscMaticTokenABI, "Approval">);
 }
 
 /**
@@ -5146,16 +4949,16 @@ export function useBscMaticTokenApprovalEvent(
  */
 export function useBscMaticTokenInitializedEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscMaticTokenABI, 'Initialized'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscMaticTokenABI, "Initialized">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    eventName: 'Initialized',
+    eventName: "Initialized",
     ...config,
-  } as UseContractEventConfig<typeof bscMaticTokenABI, 'Initialized'>)
+  } as UseContractEventConfig<typeof bscMaticTokenABI, "Initialized">);
 }
 
 /**
@@ -5163,16 +4966,16 @@ export function useBscMaticTokenInitializedEvent(
  */
 export function useBscMaticTokenTransferEvent(
   config: Omit<
-    UseContractEventConfig<typeof bscMaticTokenABI, 'Transfer'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof bscMaticTokenABI, "Transfer">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: bscMaticTokenABI,
     address: bscMaticTokenAddress,
-    eventName: 'Transfer',
+    eventName: "Transfer",
     ...config,
-  } as UseContractEventConfig<typeof bscMaticTokenABI, 'Transfer'>)
+  } as UseContractEventConfig<typeof bscMaticTokenABI, "Transfer">);
 }
 
 /**
@@ -5180,7 +4983,7 @@ export function useBscMaticTokenTransferEvent(
  */
 export function useMumbaiUsdtTokenRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5188,26 +4991,22 @@ export function useMumbaiUsdtTokenRead<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"allowance"`.
  */
 export function useMumbaiUsdtTokenAllowance<
-  TFunctionName extends 'allowance',
-  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "allowance",
+  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5215,27 +5014,23 @@ export function useMumbaiUsdtTokenAllowance<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'allowance',
+    functionName: "allowance",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"balanceOf"`.
  */
 export function useMumbaiUsdtTokenBalanceOf<
-  TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "balanceOf",
+  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5243,27 +5038,23 @@ export function useMumbaiUsdtTokenBalanceOf<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'balanceOf',
+    functionName: "balanceOf",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"decimals"`.
  */
 export function useMumbaiUsdtTokenDecimals<
-  TFunctionName extends 'decimals',
-  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "decimals",
+  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5271,27 +5062,23 @@ export function useMumbaiUsdtTokenDecimals<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'decimals',
+    functionName: "decimals",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"name"`.
  */
 export function useMumbaiUsdtTokenName<
-  TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "name",
+  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5299,27 +5086,23 @@ export function useMumbaiUsdtTokenName<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'name',
+    functionName: "name",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"symbol"`.
  */
 export function useMumbaiUsdtTokenSymbol<
-  TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "symbol",
+  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5327,27 +5110,23 @@ export function useMumbaiUsdtTokenSymbol<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'symbol',
+    functionName: "symbol",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"totalSupply"`.
  */
 export function useMumbaiUsdtTokenTotalSupply<
-  TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>,
+  TFunctionName extends "totalSupply",
+  TSelectData = ReadContractResult<typeof mumbaiUsdtTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5355,19 +5134,15 @@ export function useMumbaiUsdtTokenTotalSupply<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'totalSupply',
+    functionName: "totalSupply",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdtTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdtTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
@@ -5375,14 +5150,14 @@ export function useMumbaiUsdtTokenTotalSupply<
  */
 export function useMumbaiUsdtTokenWrite<
   TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdtTokenABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       >
@@ -5391,230 +5166,230 @@ export function useMumbaiUsdtTokenWrite<
         TFunctionName,
         TMode
       > & {
-        abi?: never
-      } = {} as any,
+        abi?: never;
+      } = {} as any
 ) {
   return useContractWrite<typeof mumbaiUsdtTokenABI, TFunctionName, TMode>({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"approve"`.
  */
 export function useMumbaiUsdtTokenApprove<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdtTokenABI,
-          'approve'
-        >['request']['abi'],
-        'approve',
+          "approve"
+        >["request"]["abi"],
+        "approve",
         TMode
-      > & { functionName?: 'approve' }
-    : UseContractWriteConfig<typeof mumbaiUsdtTokenABI, 'approve', TMode> & {
-        abi?: never
-        functionName?: 'approve'
-      } = {} as any,
+      > & { functionName?: "approve" }
+    : UseContractWriteConfig<typeof mumbaiUsdtTokenABI, "approve", TMode> & {
+        abi?: never;
+        functionName?: "approve";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiUsdtTokenABI, 'approve', TMode>({
+  return useContractWrite<typeof mumbaiUsdtTokenABI, "approve", TMode>({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"decreaseAllowance"`.
  */
 export function useMumbaiUsdtTokenDecreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdtTokenABI,
-          'decreaseAllowance'
-        >['request']['abi'],
-        'decreaseAllowance',
+          "decreaseAllowance"
+        >["request"]["abi"],
+        "decreaseAllowance",
         TMode
-      > & { functionName?: 'decreaseAllowance' }
+      > & { functionName?: "decreaseAllowance" }
     : UseContractWriteConfig<
         typeof mumbaiUsdtTokenABI,
-        'decreaseAllowance',
+        "decreaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'decreaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "decreaseAllowance";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof mumbaiUsdtTokenABI,
-    'decreaseAllowance',
+    "decreaseAllowance",
     TMode
   >({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"increaseAllowance"`.
  */
 export function useMumbaiUsdtTokenIncreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdtTokenABI,
-          'increaseAllowance'
-        >['request']['abi'],
-        'increaseAllowance',
+          "increaseAllowance"
+        >["request"]["abi"],
+        "increaseAllowance",
         TMode
-      > & { functionName?: 'increaseAllowance' }
+      > & { functionName?: "increaseAllowance" }
     : UseContractWriteConfig<
         typeof mumbaiUsdtTokenABI,
-        'increaseAllowance',
+        "increaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'increaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "increaseAllowance";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof mumbaiUsdtTokenABI,
-    'increaseAllowance',
+    "increaseAllowance",
     TMode
   >({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"initialize"`.
  */
 export function useMumbaiUsdtTokenInitialize<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdtTokenABI,
-          'initialize'
-        >['request']['abi'],
-        'initialize',
+          "initialize"
+        >["request"]["abi"],
+        "initialize",
         TMode
-      > & { functionName?: 'initialize' }
-    : UseContractWriteConfig<typeof mumbaiUsdtTokenABI, 'initialize', TMode> & {
-        abi?: never
-        functionName?: 'initialize'
-      } = {} as any,
+      > & { functionName?: "initialize" }
+    : UseContractWriteConfig<typeof mumbaiUsdtTokenABI, "initialize", TMode> & {
+        abi?: never;
+        functionName?: "initialize";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiUsdtTokenABI, 'initialize', TMode>({
+  return useContractWrite<typeof mumbaiUsdtTokenABI, "initialize", TMode>({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"mint"`.
  */
 export function useMumbaiUsdtTokenMint<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdtTokenABI,
-          'mint'
-        >['request']['abi'],
-        'mint',
+          "mint"
+        >["request"]["abi"],
+        "mint",
         TMode
-      > & { functionName?: 'mint' }
-    : UseContractWriteConfig<typeof mumbaiUsdtTokenABI, 'mint', TMode> & {
-        abi?: never
-        functionName?: 'mint'
-      } = {} as any,
+      > & { functionName?: "mint" }
+    : UseContractWriteConfig<typeof mumbaiUsdtTokenABI, "mint", TMode> & {
+        abi?: never;
+        functionName?: "mint";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiUsdtTokenABI, 'mint', TMode>({
+  return useContractWrite<typeof mumbaiUsdtTokenABI, "mint", TMode>({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"transfer"`.
  */
 export function useMumbaiUsdtTokenTransfer<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdtTokenABI,
-          'transfer'
-        >['request']['abi'],
-        'transfer',
+          "transfer"
+        >["request"]["abi"],
+        "transfer",
         TMode
-      > & { functionName?: 'transfer' }
-    : UseContractWriteConfig<typeof mumbaiUsdtTokenABI, 'transfer', TMode> & {
-        abi?: never
-        functionName?: 'transfer'
-      } = {} as any,
+      > & { functionName?: "transfer" }
+    : UseContractWriteConfig<typeof mumbaiUsdtTokenABI, "transfer", TMode> & {
+        abi?: never;
+        functionName?: "transfer";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiUsdtTokenABI, 'transfer', TMode>({
+  return useContractWrite<typeof mumbaiUsdtTokenABI, "transfer", TMode>({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdtTokenABI}__ and `functionName` set to `"transferFrom"`.
  */
 export function useMumbaiUsdtTokenTransferFrom<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdtTokenABI,
-          'transferFrom'
-        >['request']['abi'],
-        'transferFrom',
+          "transferFrom"
+        >["request"]["abi"],
+        "transferFrom",
         TMode
-      > & { functionName?: 'transferFrom' }
+      > & { functionName?: "transferFrom" }
     : UseContractWriteConfig<
         typeof mumbaiUsdtTokenABI,
-        'transferFrom',
+        "transferFrom",
         TMode
       > & {
-        abi?: never
-        functionName?: 'transferFrom'
-      } = {} as any,
+        abi?: never;
+        functionName?: "transferFrom";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiUsdtTokenABI, 'transferFrom', TMode>({
+  return useContractWrite<typeof mumbaiUsdtTokenABI, "transferFrom", TMode>({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -5623,14 +5398,14 @@ export function useMumbaiUsdtTokenTransferFrom<
 export function usePrepareMumbaiUsdtTokenWrite<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, TFunctionName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, TFunctionName>);
 }
 
 /**
@@ -5638,16 +5413,16 @@ export function usePrepareMumbaiUsdtTokenWrite<TFunctionName extends string>(
  */
 export function usePrepareMumbaiUsdtTokenApprove(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, 'approve'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "approve">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, 'approve'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "approve">);
 }
 
 /**
@@ -5657,20 +5432,17 @@ export function usePrepareMumbaiUsdtTokenDecreaseAllowance(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof mumbaiUsdtTokenABI,
-      'decreaseAllowance'
+      "decreaseAllowance"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof mumbaiUsdtTokenABI,
-    'decreaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "decreaseAllowance">);
 }
 
 /**
@@ -5680,20 +5452,17 @@ export function usePrepareMumbaiUsdtTokenIncreaseAllowance(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof mumbaiUsdtTokenABI,
-      'increaseAllowance'
+      "increaseAllowance"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof mumbaiUsdtTokenABI,
-    'increaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "increaseAllowance">);
 }
 
 /**
@@ -5701,16 +5470,16 @@ export function usePrepareMumbaiUsdtTokenIncreaseAllowance(
  */
 export function usePrepareMumbaiUsdtTokenInitialize(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, 'initialize'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "initialize">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, 'initialize'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "initialize">);
 }
 
 /**
@@ -5718,16 +5487,16 @@ export function usePrepareMumbaiUsdtTokenInitialize(
  */
 export function usePrepareMumbaiUsdtTokenMint(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, 'mint'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "mint">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, 'mint'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "mint">);
 }
 
 /**
@@ -5735,16 +5504,16 @@ export function usePrepareMumbaiUsdtTokenMint(
  */
 export function usePrepareMumbaiUsdtTokenTransfer(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, 'transfer'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "transfer">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, 'transfer'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "transfer">);
 }
 
 /**
@@ -5752,16 +5521,16 @@ export function usePrepareMumbaiUsdtTokenTransfer(
  */
 export function usePrepareMumbaiUsdtTokenTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, 'transferFrom'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "transferFrom">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, 'transferFrom'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdtTokenABI, "transferFrom">);
 }
 
 /**
@@ -5770,14 +5539,14 @@ export function usePrepareMumbaiUsdtTokenTransferFrom(
 export function useMumbaiUsdtTokenEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof mumbaiUsdtTokenABI, TEventName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
     ...config,
-  } as UseContractEventConfig<typeof mumbaiUsdtTokenABI, TEventName>)
+  } as UseContractEventConfig<typeof mumbaiUsdtTokenABI, TEventName>);
 }
 
 /**
@@ -5785,16 +5554,16 @@ export function useMumbaiUsdtTokenEvent<TEventName extends string>(
  */
 export function useMumbaiUsdtTokenApprovalEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiUsdtTokenABI, 'Approval'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiUsdtTokenABI, "Approval">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    eventName: 'Approval',
+    eventName: "Approval",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiUsdtTokenABI, 'Approval'>)
+  } as UseContractEventConfig<typeof mumbaiUsdtTokenABI, "Approval">);
 }
 
 /**
@@ -5802,16 +5571,16 @@ export function useMumbaiUsdtTokenApprovalEvent(
  */
 export function useMumbaiUsdtTokenInitializedEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiUsdtTokenABI, 'Initialized'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiUsdtTokenABI, "Initialized">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    eventName: 'Initialized',
+    eventName: "Initialized",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiUsdtTokenABI, 'Initialized'>)
+  } as UseContractEventConfig<typeof mumbaiUsdtTokenABI, "Initialized">);
 }
 
 /**
@@ -5819,16 +5588,16 @@ export function useMumbaiUsdtTokenInitializedEvent(
  */
 export function useMumbaiUsdtTokenTransferEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiUsdtTokenABI, 'Transfer'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiUsdtTokenABI, "Transfer">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiUsdtTokenABI,
     address: mumbaiUsdtTokenAddress,
-    eventName: 'Transfer',
+    eventName: "Transfer",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiUsdtTokenABI, 'Transfer'>)
+  } as UseContractEventConfig<typeof mumbaiUsdtTokenABI, "Transfer">);
 }
 
 /**
@@ -5836,7 +5605,7 @@ export function useMumbaiUsdtTokenTransferEvent(
  */
 export function useMumbaiUsdcTokenRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5844,26 +5613,22 @@ export function useMumbaiUsdcTokenRead<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"allowance"`.
  */
 export function useMumbaiUsdcTokenAllowance<
-  TFunctionName extends 'allowance',
-  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "allowance",
+  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5871,27 +5636,23 @@ export function useMumbaiUsdcTokenAllowance<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'allowance',
+    functionName: "allowance",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"balanceOf"`.
  */
 export function useMumbaiUsdcTokenBalanceOf<
-  TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "balanceOf",
+  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5899,27 +5660,23 @@ export function useMumbaiUsdcTokenBalanceOf<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'balanceOf',
+    functionName: "balanceOf",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"decimals"`.
  */
 export function useMumbaiUsdcTokenDecimals<
-  TFunctionName extends 'decimals',
-  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "decimals",
+  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5927,27 +5684,23 @@ export function useMumbaiUsdcTokenDecimals<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'decimals',
+    functionName: "decimals",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"name"`.
  */
 export function useMumbaiUsdcTokenName<
-  TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "name",
+  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5955,27 +5708,23 @@ export function useMumbaiUsdcTokenName<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'name',
+    functionName: "name",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"symbol"`.
  */
 export function useMumbaiUsdcTokenSymbol<
-  TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "symbol",
+  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -5983,27 +5732,23 @@ export function useMumbaiUsdcTokenSymbol<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'symbol',
+    functionName: "symbol",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"totalSupply"`.
  */
 export function useMumbaiUsdcTokenTotalSupply<
-  TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>,
+  TFunctionName extends "totalSupply",
+  TSelectData = ReadContractResult<typeof mumbaiUsdcTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -6011,19 +5756,15 @@ export function useMumbaiUsdcTokenTotalSupply<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'totalSupply',
+    functionName: "totalSupply",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiUsdcTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiUsdcTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
@@ -6031,14 +5772,14 @@ export function useMumbaiUsdcTokenTotalSupply<
  */
 export function useMumbaiUsdcTokenWrite<
   TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdcTokenABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       >
@@ -6047,230 +5788,230 @@ export function useMumbaiUsdcTokenWrite<
         TFunctionName,
         TMode
       > & {
-        abi?: never
-      } = {} as any,
+        abi?: never;
+      } = {} as any
 ) {
   return useContractWrite<typeof mumbaiUsdcTokenABI, TFunctionName, TMode>({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"approve"`.
  */
 export function useMumbaiUsdcTokenApprove<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdcTokenABI,
-          'approve'
-        >['request']['abi'],
-        'approve',
+          "approve"
+        >["request"]["abi"],
+        "approve",
         TMode
-      > & { functionName?: 'approve' }
-    : UseContractWriteConfig<typeof mumbaiUsdcTokenABI, 'approve', TMode> & {
-        abi?: never
-        functionName?: 'approve'
-      } = {} as any,
+      > & { functionName?: "approve" }
+    : UseContractWriteConfig<typeof mumbaiUsdcTokenABI, "approve", TMode> & {
+        abi?: never;
+        functionName?: "approve";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiUsdcTokenABI, 'approve', TMode>({
+  return useContractWrite<typeof mumbaiUsdcTokenABI, "approve", TMode>({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"decreaseAllowance"`.
  */
 export function useMumbaiUsdcTokenDecreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdcTokenABI,
-          'decreaseAllowance'
-        >['request']['abi'],
-        'decreaseAllowance',
+          "decreaseAllowance"
+        >["request"]["abi"],
+        "decreaseAllowance",
         TMode
-      > & { functionName?: 'decreaseAllowance' }
+      > & { functionName?: "decreaseAllowance" }
     : UseContractWriteConfig<
         typeof mumbaiUsdcTokenABI,
-        'decreaseAllowance',
+        "decreaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'decreaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "decreaseAllowance";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof mumbaiUsdcTokenABI,
-    'decreaseAllowance',
+    "decreaseAllowance",
     TMode
   >({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"increaseAllowance"`.
  */
 export function useMumbaiUsdcTokenIncreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdcTokenABI,
-          'increaseAllowance'
-        >['request']['abi'],
-        'increaseAllowance',
+          "increaseAllowance"
+        >["request"]["abi"],
+        "increaseAllowance",
         TMode
-      > & { functionName?: 'increaseAllowance' }
+      > & { functionName?: "increaseAllowance" }
     : UseContractWriteConfig<
         typeof mumbaiUsdcTokenABI,
-        'increaseAllowance',
+        "increaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'increaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "increaseAllowance";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof mumbaiUsdcTokenABI,
-    'increaseAllowance',
+    "increaseAllowance",
     TMode
   >({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"initialize"`.
  */
 export function useMumbaiUsdcTokenInitialize<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdcTokenABI,
-          'initialize'
-        >['request']['abi'],
-        'initialize',
+          "initialize"
+        >["request"]["abi"],
+        "initialize",
         TMode
-      > & { functionName?: 'initialize' }
-    : UseContractWriteConfig<typeof mumbaiUsdcTokenABI, 'initialize', TMode> & {
-        abi?: never
-        functionName?: 'initialize'
-      } = {} as any,
+      > & { functionName?: "initialize" }
+    : UseContractWriteConfig<typeof mumbaiUsdcTokenABI, "initialize", TMode> & {
+        abi?: never;
+        functionName?: "initialize";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiUsdcTokenABI, 'initialize', TMode>({
+  return useContractWrite<typeof mumbaiUsdcTokenABI, "initialize", TMode>({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"mint"`.
  */
 export function useMumbaiUsdcTokenMint<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdcTokenABI,
-          'mint'
-        >['request']['abi'],
-        'mint',
+          "mint"
+        >["request"]["abi"],
+        "mint",
         TMode
-      > & { functionName?: 'mint' }
-    : UseContractWriteConfig<typeof mumbaiUsdcTokenABI, 'mint', TMode> & {
-        abi?: never
-        functionName?: 'mint'
-      } = {} as any,
+      > & { functionName?: "mint" }
+    : UseContractWriteConfig<typeof mumbaiUsdcTokenABI, "mint", TMode> & {
+        abi?: never;
+        functionName?: "mint";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiUsdcTokenABI, 'mint', TMode>({
+  return useContractWrite<typeof mumbaiUsdcTokenABI, "mint", TMode>({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"transfer"`.
  */
 export function useMumbaiUsdcTokenTransfer<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdcTokenABI,
-          'transfer'
-        >['request']['abi'],
-        'transfer',
+          "transfer"
+        >["request"]["abi"],
+        "transfer",
         TMode
-      > & { functionName?: 'transfer' }
-    : UseContractWriteConfig<typeof mumbaiUsdcTokenABI, 'transfer', TMode> & {
-        abi?: never
-        functionName?: 'transfer'
-      } = {} as any,
+      > & { functionName?: "transfer" }
+    : UseContractWriteConfig<typeof mumbaiUsdcTokenABI, "transfer", TMode> & {
+        abi?: never;
+        functionName?: "transfer";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiUsdcTokenABI, 'transfer', TMode>({
+  return useContractWrite<typeof mumbaiUsdcTokenABI, "transfer", TMode>({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiUsdcTokenABI}__ and `functionName` set to `"transferFrom"`.
  */
 export function useMumbaiUsdcTokenTransferFrom<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiUsdcTokenABI,
-          'transferFrom'
-        >['request']['abi'],
-        'transferFrom',
+          "transferFrom"
+        >["request"]["abi"],
+        "transferFrom",
         TMode
-      > & { functionName?: 'transferFrom' }
+      > & { functionName?: "transferFrom" }
     : UseContractWriteConfig<
         typeof mumbaiUsdcTokenABI,
-        'transferFrom',
+        "transferFrom",
         TMode
       > & {
-        abi?: never
-        functionName?: 'transferFrom'
-      } = {} as any,
+        abi?: never;
+        functionName?: "transferFrom";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiUsdcTokenABI, 'transferFrom', TMode>({
+  return useContractWrite<typeof mumbaiUsdcTokenABI, "transferFrom", TMode>({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -6279,14 +6020,14 @@ export function useMumbaiUsdcTokenTransferFrom<
 export function usePrepareMumbaiUsdcTokenWrite<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, TFunctionName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, TFunctionName>);
 }
 
 /**
@@ -6294,16 +6035,16 @@ export function usePrepareMumbaiUsdcTokenWrite<TFunctionName extends string>(
  */
 export function usePrepareMumbaiUsdcTokenApprove(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, 'approve'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "approve">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, 'approve'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "approve">);
 }
 
 /**
@@ -6313,20 +6054,17 @@ export function usePrepareMumbaiUsdcTokenDecreaseAllowance(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof mumbaiUsdcTokenABI,
-      'decreaseAllowance'
+      "decreaseAllowance"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof mumbaiUsdcTokenABI,
-    'decreaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "decreaseAllowance">);
 }
 
 /**
@@ -6336,20 +6074,17 @@ export function usePrepareMumbaiUsdcTokenIncreaseAllowance(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof mumbaiUsdcTokenABI,
-      'increaseAllowance'
+      "increaseAllowance"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof mumbaiUsdcTokenABI,
-    'increaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "increaseAllowance">);
 }
 
 /**
@@ -6357,16 +6092,16 @@ export function usePrepareMumbaiUsdcTokenIncreaseAllowance(
  */
 export function usePrepareMumbaiUsdcTokenInitialize(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, 'initialize'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "initialize">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, 'initialize'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "initialize">);
 }
 
 /**
@@ -6374,16 +6109,16 @@ export function usePrepareMumbaiUsdcTokenInitialize(
  */
 export function usePrepareMumbaiUsdcTokenMint(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, 'mint'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "mint">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, 'mint'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "mint">);
 }
 
 /**
@@ -6391,16 +6126,16 @@ export function usePrepareMumbaiUsdcTokenMint(
  */
 export function usePrepareMumbaiUsdcTokenTransfer(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, 'transfer'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "transfer">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, 'transfer'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "transfer">);
 }
 
 /**
@@ -6408,16 +6143,16 @@ export function usePrepareMumbaiUsdcTokenTransfer(
  */
 export function usePrepareMumbaiUsdcTokenTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, 'transferFrom'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "transferFrom">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, 'transferFrom'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiUsdcTokenABI, "transferFrom">);
 }
 
 /**
@@ -6426,14 +6161,14 @@ export function usePrepareMumbaiUsdcTokenTransferFrom(
 export function useMumbaiUsdcTokenEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof mumbaiUsdcTokenABI, TEventName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
     ...config,
-  } as UseContractEventConfig<typeof mumbaiUsdcTokenABI, TEventName>)
+  } as UseContractEventConfig<typeof mumbaiUsdcTokenABI, TEventName>);
 }
 
 /**
@@ -6441,16 +6176,16 @@ export function useMumbaiUsdcTokenEvent<TEventName extends string>(
  */
 export function useMumbaiUsdcTokenApprovalEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiUsdcTokenABI, 'Approval'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiUsdcTokenABI, "Approval">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    eventName: 'Approval',
+    eventName: "Approval",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiUsdcTokenABI, 'Approval'>)
+  } as UseContractEventConfig<typeof mumbaiUsdcTokenABI, "Approval">);
 }
 
 /**
@@ -6458,16 +6193,16 @@ export function useMumbaiUsdcTokenApprovalEvent(
  */
 export function useMumbaiUsdcTokenInitializedEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiUsdcTokenABI, 'Initialized'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiUsdcTokenABI, "Initialized">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    eventName: 'Initialized',
+    eventName: "Initialized",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiUsdcTokenABI, 'Initialized'>)
+  } as UseContractEventConfig<typeof mumbaiUsdcTokenABI, "Initialized">);
 }
 
 /**
@@ -6475,16 +6210,16 @@ export function useMumbaiUsdcTokenInitializedEvent(
  */
 export function useMumbaiUsdcTokenTransferEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiUsdcTokenABI, 'Transfer'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiUsdcTokenABI, "Transfer">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiUsdcTokenABI,
     address: mumbaiUsdcTokenAddress,
-    eventName: 'Transfer',
+    eventName: "Transfer",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiUsdcTokenABI, 'Transfer'>)
+  } as UseContractEventConfig<typeof mumbaiUsdcTokenABI, "Transfer">);
 }
 
 /**
@@ -6492,7 +6227,7 @@ export function useMumbaiUsdcTokenTransferEvent(
  */
 export function useMumbaiWethTokenRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -6500,26 +6235,22 @@ export function useMumbaiWethTokenRead<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"allowance"`.
  */
 export function useMumbaiWethTokenAllowance<
-  TFunctionName extends 'allowance',
-  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>,
+  TFunctionName extends "allowance",
+  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -6527,27 +6258,23 @@ export function useMumbaiWethTokenAllowance<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'allowance',
+    functionName: "allowance",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"balanceOf"`.
  */
 export function useMumbaiWethTokenBalanceOf<
-  TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>,
+  TFunctionName extends "balanceOf",
+  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -6555,27 +6282,23 @@ export function useMumbaiWethTokenBalanceOf<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'balanceOf',
+    functionName: "balanceOf",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"decimals"`.
  */
 export function useMumbaiWethTokenDecimals<
-  TFunctionName extends 'decimals',
-  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>,
+  TFunctionName extends "decimals",
+  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -6583,27 +6306,23 @@ export function useMumbaiWethTokenDecimals<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'decimals',
+    functionName: "decimals",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"name"`.
  */
 export function useMumbaiWethTokenName<
-  TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>,
+  TFunctionName extends "name",
+  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -6611,27 +6330,23 @@ export function useMumbaiWethTokenName<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'name',
+    functionName: "name",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"symbol"`.
  */
 export function useMumbaiWethTokenSymbol<
-  TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>,
+  TFunctionName extends "symbol",
+  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -6639,27 +6354,23 @@ export function useMumbaiWethTokenSymbol<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'symbol',
+    functionName: "symbol",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"totalSupply"`.
  */
 export function useMumbaiWethTokenTotalSupply<
-  TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>,
+  TFunctionName extends "totalSupply",
+  TSelectData = ReadContractResult<typeof mumbaiWethTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -6667,19 +6378,15 @@ export function useMumbaiWethTokenTotalSupply<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'totalSupply',
+    functionName: "totalSupply",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiWethTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiWethTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
@@ -6687,14 +6394,14 @@ export function useMumbaiWethTokenTotalSupply<
  */
 export function useMumbaiWethTokenWrite<
   TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiWethTokenABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       >
@@ -6703,230 +6410,230 @@ export function useMumbaiWethTokenWrite<
         TFunctionName,
         TMode
       > & {
-        abi?: never
-      } = {} as any,
+        abi?: never;
+      } = {} as any
 ) {
   return useContractWrite<typeof mumbaiWethTokenABI, TFunctionName, TMode>({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"approve"`.
  */
 export function useMumbaiWethTokenApprove<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiWethTokenABI,
-          'approve'
-        >['request']['abi'],
-        'approve',
+          "approve"
+        >["request"]["abi"],
+        "approve",
         TMode
-      > & { functionName?: 'approve' }
-    : UseContractWriteConfig<typeof mumbaiWethTokenABI, 'approve', TMode> & {
-        abi?: never
-        functionName?: 'approve'
-      } = {} as any,
+      > & { functionName?: "approve" }
+    : UseContractWriteConfig<typeof mumbaiWethTokenABI, "approve", TMode> & {
+        abi?: never;
+        functionName?: "approve";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiWethTokenABI, 'approve', TMode>({
+  return useContractWrite<typeof mumbaiWethTokenABI, "approve", TMode>({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"decreaseAllowance"`.
  */
 export function useMumbaiWethTokenDecreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiWethTokenABI,
-          'decreaseAllowance'
-        >['request']['abi'],
-        'decreaseAllowance',
+          "decreaseAllowance"
+        >["request"]["abi"],
+        "decreaseAllowance",
         TMode
-      > & { functionName?: 'decreaseAllowance' }
+      > & { functionName?: "decreaseAllowance" }
     : UseContractWriteConfig<
         typeof mumbaiWethTokenABI,
-        'decreaseAllowance',
+        "decreaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'decreaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "decreaseAllowance";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof mumbaiWethTokenABI,
-    'decreaseAllowance',
+    "decreaseAllowance",
     TMode
   >({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"increaseAllowance"`.
  */
 export function useMumbaiWethTokenIncreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiWethTokenABI,
-          'increaseAllowance'
-        >['request']['abi'],
-        'increaseAllowance',
+          "increaseAllowance"
+        >["request"]["abi"],
+        "increaseAllowance",
         TMode
-      > & { functionName?: 'increaseAllowance' }
+      > & { functionName?: "increaseAllowance" }
     : UseContractWriteConfig<
         typeof mumbaiWethTokenABI,
-        'increaseAllowance',
+        "increaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'increaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "increaseAllowance";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof mumbaiWethTokenABI,
-    'increaseAllowance',
+    "increaseAllowance",
     TMode
   >({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"initialize"`.
  */
 export function useMumbaiWethTokenInitialize<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiWethTokenABI,
-          'initialize'
-        >['request']['abi'],
-        'initialize',
+          "initialize"
+        >["request"]["abi"],
+        "initialize",
         TMode
-      > & { functionName?: 'initialize' }
-    : UseContractWriteConfig<typeof mumbaiWethTokenABI, 'initialize', TMode> & {
-        abi?: never
-        functionName?: 'initialize'
-      } = {} as any,
+      > & { functionName?: "initialize" }
+    : UseContractWriteConfig<typeof mumbaiWethTokenABI, "initialize", TMode> & {
+        abi?: never;
+        functionName?: "initialize";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiWethTokenABI, 'initialize', TMode>({
+  return useContractWrite<typeof mumbaiWethTokenABI, "initialize", TMode>({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"mint"`.
  */
 export function useMumbaiWethTokenMint<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiWethTokenABI,
-          'mint'
-        >['request']['abi'],
-        'mint',
+          "mint"
+        >["request"]["abi"],
+        "mint",
         TMode
-      > & { functionName?: 'mint' }
-    : UseContractWriteConfig<typeof mumbaiWethTokenABI, 'mint', TMode> & {
-        abi?: never
-        functionName?: 'mint'
-      } = {} as any,
+      > & { functionName?: "mint" }
+    : UseContractWriteConfig<typeof mumbaiWethTokenABI, "mint", TMode> & {
+        abi?: never;
+        functionName?: "mint";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiWethTokenABI, 'mint', TMode>({
+  return useContractWrite<typeof mumbaiWethTokenABI, "mint", TMode>({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"transfer"`.
  */
 export function useMumbaiWethTokenTransfer<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiWethTokenABI,
-          'transfer'
-        >['request']['abi'],
-        'transfer',
+          "transfer"
+        >["request"]["abi"],
+        "transfer",
         TMode
-      > & { functionName?: 'transfer' }
-    : UseContractWriteConfig<typeof mumbaiWethTokenABI, 'transfer', TMode> & {
-        abi?: never
-        functionName?: 'transfer'
-      } = {} as any,
+      > & { functionName?: "transfer" }
+    : UseContractWriteConfig<typeof mumbaiWethTokenABI, "transfer", TMode> & {
+        abi?: never;
+        functionName?: "transfer";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiWethTokenABI, 'transfer', TMode>({
+  return useContractWrite<typeof mumbaiWethTokenABI, "transfer", TMode>({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiWethTokenABI}__ and `functionName` set to `"transferFrom"`.
  */
 export function useMumbaiWethTokenTransferFrom<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiWethTokenABI,
-          'transferFrom'
-        >['request']['abi'],
-        'transferFrom',
+          "transferFrom"
+        >["request"]["abi"],
+        "transferFrom",
         TMode
-      > & { functionName?: 'transferFrom' }
+      > & { functionName?: "transferFrom" }
     : UseContractWriteConfig<
         typeof mumbaiWethTokenABI,
-        'transferFrom',
+        "transferFrom",
         TMode
       > & {
-        abi?: never
-        functionName?: 'transferFrom'
-      } = {} as any,
+        abi?: never;
+        functionName?: "transferFrom";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiWethTokenABI, 'transferFrom', TMode>({
+  return useContractWrite<typeof mumbaiWethTokenABI, "transferFrom", TMode>({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -6935,14 +6642,14 @@ export function useMumbaiWethTokenTransferFrom<
 export function usePrepareMumbaiWethTokenWrite<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, TFunctionName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, TFunctionName>);
 }
 
 /**
@@ -6950,16 +6657,16 @@ export function usePrepareMumbaiWethTokenWrite<TFunctionName extends string>(
  */
 export function usePrepareMumbaiWethTokenApprove(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, 'approve'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "approve">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, 'approve'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "approve">);
 }
 
 /**
@@ -6969,20 +6676,17 @@ export function usePrepareMumbaiWethTokenDecreaseAllowance(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof mumbaiWethTokenABI,
-      'decreaseAllowance'
+      "decreaseAllowance"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof mumbaiWethTokenABI,
-    'decreaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "decreaseAllowance">);
 }
 
 /**
@@ -6992,20 +6696,17 @@ export function usePrepareMumbaiWethTokenIncreaseAllowance(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof mumbaiWethTokenABI,
-      'increaseAllowance'
+      "increaseAllowance"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof mumbaiWethTokenABI,
-    'increaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "increaseAllowance">);
 }
 
 /**
@@ -7013,16 +6714,16 @@ export function usePrepareMumbaiWethTokenIncreaseAllowance(
  */
 export function usePrepareMumbaiWethTokenInitialize(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, 'initialize'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "initialize">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, 'initialize'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "initialize">);
 }
 
 /**
@@ -7030,16 +6731,16 @@ export function usePrepareMumbaiWethTokenInitialize(
  */
 export function usePrepareMumbaiWethTokenMint(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, 'mint'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "mint">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, 'mint'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "mint">);
 }
 
 /**
@@ -7047,16 +6748,16 @@ export function usePrepareMumbaiWethTokenMint(
  */
 export function usePrepareMumbaiWethTokenTransfer(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, 'transfer'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "transfer">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, 'transfer'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "transfer">);
 }
 
 /**
@@ -7064,16 +6765,16 @@ export function usePrepareMumbaiWethTokenTransfer(
  */
 export function usePrepareMumbaiWethTokenTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, 'transferFrom'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "transferFrom">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, 'transferFrom'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiWethTokenABI, "transferFrom">);
 }
 
 /**
@@ -7082,14 +6783,14 @@ export function usePrepareMumbaiWethTokenTransferFrom(
 export function useMumbaiWethTokenEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof mumbaiWethTokenABI, TEventName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
     ...config,
-  } as UseContractEventConfig<typeof mumbaiWethTokenABI, TEventName>)
+  } as UseContractEventConfig<typeof mumbaiWethTokenABI, TEventName>);
 }
 
 /**
@@ -7097,16 +6798,16 @@ export function useMumbaiWethTokenEvent<TEventName extends string>(
  */
 export function useMumbaiWethTokenApprovalEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiWethTokenABI, 'Approval'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiWethTokenABI, "Approval">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    eventName: 'Approval',
+    eventName: "Approval",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiWethTokenABI, 'Approval'>)
+  } as UseContractEventConfig<typeof mumbaiWethTokenABI, "Approval">);
 }
 
 /**
@@ -7114,16 +6815,16 @@ export function useMumbaiWethTokenApprovalEvent(
  */
 export function useMumbaiWethTokenInitializedEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiWethTokenABI, 'Initialized'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiWethTokenABI, "Initialized">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    eventName: 'Initialized',
+    eventName: "Initialized",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiWethTokenABI, 'Initialized'>)
+  } as UseContractEventConfig<typeof mumbaiWethTokenABI, "Initialized">);
 }
 
 /**
@@ -7131,16 +6832,16 @@ export function useMumbaiWethTokenInitializedEvent(
  */
 export function useMumbaiWethTokenTransferEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiWethTokenABI, 'Transfer'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiWethTokenABI, "Transfer">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiWethTokenABI,
     address: mumbaiWethTokenAddress,
-    eventName: 'Transfer',
+    eventName: "Transfer",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiWethTokenABI, 'Transfer'>)
+  } as UseContractEventConfig<typeof mumbaiWethTokenABI, "Transfer">);
 }
 
 /**
@@ -7148,7 +6849,7 @@ export function useMumbaiWethTokenTransferEvent(
  */
 export function useMumbaiMaticTokenRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -7156,26 +6857,22 @@ export function useMumbaiMaticTokenRead<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"allowance"`.
  */
 export function useMumbaiMaticTokenAllowance<
-  TFunctionName extends 'allowance',
-  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>,
+  TFunctionName extends "allowance",
+  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -7183,27 +6880,23 @@ export function useMumbaiMaticTokenAllowance<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'allowance',
+    functionName: "allowance",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"balanceOf"`.
  */
 export function useMumbaiMaticTokenBalanceOf<
-  TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>,
+  TFunctionName extends "balanceOf",
+  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -7211,27 +6904,23 @@ export function useMumbaiMaticTokenBalanceOf<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'balanceOf',
+    functionName: "balanceOf",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"decimals"`.
  */
 export function useMumbaiMaticTokenDecimals<
-  TFunctionName extends 'decimals',
-  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>,
+  TFunctionName extends "decimals",
+  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -7239,27 +6928,23 @@ export function useMumbaiMaticTokenDecimals<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'decimals',
+    functionName: "decimals",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"name"`.
  */
 export function useMumbaiMaticTokenName<
-  TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>,
+  TFunctionName extends "name",
+  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -7267,27 +6952,23 @@ export function useMumbaiMaticTokenName<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'name',
+    functionName: "name",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"symbol"`.
  */
 export function useMumbaiMaticTokenSymbol<
-  TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>,
+  TFunctionName extends "symbol",
+  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -7295,27 +6976,23 @@ export function useMumbaiMaticTokenSymbol<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'symbol',
+    functionName: "symbol",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"totalSupply"`.
  */
 export function useMumbaiMaticTokenTotalSupply<
-  TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>,
+  TFunctionName extends "totalSupply",
+  TSelectData = ReadContractResult<typeof mumbaiMaticTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<
@@ -7323,19 +7000,15 @@ export function useMumbaiMaticTokenTotalSupply<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return useContractRead({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'totalSupply',
+    functionName: "totalSupply",
     ...config,
-  } as UseContractReadConfig<
-    typeof mumbaiMaticTokenABI,
-    TFunctionName,
-    TSelectData
-  >)
+  } as UseContractReadConfig<typeof mumbaiMaticTokenABI, TFunctionName, TSelectData>);
 }
 
 /**
@@ -7343,14 +7016,14 @@ export function useMumbaiMaticTokenTotalSupply<
  */
 export function useMumbaiMaticTokenWrite<
   TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiMaticTokenABI,
           string
-        >['request']['abi'],
+        >["request"]["abi"],
         TFunctionName,
         TMode
       >
@@ -7359,234 +7032,234 @@ export function useMumbaiMaticTokenWrite<
         TFunctionName,
         TMode
       > & {
-        abi?: never
-      } = {} as any,
+        abi?: never;
+      } = {} as any
 ) {
   return useContractWrite<typeof mumbaiMaticTokenABI, TFunctionName, TMode>({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"approve"`.
  */
 export function useMumbaiMaticTokenApprove<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiMaticTokenABI,
-          'approve'
-        >['request']['abi'],
-        'approve',
+          "approve"
+        >["request"]["abi"],
+        "approve",
         TMode
-      > & { functionName?: 'approve' }
-    : UseContractWriteConfig<typeof mumbaiMaticTokenABI, 'approve', TMode> & {
-        abi?: never
-        functionName?: 'approve'
-      } = {} as any,
+      > & { functionName?: "approve" }
+    : UseContractWriteConfig<typeof mumbaiMaticTokenABI, "approve", TMode> & {
+        abi?: never;
+        functionName?: "approve";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiMaticTokenABI, 'approve', TMode>({
+  return useContractWrite<typeof mumbaiMaticTokenABI, "approve", TMode>({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"decreaseAllowance"`.
  */
 export function useMumbaiMaticTokenDecreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiMaticTokenABI,
-          'decreaseAllowance'
-        >['request']['abi'],
-        'decreaseAllowance',
+          "decreaseAllowance"
+        >["request"]["abi"],
+        "decreaseAllowance",
         TMode
-      > & { functionName?: 'decreaseAllowance' }
+      > & { functionName?: "decreaseAllowance" }
     : UseContractWriteConfig<
         typeof mumbaiMaticTokenABI,
-        'decreaseAllowance',
+        "decreaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'decreaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "decreaseAllowance";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof mumbaiMaticTokenABI,
-    'decreaseAllowance',
+    "decreaseAllowance",
     TMode
   >({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"increaseAllowance"`.
  */
 export function useMumbaiMaticTokenIncreaseAllowance<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiMaticTokenABI,
-          'increaseAllowance'
-        >['request']['abi'],
-        'increaseAllowance',
+          "increaseAllowance"
+        >["request"]["abi"],
+        "increaseAllowance",
         TMode
-      > & { functionName?: 'increaseAllowance' }
+      > & { functionName?: "increaseAllowance" }
     : UseContractWriteConfig<
         typeof mumbaiMaticTokenABI,
-        'increaseAllowance',
+        "increaseAllowance",
         TMode
       > & {
-        abi?: never
-        functionName?: 'increaseAllowance'
-      } = {} as any,
+        abi?: never;
+        functionName?: "increaseAllowance";
+      } = {} as any
 ) {
   return useContractWrite<
     typeof mumbaiMaticTokenABI,
-    'increaseAllowance',
+    "increaseAllowance",
     TMode
   >({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"initialize"`.
  */
 export function useMumbaiMaticTokenInitialize<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiMaticTokenABI,
-          'initialize'
-        >['request']['abi'],
-        'initialize',
+          "initialize"
+        >["request"]["abi"],
+        "initialize",
         TMode
-      > & { functionName?: 'initialize' }
+      > & { functionName?: "initialize" }
     : UseContractWriteConfig<
         typeof mumbaiMaticTokenABI,
-        'initialize',
+        "initialize",
         TMode
       > & {
-        abi?: never
-        functionName?: 'initialize'
-      } = {} as any,
+        abi?: never;
+        functionName?: "initialize";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiMaticTokenABI, 'initialize', TMode>({
+  return useContractWrite<typeof mumbaiMaticTokenABI, "initialize", TMode>({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"mint"`.
  */
 export function useMumbaiMaticTokenMint<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiMaticTokenABI,
-          'mint'
-        >['request']['abi'],
-        'mint',
+          "mint"
+        >["request"]["abi"],
+        "mint",
         TMode
-      > & { functionName?: 'mint' }
-    : UseContractWriteConfig<typeof mumbaiMaticTokenABI, 'mint', TMode> & {
-        abi?: never
-        functionName?: 'mint'
-      } = {} as any,
+      > & { functionName?: "mint" }
+    : UseContractWriteConfig<typeof mumbaiMaticTokenABI, "mint", TMode> & {
+        abi?: never;
+        functionName?: "mint";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiMaticTokenABI, 'mint', TMode>({
+  return useContractWrite<typeof mumbaiMaticTokenABI, "mint", TMode>({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"transfer"`.
  */
 export function useMumbaiMaticTokenTransfer<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiMaticTokenABI,
-          'transfer'
-        >['request']['abi'],
-        'transfer',
+          "transfer"
+        >["request"]["abi"],
+        "transfer",
         TMode
-      > & { functionName?: 'transfer' }
-    : UseContractWriteConfig<typeof mumbaiMaticTokenABI, 'transfer', TMode> & {
-        abi?: never
-        functionName?: 'transfer'
-      } = {} as any,
+      > & { functionName?: "transfer" }
+    : UseContractWriteConfig<typeof mumbaiMaticTokenABI, "transfer", TMode> & {
+        abi?: never;
+        functionName?: "transfer";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiMaticTokenABI, 'transfer', TMode>({
+  return useContractWrite<typeof mumbaiMaticTokenABI, "transfer", TMode>({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link mumbaiMaticTokenABI}__ and `functionName` set to `"transferFrom"`.
  */
 export function useMumbaiMaticTokenTransferFrom<
-  TMode extends WriteContractMode = undefined,
+  TMode extends WriteContractMode = undefined
 >(
-  config: TMode extends 'prepared'
+  config: TMode extends "prepared"
     ? UseContractWriteConfig<
         PrepareWriteContractResult<
           typeof mumbaiMaticTokenABI,
-          'transferFrom'
-        >['request']['abi'],
-        'transferFrom',
+          "transferFrom"
+        >["request"]["abi"],
+        "transferFrom",
         TMode
-      > & { functionName?: 'transferFrom' }
+      > & { functionName?: "transferFrom" }
     : UseContractWriteConfig<
         typeof mumbaiMaticTokenABI,
-        'transferFrom',
+        "transferFrom",
         TMode
       > & {
-        abi?: never
-        functionName?: 'transferFrom'
-      } = {} as any,
+        abi?: never;
+        functionName?: "transferFrom";
+      } = {} as any
 ) {
-  return useContractWrite<typeof mumbaiMaticTokenABI, 'transferFrom', TMode>({
+  return useContractWrite<typeof mumbaiMaticTokenABI, "transferFrom", TMode>({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as any)
+  } as any);
 }
 
 /**
@@ -7595,14 +7268,14 @@ export function useMumbaiMaticTokenTransferFrom<
 export function usePrepareMumbaiMaticTokenWrite<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, TFunctionName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, TFunctionName>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, TFunctionName>);
 }
 
 /**
@@ -7610,16 +7283,16 @@ export function usePrepareMumbaiMaticTokenWrite<TFunctionName extends string>(
  */
 export function usePrepareMumbaiMaticTokenApprove(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, 'approve'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "approve">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'approve',
+    functionName: "approve",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, 'approve'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "approve">);
 }
 
 /**
@@ -7629,20 +7302,17 @@ export function usePrepareMumbaiMaticTokenDecreaseAllowance(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof mumbaiMaticTokenABI,
-      'decreaseAllowance'
+      "decreaseAllowance"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'decreaseAllowance',
+    functionName: "decreaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof mumbaiMaticTokenABI,
-    'decreaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "decreaseAllowance">);
 }
 
 /**
@@ -7652,20 +7322,17 @@ export function usePrepareMumbaiMaticTokenIncreaseAllowance(
   config: Omit<
     UsePrepareContractWriteConfig<
       typeof mumbaiMaticTokenABI,
-      'increaseAllowance'
+      "increaseAllowance"
     >,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'increaseAllowance',
+    functionName: "increaseAllowance",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof mumbaiMaticTokenABI,
-    'increaseAllowance'
-  >)
+  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "increaseAllowance">);
 }
 
 /**
@@ -7673,16 +7340,16 @@ export function usePrepareMumbaiMaticTokenIncreaseAllowance(
  */
 export function usePrepareMumbaiMaticTokenInitialize(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, 'initialize'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "initialize">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'initialize',
+    functionName: "initialize",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, 'initialize'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "initialize">);
 }
 
 /**
@@ -7690,16 +7357,16 @@ export function usePrepareMumbaiMaticTokenInitialize(
  */
 export function usePrepareMumbaiMaticTokenMint(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, 'mint'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "mint">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'mint',
+    functionName: "mint",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, 'mint'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "mint">);
 }
 
 /**
@@ -7707,16 +7374,16 @@ export function usePrepareMumbaiMaticTokenMint(
  */
 export function usePrepareMumbaiMaticTokenTransfer(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, 'transfer'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "transfer">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'transfer',
+    functionName: "transfer",
     ...config,
-  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, 'transfer'>)
+  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "transfer">);
 }
 
 /**
@@ -7724,19 +7391,16 @@ export function usePrepareMumbaiMaticTokenTransfer(
  */
 export function usePrepareMumbaiMaticTokenTransferFrom(
   config: Omit<
-    UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, 'transferFrom'>,
-    'abi' | 'address' | 'functionName'
-  > = {} as any,
+    UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "transferFrom">,
+    "abi" | "address" | "functionName"
+  > = {} as any
 ) {
   return usePrepareContractWrite({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    functionName: 'transferFrom',
+    functionName: "transferFrom",
     ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof mumbaiMaticTokenABI,
-    'transferFrom'
-  >)
+  } as UsePrepareContractWriteConfig<typeof mumbaiMaticTokenABI, "transferFrom">);
 }
 
 /**
@@ -7745,14 +7409,14 @@ export function usePrepareMumbaiMaticTokenTransferFrom(
 export function useMumbaiMaticTokenEvent<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof mumbaiMaticTokenABI, TEventName>,
-    'abi' | 'address'
-  > = {} as any,
+    "abi" | "address"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
     ...config,
-  } as UseContractEventConfig<typeof mumbaiMaticTokenABI, TEventName>)
+  } as UseContractEventConfig<typeof mumbaiMaticTokenABI, TEventName>);
 }
 
 /**
@@ -7760,16 +7424,16 @@ export function useMumbaiMaticTokenEvent<TEventName extends string>(
  */
 export function useMumbaiMaticTokenApprovalEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiMaticTokenABI, 'Approval'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiMaticTokenABI, "Approval">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    eventName: 'Approval',
+    eventName: "Approval",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiMaticTokenABI, 'Approval'>)
+  } as UseContractEventConfig<typeof mumbaiMaticTokenABI, "Approval">);
 }
 
 /**
@@ -7777,16 +7441,16 @@ export function useMumbaiMaticTokenApprovalEvent(
  */
 export function useMumbaiMaticTokenInitializedEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiMaticTokenABI, 'Initialized'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiMaticTokenABI, "Initialized">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    eventName: 'Initialized',
+    eventName: "Initialized",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiMaticTokenABI, 'Initialized'>)
+  } as UseContractEventConfig<typeof mumbaiMaticTokenABI, "Initialized">);
 }
 
 /**
@@ -7794,14 +7458,14 @@ export function useMumbaiMaticTokenInitializedEvent(
  */
 export function useMumbaiMaticTokenTransferEvent(
   config: Omit<
-    UseContractEventConfig<typeof mumbaiMaticTokenABI, 'Transfer'>,
-    'abi' | 'address' | 'eventName'
-  > = {} as any,
+    UseContractEventConfig<typeof mumbaiMaticTokenABI, "Transfer">,
+    "abi" | "address" | "eventName"
+  > = {} as any
 ) {
   return useContractEvent({
     abi: mumbaiMaticTokenABI,
     address: mumbaiMaticTokenAddress,
-    eventName: 'Transfer',
+    eventName: "Transfer",
     ...config,
-  } as UseContractEventConfig<typeof mumbaiMaticTokenABI, 'Transfer'>)
+  } as UseContractEventConfig<typeof mumbaiMaticTokenABI, "Transfer">);
 }
