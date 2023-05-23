@@ -725,7 +725,8 @@ const SwapPage = () => {
 
           {isConnected &&
             chain?.name !== "Polygon Mumbai" &&
-            BigNumber.from(allowanceBsc) >= BigNumber.from(tokenInputs) && (
+            BigNumber.from(allowanceBsc ?? 0) >=
+              BigNumber.from(tokenInputs) && (
               <button className="text-white" onClick={() => approveBsc()}>
                 ApproveBsc
               </button>
@@ -733,7 +734,7 @@ const SwapPage = () => {
 
           {isConnected &&
             chain?.name === "Polygon Mumbai" &&
-            ethers.utils.formatEther(allowanceMumbai!) >= tokenInputs && (
+            ethers.utils.formatEther(allowanceMumbai ?? 0) >= tokenInputs && (
               <button className="text-white" onClick={() => approveMumbai()}>
                 ApproveMumbai
               </button>
