@@ -724,21 +724,24 @@ const SwapPage = () => {
           </button>
 
           {isConnected &&
-            chain?.name !== "Polygon Mumbai" &&
-            BigNumber.from(allowanceBsc ?? 0) >=
-              BigNumber.from(tokenInputs) && (
-              <button className="text-white" onClick={() => approveBsc()}>
-                ApproveBsc
-              </button>
-            )}
+          chain?.name !== "Polygon Mumbai" &&
+          ethers.utils.formatEther(allowanceBsc ?? 0) <= tokenInputs ? (
+            <button className="text-white" onClick={() => approveBsc()}>
+              ApproveBsc
+            </button>
+          ) : (
+            <></>
+          )}
 
           {isConnected &&
-            chain?.name === "Polygon Mumbai" &&
-            ethers.utils.formatEther(allowanceMumbai ?? 0) >= tokenInputs && (
-              <button className="text-white" onClick={() => approveMumbai()}>
-                ApproveMumbai
-              </button>
-            )}
+          chain?.name === "Polygon Mumbai" &&
+          ethers.utils.formatEther(allowanceMumbai ?? 0) <= tokenInputs ? (
+            <button className="text-white" onClick={() => approveMumbai()}>
+              ApproveMumbai
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
         {/* pathway  */}
         {/* <div className="flex flex-col justify-center items-center gap-3 border-[1px] border-[#3b3b3b] bg-radial rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]">

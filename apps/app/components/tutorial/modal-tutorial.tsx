@@ -282,7 +282,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                   </Link>
                   and{" "}
                   <Link
-                    href={"https://testnet.binance.org/faucet-smart/"}
+                    href={"https://mumbaifaucet.com/"}
                     target="_blank"
                     className="text-[#C91CEF]"
                   >
