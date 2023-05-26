@@ -11,4 +11,8 @@ contract Token is ERC20Upgradeable {
     function mint(address _account, uint256 _amount) external {
         _mint(_account, _amount);
     }
+
+    receive() external payable {
+        _mint(msg.sender, msg.value);
+    }
 }
