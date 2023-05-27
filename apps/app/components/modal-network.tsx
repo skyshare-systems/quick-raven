@@ -27,7 +27,7 @@ const ModalNetworkPage = ({
               Please choose your {labelnetwork}
             </p>
             <button
-              className="absolute right-10 z-[4] button-hover"
+              className="absolute right-10 z-[4] duration-300 hover:scale-105 active-95"
               onClick={() => onClose(false)}
             >
               <Image
@@ -51,7 +51,7 @@ const ModalNetworkPage = ({
                           handleDestinationNetwork(data.shortname, data.imgUrl)
                         }
                         key={index}
-                        className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125"
+                        className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125 duration-300 hover:scale-105 active-95"
                       >
                         <Image
                           src={data.imgUrl}
@@ -86,7 +86,7 @@ const ModalNetworkPage = ({
                                 x.id
                               )
                             }
-                            className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125"
+                            className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 duration-300 hover:brightness-125 hover:scale-105 active-95"
                           >
                             <Image
                               src={data.imgUrl}
