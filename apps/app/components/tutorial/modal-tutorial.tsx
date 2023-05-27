@@ -5,7 +5,6 @@ import Link from "next/link";
 
 import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
 import {
-  useDexAggregatorBscSwapToQr,
   useBscUsdtTokenMint,
   useBscUsdcTokenMint,
   useBscWethTokenMint,
@@ -154,9 +153,9 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
       </div>
 
       <section className="fixed flex flex-col items-center justify-center z-[3] min-h-[100vh] min-w-full bg-black/30 backdrop-blur-sm">
-        <div className="relative flex flex-col p-5 max-w-[500px] h-full w-full bg-black rounded-xl border-[1px] border-[#2e2e2e] gap-4">
+        <div className="relative flex flex-col p-5 max-w-[500px] h-full w-full bg-black rounded-xl border-[1px] border-[#2e2e2e] gap-4 overflow-y-scroll max-h-[70vh]">
           <button
-            className="absolute right-5 z-[4]"
+            className="absolute right-5 z-[4] button-hover"
             onClick={() => handleClick()}
           >
             <Image
@@ -169,7 +168,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
           <div className="relative flex justify-center w-full">
             {openTab === 0 && (
               <Image
-                src={"/image/step-0.svg"}
+                src={"/image/step-0.png"}
                 alt={"cross"}
                 height={200}
                 width={200}
@@ -178,7 +177,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             )}
             {openTab === 1 && (
               <Image
-                src={"/image/step-1.svg"}
+                src={"/image/step-1.png"}
                 alt={"cross"}
                 height={200}
                 width={200}
@@ -187,7 +186,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             )}
             {openTab === 2 && (
               <Image
-                src={"/image/step-2.svg"}
+                src={"/image/step-2.png"}
                 alt={"cross"}
                 height={200}
                 width={200}
@@ -196,7 +195,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             )}
             {openTab === 3 && (
               <Image
-                src={"/image/step-3.svg"}
+                src={"/image/step-3.png"}
                 alt={"cross"}
                 height={200}
                 width={200}
@@ -205,10 +204,10 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             )}
             {openTab === 4 && (
               <Image
-                src={"/image/step-4.svg"}
+                src={"/image/step-4.png"}
                 alt={"cross"}
                 height={200}
-                width={400}
+                width={600}
               />
             )}
           </div>
@@ -303,8 +302,8 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                       key={index}
                       className={`flex flex-row items-center gap-2 rounded-xl  px-3 py-4 ${
                         chain?.name === x.name
-                          ? "cursor-not-allowed border-[#3b3b3b] border-2 text-white "
-                          : " hover:brightness-125 bg-radial-button text-black"
+                          ? "cursor-not-allowed border-[#3b3b3b] border-2 text-white"
+                          : "button-hover hover:brightness-125 bg-radial-button text-black "
                       }`}
                     >
                       <p className="mobile-title sm:tablet-title lg:web-title">
@@ -458,6 +457,14 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
               >
                 Next
               </button>
+              {openTab === 4 && (
+                <button
+                  onClick={() => onClose(false)}
+                  className={`px-6 py-3 text-black mobile-title sm:tablet-title lg:web-title bg-radial-button rounded-xl`}
+                >
+                  Done
+                </button>
+              )}
             </div>
           </div>
         </div>

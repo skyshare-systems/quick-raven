@@ -12,6 +12,7 @@ const ModalNetworkPage = ({
   handleInitNetwork,
   isLoading,
   pendingChainId,
+  onClose,
 }: any) => {
   const { chain } = useNetwork();
   const { chains, switchNetwork } = useSwitchNetwork();
@@ -20,10 +21,23 @@ const ModalNetworkPage = ({
   return (
     <div className="fixed top-0 h-full w-full flex flex-col justify-center items-center bg-black/30 backdrop-blur-sm z-[3]">
       <div className="relative flex flex-col rounded-2xl h-full w-full max-w-[500px] max-h-[250px] bg-radial-modal  p-5">
-        <div className="absolute flex flex-col gap-5 z-[2]">
-          <p className="mobile-overline sm:tablet-overline lg:web-overline text-white">
-            Please choose your {labelnetwork}
-          </p>
+        <div className="absolute flex flex-col gap-5 z-[2] w-full">
+          <div className="relative flex flex-row justify-between">
+            <p className="mobile-overline sm:tablet-overline lg:web-overline text-white">
+              Please choose your {labelnetwork}
+            </p>
+            <button
+              className="absolute right-10 z-[4] button-hover"
+              onClick={() => onClose(false)}
+            >
+              <Image
+                src={"/icons/cross-icon.svg"}
+                alt={"cross"}
+                height={20}
+                width={20}
+              />
+            </button>
+          </div>
 
           <div className="flex flex-wrap gap-5">
             {labelnetwork === "Destination Network" ? (

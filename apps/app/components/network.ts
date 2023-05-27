@@ -4,12 +4,20 @@ export const network = [
     networkname: "Polygon Mumbai",
     shortname: "Polygon",
     imgUrl: "/icons/polygon-logo.svg",
+    address: "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4",
+    dexRouterAddress: {
+      uniswap: "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff",
+    },
   },
   {
     id: 2,
     networkname: "Binance Smart Chain Testnet",
     shortname: "BSC",
     imgUrl: "/icons/bsc-icon.svg",
+    address: "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3",
+    dexRouterAddress: {
+      uniswap: "",
+    },
   },
 ];
 
