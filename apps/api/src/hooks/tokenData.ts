@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { blockchainKeys, tokenContract } from "./config/data";
+import { tokenContract } from "../config/data";
 
 export const balanceOf = async (
   address: string,
@@ -23,4 +23,10 @@ export const allowance = async (
   );
 
   return ethers.formatEther(allowance);
+};
+
+export const name = async (network: number, tokenAddress: string) => {
+  const name = await tokenContract(network, tokenAddress).name();
+
+  return name;
 };

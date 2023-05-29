@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { tokenAbi, factoryAbi } from "../abi";
+import { tokenAbi, factoryAbi, lpTokenAbi } from "../abi";
 
 export const blockchainKeys = (chainId: number) => {
   if (chainId === 80001) {
@@ -22,14 +22,21 @@ export const blockchainKeys = (chainId: number) => {
 
 export const tokenContract = (network: number, address: string) => {
   const provider = new ethers.JsonRpcProvider(blockchainKeys(network)?.https);
-  const contract = new ethers.Contract(address, tokenAbi);
+  const contract = new ethers.Contract(address, tokenAbi, provider);
 
   return contract;
 };
 
 export const factoryContract = (network: number, address: string) => {
   const provider = new ethers.JsonRpcProvider(blockchainKeys(network)?.https);
-  const contract = new ethers.Contract(address, factoryAbi);
+  const contract = new ethers.Contract(address, factoryAbi, provider);
+
+  return contract;
+};
+
+export const lpTokenContract = (network: number, address: string) => {
+  const provider = new ethers.JsonRpcProvider(blockchainKeys(network)?.https);
+  const contract = new ethers.Contract(address, lpTokenAbi, provider);
 
   return contract;
 };
