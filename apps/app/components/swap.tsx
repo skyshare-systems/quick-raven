@@ -6,6 +6,7 @@ import { motion, Variants } from "framer-motion";
 import {
   useContractWrite,
   usePrepareContractWrite,
+  useContractRead,
   useAccount,
   useNetwork,
   useSwitchNetwork,
@@ -17,21 +18,12 @@ import { network } from "./network";
 import ModalNetworkPage from "./modal-network";
 import ModalTokenPage from "./modal-token";
 import ModalTokenDestinationPage from "./modal-token-destination";
-import {
-  // useDexAggregatorMumbaiSwapToQr,
-
-  useDexAggregatorSwapToQr,
-  usePrepareMumbaiMaticTokenApprove,
-  usePrepareBscMaticTokenApprove,
-  useBscUsdtTokenApprove,
-  useBscUsdtTokenAllowance,
-  useMumbaiMaticTokenApprove,
-  useMumbaiMaticTokenAllowance,
-  useMumbaiUsdtMaticLpGetReserves,
-} from "../lib/blockchain";
 
 import { TokenABI } from "abi";
 import { ConnectNetworkSelect } from "./ConnectNetworkSelect";
+import Loading from "./common/Loading";
+
+import { ToastContainer, toast } from "react-toastify";
 
 const itemVariants: Variants = {
   open: {
@@ -44,19 +36,25 @@ const itemVariants: Variants = {
 
 const SwapPage = () => {
   const { hasMounted } = useMounted();
+  const { address, connector } = useAccount();
   // States
+  const [isLoadingSwap, setIsLoadingSwap] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   // States for Modal Init Network and Destination Network
   const [showModal, setShowModal] = useState(false);
+
   const [initNetwork, setInitNetwork] = useState("");
   const [initNetworkUrl, setInitNetworkUrl] = useState("");
   const [destinationNetwork, setDestinationNetwork] = useState("");
   const [destinationNetworkUrl, setDestinationNetworkUrl] = useState("");
+
   // States Token Init Network
   const [showModalToken, setShowModalToken] = useState(false);
   const [tokenInitName, setTokenInitName] = useState("");
   const [tokenInitImgUrl, setTokenInitImgUrl] = useState("");
   const [tokenInitAddress, setTokenInitAddress] = useState<any>("");
+
   // States Token Destination Network
   const [showModalTokenDestination, setShowModalTokenDestination] =
     useState(false);
@@ -67,10 +65,15 @@ const SwapPage = () => {
 
   const [labelNetwork, setLabelNetwork] = useState("");
   const [isNetworkError, setIsNetworkError] = useState(false);
+
   // wagmi hooks
   const { isConnected, address: account } = useAccount();
   const { chain } = useNetwork();
-  const { isLoading, pendingChainId, switchNetwork } = useSwitchNetwork();
+  const {
+    isLoading: isSwitchNetwork,
+    pendingChainId,
+    switchNetwork,
+  } = useSwitchNetwork();
   //
   const [tokenInputs, setTokenInputs] = useState<any>(0);
   const [minReceiveToken, setMinReceiveToken] = useState<any>(1);
@@ -79,7 +82,7 @@ const SwapPage = () => {
 
   const [chainAddress, setChainAddress] = useState<string>("");
 
-  const [dexAddress, setDexAddress] = useState<string>("");
+  const [dexAddress, setDexAddress] = useState<any>("");
 
   const effectRan = useRef(false);
 
@@ -100,6 +103,7 @@ const SwapPage = () => {
       ? ethers.utils.parseEther("1")
       : ethers.utils.parseEther(tokenInputs.toString());
 
+  // Dynamic SwapToQr
   const { config } = usePrepareContractWrite({
     address: "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4",
     abi: [
@@ -151,8 +155,85 @@ const SwapPage = () => {
     ],
   });
 
-  const { write: swapToQr, isSuccess: isSwapToQrSuccess } =
-    useContractWrite(config);
+  const {
+    write: swapToQr,
+    isLoading,
+    isSuccess: isSuccessSwap,
+    isError: isErrorSwap,
+    error: errorSwap,
+  } = useContractWrite(config);
+
+  // const { data: getReserves } = useMumbaiUsdtMaticLpGetReserves();
+
+  // Dynamic Approve
+
+  const { config: configApprove } = usePrepareContractWrite({
+    address: tokenInitAddress ?? "",
+    abi: [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "spender",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+          },
+        ],
+        name: "approve",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+    ],
+    functionName: "approve",
+    args: [dexAddress ?? "", BigInt(String(ethers.constants.MaxUint256))], // dex aggregator address
+  });
+
+  const { writeAsync: approveToken } = useContractWrite(configApprove);
+
+  // Dynamic Allowance
+
+  const { data: checkAllowance } = useContractRead({
+    address: tokenInitAddress ?? "",
+    abi: [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "owner",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "spender",
+            type: "address",
+          },
+        ],
+        name: "allowance",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+    ],
+    functionName: "allowance",
+    args: [account!, dexAddress],
+  });
 
   // Functions
   const handleInitNetwork = (networkname: any, imgUrl: any, id: any) => {
@@ -194,58 +275,46 @@ const SwapPage = () => {
     setShowModalTokenDestination(!showModalTokenDestination);
   };
 
-  const { data: getReserves } = useMumbaiUsdtMaticLpGetReserves();
-
-  const { config: configBscApprove } = usePrepareBscMaticTokenApprove({
-    args: [
-      "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3",
-      BigInt(String(ethers.constants.MaxUint256)),
-    ],
-  });
-
-  const { writeAsync: approveBsc } = useBscUsdtTokenApprove(configBscApprove);
-
-  const { data: allowanceBsc } = useBscUsdtTokenAllowance({
-    args: [account!, "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3"],
-  });
-
-  const { data: allowanceMumbai } = useMumbaiMaticTokenAllowance({
-    args: [account!, "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4"],
-  });
-
-  const { writeAsync: approveMumbai } = useMumbaiMaticTokenApprove({
-    args: [
-      "0x815ac5d36d71e191aae34f9b5979b68ab0d2a1f4",
-      BigInt(String(ethers.constants.MaxUint256)),
-    ],
-  });
-
-  const { address, connector } = useAccount();
-
-  const calculateMinTokenOut = (
-    tokenIn: any,
-    reserveIn: any,
-    reserveOut: any,
-    slippage: any
-  ) => {
-    console.info(tokenIn);
-
-    if (tokenInputs > 0) {
-      const idealOutput =
-        Number(reserveOut) -
-        (Number(reserveIn) * Number(reserveOut)) /
-          (Number(reserveIn) + tokenIn);
-
-      const minTokensOut = idealOutput * (1 - slippage / 100);
-
-      console.info(minTokensOut);
-      setMinReceiveToken(minTokensOut);
-    }
-
-    if (String(tokenInputs) === "") {
-      setMinReceiveToken(0);
-    }
+  const handleSwapToQr = () => {
+    swapToQr?.();
   };
+
+  useEffect(() => {
+    if (isErrorSwap === true) {
+      toast(errorSwap?.message);
+    }
+  }, [isErrorSwap]);
+
+  useEffect(() => {
+    if (isSuccessSwap) {
+      toast("Transaction has been created");
+    }
+  }, [isSuccessSwap]);
+
+  // const calculateMinTokenOut = (
+  //   tokenIn: any,
+  //   reserveIn: any,
+  //   reserveOut: any,
+  //   slippage: any
+  // ) => {
+  //   console.info(tokenIn);
+
+  //   if (tokenInputs > 0) {
+  //     const idealOutput =
+  //       Number(reserveOut) -
+  //       (Number(reserveIn) * Number(reserveOut)) /
+  //         (Number(reserveIn) + tokenIn);
+
+  //     const minTokensOut = idealOutput * (1 - slippage / 100);
+
+  //     console.info(minTokensOut);
+  //     setMinReceiveToken(minTokensOut);
+  //   }
+
+  //   if (String(tokenInputs) === "") {
+  //     setMinReceiveToken(0);
+  //   }
+  // };
 
   // useEffects
   useEffect(() => {
@@ -257,16 +326,20 @@ const SwapPage = () => {
 
   useEffect(() => {
     {
-      network.map((data) => {
-        if (chain?.name === data.networkname) {
-          setInitNetwork(data.shortname);
-          setInitNetworkUrl(data.imgUrl);
-          setChainAddress(data.address);
-          setDexAddress(data.dexRouterAddress.uniswap);
-        } else {
-        }
-      });
-      if (isConnected) setShowModal(false);
+      if (isConnected) {
+        network.map((data) => {
+          if (chain?.name === data.networkname) {
+            setInitNetwork(data.shortname);
+            setInitNetworkUrl(data.imgUrl);
+            // setChainAddress(data.address);
+            setDexAddress(data.dexAggregatorAddress);
+          } else {
+            setTokenInitName("");
+            setTokenInitImgUrl("");
+          }
+        });
+        setShowModal(false);
+      }
       if (!isConnected) {
         setInitNetwork("");
         setInitNetworkUrl("");
@@ -274,36 +347,37 @@ const SwapPage = () => {
         setDestinationNetworkUrl("");
         setTokenInitName("");
         setTokenInitImgUrl("");
+        setTokenInitAddress("");
         setTokenDestinationImgUrl("");
         setTokenDestinationName("");
       }
     }
-  }, [chain?.name, isConnected]);
+  }, [chain?.id, isConnected]);
 
-  useEffect(() => {
-    let reservezero;
-    let reserveone;
+  // useEffect(() => {
+  //   let reservezero;
+  //   let reserveone;
 
-    try {
-      reservezero = ethers.utils.formatEther(BigNumber.from(getReserves?.[0]));
+  //   try {
+  //     reservezero = ethers.utils.formatEther(BigNumber.from(getReserves?.[0]));
 
-      reserveone = ethers.utils.formatEther(BigNumber.from(getReserves?.[1]));
-    } catch (e) {
-      console.info(e);
-    }
+  //     reserveone = ethers.utils.formatEther(BigNumber.from(getReserves?.[1]));
+  //   } catch (e) {
+  //     console.info(e);
+  //   }
 
-    calculateMinTokenOut(
-      Number(tokenInputs),
-      Number(reservezero),
-      Number(reserveone),
-      3
-    );
-  }, [calculateMinTokenOut, getReserves, tokenInputs]);
+  //   calculateMinTokenOut(
+  //     Number(tokenInputs),
+  //     Number(reservezero),
+  //     Number(reserveone),
+  //     3
+  //   );
+  // }, [calculateMinTokenOut, getReserves, tokenInputs]);
 
   useEffect(() => {
     console.log(effectRan.current);
     if (effectRan.current === false) {
-      if (isSwapToQrSuccess === true) {
+      if (isSuccessSwap === true) {
         console.info("Ether setup complete");
         effectRan.current = true;
 
@@ -318,63 +392,17 @@ const SwapPage = () => {
         effectRan.current = false;
       }
     }
-  }, [isSwapToQrSuccess]);
+  }, [isSuccessSwap]);
 
   useEffect(() => {
-    // if (ethers.utils.formatEther(allowanceBsc ?? 0) === 0) {
-    //   setDynamicButtons("Approve");
-    // }
-  }, []);
-
-  const setButton = () => {
-    switch (dynamicButtons) {
-      case "Approve":
-        return (
-          <>
-            {isConnected && ethers.utils.formatEther(allowanceBsc ?? 0) && (
-              <button
-                className="text-white hover:scale-105 active:scale-95 duration-300"
-                onClick={() => approveBsc?.()}
-              >
-                ApproveBsc
-              </button>
-            )}
-          </>
-        );
-      case "ApproveMumbai":
-        return (
-          <>
-            {isConnected && ethers.utils.formatEther(allowanceMumbai ?? 0) && (
-              <button
-                className="text-white hover:scale-105 active:scale-95 duration-300"
-                onClick={() => approveMumbai()}
-              >
-                ApproveMumbai
-              </button>
-            )}
-          </>
-        );
-      case "swap":
-        return (
-          <>
-            <button
-              onClick={() => {
-                swapToQr?.();
-              }}
-              disabled={tokenInputs <= 0}
-              className={`mobile-title sm:tablet-title lg:web-title w-full px-2 py-5 rounded-xl duration-300 
-          ${
-            tokenInputs > 0
-              ? "hover:brightness-75 cursor-pointer bg-radial-button text-black  hover:scale-[1.02] active:scale-95 duration-300"
-              : "cursor-not-allowed bg-[#2e2e2e] text-[#777a7a]"
-          }`}
-            >
-              Swap Now
-            </button>
-          </>
-        );
+    if (isConnected && tokenInitAddress !== "") {
+      if (tokenInputs > Number(ethers.utils.formatEther(checkAllowance ?? 0))) {
+        setDynamicButtons("Approve");
+      } else {
+        setDynamicButtons("swap");
+      }
     }
-  };
+  }, [tokenInputs]);
 
   if (!hasMounted) {
     return null;
@@ -383,13 +411,27 @@ const SwapPage = () => {
   return (
     <section className="relative flex flex-col justify-center  pb-[3rem] pt-[7rem] items-center min-h-[100vh] lg:h-[95vh] xl:min-h-[94vh] gap-5">
       {/* Modal  */}
+
+      {isLoading && <Loading />}
+
+      <ToastContainer
+        position="top-right"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        theme="dark"
+      />
+
       <ModalNetworkPage
         labelnetwork={labelNetwork}
         initNetwork={initNetwork}
         isOpen={showModal}
         handleDestinationNetwork={handleDestinationNetwork}
         handleInitNetwork={handleInitNetwork}
-        isLoading={isLoading}
+        isLoading={isSwitchNetwork}
         pendingChainId={pendingChainId}
         onClose={() => setShowModal(false)}
       />
@@ -398,6 +440,7 @@ const SwapPage = () => {
         isOpen={showModalToken}
         initNetwork={initNetwork}
         onClose={() => setShowModalToken(!showModalToken)}
+        chainId={chain?.id}
         handleSelectedTokenInit={handleSelectedTokenInit}
       />
 
@@ -791,7 +834,28 @@ const SwapPage = () => {
               </p>
             </div>
           )}
-          {setButton()}
+
+          {dynamicButtons === "Approve" ? (
+            <button
+              className="mobile-title sm:tablet-title lg:web-title w-full bg-[#1CACEF] text-black px-2 py-5 rounded-xl hover:scale-[1.02] active:scale-95 duration-300"
+              onClick={approveToken}
+            >
+              Approve
+            </button>
+          ) : (
+            <button
+              onClick={() => handleSwapToQr()}
+              disabled={tokenInputs <= 0}
+              className={`mobile-title sm:tablet-title lg:web-title w-full px-2 py-5 rounded-xl duration-300 
+          ${
+            tokenInputs > 0
+              ? "hover:brightness-75 cursor-pointer bg-radial-button text-black  hover:scale-[1.02] active:scale-95 duration-300"
+              : "cursor-not-allowed bg-[#2e2e2e] text-[#777a7a]"
+          }`}
+            >
+              Swap Now
+            </button>
+          )}
         </div>
       </div>
     </section>
