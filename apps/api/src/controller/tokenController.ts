@@ -1,5 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import { tokenContract } from "../config/data";
+import { test } from "../hooks/tokenData";
 
 export const GETallowance = expressAsyncHandler(async (req, res) => {
   const { network, owner, spender, tokenAddress } = req.body;
@@ -54,4 +55,9 @@ export const GETname = expressAsyncHandler(async (req, res) => {
   }
 
   res.status(200).send(name);
+});
+
+export const GETtest = expressAsyncHandler(async (req, res) => {
+  const message = test();
+  res.status(200).send(message);
 });

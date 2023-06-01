@@ -10,4 +10,5 @@ router.post("/allowance", tokenController_1.GETallowance);
 router.post("/balanceOf", tokenController_1.GETbalanceOf);
 router.post("/totalSupply", tokenController_1.GETtotalSupply);
 router.post("/name", tokenController_1.GETname);
+router.post("/test", tokenController_1.GETtest);
 exports.default = router;

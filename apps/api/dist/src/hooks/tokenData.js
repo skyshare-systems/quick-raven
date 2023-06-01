@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.name = exports.allowance = exports.balanceOf = void 0;
+exports.test = exports.name = exports.allowance = exports.balanceOf = void 0;
 const ethers_1 = require("ethers");
 const data_1 = require("../config/data");
 const balanceOf = (address, tokenAddress, network) => __awaiter(void 0, void 0, void 0, function* () {
@@ -27,3 +27,7 @@ const name = (network, tokenAddress) => __awaiter(void 0, void 0, void 0, functi
     return name;
 });
 exports.name = name;
+const test = () => {
+    return "working";
+};
+exports.test = test;

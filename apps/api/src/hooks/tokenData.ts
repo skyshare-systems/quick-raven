@@ -30,3 +30,7 @@ export const name = async (network: number, tokenAddress: string) => {
 
   return name;
 };
+
+export const test = () => {
+  return "working";
+};
