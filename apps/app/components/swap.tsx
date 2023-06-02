@@ -10,6 +10,7 @@ import {
   useAccount,
   useNetwork,
   useSwitchNetwork,
+  useWaitForTransaction,
 } from "wagmi";
 
 import { useMumbaiUsdtMaticLpGetReserves } from "lib/blockchain";
@@ -71,6 +72,8 @@ const SwapPage = () => {
   const [labelNetwork, setLabelNetwork] = useState("");
   const [isNetworkError, setIsNetworkError] = useState(false);
 
+  const [isSuccessSwap, setIsSuccessSwap] = useState(false);
+
   // wagmi hooks
   const { isConnected, address: account } = useAccount();
   const { chain } = useNetwork();
@@ -90,6 +93,8 @@ const SwapPage = () => {
   const [dexAddress, setDexAddress] = useState<any>("");
 
   const effectRan = useRef(false);
+
+  const [hash, setHash] = useState<`0x${string}`>();
 
   const provider = new ethers.providers.JsonRpcProvider(
     "https://data-seed-prebsc-1-s1.binance.org:8545/"
@@ -163,7 +168,7 @@ const SwapPage = () => {
   const {
     writeAsync: swapToQr,
     isLoading,
-    isSuccess: isSuccessSwap,
+    // isSuccess: isSuccessSwap,
     isError: isErrorSwap,
     error: errorSwap,
   } = useContractWrite(config);
@@ -314,8 +319,20 @@ const SwapPage = () => {
     setShowModalTokenDestination(!showModalTokenDestination);
   };
 
+  const {
+    data,
+    isError,
+    isSuccess: isSwapSuccess,
+    isLoading: isLoadingTransaction,
+  } = useWaitForTransaction({
+    hash: hash,
+  });
+
   const handleSwapToQr = () => {
-    swapToQr?.();
+    swapToQr?.().then((res) => {
+      console.log(res);
+      setHash(res.hash);
+    });
   };
 
   useEffect(() => {
@@ -428,7 +445,7 @@ const SwapPage = () => {
   useEffect(() => {
     console.log(effectRan.current);
     if (effectRan.current === false) {
-      if (isSuccessSwap === true) {
+      if (isSwapSuccess === true) {
         console.info("Ether setup complete");
         effectRan.current = true;
 
@@ -446,7 +463,7 @@ const SwapPage = () => {
         effectRan.current = false;
       }
     }
-  }, [isSuccessSwap]);
+  }, [isSwapSuccess]);
 
   useEffect(() => {
     if (isConnected && tokenInitAddress !== "") {
@@ -466,7 +483,7 @@ const SwapPage = () => {
     <section className="relative flex flex-col justify-center  pb-[3rem] pt-[7rem] items-center min-h-[100vh] lg:h-[95vh] xl:min-h-[94vh] gap-5">
       {/* Modal  */}
 
-      {isLoading && <Loading />}
+      {isLoadingTransaction && <Loading />}
 
       <ToastContainer
         position="top-right"
@@ -664,21 +681,15 @@ const SwapPage = () => {
                   </p>
                 ) : (
                   <>
-                    {isLoading ? (
-                      "Switching Network"
-                    ) : (
-                      <>
-                        <Image
-                          src={initNetworkUrl}
-                          alt={"refresh"}
-                          height={25}
-                          width={25}
-                        />
-                        <p className="mobile-title sm:tablet-title lg:web-title">
-                          {initNetwork}
-                        </p>
-                      </>
-                    )}
+                    <Image
+                      src={initNetworkUrl}
+                      alt={"refresh"}
+                      height={25}
+                      width={25}
+                    />
+                    <p className="mobile-title sm:tablet-title lg:web-title">
+                      {initNetwork}
+                    </p>
                   </>
                 )}
               </button>
