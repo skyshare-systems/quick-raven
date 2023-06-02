@@ -28,7 +28,10 @@ const ModalTokenDestinationPage = ({
               <h1 className="grow mobile-description sm:tablet-description lg:web-description text-[#7a7a7a]">
                 Select a token
               </h1>
-              <button onClick={() => onClose(false)} className="cursor-pointer">
+              <button
+                onClick={() => onClose(false)}
+                className="cursor-pointer duration-300 hover:scale-105 active:scale-95"
+              >
                 <Image
                   src={"/icons/cross-icon.svg"}
                   alt={"cross"}
@@ -73,7 +76,7 @@ const ModalTokenDestinationPage = ({
                         ${
                           destinationNetwork === ""
                             ? "cursor-not-allowed"
-                            : "hover:brightness-125"
+                            : "hover:brightness-125 duration-300 hover:scale-105 active:scale-95"
                         }`}
                   >
                     <Image

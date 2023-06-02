@@ -3,27 +3,28 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
 import {
-  useDexAggregatorBscSwapToQr,
-  useBscUsdtTokenMint,
-  useBscUsdcTokenMint,
-  useBscWethTokenMint,
-  useBscMaticTokenMint,
-  useMumbaiUsdcTokenMint,
-  useMumbaiUsdtTokenMint,
-  useMumbaiWethTokenMint,
-  useMumbaiMaticTokenMint,
-} from "../../lib/blockchain";
+  useAccount,
+  useNetwork,
+  useSwitchNetwork,
+  useContractWrite,
+  usePrepareContractWrite,
+} from "wagmi";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "components/common/Loading";
 
 const ModalTutorialPage = ({ isOpen, onClose }: any) => {
   const [openTab, setOpenTab] = useState(0);
   const { isConnected, address: account } = useAccount();
   const { chain } = useNetwork();
   const [networkLabel, setNetworkLabel] = useState(chain?.name);
+
+  const [usdtAddress, setUsdtAddress] = useState<`0x${string}`>("0x");
+  const [usdcAddress, setUsdcAddress] = useState<`0x${string}`>("0x");
+  const [wethAddress, setWethAddress] = useState<`0x${string}`>("0x");
+  const [maticAddress, setMaticAddress] = useState<`0x${string}`>("0x");
 
   const { chains, switchNetwork } = useSwitchNetwork();
 
@@ -32,91 +33,141 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
     setOpenTab(0);
   };
 
-  // const spender = "0x71e711Cd6b13125f53A5c238B015841a3c8315D7";
+  const { config: configUsdt } = usePrepareContractWrite({
+    address: usdtAddress ?? "",
+    abi: [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_account",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "_amount",
+            type: "uint256",
+          },
+        ],
+        name: "mint",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+    ],
+    functionName: "mint",
+    args: [account!, BigInt(1000000000000000000000)],
+  });
+  const { config: configUsdc } = usePrepareContractWrite({
+    address: usdcAddress ?? "",
+    abi: [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_account",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "_amount",
+            type: "uint256",
+          },
+        ],
+        name: "mint",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+    ],
+    functionName: "mint",
+    args: [account!, BigInt(1000000000000000000000)],
+  });
+  const { config: configWeth } = usePrepareContractWrite({
+    address: wethAddress ?? "",
+    abi: [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_account",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "_amount",
+            type: "uint256",
+          },
+        ],
+        name: "mint",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+    ],
+    functionName: "mint",
+    args: [account!, BigInt(1000000000000000000000)],
+  });
+  const { config: configMatic } = usePrepareContractWrite({
+    address: maticAddress ?? "",
+    abi: [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_account",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "_amount",
+            type: "uint256",
+          },
+        ],
+        name: "mint",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+    ],
+    functionName: "mint",
+    args: [account!, BigInt(1000000000000000000000)],
+  });
 
+  const {
+    writeAsync: mintUsdt,
+    isError: isMintUsdtError,
+    error: mintUsdtError,
+    isLoading: usdtLoading,
+  } = useContractWrite(configUsdt);
   const {
     writeAsync: mintUsdc,
     isError: isMintUsdcError,
     error: mintUsdcError,
-    // isSuccess: isMintUsdcSuccess,
-    isLoading: isMintUsdcLoading,
-  } = useBscUsdcTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
-
-  const {
-    writeAsync: mint,
-    isError: isMintError,
-    error: mintError,
-    // isSuccess: isMintSuccess,
-    isLoading: isMintUsdtLoading,
-  } = useBscUsdtTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
-
+    isLoading: usdcLoading,
+  } = useContractWrite(configUsdc);
   const {
     writeAsync: mintWeth,
     isError: isMintWethError,
     error: mintWethError,
-    // isSuccess: isMintWethSuccess,
-    isLoading: isMintWethLoading,
-  } = useBscWethTokenMint({ args: [account!, BigInt(1000000000000000000000)] });
-
+    isLoading: wethLoading,
+  } = useContractWrite(configWeth);
   const {
     writeAsync: mintMatic,
-    // isError: isMintMaticError,
-    // error: mintMaticError,
-    // isSuccess: isMintMaticSuccess,
-    isLoading: isMintMaticLoading,
-  } = useBscMaticTokenMint({
-    args: [account!, BigInt(1000000000000000000000)],
-  });
-
-  //Mumbai
-
-  const {
-    writeAsync: mumbaiMintUsdc,
-    // isError: isMumbaiMintUsdcError,
-    // error: mumbaiMintUsdcError,
-    // isSuccess: isMumbaiMintUsdcSuccess,
-    // isLoading: isMumbaiMintUsdcLoading,
-  } = useMumbaiUsdcTokenMint({
-    args: [account!, BigInt(1000000000000000000000)],
-  });
-
-  const {
-    writeAsync: mumbaiMintUsdt,
-    // isError: isMumbaiMintUsdtError,
-    // error: mumbaiMintUsdtError,
-    // isSuccess: isMumbaiMintUsdtSuccess,
-    // isLoading: isMumbaiMintUsdtLoading,
-  } = useMumbaiUsdtTokenMint({
-    args: [account!, BigInt(1000000000000000000000)],
-  });
-
-  const {
-    writeAsync: mumbaiMintWeth,
-    // isError: isMumbaiMintWethError,
-    // error: mumbaiMintWethError,
-    // isSuccess: isMumbaiMintWethSuccess,
-    // isLoading: isMumbaiMintWethLoading,
-  } = useMumbaiWethTokenMint({
-    args: [account!, BigInt(1000000000000000000000)],
-  });
-
-  const {
-    writeAsync: mumbaiMintMatic,
-    // isError: isMumbaiMintMaticError,
-    // error: mumbaiMintMaticError,
-    // isSuccess: isMumbaiMintMaticSuccess,
-    // isLoading: isMumbaiMintMaticLoading,
-  } = useMumbaiMaticTokenMint({
-    args: [account!, BigInt(1000000000000000000000)],
-  });
+    isError: isMintMaticError,
+    error: mintMaticError,
+    isLoading: maticLoading,
+  } = useContractWrite(configMatic);
 
   const constructErrorMessage = () => {
-    if (isMintError) {
-      return toast(mintError?.message);
+    if (isMintUsdtError) {
+      return toast(mintUsdtError?.message);
     } else if (isMintUsdcError) {
       return toast(mintUsdcError?.message);
     } else if (isMintWethError) {
       return toast(mintWethError?.message);
+    } else if (isMintMaticError) {
+      return toast(mintMaticError?.message);
     } else {
       return "Something went wrong";
     }
@@ -130,33 +181,58 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
   //   }
   // }
 
+  useEffect(() => {
+    if (isConnected && chain?.id === 80001) {
+      setUsdtAddress("0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b");
+      setUsdcAddress("0xc1D7eC1a5320ed08b6B019cACC80f29905A7EEfA");
+      setWethAddress("0xe3aF098836c4641f8EcF9185E49F8C3E74d91348");
+      setMaticAddress("0xDe7B766c83ddd2177087d8f6F8916A3B18722669");
+    } else if (isConnected && chain?.id === 97) {
+      setUsdtAddress("0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18");
+      setUsdcAddress("0x45D463BFf2e01A125298BF9271B7BAFBdBeF001f");
+      setWethAddress("0x0518f7B2391916021111BB9Ce53F35a6f8C40Fe3");
+      setMaticAddress("0x9570B7D0e54f2AAed59F6615e2be18637A82d881");
+    }
+  }, [chain?.id]);
+
   if (!isOpen) return null;
 
   return (
     <>
       <div className="fixed top-0 right-0 z-[5]">
-        {isMintError && constructErrorMessage()}
+        {(isMintUsdtError && constructErrorMessage()) ||
+          (isMintUsdcError && constructErrorMessage()) ||
+          (isMintWethError && constructErrorMessage()) ||
+          (isMintMaticError && constructErrorMessage())}
 
-        {isMintError && (
-          <>
-            <ToastContainer
-              position="top-right"
-              autoClose={1500}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              pauseOnFocusLoss
-              draggable
-              theme="dark"
-            />
-          </>
-        )}
+        {isMintUsdtError ||
+          isMintUsdcError ||
+          isMintWethError ||
+          (isMintMaticError && (
+            <>
+              <ToastContainer
+                position="top-right"
+                autoClose={1500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                theme="dark"
+              />
+            </>
+          ))}
       </div>
 
+      {(usdcLoading && <Loading />) ||
+        (usdtLoading && <Loading />) ||
+        (maticLoading && <Loading />) ||
+        (wethLoading && <Loading />)}
+
       <section className="fixed flex flex-col items-center justify-center z-[3] min-h-[100vh] min-w-full bg-black/30 backdrop-blur-sm">
-        <div className="relative flex flex-col p-5 max-w-[500px] h-full w-full bg-black rounded-xl border-[1px] border-[#2e2e2e] gap-4">
+        <div className="relative flex flex-col p-5 max-w-[500px] h-full w-full bg-black rounded-xl border-[1px] border-[#2e2e2e] gap-4 overflow-y-scroll max-h-[70vh]">
           <button
-            className="absolute right-5 z-[4]"
+            className="absolute right-5 z-[4] button-hover"
             onClick={() => handleClick()}
           >
             <Image
@@ -169,7 +245,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
           <div className="relative flex justify-center w-full">
             {openTab === 0 && (
               <Image
-                src={"/image/step-0.svg"}
+                src={"/image/step-0.png"}
                 alt={"cross"}
                 height={200}
                 width={200}
@@ -178,7 +254,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             )}
             {openTab === 1 && (
               <Image
-                src={"/image/step-1.svg"}
+                src={"/image/step-1.png"}
                 alt={"cross"}
                 height={200}
                 width={200}
@@ -187,7 +263,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             )}
             {openTab === 2 && (
               <Image
-                src={"/image/step-2.svg"}
+                src={"/image/step-2.png"}
                 alt={"cross"}
                 height={200}
                 width={200}
@@ -196,7 +272,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             )}
             {openTab === 3 && (
               <Image
-                src={"/image/step-3.svg"}
+                src={"/image/step-3.png"}
                 alt={"cross"}
                 height={200}
                 width={200}
@@ -205,10 +281,10 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             )}
             {openTab === 4 && (
               <Image
-                src={"/image/step-4.svg"}
+                src={"/image/step-4.png"}
                 alt={"cross"}
                 height={200}
-                width={400}
+                width={600}
               />
             )}
           </div>
@@ -303,8 +379,8 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                       key={index}
                       className={`flex flex-row items-center gap-2 rounded-xl  px-3 py-4 ${
                         chain?.name === x.name
-                          ? "cursor-not-allowed border-[#3b3b3b] border-2 text-white "
-                          : " hover:brightness-125 bg-radial-button text-black"
+                          ? "cursor-not-allowed border-[#3b3b3b] border-2 text-white"
+                          : "button-hover hover:brightness-125 bg-radial-button text-black "
                       }`}
                     >
                       <p className="mobile-title sm:tablet-title lg:web-title">
@@ -328,62 +404,44 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                   )}
 
                   <button
-                    onClick={() => {
-                      chain?.name === "Polygon Mumbai"
-                        ? mumbaiMintUsdc()
-                        : mintUsdc();
-                    }}
+                    onClick={mintUsdc}
                     className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
                       chain?.name === "Polygon Mumbai"
                         ? "bg-[#C91CEF]"
                         : "bg-[#efc815]"
                     } rounded-xl w-full max-w-[215px]`}
                   >
-                    {isMintUsdcLoading ? "Claiming USDC..." : "CLAIM 1000 USDC"}
+                    {usdcLoading ? "Claiming USDC..." : "CLAIM 1000 USDC"}
                   </button>
                   <button
-                    onClick={() => {
-                      chain?.name === "Polygon Mumbai"
-                        ? mumbaiMintUsdt()
-                        : mint();
-                    }}
+                    onClick={mintUsdt}
                     className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
                       chain?.name === "Polygon Mumbai"
                         ? "bg-[#C91CEF]"
                         : "bg-[#efc815]"
                     } rounded-xl w-full max-w-[215px]`}
                   >
-                    {isMintUsdtLoading ? "Claiming USDT..." : "CLAIM 1000 USDT"}
+                    {usdtLoading ? "Claiming USDT..." : "CLAIM 1000 USDT"}
                   </button>
                   <button
-                    onClick={() => {
-                      chain?.name === "Polygon Mumbai"
-                        ? mumbaiMintWeth()
-                        : mintWeth();
-                    }}
+                    onClick={mintWeth}
                     className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
                       chain?.name === "Polygon Mumbai"
                         ? "bg-[#C91CEF]"
                         : "bg-[#efc815]"
                     } rounded-xl w-full max-w-[215px]`}
                   >
-                    {isMintWethLoading ? "Claiming WETH..." : "CLAIM 1000 WETH"}
+                    {wethLoading ? "Claiming WETH..." : "CLAIM 1000 WETH"}
                   </button>
                   <button
-                    onClick={() => {
-                      chain?.name === "Polygon Mumbai"
-                        ? mumbaiMintMatic()
-                        : mintMatic();
-                    }}
+                    onClick={mintMatic}
                     className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
                       chain?.name === "Polygon Mumbai"
                         ? "bg-[#C91CEF]"
                         : "bg-[#efc815]"
                     } rounded-xl w-full max-w-[215px]`}
                   >
-                    {isMintMaticLoading
-                      ? "Claiming MATIC..."
-                      : "CLAIM 1000 MATIC"}
+                    {maticLoading ? "Claiming MATIC..." : "CLAIM 1000 MATIC"}
                   </button>
                 </div>
                 <p className="mobile-title sm:tablet-title lg:web-title text-[#1CACEF]">
@@ -458,6 +516,14 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
               >
                 Next
               </button>
+              {openTab === 4 && (
+                <button
+                  onClick={() => onClose(false)}
+                  className={`px-6 py-3 text-black mobile-title sm:tablet-title lg:web-title bg-radial-button rounded-xl`}
+                >
+                  Done
+                </button>
+              )}
             </div>
           </div>
         </div>
