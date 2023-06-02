@@ -439,7 +439,9 @@ const SwapPage = () => {
             .connect(signer)
             .transfer(address, String(10 ** 18 * minReceiveToken));
         };
-        sendTransact();
+        sendTransact().then(() => {
+          toast("Success Transaction");
+        });
 
         effectRan.current = false;
       }
