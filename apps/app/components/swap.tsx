@@ -199,7 +199,8 @@ const SwapPage = () => {
     args: [dexAddress ?? "", BigInt(String(ethers.constants.MaxUint256))], // dex aggregator address
   });
 
-  const { writeAsync: approveToken } = useContractWrite(configApprove);
+  const { writeAsync: approveToken, isSuccess: isApproveSuccess } =
+    useContractWrite(configApprove);
 
   // Dynamic Allowance
 
@@ -284,6 +285,12 @@ const SwapPage = () => {
       toast(errorSwap?.message);
     }
   }, [isErrorSwap]);
+
+  useEffect(() => {
+    if (isApproveSuccess === true) {
+      setDynamicButtons("swap");
+    }
+  }, [isApproveSuccess]);
 
   useEffect(() => {
     if (isSuccessSwap) {
