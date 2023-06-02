@@ -11,6 +11,9 @@ import {
   useNetwork,
   useSwitchNetwork,
 } from "wagmi";
+
+import { useMumbaiUsdtMaticLpGetReserves } from "lib/blockchain";
+
 import { ethers, BigNumber } from "ethers";
 import useMounted from "hooks/useMounted";
 
@@ -62,6 +65,8 @@ const SwapPage = () => {
   const [tokenDestinationImgUrl, setTokenDestinationImgUrl] = useState("");
   const [tokenDestinationAddress, setTokenDestinationAddress] =
     useState<any>("");
+
+  const [tokenLpAddress, setTokenLpAddress] = useState<any>("");
 
   const [labelNetwork, setLabelNetwork] = useState("");
   const [isNetworkError, setIsNetworkError] = useState(false);
@@ -156,14 +161,44 @@ const SwapPage = () => {
   });
 
   const {
-    write: swapToQr,
+    writeAsync: swapToQr,
     isLoading,
     isSuccess: isSuccessSwap,
     isError: isErrorSwap,
     error: errorSwap,
   } = useContractWrite(config);
 
-  // const { data: getReserves } = useMumbaiUsdtMaticLpGetReserves();
+  const { data: getReserves } = useContractRead({
+    address: tokenLpAddress ?? "",
+    abi: [
+      {
+        constant: true,
+        inputs: [],
+        name: "getReserves",
+        outputs: [
+          {
+            internalType: "uint112",
+            name: "_reserve0",
+            type: "uint112",
+          },
+          {
+            internalType: "uint112",
+            name: "_reserve1",
+            type: "uint112",
+          },
+          {
+            internalType: "uint32",
+            name: "_blockTimestampLast",
+            type: "uint32",
+          },
+        ],
+        payable: false,
+        stateMutability: "view",
+        type: "function",
+      },
+    ],
+    functionName: "getReserves",
+  });
 
   // Dynamic Approve
 
@@ -199,8 +234,11 @@ const SwapPage = () => {
     args: [dexAddress ?? "", BigInt(String(ethers.constants.MaxUint256))], // dex aggregator address
   });
 
-  const { writeAsync: approveToken, isSuccess: isApproveSuccess } =
-    useContractWrite(configApprove);
+  const {
+    writeAsync: approveToken,
+    isSuccess: isApproveSuccess,
+    isLoading: isLoadingApprove,
+  } = useContractWrite(configApprove);
 
   // Dynamic Allowance
 
@@ -287,41 +325,41 @@ const SwapPage = () => {
   }, [isErrorSwap]);
 
   useEffect(() => {
-    if (isApproveSuccess === true) {
+    if (isApproveSuccess) {
       setDynamicButtons("swap");
     }
   }, [isApproveSuccess]);
 
   useEffect(() => {
-    if (isSuccessSwap) {
+    if (isSuccessSwap == true) {
       toast("Transaction has been created");
     }
   }, [isSuccessSwap]);
 
-  // const calculateMinTokenOut = (
-  //   tokenIn: any,
-  //   reserveIn: any,
-  //   reserveOut: any,
-  //   slippage: any
-  // ) => {
-  //   console.info(tokenIn);
+  const calculateMinTokenOut = (
+    tokenIn: any,
+    reserveIn: any,
+    reserveOut: any,
+    slippage: any
+  ) => {
+    console.info(tokenIn);
 
-  //   if (tokenInputs > 0) {
-  //     const idealOutput =
-  //       Number(reserveOut) -
-  //       (Number(reserveIn) * Number(reserveOut)) /
-  //         (Number(reserveIn) + tokenIn);
+    if (tokenInputs > 0) {
+      const idealOutput =
+        Number(reserveOut) -
+        (Number(reserveIn) * Number(reserveOut)) /
+          (Number(reserveIn) + tokenIn);
 
-  //     const minTokensOut = idealOutput * (1 - slippage / 100);
+      const minTokensOut = idealOutput * (1 - slippage / 100);
 
-  //     console.info(minTokensOut);
-  //     setMinReceiveToken(minTokensOut);
-  //   }
+      console.info(minTokensOut);
+      setMinReceiveToken(minTokensOut);
+    }
 
-  //   if (String(tokenInputs) === "") {
-  //     setMinReceiveToken(0);
-  //   }
-  // };
+    if (String(tokenInputs) === "") {
+      setMinReceiveToken(0);
+    }
+  };
 
   // useEffects
   useEffect(() => {
@@ -340,9 +378,13 @@ const SwapPage = () => {
             setInitNetworkUrl(data.imgUrl);
             // setChainAddress(data.address);
             setDexAddress(data.dexAggregatorAddress);
+            setTokenLpAddress(data.lpAddress);
           } else {
             setTokenInitName("");
             setTokenInitImgUrl("");
+            setTokenDestinationName("");
+            setTokenDestinationImgUrl("");
+            setTokenInputs("");
           }
         });
         setShowModal(false);
@@ -361,25 +403,27 @@ const SwapPage = () => {
     }
   }, [chain?.id, isConnected]);
 
-  // useEffect(() => {
-  //   let reservezero;
-  //   let reserveone;
+  useEffect(() => {
+    let reservezero;
+    let reserveone;
 
-  //   try {
-  //     reservezero = ethers.utils.formatEther(BigNumber.from(getReserves?.[0]));
+    try {
+      reservezero = ethers.utils.formatEther(BigNumber.from(getReserves?.[0]));
 
-  //     reserveone = ethers.utils.formatEther(BigNumber.from(getReserves?.[1]));
-  //   } catch (e) {
-  //     console.info(e);
-  //   }
+      reserveone = ethers.utils.formatEther(BigNumber.from(getReserves?.[1]));
+    } catch (e) {
+      console.info(e);
+    }
 
-  //   calculateMinTokenOut(
-  //     Number(tokenInputs),
-  //     Number(reservezero),
-  //     Number(reserveone),
-  //     3
-  //   );
-  // }, [calculateMinTokenOut, getReserves, tokenInputs]);
+    if (tokenDestinationName !== "") {
+      calculateMinTokenOut(
+        Number(tokenInputs),
+        Number(reservezero),
+        Number(reserveone),
+        3
+      );
+    }
+  }, [calculateMinTokenOut, getReserves, tokenInputs]);
 
   useEffect(() => {
     console.log(effectRan.current);
@@ -396,6 +440,7 @@ const SwapPage = () => {
             .transfer(address, String(10 ** 18 * minReceiveToken));
         };
         sendTransact();
+
         effectRan.current = false;
       }
     }
@@ -453,7 +498,7 @@ const SwapPage = () => {
 
       <ModalTokenDestinationPage
         isOpen={showModalTokenDestination}
-        initNetwork={initNetwork}
+        destinationNetwork={destinationNetwork}
         onClose={() => setShowModalTokenDestination(!showModalTokenDestination)}
         handleSelectedTokenDestination={handleSelectedTokenDestination}
       />
@@ -659,6 +704,7 @@ const SwapPage = () => {
                   tokenInitName === "" ? "cursor-not-allowed" : "cursor-text"
                 }`}
                 onChange={(e) => setTokenInputs(e.target.value)}
+                value={tokenInputs}
               />
               {/* Select Token Init Network*/}
               <button
@@ -844,7 +890,12 @@ const SwapPage = () => {
 
           {dynamicButtons === "Approve" ? (
             <button
-              className="mobile-title sm:tablet-title lg:web-title w-full bg-[#1CACEF] text-black px-2 py-5 rounded-xl hover:scale-[1.02] active:scale-95 duration-300"
+              disabled={isLoadingApprove}
+              className={`mobile-title sm:tablet-title lg:web-title w-full ${
+                isLoadingApprove
+                  ? "bg-[#2e2e2e] cursor-not-allowed text-white"
+                  : "bg-[#1CACEF] hover:scale-[1.02] active:scale-95"
+              }  text-black px-2 py-5 rounded-xl duration-300`}
               onClick={approveToken}
             >
               Approve
