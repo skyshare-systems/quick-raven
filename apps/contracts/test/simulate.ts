@@ -34,9 +34,13 @@ async function approveToken(
     .approve(spender, amount)
     .then((tx: any) => {
       tx.wait().then((receipt: any) => {
-        receipt.status === 1
-          ? console.info("Approved!")
-          : console.info("Approve failed!");
+        if (receipt.status === 1) {
+          console.info("Approved!");
+          return true;
+        } else {
+          console.info("Approve failed!");
+          return false;
+        }
       });
     });
 }
@@ -75,15 +79,17 @@ async function main() {
     "usdt",
     "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3",
     ethers.constants.MaxUint256.toString()
-  );
-
-  await initialNetworkSwap(
-    "qs",
-    "0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b",
-    "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
-    "1000000000000000000",
-    "1"
-  );
+  ).then(async (result: any) => {
+    result
+      ? await initialNetworkSwap(
+          "qs",
+          "0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b",
+          "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
+          "1000000000000000000",
+          "1"
+        )
+      : console.info("Swap Failed!");
+  });
 }
 
 main();
