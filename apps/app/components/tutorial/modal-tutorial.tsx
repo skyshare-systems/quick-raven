@@ -366,8 +366,25 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                   Obtain specific test tokens
                 </h3>
                 <p className="text-white mobile-description sm:tablet-description lg:web-description">
-                  Import test/peg tokens explicitly designed for the Polygon and
-                  Binance Smart Chain network using the following addresses:
+                  Import and claim test/peg tokens explicitly designed for the
+                  <Link
+                    href={"https://mumbaifaucet.com/"}
+                    target="_blank"
+                    className="text-[#C91CEF]"
+                  >
+                    {" "}
+                    Polygon Mumbai{" "}
+                  </Link>
+                  and
+                  <Link
+                    href={"https://testnet.binance.org/faucet-smart/"}
+                    target="_blank"
+                    className="text-[#efc81c]"
+                  >
+                    {" "}
+                    Binance Smart Chain Testnet{" "}
+                  </Link>
+                  network using the following addresses:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="grid grid-row-2 gap-2">
