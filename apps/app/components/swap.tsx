@@ -13,8 +13,6 @@ import {
   useWaitForTransaction,
 } from "wagmi";
 
-import { useMumbaiUsdtMaticLpGetReserves } from "lib/blockchain";
-
 import { ethers, BigNumber } from "ethers";
 import useMounted from "hooks/useMounted";
 

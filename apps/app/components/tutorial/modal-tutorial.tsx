@@ -9,17 +9,24 @@ import {
   useSwitchNetwork,
   useContractWrite,
   usePrepareContractWrite,
+  useToken,
 } from "wagmi";
+
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "components/common/Loading";
+
+import ImportTokenPage from "components/common/import-token";
 
 const ModalTutorialPage = ({ isOpen, onClose }: any) => {
   const [openTab, setOpenTab] = useState(0);
   const { isConnected, address: account } = useAccount();
   const { chain } = useNetwork();
   const [networkLabel, setNetworkLabel] = useState(chain?.name);
+  const [visible, setVisible] = useState(false);
+  const [visibleUsdt, setVisibleUsdt] = useState(false);
 
   const [usdtAddress, setUsdtAddress] = useState<`0x${string}`>("0x");
   const [usdcAddress, setUsdcAddress] = useState<`0x${string}`>("0x");
@@ -181,6 +188,20 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
   //   }
   // }
 
+  const copiedMatic = () => {
+    setVisible(true);
+    setTimeout(() => {
+      setVisible(false);
+    }, 2000);
+  };
+
+  const copiedUsdt = () => {
+    setVisibleUsdt(true);
+    setTimeout(() => {
+      setVisibleUsdt(false);
+    }, 2000);
+  };
+
   useEffect(() => {
     if (isConnected && chain?.id === 80001) {
       setUsdtAddress("0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b");
@@ -230,7 +251,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
         (wethLoading && <Loading />)}
 
       <section className="fixed flex flex-col items-center justify-center z-[3] min-h-[100vh] min-w-full bg-black/30 backdrop-blur-sm">
-        <div className="relative flex flex-col p-5 max-w-[500px] h-full w-full bg-black rounded-xl border-[1px] border-[#2e2e2e] gap-4 overflow-y-scroll max-h-[70vh]">
+        <div className="relative flex flex-col p-5 max-w-[500px] bg-black rounded-xl border-[1px] border-[#2e2e2e] gap-4 overflow-y-scroll overflow-x-hidden max-h-[70vh]">
           <button
             className="absolute right-5 z-[4] button-hover"
             onClick={() => handleClick()}
@@ -307,7 +328,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             </div>
           )}
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col">
             {openTab === 1 && (
               <>
                 <p className="mobile-title sm:tablet-title lg:web-title text-[#1CACEF]">
@@ -335,38 +356,88 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             )}
 
             {openTab === 2 && (
-              <>
+              <div className="flex flex-col gap-2">
                 <p className="mobile-title sm:tablet-title lg:web-title text-[#1CACEF]">
                   Step 2
                 </p>
-
                 <h3 className="text-white mobile-h3 sm:mobile-h3 lg:web-h3">
                   Obtain specific test tokens
                 </h3>
-
                 <p className="text-white mobile-description sm:tablet-description lg:web-description">
-                  Acquire test tokens explicitly designed for the Binance Smart
-                  Chain network and Polygon. These tokens are exclusively
-                  available on the
-                  <Link
-                    href={"https://testnet.binance.org/faucet-smart/"}
-                    target="_blank"
-                    className="text-[#efc81c]"
-                  >
-                    {" "}
-                    Binance Smart Chain Testnet{" "}
-                  </Link>
-                  and{" "}
-                  <Link
-                    href={"https://mumbaifaucet.com/"}
-                    target="_blank"
-                    className="text-[#C91CEF]"
-                  >
-                    {" "}
-                    Polygon Mumbai
-                  </Link>
+                  Import test/peg tokens explicitly designed for the Polygon and
+                  Binance Smart Chain network using the following addresses:
                 </p>
-              </>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="grid grid-row-2 gap-2">
+                    <h1 className="text-white mobile-description sm:tablet-description lg:web-description">
+                      MATIC (Polygon):
+                    </h1>
+                    <h1 className="text-[#D449F2] mobile-description sm:tablet-description lg:web-description">
+                      0xDe7B766c83ddd2177087
+                      <br className="flex xsm:hidden sm:flex"></br>
+                      d8f6F8916A3B18722669
+                    </h1>
+                    <div className="flex flex-row justify-between gap-2  w-full">
+                      <CopyToClipboard
+                        text="0xDe7B766c83ddd2177087d8f6F8916A3B18722669"
+                        className="bg-[#252525] text-[#c6c6c6] w-full flex flex-row gap-2 items-center justify-center px-3 py-3 uppercase rounded-md mobile-tile sm:tablet-title lg:web-title hover:scale-105 active:scale-95 duration-300"
+                      >
+                        <button onClick={() => copiedMatic()}>
+                          <Image
+                            src={"/icons/modal/copy-icon.svg"}
+                            alt={"copy-icon"}
+                            height={15}
+                            width={15}
+                          />
+                          {visible ? "Copied" : "Copy"}
+                        </button>
+                      </CopyToClipboard>
+
+                      <ImportTokenPage
+                        name={"Matic"}
+                        address={"0xDe7B766c83ddd2177087d8f6F8916A3B18722669"}
+                        symbols={"MATIC"}
+                        decimal={18}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-row-2 gap-2">
+                    <h1 className="text-white mobile-description sm:tablet-description lg:web-description">
+                      USDT (Binance):
+                    </h1>
+                    <p className="text-[#F2D349] mobile-description sm:tablet-description lg:web-description w-auto">
+                      0x44fDA5d55Cd5bFD262D
+                      <br className="flex xsm:hidden sm:flex"></br>
+                      cF0b90F2F105211131d18
+                    </p>
+
+                    <div className="flex flex-row justify-between gap-2  w-full">
+                      <CopyToClipboard
+                        text="0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18"
+                        className="bg-[#252525] text-[#c6c6c6] w-full flex flex-row gap-2 items-center justify-center px-3 py-3 uppercase rounded-md mobile-tile sm:tablet-title lg:web-title hover:scale-105 active:scale-95 duration-300"
+                      >
+                        <button onClick={() => copiedUsdt()}>
+                          <Image
+                            src={"/icons/modal/copy-icon.svg"}
+                            alt={"copy-icon"}
+                            height={15}
+                            width={15}
+                          />
+                          {visibleUsdt ? "Copied" : "Copy"}
+                        </button>
+                      </CopyToClipboard>
+
+                      <ImportTokenPage
+                        name={"USDT"}
+                        address={"0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18"}
+                        symbols={"USDT"}
+                        decimal={18}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
 
             {openTab === 3 && (
