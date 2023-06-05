@@ -1,6 +1,7 @@
 {
   "extends": "tsconfig/nextjs.json",
   "compilerOptions": {
+    "noImplicitAny": false,
     "baseUrl": ".",
     "noEmit": true,
     "plugins": [

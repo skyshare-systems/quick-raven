@@ -10,6 +10,7 @@ import {
   useContractWrite,
   usePrepareContractWrite,
   useToken,
+  useWaitForTransaction,
 } from "wagmi";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -34,11 +35,16 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
   const [maticAddress, setMaticAddress] = useState<`0x${string}`>("0x");
 
   const { chains, switchNetwork } = useSwitchNetwork();
+  const [hash, setHash] = useState<`0x${string}`>();
 
   const handleClick = () => {
     onClose(false);
     setOpenTab(0);
   };
+
+  const { data, isError, error, isSuccess, isLoading } = useWaitForTransaction({
+    hash: hash,
+  });
 
   const { config: configUsdt } = usePrepareContractWrite({
     address: usdtAddress ?? "",
@@ -166,28 +172,6 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
     isLoading: maticLoading,
   } = useContractWrite(configMatic);
 
-  const constructErrorMessage = () => {
-    if (isMintUsdtError) {
-      return toast(mintUsdtError?.message);
-    } else if (isMintUsdcError) {
-      return toast(mintUsdcError?.message);
-    } else if (isMintWethError) {
-      return toast(mintWethError?.message);
-    } else if (isMintMaticError) {
-      return toast(mintMaticError?.message);
-    } else {
-      return "Something went wrong";
-    }
-  };
-
-  // function constructSuccessMessage() {
-  //   if (isMintSuccess) {
-  //     return toast("Claiming Success");
-  //   } else {
-  //     return "Something went wrong";
-  //   }
-  // }
-
   const copiedMatic = () => {
     setVisible(true);
     setTimeout(() => {
@@ -201,6 +185,18 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
       setVisibleUsdt(false);
     }, 2000);
   };
+
+  useEffect(() => {
+    if (isSuccess == true) {
+      toast("Transaction has been created");
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isError === true) {
+      toast(error?.message);
+    }
+  }, [isError]);
 
   useEffect(() => {
     if (isConnected && chain?.id === 80001) {
@@ -221,28 +217,34 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
   return (
     <>
       <div className="fixed top-0 right-0 z-[5]">
-        {(isMintUsdtError && constructErrorMessage()) ||
-          (isMintUsdcError && constructErrorMessage()) ||
-          (isMintWethError && constructErrorMessage()) ||
-          (isMintMaticError && constructErrorMessage())}
-
-        {isMintUsdtError ||
-          isMintUsdcError ||
-          isMintWethError ||
-          (isMintMaticError && (
-            <>
-              <ToastContainer
-                position="top-right"
-                autoClose={1500}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                pauseOnFocusLoss
-                draggable
-                theme="dark"
-              />
-            </>
-          ))}
+        {isError && (
+          <>
+            <ToastContainer
+              position="top-right"
+              autoClose={1500}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              theme="dark"
+            />
+          </>
+        )}
+        {isSuccess && (
+          <>
+            <ToastContainer
+              position="top-right"
+              autoClose={1500}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              theme="dark"
+            />
+          </>
+        )}
       </div>
 
       {(usdcLoading && <Loading />) ||
@@ -328,7 +330,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
             </div>
           )}
 
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-2">
             {openTab === 1 && (
               <>
                 <p className="mobile-title sm:tablet-title lg:web-title text-[#1CACEF]">
@@ -485,7 +487,11 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                     {usdcLoading ? "Claiming USDC..." : "CLAIM 1000 USDC"}
                   </button>
                   <button
-                    onClick={mintUsdt}
+                    onClick={() =>
+                      mintUsdt?.().then((res) => {
+                        setHash(res?.hash);
+                      })
+                    }
                     className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
                       chain?.name === "Polygon Mumbai"
                         ? "bg-[#C91CEF]"
@@ -495,7 +501,11 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                     {usdtLoading ? "Claiming USDT..." : "CLAIM 1000 USDT"}
                   </button>
                   <button
-                    onClick={mintWeth}
+                    onClick={() =>
+                      mintWeth?.().then((res) => {
+                        setHash(res?.hash);
+                      })
+                    }
                     className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
                       chain?.name === "Polygon Mumbai"
                         ? "bg-[#C91CEF]"
@@ -505,7 +515,11 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                     {wethLoading ? "Claiming WETH..." : "CLAIM 1000 WETH"}
                   </button>
                   <button
-                    onClick={mintMatic}
+                    onClick={() =>
+                      mintMatic?.().then((res) => {
+                        setHash(res?.hash);
+                      })
+                    }
                     className={`px-6 py-5 uppercase text-black mobile-title sm:tablet-title lg:web-title ${
                       chain?.name === "Polygon Mumbai"
                         ? "bg-[#C91CEF]"
