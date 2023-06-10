@@ -13,9 +13,9 @@ const app: Express = express();
 // MIDDLEWARE
 
 // Routers
-app.use("api/token", tokenRoutes);
-app.use("api/lp", lpRoutes);
-app.use("api/factory", factoryRoutes);
+app.use("/api/token", tokenRoutes);
+app.use("/api/lp", lpRoutes);
+app.use("/api/factory", factoryRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

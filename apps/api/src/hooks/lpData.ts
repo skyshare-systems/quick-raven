@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { lpTokenContract } from "../config/data";
 
-export const allowance = async (
+export const lpAllowance = async (
   network: number,
   tokenAddress: string,
   owner: string,
@@ -15,20 +15,29 @@ export const allowance = async (
   return ethers.formatEther(allowance);
 };
 
-export const balanceOf = async (address: string, network: number) => {
-  const balance = await lpTokenContract(network, address).balanceOf(address);
+export const lpBalanceOf = async (
+  network: number,
+  tokenAddress: string,
+  userAddress: string
+) => {
+  const balance = await lpTokenContract(network, tokenAddress).balanceOf(
+    userAddress
+  );
 
   return ethers.formatEther(balance);
 };
 
-export const totalSupply = async (address: string, network: number) => {
-  const totalSupply = await lpTokenContract(network, address).totalSupply();
+export const lpTotalSupply = async (network: number, tokenAddress: string) => {
+  const totalSupply = await lpTokenContract(
+    network,
+    tokenAddress
+  ).totalSupply();
 
   return ethers.formatEther(totalSupply);
 };
 
-export const reserves = async (network: number, address: string) => {
-  const reserves = await lpTokenContract(network, address).getReserves();
+export const lpReserves = async (network: number, tokenAddress: string) => {
+  const reserves = await lpTokenContract(network, tokenAddress).getReserves();
 
   return reserves;
 };

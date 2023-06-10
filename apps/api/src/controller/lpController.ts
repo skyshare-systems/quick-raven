@@ -2,7 +2,7 @@ import expressAsyncHandler from "express-async-handler";
 import { allowance, balanceOf, totalSupply, reserves } from "../hooks/lpData";
 
 export const GETallowance = expressAsyncHandler(async (req, res) => {
-  const { network, owner, spender, tokenAddress } = req.body;
+  const { network, tokenAddress, owner, spender } = req.body;
   let currAllowance: string;
 
   try {
@@ -15,11 +15,11 @@ export const GETallowance = expressAsyncHandler(async (req, res) => {
 });
 
 export const GETbalanceOf = expressAsyncHandler(async (req, res) => {
-  const { address, tokenAddress, network } = req.body;
+  const { network, tokenAddress, userAddress } = req.body;
   let balance;
 
   try {
-    balance = await balanceOf(address, network);
+    balance = await balanceOf(network, tokenAddress, userAddress);
   } catch (e) {
     res.status(400).send(e);
   }
@@ -28,11 +28,11 @@ export const GETbalanceOf = expressAsyncHandler(async (req, res) => {
 });
 
 export const GETtotalSupply = expressAsyncHandler(async (req, res) => {
-  const { address, network } = req.body;
+  const { network, tokenAddress } = req.body;
   let supply;
 
   try {
-    supply = await totalSupply(address, network);
+    supply = await totalSupply(network, tokenAddress);
   } catch (e) {
     res.status(400).send(e);
   }
@@ -41,11 +41,11 @@ export const GETtotalSupply = expressAsyncHandler(async (req, res) => {
 });
 
 export const GETreserves = expressAsyncHandler(async (req, res) => {
-  const { network, address } = req.body;
+  const { network, tokenAddress } = req.body;
   let tokenReserves;
 
   try {
-    tokenReserves = await reserves(network, address);
+    tokenReserves = await reserves(network, tokenAddress);
   } catch (e) {
     res.status(400).send(e);
   }

@@ -1,21 +1,23 @@
 import { ethers } from "ethers";
 import { tokenContract } from "../config/data";
 
-export const balanceOf = async (
-  address: string,
+export const tokenBalanceOf = async (
+  network: number,
   tokenAddress: string,
-  network: number
+  userAddress: string
 ) => {
-  const balance = await tokenContract(network, tokenAddress).balanceOf(address);
+  const balance = await tokenContract(network, tokenAddress).balanceOf(
+    userAddress
+  );
 
   return ethers.formatEther(balance);
 };
 
-export const allowance = async (
+export const tokenAllowance = async (
   network: number,
+  tokenAddress: string,
   owner: string,
-  spender: string,
-  tokenAddress: string
+  spender: string
 ) => {
   const allowance = await tokenContract(network, tokenAddress).allowance(
     owner,
@@ -25,7 +27,16 @@ export const allowance = async (
   return ethers.formatEther(allowance);
 };
 
-export const name = async (network: number, tokenAddress: string) => {
+export const tokenTotalSupply = async (
+  network: number,
+  tokenAddress: string
+) => {
+  const totalSupply = await tokenContract(network, tokenAddress).totalSupply();
+
+  return ethers.formatEther(totalSupply);
+};
+
+export const tokenName = async (network: number, tokenAddress: string) => {
   const name = await tokenContract(network, tokenAddress).name();
 
   return name;
