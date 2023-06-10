@@ -82,23 +82,6 @@
     @apply text-[96px] font-[700] leading-[136px] font-[Excon] tracking-[0.5px];
   }
 
-  body {
-    background: radial-gradient(
-          48.02% 72.13% at 81.63% 45.08%,
-          rgba(171, 60, 210, 0.2) 0%,
-          rgba(0, 0, 0, 0) 100%
-        )
-        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
-      radial-gradient(
-          40.98% 34.55% at 14.08% 26.76%,
-          rgba(64, 212, 221, 0.2) 0%,
-          rgba(29, 223, 255, 0) 100%
-        )
-        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
-      #141414;
-    background-attachment: fixed;
-  }
-
   .center-absolute {
     position: absolute;
     top: 55%;

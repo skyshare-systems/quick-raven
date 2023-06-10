@@ -1,7 +1,7 @@
 @import "ui/styles/global.css";
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
 }
 
 /* Track */
@@ -14,12 +14,26 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #aaaaaa;
-  border-radius: 5px;
+  background: #44b6e9;
+  border-radius: 4px;
   transition: all 3s ease-in;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #717171;
+  background: #2d7a9c;
+}
+
+@media screen and (min-width: 768px) {
+  #hero-section {
+    background: radial-gradient(
+      32.05% 51.28% at 0% 50%,
+      rgba(28, 172, 239, 0.32) 0%,
+      rgba(15, 147, 208, 0) 100%
+    );
+  }
+}
+
+body {
+  overflow-x: hidden;
 }
