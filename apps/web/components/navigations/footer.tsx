@@ -51,7 +51,7 @@ const FooterPage = () => {
   return (
     <footer className="px-16">
       <hr />
-      <div className="flex flex-col md:flex-row md:flex-wrap justify-center md:justify-between items-center py-[1.5rem] ">
+      <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center lg:justify-between items-center py-[1.5rem] gap-5">
         <Image
           src={"/assets/logo-with-letter.svg"}
           alt={"quickraven"}
@@ -59,7 +59,7 @@ const FooterPage = () => {
           width={200}
         />
 
-        <div className="flex flex-wrap justify-center items-center gap-11 background-white">
+        <div className="flex flex-wrap justify-center items-center gap-2 md:gap-11 background-white">
           {socmed.map((data, index) => {
             return (
               <Link key={index} href={data.isLive === true ? data.linkUrl : {}}>
@@ -76,7 +76,7 @@ const FooterPage = () => {
         </div>
 
         <div className="flex flex-col items-end max-w-[280px]">
-          <p className="text-right mobile-description sm:tablet-description md:web-description text-white">
+          <p className="text-center lg:text-right mobile-description sm:tablet-description md:web-description text-white">
             © 2023 Quick Raven <br></br>Alpha Version. Use at your own risk.
           </p>
         </div>

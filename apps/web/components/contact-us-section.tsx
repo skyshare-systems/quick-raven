@@ -5,7 +5,7 @@ import { Squircle } from "corner-smoothing";
 const ContactUsPage = () => {
   return (
     <div className="relative flex justify-center items-center py-[2rem] lg:py-[10rem]">
-      <div className="flex flex-col justify-center items-center max-w-[1400px]">
+      <div className="flex flex-col justify-center items-center max-w-[1400px] gap-5 lg:gap-2">
         <h2 className="mobile-h2 sm:tablet-h2 md:web-h2 text-white">
           Lets build{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-t from-[#1dfab9] to-[#1dffae]">
