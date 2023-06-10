@@ -23,3 +23,17 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #717171;
 }
+
+@media screen and (min-width: 768px) {
+  #hero-section {
+    background: radial-gradient(
+      32.05% 51.28% at 0% 50%,
+      rgba(28, 172, 239, 0.32) 0%,
+      rgba(15, 147, 208, 0) 100%
+    );
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
