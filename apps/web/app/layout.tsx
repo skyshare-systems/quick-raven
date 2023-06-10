@@ -1,11 +1,6 @@
-import NavbarPage from "components/navbar";
+import NavbarPage from "components/navigations/navbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
-import WagmiProviders from "providers/WagmiProviders";
-import FooterPage from "components/footer";
-import ApolloProviders from "providers/ApolloProviders";
-
-const inter = Inter({ subsets: ["latin"] });
+import FooterPage from "components/navigations/footer";
 
 export const metadata = {
   title: "Quick Raven",
@@ -23,14 +18,10 @@ export default function RootLayout({
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
       </head>
-      <body className={inter.className}>
-        <WagmiProviders>
-          <ApolloProviders>
-            <NavbarPage />
-            {children}
-            <FooterPage />
-          </ApolloProviders>
-        </WagmiProviders>
+      <body>
+        <NavbarPage />
+        {children}
+        <FooterPage />
       </body>
     </html>
   );
