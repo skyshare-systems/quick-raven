@@ -289,7 +289,7 @@ const SupportedPlatformPage = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTriggerID((prevCount) => prevCount + 1);
-    }, 2000);
+    }, 2250);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -348,10 +348,10 @@ const SupportedPlatformPage = () => {
                 <button
                   key={index}
                   className={`flex flex-row items-center px-3 py-3 border-[2px] ${
-                    triggerID === 1 && "border-[#063b53] bg-[#063b53]/40"
-                  } rounded-xl w-full ${
-                    data.width
-                  } border-[#1c1c1c] text-white gap-2`}
+                    triggerID === 1
+                      ? "border-[#063b53] bg-[#063b53]/40"
+                      : "border-[#1c1c1c]"
+                  } rounded-xl w-full ${data.width}  text-white gap-2`}
                   disabled
                 >
                   <Image
@@ -366,8 +366,10 @@ const SupportedPlatformPage = () => {
             })}
             <button
               className={`flex flex-row items-center px-3 py-3 border-[2px] rounded-xl ${
-                triggerID === 1 && "border-[#063b53] bg-[#063b53]/40"
-              } w-full max-w-[140px] border-[#1c1c1c] text-white gap-2`}
+                triggerID === 1
+                  ? "border-[#063b53] bg-[#063b53]/40"
+                  : "border-[#1c1c1c]"
+              } w-full max-w-[140px]  text-white gap-2`}
             >
               + 22K more
             </button>
@@ -412,12 +414,12 @@ const SupportedPlatformPage = () => {
                 <button
                   key={index}
                   className={`flex flex-row items-center px-3 py-3 border-[2px] ${
-                    triggerID === 2 &&
-                    data.isLive === true &&
-                    "border-[#063b53] bg-[#063b53]/40"
+                    triggerID === 2 && data.isLive === true
+                      ? "border-[#063b53] bg-[#063b53]/40"
+                      : "border-[#1c1c1c]"
                   } rounded-xl w-full ${data.width} ${
                     data.isLive === false && "blur-sm"
-                  } border-[#1c1c1c] text-white gap-2`}
+                  }  text-white gap-2`}
                   disabled
                 >
                   <Image
@@ -471,12 +473,12 @@ const SupportedPlatformPage = () => {
                 <button
                   key={index}
                   className={`flex flex-row items-center px-3 py-3 ${
-                    triggerID === 3 &&
-                    data.isLive === true &&
-                    "border-[#063b53] bg-[#063b53]/40"
+                    triggerID === 3 && data.isLive === true
+                      ? "border-[#063b53] bg-[#063b53]/40"
+                      : "border-[#1c1c1c]"
                   } border-[2px] rounded-xl w-full ${data.width} ${
                     data.isLive === false && "blur-sm"
-                  } border-[#1c1c1c] text-white gap-2`}
+                  }  text-white gap-2`}
                   disabled
                 >
                   <Image
@@ -530,12 +532,12 @@ const SupportedPlatformPage = () => {
                 <button
                   key={index}
                   className={`flex flex-row items-center px-3 py-3 ${
-                    triggerID === 4 &&
-                    data.isLive === true &&
-                    "border-[#063b53] bg-[#063b53]/40"
+                    triggerID === 4 && data.isLive === true
+                      ? "border-[#063b53] bg-[#063b53]/40"
+                      : "border-[#1c1c1c]"
                   } border-[2px] rounded-xl w-full ${data.width} ${
                     data.isLive === false && "blur-sm"
-                  } border-[#1c1c1c] text-white gap-2`}
+                  }  text-white gap-2`}
                   disabled
                 >
                   <Image

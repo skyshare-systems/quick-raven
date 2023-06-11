@@ -7,8 +7,9 @@ import SupportedPlatformPage from "components/supported-platforms";
 import TransactionPage from "components/transaction-section";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Image from "next/image";
 import { useEffect } from "react";
+import NavbarPage from "components/navigations/navbar";
+import FooterPage from "components/navigations/footer";
 
 export default function Home() {
   useEffect(() => {
@@ -16,12 +17,14 @@ export default function Home() {
   }, []);
   return (
     <>
+      <NavbarPage />
       <HeroSectionPage />
       <TransactionPage />
       <SupportedPlatformPage />
       <InfoSectionPage />
       <PartnerTeamPage />
       <ContactUsPage />
+      <FooterPage />
     </>
   );
 }
