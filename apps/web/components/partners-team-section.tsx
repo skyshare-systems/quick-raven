@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const TeamMember = [
   {
@@ -64,7 +65,7 @@ const PartnerTeamPage = () => {
           Partners and Grants
         </h2>
         <p
-          className="mobile-description sm:tablet-description md:web-description text-[#838383]"
+          className="mobile-description text-center sm:text-left sm:tablet-description md:web-description text-[#838383]"
           data-aos="fade-up"
           data-aos-delay={`200`}
           data-aos-easing="ease-in-out"
@@ -79,7 +80,10 @@ const PartnerTeamPage = () => {
           data-aos-easing="ease-in-out"
           data-aos-once="true"
         >
-          Interested to be part of us? <u>Send us an email</u>
+          Interested to be part of us?{" "}
+          <Link href="mailto:quickraven@skysharelabs.com" target="_blank">
+            <u>Send us an email</u>
+          </Link>
         </p>
 
         <h2
