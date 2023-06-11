@@ -15,6 +15,7 @@ const InfoSectionPage = () => {
           height={600}
           data-aos="fade-zoom-in"
           data-aos-easing="ease-in-out"
+          data-aos-delay="200"
           data-aos-offset="0"
           data-aos-once="true"
         />
