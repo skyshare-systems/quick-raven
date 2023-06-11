@@ -1,37 +1,40 @@
 import expressAsyncHandler from "express-async-handler";
 import { routerContract } from "../config/data";
+import { tokenInPrice, tokenOutPrice } from "../helpers/tokenPrice";
 
 export const GETamountIn = expressAsyncHandler(async (req, res) => {
-  const { network, routerAddress, amountOut, reserveIn, reserveOut } = req.body;
-  let amountIn: string = "";
+  const { network, routerAddress, lpTokenAddress, amountOut } = req.body;
+  let price: string = "";
 
   try {
-    amountIn = await routerContract(network, routerAddress).getAmountOut(
-      amountOut,
-      reserveIn,
-      reserveOut
+    price = await tokenInPrice(
+      network,
+      routerAddress,
+      lpTokenAddress,
+      amountOut
     );
   } catch (e) {
+    console.info("lajdlkajsdlkja");
     res.status(400).send(e);
   }
 
-  res.status(200).send(amountIn);
+  res.status(200).send(price);
 });
 
 export const GETamountOut = expressAsyncHandler(async (req, res) => {
-  const { network, routerAddress, amountIn, reserveIn, reserveOut } = req.body;
-
-  let amountOut: string = "";
+  const { network, routerAddress, lpTokenAddress, amountIn } = req.body;
+  let price: string = "";
 
   try {
-    amountOut = await routerContract(network, routerAddress).getAmountOut(
-      amountIn,
-      reserveIn,
-      reserveOut
+    price = await tokenOutPrice(
+      network,
+      routerAddress,
+      lpTokenAddress,
+      amountIn
     );
-  } catch (e) {
+  } catch (e: any) {
     res.status(400).send(e);
   }
 
-  res.status(200).send(amountOut);
+  res.status(200).send(price);
 });
