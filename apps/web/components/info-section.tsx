@@ -16,7 +16,7 @@ const InfoSectionPage = () => {
         />
         <h2 className="md:leading-[50px] text-center mobile-h2 sm:tablet-h2 md:web-h2 text-transparent bg-clip-text bg-gradient-to-b from-[#fdfdfd] to-[#9a9a9a] max-w-[900px]">
           Offering one-stop swap across the networks maximizing all supported
-          DEXes Liquidity
+          DEXes and Bridges
         </h2>
         <p className="mobile-description sm:tablet-description md:web-description text-white text-center max-w-[600px]">
           With just one transaction approval, Quick Raven will make it possible
