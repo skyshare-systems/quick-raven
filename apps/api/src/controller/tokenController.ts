@@ -6,14 +6,17 @@ import {
   tokenBalanceOf,
   tokenTotalSupply,
   tokenName,
-} from "../hooks/tokenData";
+} from "../helpers/tokenData";
 
 export const GETallowance = expressAsyncHandler(async (req, res) => {
   const { network, tokenAddress, owner, spender } = req.body;
   let allowance;
 
   try {
-    allowance = tokenAllowance(network, tokenAddress, owner, spender);
+    allowance = tokenContract(network, tokenAddress).tokenAllowance(
+      owner,
+      spender
+    );
   } catch (e) {
     res.status(400).send(e);
   }
@@ -26,7 +29,9 @@ export const GETbalanceOf = expressAsyncHandler(async (req, res) => {
   let balance;
 
   try {
-    balance = await tokenBalanceOf(network, tokenAddress, userAddress);
+    balance = await tokenContract(network, tokenAddress).tokenBalanceOf(
+      userAddress
+    );
   } catch (e) {
     res.status(400).send(e);
   }
@@ -35,11 +40,11 @@ export const GETbalanceOf = expressAsyncHandler(async (req, res) => {
 });
 
 export const GETtotalSupply = expressAsyncHandler(async (req, res) => {
-  const { network, address } = req.body;
+  const { network, tokenAddress } = req.body;
   let totalSupply;
 
   try {
-    totalSupply = await tokenTotalSupply(network, address);
+    totalSupply = await tokenContract(network, tokenAddress).tokenTotalSupply();
   } catch (e) {
     res.status(400).send(e);
   }
@@ -52,7 +57,7 @@ export const GETname = expressAsyncHandler(async (req, res) => {
   let name;
 
   try {
-    name = await tokenName(network, tokenAddress);
+    name = await tokenContract(network, tokenAddress).tokenName();
   } catch (e) {
     res.status(400).send(e);
   }
