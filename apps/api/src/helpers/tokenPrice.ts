@@ -29,12 +29,12 @@ export const tokenInPrice = async (
 ) => {
   const router = routerContract(network, routerAddress);
   const lpToken = lpTokenContract(network, lpTokenAddress);
-  const { reserve0, reserve1 } = await lpToken.getReserves();
+  const reserves = await lpToken.getReserves();
 
   const amountIn = await router.getAmountIn(
-    "100000000000000000000",
-    "99986072947175846543856",
-    "100014030993909907182254"
+    amountOut,
+    reserves[0],
+    reserves[1]
   );
 
   return ethers.formatEther(amountIn);
