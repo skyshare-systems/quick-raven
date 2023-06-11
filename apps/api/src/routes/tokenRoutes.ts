@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.post("/allowance", GETallowance);
-router.post("/balanceOf", GETbalanceOf);
-router.post("/totalSupply", GETtotalSupply);
-router.post("/name", GETname);
-router.post("/test", GETtest);
+router.get("/allowance", GETallowance);
+router.get("/balanceOf", GETbalanceOf);
+router.get("/totalSupply", GETtotalSupply);
+router.get("/name", GETname);
+router.get("/test", GETtest);
 
 export default router;
