@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.lpTokenContract = exports.factoryContract = exports.tokenContract = exports.blockchainKeys = void 0;
+exports.routerContract = exports.lpTokenContract = exports.factoryContract = exports.tokenContract = exports.blockchainKeys = void 0;
 const ethers_1 = require("ethers");
 const abi_1 = require("../abi");
 const blockchainKeys = (chainId) => {
@@ -41,3 +41,10 @@ const lpTokenContract = (network, address) => {
     return contract;
 };
 exports.lpTokenContract = lpTokenContract;
+const routerContract = (network, address) => {
+    var _a;
+    const provider = new ethers_1.ethers.JsonRpcProvider((_a = (0, exports.blockchainKeys)(network)) === null || _a === void 0 ? void 0 : _a.https);
+    const contract = new ethers_1.ethers.Contract(address, abi_1.tokenAbi, provider);
+    return contract;
+};
+exports.routerContract = routerContract;

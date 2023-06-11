@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GETpair = void 0;
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
-const factoryData_1 = require("../hooks/factoryData");
+const data_1 = require("../config/data");
 exports.GETpair = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { network, factoryAddress, tokenA, tokenB } = req.body;
     let pair;
     try {
-        pair = yield (0, factoryData_1.getPair)(network, factoryAddress, tokenA, tokenB);
+        pair = yield (0, data_1.factoryContract)(network, factoryAddress).getPair(tokenA, tokenB);
     }
     catch (e) {
         res.status(400).send(e);

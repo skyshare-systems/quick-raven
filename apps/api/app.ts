@@ -10,6 +10,8 @@ import factoryRoutes from "./src/routes/factoryRoutes";
 const port = 3000;
 const app: Express = express();
 
+app.use(express.json());
+
 // MIDDLEWARE
 
 // Routers

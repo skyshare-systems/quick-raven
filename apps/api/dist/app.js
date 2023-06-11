@@ -11,11 +11,12 @@ const factoryRoutes_1 = __importDefault(require("./src/routes/factoryRoutes"));
 // CONFIG
 const port = 3000;
 const app = (0, express_1.default)();
+app.use(express_1.default.json());
 // MIDDLEWARE
 // Routers
-app.use("api/token", tokenRoutes_1.default);
-app.use("api/lp", lpRoutes_1.default);
-app.use("api/factory", factoryRoutes_1.default);
+app.use("/api/token", tokenRoutes_1.default);
+app.use("/api/lp", lpRoutes_1.default);
+app.use("/api/factory", factoryRoutes_1.default);
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

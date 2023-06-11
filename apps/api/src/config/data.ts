@@ -40,3 +40,10 @@ export const lpTokenContract = (network: number, address: string) => {
 
   return contract;
 };
+
+export const routerContract = (network: number, address: string) => {
+  const provider = new ethers.JsonRpcProvider(blockchainKeys(network)?.https);
+  const contract = new ethers.Contract(address, tokenAbi, provider);
+
+  return contract;
+};
