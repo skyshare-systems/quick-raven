@@ -1,6 +1,4 @@
-import NavbarPage from "components/navigations/navbar";
 import "./globals.css";
-import FooterPage from "components/navigations/footer";
 
 export const metadata = {
   title: "Quick Raven",
@@ -18,11 +16,7 @@ export default function RootLayout({
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
       </head>
-      <body>
-        <NavbarPage />
-        {children}
-        <FooterPage />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

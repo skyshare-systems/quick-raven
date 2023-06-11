@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { Squircle } from "corner-smoothing";
+import Link from "next/link";
 
 const HeroSectionPage = () => {
   return (
@@ -13,10 +14,19 @@ const HeroSectionPage = () => {
         className="absolute right-0 -z-[1]"
         src={"/assets/hero/landing-hero.svg"}
         alt={"hero"}
-        width={1000}
-        height={1000}
+        width={1100}
+        height={1100}
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-out"
+        data-aos-delay="300"
+        data-aos-offset="0"
       />
-      <div className="flex flex-col justify-center px-5 lg:px-0 max-w-[1400px] grow gap-5">
+      <div
+        className="flex flex-col justify-center px-5 lg:px-0 max-w-[1400px] grow gap-5"
+        data-aos="fade-up"
+        data-aos-easing="ease-in-out"
+        data-aos-once="true"
+      >
         <Image
           src={"/assets/quickraven-text.svg"}
           alt={"hero"}
@@ -48,9 +58,14 @@ const HeroSectionPage = () => {
           cornerSmoothing={1}
           cornerRadius={12}
         >
-          <button className="w-full py-3 sm:py-4 px-3 mobile-title sm:tablet-title md:web-title text-black">
-            Join the Waitlist
-          </button>
+          <Link
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfcDqh2BRvX6kMiGa7mV3RMjfrNbatcpxodMzOdId0e-eDCLA/viewform"
+            target="_blank"
+          >
+            <button className="w-full py-3 sm:py-4 px-3 mobile-title sm:tablet-title md:web-title text-black">
+              Join the Waitlist
+            </button>
+          </Link>
         </Squircle>
       </div>
     </div>
