@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 const availabletokens = [
@@ -284,6 +284,23 @@ const crosschainbridge = [
 ];
 
 const SupportedPlatformPage = () => {
+  const [triggerID, setTriggerID] = useState(1);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTriggerID((prevCount) => prevCount + 1);
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    if (triggerID > 4) {
+      setTriggerID(1);
+    }
+  }, [triggerID]);
+
+  console.log(triggerID);
   return (
     <div
       className="relative flex flex-col py-[1rem] h-auto justify-center items-center gap-5"
@@ -293,16 +310,49 @@ const SupportedPlatformPage = () => {
         Supported Platforms
       </h2>
       <div className="flex flex-wrap gap-11 w-full justify-center items-start max-w-[1400px] px-5 lg:px-0">
-        <div className="flex flex-col items-center gap-5  w-full max-w-[300px] ">
-          <h4 className="mobile-h4 sm:tablet-h4 md:web-h4 text-white">
+        <div
+          className={`flex flex-col items-center gap-5  w-full max-w-[300px] duration-1000 ${
+            triggerID === 1 ? "opacity-100" : "opacity-50"
+          }`}
+        >
+          <h4
+            className={`relative flex flex-col items-center mobile-h4 sm:tablet-h4 md:web-h4 ${
+              triggerID === 1
+                ? "text-transparent bg-clip-text bg-gradient-to-t from-[#1decdd] to-[#1dc78c]"
+                : "text-white"
+            } mb-5`}
+          >
             Available Tokens
+            <Image
+              src={"/assets/supported-platforms/line.svg"}
+              alt={"line"}
+              width={100}
+              height={10}
+              className={`absolute top-5 duration-1000 ${
+                triggerID === 1 ? "opacity-100" : "opacity-0"
+              }`}
+            />
+            <Image
+              src={"/assets/supported-platforms/glow-supported-platform.svg"}
+              alt={"line"}
+              width={100}
+              height={10}
+              className={`absolute top-5 duration-1000 -z-[1] ${
+                triggerID === 1 ? "opacity-100" : "opacity-0"
+              }`}
+            />
           </h4>
           <div className="flex flex-wrap gap-2 justify-center items-center">
             {availabletokens.map((data, index) => {
               return (
                 <button
                   key={index}
-                  className={`flex flex-row items-center px-3 py-3 border-[2px] rounded-xl w-full ${data.width} border-[#1c1c1c] text-white gap-2`}
+                  className={`flex flex-row items-center px-3 py-3 border-[2px] ${
+                    triggerID === 1 && "border-[#063b53] bg-[#063b53]/40"
+                  } rounded-xl w-full ${
+                    data.width
+                  } border-[#1c1c1c] text-white gap-2`}
+                  disabled
                 >
                   <Image
                     src={data.imgUrl}
@@ -315,28 +365,60 @@ const SupportedPlatformPage = () => {
               );
             })}
             <button
-              className={`flex flex-row items-center px-3 py-3 border-[2px] rounded-xl w-full max-w-[140px] border-[#1c1c1c] text-white gap-2`}
+              className={`flex flex-row items-center px-3 py-3 border-[2px] rounded-xl ${
+                triggerID === 1 && "border-[#063b53] bg-[#063b53]/40"
+              } w-full max-w-[140px] border-[#1c1c1c] text-white gap-2`}
             >
               + 22K more
             </button>
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-5  w-full max-w-[300px] ">
-          <h4 className="mobile-h4 sm:tablet-h4 md:web-h4 text-white">
+        <div
+          className={`flex flex-col items-center gap-5  w-full max-w-[300px] duration-1000 ${
+            triggerID === 2 ? "opacity-100" : "opacity-50"
+          }`}
+        >
+          <h4
+            className={`relative flex flex-col items-center mobile-h4 sm:tablet-h4 md:web-h4 ${
+              triggerID === 2
+                ? "text-transparent bg-clip-text bg-gradient-to-t from-[#1decdd] to-[#1dc78c]"
+                : "text-white"
+            } mb-5 w-20`}
+          >
             Chains
+            <Image
+              src={"/assets/supported-platforms/line.svg"}
+              alt={"line"}
+              width={300}
+              height={20}
+              className={`absolute top-5 w-full duration-1000 ${
+                triggerID === 2 ? "opacity-100" : "opacity-0"
+              }`}
+            />
+            <Image
+              src={"/assets/supported-platforms/glow-supported-platform.svg"}
+              alt={"line"}
+              width={100}
+              height={10}
+              className={`absolute top-5 duration-1000 -z-[1] ${
+                triggerID === 2 ? "opacity-100" : "opacity-0"
+              }`}
+            />
           </h4>
           <div className="flex flex-wrap gap-2 justify-center items-center">
             {chains.map((data, index) => {
               return (
                 <button
                   key={index}
-                  className={`flex flex-row items-center px-3 py-3 border-[2px] rounded-xl w-full ${
-                    data.width
-                  } ${
+                  className={`flex flex-row items-center px-3 py-3 border-[2px] ${
+                    triggerID === 2 &&
+                    data.isLive === true &&
+                    "border-[#063b53] bg-[#063b53]/40"
+                  } rounded-xl w-full ${data.width} ${
                     data.isLive === false && "blur-sm"
                   } border-[#1c1c1c] text-white gap-2`}
-                  disabled={data.isLive === false && true}
+                  disabled
                 >
                   <Image
                     src={data.imgUrl}
@@ -351,21 +433,51 @@ const SupportedPlatformPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-5  w-full max-w-[300px] ">
-          <h4 className="mobile-h4 sm:tablet-h4 md:web-h4 text-white">
+        <div
+          className={`flex flex-col items-center gap-5  w-full max-w-[300px] duration-1000 ${
+            triggerID === 3 ? "opacity-100" : "opacity-50"
+          }`}
+        >
+          <h4
+            className={`relative flex flex-col items-center mobile-h4 sm:tablet-h4 md:web-h4 ${
+              triggerID === 3
+                ? "text-transparent bg-clip-text bg-gradient-to-t from-[#1decdd] to-[#1dc78c]"
+                : "text-white"
+            } mb-5`}
+          >
             Decentralized Exchanges
+            <Image
+              src={"/assets/supported-platforms/line.svg"}
+              alt={"line"}
+              width={100}
+              height={10}
+              className={`absolute top-5 duration-1000 ${
+                triggerID === 3 ? "opacity-100" : "opacity-0"
+              }`}
+            />
+            <Image
+              src={"/assets/supported-platforms/glow-supported-platform.svg"}
+              alt={"line"}
+              width={100}
+              height={10}
+              className={`absolute top-5 duration-1000 -z-[1] ${
+                triggerID === 3 ? "opacity-100" : "opacity-0"
+              }`}
+            />
           </h4>
           <div className="flex flex-wrap gap-2 justify-center items-center">
             {decentralizedexchange.map((data, index) => {
               return (
                 <button
                   key={index}
-                  className={`flex flex-row items-center px-3 py-3 border-[2px] rounded-xl w-full ${
-                    data.width
-                  } ${
+                  className={`flex flex-row items-center px-3 py-3 ${
+                    triggerID === 3 &&
+                    data.isLive === true &&
+                    "border-[#063b53] bg-[#063b53]/40"
+                  } border-[2px] rounded-xl w-full ${data.width} ${
                     data.isLive === false && "blur-sm"
                   } border-[#1c1c1c] text-white gap-2`}
-                  disabled={data.isLive === false && true}
+                  disabled
                 >
                   <Image
                     src={data.imgUrl}
@@ -380,21 +492,51 @@ const SupportedPlatformPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-5  w-full max-w-[300px] ">
-          <h4 className="mobile-h4 sm:tablet-h4 md:web-h4 text-white">
-            Cross Chain Bridge
+        <div
+          className={`flex flex-col items-center gap-5  w-full max-w-[300px] duration-1000 ${
+            triggerID === 4 ? "opacity-100" : "opacity-50"
+          } `}
+        >
+          <h4
+            className={`relative flex flex-col items-center mobile-h4 sm:tablet-h4 md:web-h4 ${
+              triggerID === 4
+                ? "text-transparent bg-clip-text bg-gradient-to-t from-[#1decdd] to-[#1dc78c]"
+                : "text-white"
+            } mb-5`}
+          >
+            Cross-Chain Bridges
+            <Image
+              src={"/assets/supported-platforms/line.svg"}
+              alt={"line"}
+              width={100}
+              height={10}
+              className={`absolute top-5 duration-1000 ${
+                triggerID === 4 ? "opacity-100" : "opacity-0"
+              }`}
+            />
+            <Image
+              src={"/assets/supported-platforms/glow-supported-platform.svg"}
+              alt={"line"}
+              width={100}
+              height={10}
+              className={`absolute top-5 duration-1000 -z-[1] ${
+                triggerID === 4 ? "opacity-100" : "opacity-0"
+              }`}
+            />
           </h4>
           <div className="flex flex-wrap gap-2 justify-center items-center">
             {crosschainbridge.map((data, index) => {
               return (
                 <button
                   key={index}
-                  className={`flex flex-row items-center px-3 py-3 border-[2px] rounded-xl w-full ${
-                    data.width
-                  } ${
+                  className={`flex flex-row items-center px-3 py-3 ${
+                    triggerID === 4 &&
+                    data.isLive === true &&
+                    "border-[#063b53] bg-[#063b53]/40"
+                  } border-[2px] rounded-xl w-full ${data.width} ${
                     data.isLive === false && "blur-sm"
                   } border-[#1c1c1c] text-white gap-2`}
-                  disabled={data.isLive === false && true}
+                  disabled
                 >
                   <Image
                     src={data.imgUrl}

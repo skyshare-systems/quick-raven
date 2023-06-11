@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const NavbarPage = () => {
-  const [showTutorial, setShowTutorial] = React.useState(false);
-
   return (
     <>
       <nav className="fixed top-0 flex flex-row justify-center items-center backdrop-filter backdrop-blur-md z-[4] w-full bg-black/10 px-5 lg:px-0">
@@ -44,22 +42,24 @@ const NavbarPage = () => {
                 className="flex md:hidden"
               />
             </Link>
-            <div
-              onClick={() => setShowTutorial(!showTutorial)}
-              className="cursor-pointer"
+            <Link
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfcDqh2BRvX6kMiGa7mV3RMjfrNbatcpxodMzOdId0e-eDCLA/viewform"
+              target="_blank"
             >
-              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title md:flex">
-                Join waitlist
-              </p>
+              <div className="cursor-pointer">
+                <p className="hidden text-white mobile-title sm:tablet-title lg:web-title md:flex">
+                  Join waitlist
+                </p>
 
-              <Image
-                src={"/icons/user-clock-solid.svg"}
-                alt={"logo"}
-                height={20}
-                width={20}
-                className="flex md:hidden "
-              />
-            </div>
+                <Image
+                  src={"/icons/user-clock-solid.svg"}
+                  alt={"logo"}
+                  height={20}
+                  width={20}
+                  className="flex md:hidden "
+                />
+              </div>
+            </Link>
           </ul>
         </div>
       </nav>

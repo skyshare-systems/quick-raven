@@ -32,7 +32,7 @@ export default function TransactionPage() {
           alt={"glow"}
           height={320}
           width={320}
-          className="absolute hidden lg:flex bottom-3 right-0 2xl:right-20 -z-[1]"
+          className="absolute hidden lg:flex bottom-3 right-0 2xl:right-20 -z-[1] 2xl:flex"
         />
         <Squircle
           cornerRadius={30}

@@ -50,7 +50,7 @@ const FooterPage = () => {
 
   return (
     <footer className="px-16">
-      <hr />
+      <hr className="opacity-30" />
       <div className="flex flex-col lg:flex-row lg:flex-wrap justify-center lg:justify-between items-center py-[1.5rem] gap-5">
         <Image
           src={"/assets/logo-with-letter.svg"}
