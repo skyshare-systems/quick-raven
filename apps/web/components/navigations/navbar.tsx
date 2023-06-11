@@ -19,7 +19,7 @@ const NavbarPage = () => {
               />
             </Link>
             <Link href="/">
-              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title md:flex">
+              <p className="hidden text-[#ffffff] hover:text-[#ffffff64] transition ease-in-out duration-300 mobile-title sm:tablet-title lg:web-title md:flex">
                 Home
               </p>
               <Image
@@ -31,7 +31,7 @@ const NavbarPage = () => {
               />
             </Link>
             <Link href="https://medium.com/@quickraven" target="_blank">
-              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title md:flex">
+              <p className="hidden text-[#ffffff64] hover:text-[#ffffff] transition ease-in-out duration-300 mobile-title sm:tablet-title lg:web-title md:flex">
                 Whitepaper
               </p>
               <Image
@@ -47,7 +47,7 @@ const NavbarPage = () => {
               target="_blank"
             >
               <div className="cursor-pointer">
-                <p className="hidden text-white mobile-title sm:tablet-title lg:web-title md:flex">
+                <p className="hidden text-[#ffffff64] hover:text-[#ffffff] transition ease-in-out duration-300 mobile-title sm:tablet-title lg:web-title md:flex">
                   Join waitlist
                 </p>
 

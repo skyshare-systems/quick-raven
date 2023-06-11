@@ -81,7 +81,11 @@ const PartnerTeamPage = () => {
           data-aos-once="true"
         >
           Interested to be part of us?{" "}
-          <Link href="mailto:quickraven@skysharelabs.com" target="_blank">
+          <Link
+            href="mailto:quickraven@skysharelabs.com"
+            target="_blank"
+            className="hover:text-[#1DFFAE] transition ease-in-out duration-300"
+          >
             <u>Send us an email</u>
           </Link>
         </p>

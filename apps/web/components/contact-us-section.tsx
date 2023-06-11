@@ -20,12 +20,8 @@ const ContactUsPage = () => {
           </span>
         </h2>
         <Link href="mailto:quickraven@skysharelabs.com" target="_blank">
-          <Squircle
-            cornerSmoothing={1}
-            cornerRadius={10}
-            className="duration-200 hover:scale-105 active:scale-95"
-          >
-            <button className="px-5 py-3 text-black mobile-title sm:tablet-title md:web-title bg-gradient-to-b from-[#1de1fa] via-[#1df2cd] to-[#1dffae]">
+          <Squircle cornerSmoothing={1} cornerRadius={10}>
+            <button className="px-5 py-3 text-black mobile-title sm:tablet-title md:web-title bg-gradient-to-b from-[#1de1fa] via-[#1df2cd] to-[#1dffae] hover:from-[#1B8D9B52] hover:via-[#14998252] hover:to-[#1D9C6E52] hover:text-white transition ease-in-out duration-300 hover:transition hover:ease-in-out hover:duration-300">
               Contact us
             </button>
           </Squircle>

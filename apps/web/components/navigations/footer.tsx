@@ -68,7 +68,7 @@ const FooterPage = () => {
                   alt={data.name}
                   width={20}
                   height={20}
-                  className="grayscale hover:grayscale-0 hover:scale-125 active:scale-95 duration-300"
+                  className="grayscale hover:grayscale-0 transition ease-in-out duration-300 opacity-50 hover:opacity-100"
                 />
               </Link>
             );

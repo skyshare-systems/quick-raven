@@ -335,8 +335,8 @@ const SupportedPlatformPage = () => {
               src={"/assets/supported-platforms/glow-supported-platform.svg"}
               alt={"line"}
               width={100}
-              height={10}
-              className={`absolute top-5 duration-1000 -z-[1] ${
+              height={200}
+              className={`absolute top-16 duration-1000 scale-[4] -z-[1] ${
                 triggerID === 1 ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -402,7 +402,7 @@ const SupportedPlatformPage = () => {
               alt={"line"}
               width={100}
               height={10}
-              className={`absolute top-5 duration-1000 -z-[1] ${
+              className={`absolute top-16 duration-1000 scale-[4] -z-[1] ${
                 triggerID === 2 ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -461,7 +461,7 @@ const SupportedPlatformPage = () => {
               alt={"line"}
               width={100}
               height={10}
-              className={`absolute top-5 duration-1000 -z-[1] ${
+              className={`absolute top-16 duration-1000 scale-[4] -z-[1] ${
                 triggerID === 3 ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -520,7 +520,7 @@ const SupportedPlatformPage = () => {
               alt={"line"}
               width={100}
               height={10}
-              className={`absolute top-5 duration-1000 -z-[1] ${
+              className={`absolute top-16 duration-1000 scale-[4] -z-[1] ${
                 triggerID === 4 ? "opacity-100" : "opacity-0"
               }`}
             />

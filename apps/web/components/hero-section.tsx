@@ -62,11 +62,9 @@ const HeroSectionPage = () => {
 
         <Squircle
           style={{
-            padding: "2px",
-            background: "#ffffff",
             borderBottomWidth: 0,
           }}
-          className="flex justify-center items-center w-full xsm:w-32 sm:w-44 hover:scale-105 active:scale-95 duration-200"
+          className="flex group overflow-hidden bg-[#ffffff] justify-center items-center w-full xsm:w-32 sm:w-44 transition ease-in-out duration-300 hover:bg-[#ffffff12] hover:backdrop-blur-md"
           cornerSmoothing={1}
           cornerRadius={12}
         >
@@ -74,8 +72,8 @@ const HeroSectionPage = () => {
             href="https://docs.google.com/forms/d/e/1FAIpQLSfcDqh2BRvX6kMiGa7mV3RMjfrNbatcpxodMzOdId0e-eDCLA/viewform"
             target="_blank"
           >
-            <button className="w-full py-3 sm:py-4 px-3 mobile-title sm:tablet-title md:web-title text-black">
-              Join the Waitlist
+            <button className="w-full py-8 sm:py-4 px-4 mobile-title sm:tablet-title md:web-title text-black transition ease-in-out duration-300 group-hover:text-white">
+              Join the waitlist
             </button>
           </Link>
         </Squircle>
