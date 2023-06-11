@@ -11,7 +11,7 @@ const HeroSectionPage = () => {
       id="hero-section"
     >
       <Image
-        className="absolute right-0 -z-[1]"
+        className="absolute right-0 -z-[1] hidden md:flex"
         src={"/assets/hero/landing-hero.svg"}
         alt={"hero"}
         width={1100}
@@ -27,6 +27,18 @@ const HeroSectionPage = () => {
         data-aos-easing="ease-in-out"
         data-aos-once="true"
       >
+        <Image
+          className="flex md:hidden"
+          src={"/assets/hero/landing-hero.svg"}
+          alt={"hero"}
+          width={1100}
+          height={1100}
+          data-aos="fade-zoom-in"
+          data-aos-easing="ease-in-out"
+          data-aos-delay="300"
+          data-aos-offset="0"
+        />
+
         <Image
           src={"/assets/quickraven-text.svg"}
           alt={"hero"}

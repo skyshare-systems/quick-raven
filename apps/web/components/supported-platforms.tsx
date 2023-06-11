@@ -300,7 +300,6 @@ const SupportedPlatformPage = () => {
     }
   }, [triggerID]);
 
-  console.log(triggerID);
   return (
     <div
       className="relative flex flex-col py-[1rem] h-auto justify-center items-center gap-5"
