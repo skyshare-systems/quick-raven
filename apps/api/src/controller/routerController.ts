@@ -14,7 +14,6 @@ export const GETamountIn = expressAsyncHandler(async (req, res) => {
       amountOut
     );
   } catch (e) {
-    console.info("lajdlkajsdlkja");
     res.status(400).send(e);
   }
 

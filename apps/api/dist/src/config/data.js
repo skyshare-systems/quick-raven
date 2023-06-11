@@ -44,7 +44,7 @@ exports.lpTokenContract = lpTokenContract;
 const routerContract = (network, address) => {
     var _a;
     const provider = new ethers_1.ethers.JsonRpcProvider((_a = (0, exports.blockchainKeys)(network)) === null || _a === void 0 ? void 0 : _a.https);
-    const contract = new ethers_1.ethers.Contract(address, abi_1.tokenAbi, provider);
+    const contract = new ethers_1.ethers.Contract(address, abi_1.routerAbi, provider);
     return contract;
 };
 exports.routerContract = routerContract;

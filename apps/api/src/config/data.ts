@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { tokenAbi, factoryAbi, lpTokenAbi } from "../abi";
+import { tokenAbi, factoryAbi, lpTokenAbi, routerAbi } from "../abi";
 
 export const blockchainKeys = (chainId: number) => {
   if (chainId === 80001) {
@@ -43,7 +43,7 @@ export const lpTokenContract = (network: number, address: string) => {
 
 export const routerContract = (network: number, address: string) => {
   const provider = new ethers.JsonRpcProvider(blockchainKeys(network)?.https);
-  const contract = new ethers.Contract(address, tokenAbi, provider);
+  const contract = new ethers.Contract(address, routerAbi, provider);
 
   return contract;
 };
