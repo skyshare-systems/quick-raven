@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { Squircle } from "corner-smoothing";
+import Link from "next/link";
 
 const HeroSectionPage = () => {
   return (
@@ -10,13 +11,34 @@ const HeroSectionPage = () => {
       id="hero-section"
     >
       <Image
-        className="absolute right-0 -z-[1]"
+        className="absolute right-0 -z-[1] hidden md:flex"
         src={"/assets/hero/landing-hero.svg"}
         alt={"hero"}
-        width={1000}
-        height={1000}
+        width={1100}
+        height={1100}
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-out"
+        data-aos-delay="300"
+        data-aos-offset="0"
       />
-      <div className="flex flex-col justify-center px-5 lg:px-0 max-w-[1400px] grow gap-5">
+      <div
+        className="flex flex-col justify-center px-5 lg:px-0 max-w-[1400px] grow gap-5"
+        data-aos="fade-up"
+        data-aos-easing="ease-in-out"
+        data-aos-once="true"
+      >
+        <Image
+          className="flex md:hidden"
+          src={"/assets/hero/landing-hero.svg"}
+          alt={"hero"}
+          width={1100}
+          height={1100}
+          data-aos="fade-zoom-in"
+          data-aos-easing="ease-in-out"
+          data-aos-delay="300"
+          data-aos-offset="0"
+        />
+
         <Image
           src={"/assets/quickraven-text.svg"}
           alt={"hero"}
@@ -40,17 +62,20 @@ const HeroSectionPage = () => {
 
         <Squircle
           style={{
-            padding: "2px",
-            background: "#ffffff",
             borderBottomWidth: 0,
           }}
-          className="flex justify-center items-center w-full xsm:w-32 sm:w-44 hover:scale-105 active:scale-95 duration-200"
+          className="flex group overflow-hidden bg-[#ffffff] justify-center items-center w-full xsm:w-32 sm:w-44 transition ease-in-out duration-300 hover:bg-[#ffffff12] hover:backdrop-blur-md"
           cornerSmoothing={1}
           cornerRadius={12}
         >
-          <button className="w-full py-3 sm:py-4 px-3 mobile-title sm:tablet-title md:web-title text-black">
-            Join the Waitlist
-          </button>
+          <Link
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfcDqh2BRvX6kMiGa7mV3RMjfrNbatcpxodMzOdId0e-eDCLA/viewform"
+            target="_blank"
+          >
+            <button className="w-full py-8 sm:py-4 px-4 mobile-title sm:tablet-title md:web-title text-black transition ease-in-out duration-300 group-hover:text-white">
+              Join the waitlist
+            </button>
+          </Link>
         </Squircle>
       </div>
     </div>

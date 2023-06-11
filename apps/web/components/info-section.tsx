@@ -13,12 +13,29 @@ const InfoSectionPage = () => {
           alt={"hero"}
           width={600}
           height={600}
+          data-aos="fade-zoom-in"
+          data-aos-easing="ease-in-out"
+          data-aos-delay="200"
+          data-aos-offset="0"
+          data-aos-once="true"
         />
-        <h2 className="md:leading-[50px] text-center mobile-h2 sm:tablet-h2 md:web-h2 text-transparent bg-clip-text bg-gradient-to-b from-[#fdfdfd] to-[#9a9a9a] max-w-[900px]">
+        <h2
+          className="md:leading-[60px] text-center mobile-h2 sm:tablet-h2 md:web-h2 text-transparent bg-clip-text bg-gradient-to-b from-[#fdfdfd] to-[#9a9a9a] max-w-[900px]"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          data-aos-easing="ease-in-out"
+          data-aos-once="true"
+        >
           Offering one-stop swap across the networks maximizing all supported
-          DEXes Liquidity
+          DEXes and Bridges
         </h2>
-        <p className="mobile-description sm:tablet-description md:web-description text-white text-center max-w-[600px]">
+        <p
+          className="mobile-description sm:tablet-description md:web-description text-[#D4D4D4] text-center max-w-[600px]"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          data-aos-easing="ease-in-out"
+          data-aos-once="true"
+        >
           With just one transaction approval, Quick Raven will make it possible
           to get your desired token from one network to another
         </p>

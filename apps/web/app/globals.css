@@ -2,11 +2,12 @@
 
 ::-webkit-scrollbar {
   width: 10px;
+  background: transparent;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+  background: transparent;
   stroke-width: 2px;
   border-bottom: none;
   border-top: none;
@@ -24,7 +25,7 @@
   background: #2d7a9c;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1400px) {
   #hero-section {
     background: radial-gradient(
       32.05% 51.28% at 0% 50%,
