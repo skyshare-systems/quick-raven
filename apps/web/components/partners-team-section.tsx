@@ -74,7 +74,7 @@ const PartnerTeamPage = () => {
           Pending approvals to some grants and negotiating with partners...
         </p>
         <p
-          className="mobile-description sm:tablet-description md:web-description text-white"
+          className="mobile-description sm:tablet-description md:web-description text-white mb-5"
           data-aos="fade-up"
           data-aos-delay={`200`}
           data-aos-easing="ease-in-out"

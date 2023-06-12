@@ -4,7 +4,7 @@ import Image from "next/image";
 const availabletokens = [
   {
     id: 1,
-    name: "BTC",
+    name: "WBTC",
     imgUrl: "/icons/available-coins/btc-icon.svg",
     width: "max-w-[90px]",
   },
@@ -218,13 +218,13 @@ const crosschainbridge = [
     width: "max-w-[140px]",
     isLive: true,
   },
-  {
-    id: 2,
-    name: "Matic",
-    imgUrl: "/icons/cross-chain-bridge/matic-icon.svg",
-    width: "max-w-[140px]",
-    isLive: true,
-  },
+  // {
+  //   id: 2,
+  //   name: "Matic",
+  //   imgUrl: "/icons/cross-chain-bridge/matic-icon.svg",
+  //   width: "max-w-[140px]",
+  //   isLive: true,
+  // },
   {
     id: 3,
     name: "Synapse",
