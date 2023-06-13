@@ -70,7 +70,8 @@ const ModalTokenDestinationPage = ({
                           handleSelectedTokenDestination(
                             data.tokenName,
                             data.imgUrl,
-                            data.address
+                            data.address,
+                            data.chainID
                           )
                         }
                         disabled={destinationNetwork === ""}
@@ -107,7 +108,8 @@ const ModalTokenDestinationPage = ({
                           handleSelectedTokenDestination(
                             data.tokenName,
                             data.imgUrl,
-                            data.address
+                            data.address,
+                            data.chainID
                           )
                         }
                         disabled={destinationNetwork === ""}
@@ -160,7 +162,9 @@ const ModalTokenDestinationPage = ({
                           onClick={() =>
                             handleSelectedTokenDestination(
                               data.tokenName,
-                              data.imgUrl
+                              data.imgUrl,
+                              data.address,
+                              data.chainID
                             )
                           }
                         >
@@ -214,7 +218,9 @@ const ModalTokenDestinationPage = ({
                           onClick={() =>
                             handleSelectedTokenDestination(
                               data.tokenName,
-                              data.imgUrl
+                              data.imgUrl,
+                              data.address,
+                              data.chainID
                             )
                           }
                         >

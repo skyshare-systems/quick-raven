@@ -10,6 +10,7 @@ export const network = [
     dexRouterAddress: {
       uniswap: "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff",
     },
+    chainID: 80001,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ export const network = [
     dexRouterAddress: {
       uniswap: "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff",
     },
+    chainID: 97,
   },
 ];
 
@@ -31,6 +33,7 @@ export const tokenpolygon = [
     tokenName: "Matic",
     address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
     imgUrl: "/icons/matic-icon.svg",
+    chainID: 80001,
   },
   // {
   //   id: 2,
@@ -58,6 +61,7 @@ export const tokenbsc = [
     tokenName: "USDT",
     address: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18",
     imgUrl: "/icons/usdt-icon.svg",
+    chainID: 97,
   },
   // {
   //   id: 2,

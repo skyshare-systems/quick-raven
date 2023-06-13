@@ -173,12 +173,12 @@ const SwapPage = () => {
 
   // Dynamic Allowance
 
-  const { data: checkAllowance } = useContractRead({
-    address: tokenInitAddress,
-    abi: TokenABI,
-    functionName: "allowance",
-    args: [account!, dexAddress],
-  });
+  // const { data: checkAllowance } = useContractRead({
+  //   address: tokenInitAddress,
+  //   abi: TokenABI,
+  //   functionName: "allowance",
+  //   args: [account!, dexAddress],
+  // });
 
   const { data: gasfee, isLoading: isLoadingGasFee } = useFeeData({
     watch: true,
@@ -196,32 +196,36 @@ const SwapPage = () => {
     setInitChainID(network);
     setShowModalToken(!showModalToken);
     await axios
-      .get("https://quickraven-api.onrender.com/api/token/balanceOf", {
-        data: {
-          network: "80001",
-          tokenAddress: "0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b",
-          userAddress: "0x8bcdCAcC2eA3ef45B60Ae555Fef20B2b4EC81241",
-        },
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "Access-Control-Allow-Origin": "*",
-          Accept: "application/json;charset=UTF-8",
-        },
+      .post("https://quickraven-api.onrender.com/api/token/balanceOf", {
+        network: network,
+        tokenAddress: address,
+        userAddress: account,
       })
       .then((response) => {
-        console.log(response);
+        updateBalanceOf(response.data, 0);
       });
   };
 
-  const handleSelectedTokenDestination = (
+  const handleSelectedTokenDestination = async (
     tokenName: any,
     imgUrl: any,
-    address: any
+    address: any,
+    network: number
   ) => {
     setTokenDestinationName(tokenName);
     setTokenDestinationImgUrl(imgUrl);
     setTokenDestinationAddress(address);
     setShowModalTokenDestination(!showModalTokenDestination);
+    await axios
+      .post("https://quickraven-api.onrender.com/api/token/balanceOf", {
+        network: network,
+        tokenAddress: address,
+        userAddress: account,
+      })
+      .then((response) => {
+        console.log(response.data);
+        updateBalanceOf(balanceOfToken0, response.data);
+      });
   };
 
   const {
@@ -247,6 +251,23 @@ const SwapPage = () => {
       setHash(res.hash);
     });
   };
+
+  const checkAllowance = async () =>
+    // network: number,
+    // tokenAddress: string,
+    // spenderAddress: string
+    {
+      await axios
+        .post("https://quickraven-api.onrender.com/api/token/allowance", {
+          network: chain?.id,
+          tokenAddress: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
+          owner: account,
+          spender: "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4",
+        })
+        .then((response) => {
+          console.log(response.data);
+        });
+    };
 
   // useEffect(() => {
   //   if (isErrorSwap === true) {
@@ -302,6 +323,8 @@ const SwapPage = () => {
             // setChainAddress(data.address);
             setDexAddress(data.dexAggregatorAddress);
             setTokenLpAddress(data.lpAddress);
+            checkAllowance();
+            // checkAllowance(data.chainID,);
           } else {
             updateNetworkDestination("", "");
             setTokenInitName("");
@@ -373,19 +396,19 @@ const SwapPage = () => {
     }
   }, [isSwapSuccess]);
 
-  useEffect(() => {
-    // console.log(ethers.utils.formatEther(String(checkAllowance)));
-    const allowance = Number(checkAllowance);
-    console.log(isSwapSuccess);
-    if (isConnected) {
-      console.log(allowance);
-      if (tokenInputs > allowance && isSwapSuccess === false) {
-        setDynamicButtons("Approve");
-      } else {
-        setDynamicButtons("swap");
-      }
-    }
-  }, [tokenInputs]);
+  // useEffect(() => {
+  //   // console.log(ethers.utils.formatEther(String(checkAllowance)));
+  //   const allowance = Number(checkAllowance);
+  //   console.log(isSwapSuccess);
+  //   if (isConnected) {
+  //     console.log(allowance);
+  //     if (tokenInputs > allowance && isSwapSuccess === false) {
+  //       setDynamicButtons("Approve");
+  //     } else {
+  //       setDynamicButtons("swap");
+  //     }
+  //   }
+  // }, []);
 
   if (!hasMounted) {
     return null;
@@ -506,6 +529,7 @@ const SwapPage = () => {
                 />
 
                 <button
+                  onClick={() => setTokenInputs(balanceOfToken0)}
                   className={`flex justify-center items-center text-[#1cacef] bg-[#1c3843] px-3 my-2 rounded-lg uppercase mobile-title sm:tablet-title md:web-title hover:opacity-60 duration-300`}
                 >
                   Max
@@ -550,7 +574,7 @@ const SwapPage = () => {
               </div>
               <TokenStatsPage
                 convertedValue={123}
-                balance={123}
+                balance={parseFloat(balanceOfToken0.toFixed(6))}
                 tokenName={tokenInitName}
               />
             </div>
@@ -645,7 +669,7 @@ const SwapPage = () => {
             </div>
             <TokenStatsPage
               convertedValue={123}
-              balance={123}
+              balance={parseFloat(balanceOfToken1.toFixed(6))}
               tokenName={tokenDestinationName}
             />
           </div>
