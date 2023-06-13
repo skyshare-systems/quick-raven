@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { lpTokenContract, routerContract } from "../config/data";
 
 export const tokenOutPrice = async (
-  network: number,
+  network: string,
   routerAddress: string,
   lpTokenAddress: string,
   amountIn: string
@@ -22,7 +22,7 @@ export const tokenOutPrice = async (
 };
 
 export const tokenInPrice = async (
-  network: number,
+  network: string,
   routerAddress: string,
   lpTokenAddress: string,
   amountOut: string
