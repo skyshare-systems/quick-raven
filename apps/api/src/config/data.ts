@@ -1,8 +1,8 @@
 import { ethers } from "ethers";
 import { tokenAbi, factoryAbi, lpTokenAbi, routerAbi } from "../abi";
 
-export const blockchainKeys = (chainId: string) => {
-  if (chainId === "80001") {
+export const blockchainKeys = (chainId: number) => {
+  if (chainId === 80001) {
     return {
       key: "rLc98yWplzZqRlAZwg9RwiT",
       https:
@@ -11,7 +11,7 @@ export const blockchainKeys = (chainId: string) => {
     };
   }
 
-  if (chainId === "97") {
+  if (chainId === 97) {
     return {
       key: "",
       https: "https://data-seed-prebsc-1-s1.binance.org:8545/",
@@ -20,28 +20,28 @@ export const blockchainKeys = (chainId: string) => {
   }
 };
 
-export const tokenContract = (network: string, address: string) => {
+export const tokenContract = (network: number, address: string) => {
   const provider = new ethers.JsonRpcProvider(blockchainKeys(network)?.https);
   const contract = new ethers.Contract(address, tokenAbi, provider);
 
   return contract;
 };
 
-export const factoryContract = (network: string, address: string) => {
+export const factoryContract = (network: number, address: string) => {
   const provider = new ethers.JsonRpcProvider(blockchainKeys(network)?.https);
   const contract = new ethers.Contract(address, factoryAbi, provider);
 
   return contract;
 };
 
-export const lpTokenContract = (network: string, address: string) => {
+export const lpTokenContract = (network: number, address: string) => {
   const provider = new ethers.JsonRpcProvider(blockchainKeys(network)?.https);
   const contract = new ethers.Contract(address, lpTokenAbi, provider);
 
   return contract;
 };
 
-export const routerContract = (network: string, address: string) => {
+export const routerContract = (network: number, address: string) => {
   const provider = new ethers.JsonRpcProvider(blockchainKeys(network)?.https);
   const contract = new ethers.Contract(address, routerAbi, provider);
 
