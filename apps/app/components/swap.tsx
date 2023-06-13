@@ -2,7 +2,6 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState, useRef } from "react";
-import { motion, Variants } from "framer-motion";
 import {
   useContractWrite,
   usePrepareContractWrite,
@@ -11,6 +10,7 @@ import {
   useNetwork,
   useWaitForTransaction,
   useFeeData,
+  useSwitchNetwork,
 } from "wagmi";
 import useMounted from "../hooks/useMounted";
 
@@ -26,24 +26,17 @@ import { ConnectNetworkSelect } from "./common/ConnectNetworkSelect";
 import Loading from "./common/Loading";
 
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 import {
   useNetworkInit,
   useNetworkDestination,
   useSelectNetwork,
+  useBalanceOf,
 } from "../lib/stores.ts/stores";
 import TokenStatsPage from "./common/token-stats";
 import DefaultPathwayPage from "./common/default-pathway";
 import PriceBoardPage from "./common/price-board";
-
-const itemVariants: Variants = {
-  open: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 24 },
-  },
-  closed: { opacity: 0, y: 0, transition: { duration: 0.2 } },
-};
 
 const SwapPage = () => {
   const { hasMounted } = useMounted();
@@ -65,6 +58,12 @@ const SwapPage = () => {
     imgUrl: destinationImgUrl,
     updateNetwork: updateNetworkDestination,
   } = useNetworkDestination((state) => state);
+
+  const { balanceOfToken0, balanceOfToken1, updateBalanceOf } = useBalanceOf(
+    (state) => state
+  );
+
+  const [initChainID, setInitChainID] = useState(0);
 
   // States Token Init Network
   const [showModalToken, setShowModalToken] = useState(false);
@@ -185,15 +184,33 @@ const SwapPage = () => {
     watch: true,
   });
 
-  const handleSelectedTokenInit = (
+  const handleSelectedTokenInit = async (
     tokenName: any,
     imgUrl: any,
-    address: any
+    address: string,
+    network: number
   ) => {
     setTokenInitName(tokenName);
     setTokenInitImgUrl(imgUrl);
     setTokenInitAddress(address);
+    setInitChainID(network);
     setShowModalToken(!showModalToken);
+    await axios
+      .get("https://quickraven-api.onrender.com/api/token/balanceOf", {
+        data: {
+          network: "80001",
+          tokenAddress: "0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b",
+          userAddress: "0x8bcdCAcC2eA3ef45B60Ae555Fef20B2b4EC81241",
+        },
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+          Accept: "application/json;charset=UTF-8",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
   };
 
   const handleSelectedTokenDestination = (
@@ -231,11 +248,11 @@ const SwapPage = () => {
     });
   };
 
-  useEffect(() => {
-    if (isErrorSwap === true) {
-      toast(errorSwap?.message);
-    }
-  }, [isErrorSwap]);
+  // useEffect(() => {
+  //   if (isErrorSwap === true) {
+  //     toast(errorSwap?.message);
+  //   }
+  // }, [isErrorSwap]);
 
   useEffect(() => {
     if (isApproveSuccess) {
@@ -243,11 +260,11 @@ const SwapPage = () => {
     }
   }, [isApproveSuccess]);
 
-  useEffect(() => {
-    if (isSuccessSwap == true) {
-      toast("Transaction has been created");
-    }
-  }, [isSuccessSwap]);
+  // useEffect(() => {
+  //   if (isSuccessSwap == true) {
+  //     toast("Transaction has been created");
+  //   }
+  // }, [isSuccessSwap]);
 
   const calculateMinTokenOut = (
     tokenIn: any,

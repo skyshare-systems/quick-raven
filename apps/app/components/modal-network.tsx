@@ -37,7 +37,7 @@ const ModalNetworkPage = ({ isOpen }: any) => {
         <div className="absolute flex flex-col gap-5 z-[2] w-full">
           <div className="relative flex flex-row justify-between">
             <p className="mobile-overline sm:tablet-overline lg:web-overline text-white">
-              Please choose your {labelNetwork}
+              Please choose your {labelNetwork} {chain?.id}
             </p>
             <button
               className="absolute right-10 z-[4] duration-300 hover:scale-105 active-95"

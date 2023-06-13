@@ -12,6 +12,12 @@ interface SelectNetwork {
   updateSelectNetwork: (labelNetwork: string, showModal: boolean) => void;
 }
 
+interface getBalanceOf {
+  balanceOfToken0: number;
+  balanceOfToken1: number;
+  updateBalanceOf: (balanceOfToken0: number, balanceOfToken1: number) => void;
+}
+
 export const useSelectNetwork = create<SelectNetwork>((set) => ({
   labelNetwork: "",
   showModal: false,
@@ -33,5 +39,13 @@ export const useNetworkDestination = create<Network>((set) => ({
   imgUrl: "",
   updateNetwork: (networkName, imgUrl) => {
     set((state) => ({ ...state, networkName, imgUrl }));
+  },
+}));
+
+export const useBalanceOf = create<getBalanceOf>((set) => ({
+  balanceOfToken0: 0,
+  balanceOfToken1: 0,
+  updateBalanceOf: (balanceOfToken0, balanceOfToken1) => {
+    set((state) => ({ ...state, balanceOfToken0, balanceOfToken1 }));
   },
 }));
