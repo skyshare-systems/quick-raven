@@ -21,11 +21,12 @@ import ModalNetworkPage from "./modal-network";
 import ModalTokenPage from "./modal-token";
 import ModalTokenDestinationPage from "./modal-token-destination";
 
-import { TokenABI } from "abi";
+import { TokenABI, DexAggregatorABI, LPTokenABI } from "abi";
 import { ConnectNetworkSelect } from "./ConnectNetworkSelect";
 import Loading from "./common/Loading";
 
 import { ToastContainer, toast } from "react-toastify";
+import { dexAggregatorABI } from "lib/blockchain";
 
 const itemVariants: Variants = {
   open: {
@@ -112,43 +113,13 @@ const SwapPage = () => {
       : ethers.utils.parseEther(tokenInputs.toString());
 
   // Dynamic SwapToQr
-  const { config } = usePrepareContractWrite({
+  const {
+    config,
+    isError: isSwapError,
+    error,
+  } = usePrepareContractWrite({
     address: "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4",
-    abi: [
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_dexRouter",
-            type: "address",
-          },
-          {
-            internalType: "address",
-            name: "_tokenIn",
-            type: "address",
-          },
-          {
-            internalType: "address",
-            name: "_tokenOut",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "_amountIn",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_amountOutMin",
-            type: "uint256",
-          },
-        ],
-        name: "swapToQr",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-    ],
+    abi: DexAggregatorABI,
     functionName: "swapToQr",
     args: [
       "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff", // dex router address
@@ -173,33 +144,7 @@ const SwapPage = () => {
 
   const { data: getReserves } = useContractRead({
     address: tokenLpAddress ?? "",
-    abi: [
-      {
-        constant: true,
-        inputs: [],
-        name: "getReserves",
-        outputs: [
-          {
-            internalType: "uint112",
-            name: "_reserve0",
-            type: "uint112",
-          },
-          {
-            internalType: "uint112",
-            name: "_reserve1",
-            type: "uint112",
-          },
-          {
-            internalType: "uint32",
-            name: "_blockTimestampLast",
-            type: "uint32",
-          },
-        ],
-        payable: false,
-        stateMutability: "view",
-        type: "function",
-      },
-    ],
+    abi: LPTokenABI,
     functionName: "getReserves",
   });
 
@@ -207,32 +152,7 @@ const SwapPage = () => {
 
   const { config: configApprove } = usePrepareContractWrite({
     address: tokenInitAddress ?? "",
-    abi: [
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "spender",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "amount",
-            type: "uint256",
-          },
-        ],
-        name: "approve",
-        outputs: [
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool",
-          },
-        ],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-    ],
+    abi: TokenABI,
     functionName: "approve",
     args: [dexAddress ?? "", BigInt(String(ethers.constants.MaxUint256))], // dex aggregator address
   });
@@ -246,33 +166,8 @@ const SwapPage = () => {
   // Dynamic Allowance
 
   const { data: checkAllowance } = useContractRead({
-    address: tokenInitAddress ?? "",
-    abi: [
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "owner",
-            type: "address",
-          },
-          {
-            internalType: "address",
-            name: "spender",
-            type: "address",
-          },
-        ],
-        name: "allowance",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-    ],
+    address: tokenInitAddress,
+    abi: TokenABI,
     functionName: "allowance",
     args: [account!, dexAddress],
   });
@@ -333,6 +228,13 @@ const SwapPage = () => {
     });
   };
 
+  const handleApproveToken = () => {
+    approveToken?.().then((res) => {
+      console.log(res);
+      setHash(res.hash);
+    });
+  };
+
   useEffect(() => {
     if (isErrorSwap === true) {
       toast(errorSwap?.message);
@@ -357,7 +259,7 @@ const SwapPage = () => {
     reserveOut: any,
     slippage: any
   ) => {
-    console.info(tokenIn);
+    // console.info(tokenIn);
 
     if (tokenInputs > 0) {
       const idealOutput =
@@ -367,7 +269,7 @@ const SwapPage = () => {
 
       const minTokensOut = idealOutput * (1 - slippage / 100);
 
-      console.info(minTokensOut);
+      // console.info(minTokensOut);
       setMinReceiveToken(minTokensOut);
     }
 
@@ -442,6 +344,9 @@ const SwapPage = () => {
 
   useEffect(() => {
     console.log(effectRan.current);
+    if (isSwapSuccess) {
+      setDynamicButtons("swap");
+    }
     if (effectRan.current === false) {
       if (isSwapSuccess === true) {
         console.info("Ether setup complete");
@@ -464,8 +369,12 @@ const SwapPage = () => {
   }, [isSwapSuccess]);
 
   useEffect(() => {
-    if (isConnected && tokenInitAddress !== "") {
-      if (tokenInputs > Number(ethers.utils.formatEther(checkAllowance ?? 0))) {
+    // console.log(ethers.utils.formatEther(String(checkAllowance)));
+    const allowance = Number(checkAllowance);
+    console.log(isSwapSuccess);
+    if (isConnected) {
+      console.log(allowance);
+      if (tokenInputs > allowance && isSwapSuccess === false) {
         setDynamicButtons("Approve");
       } else {
         setDynamicButtons("swap");
@@ -914,17 +823,29 @@ const SwapPage = () => {
           ) : (
             <button
               onClick={() => handleSwapToQr()}
-              disabled={tokenInputs <= 0}
+              disabled={isSwapError}
               className={`mobile-title sm:tablet-title lg:web-title w-full px-2 py-5 rounded-xl duration-300 
           ${
-            tokenInputs > 0
-              ? "hover:brightness-75 cursor-pointer bg-radial-button text-black  hover:scale-[1.02] active:scale-95 duration-300"
-              : "cursor-not-allowed bg-[#2e2e2e] text-[#777a7a]"
+            isSwapError
+              ? "cursor-not-allowed bg-[#2e2e2e] text-[#777a7a]"
+              : "hover:brightness-75 cursor-pointer bg-radial-button text-black  hover:scale-[1.02] active:scale-95 duration-300"
           }`}
             >
               Swap Now
             </button>
           )}
+
+          <button
+            disabled={isLoadingApprove}
+            className={`mobile-title sm:tablet-title lg:web-title w-full ${
+              isLoadingApprove
+                ? "bg-[#2e2e2e] cursor-not-allowed text-white"
+                : "bg-[#1CACEF] hover:scale-[1.02] active:scale-95"
+            }  text-black px-2 py-5 rounded-xl duration-300`}
+            onClick={approveToken}
+          >
+            Approve
+          </button>
         </div>
       </div>
     </section>
