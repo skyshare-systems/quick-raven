@@ -3,6 +3,6 @@ import { GETpair } from "../controller/factoryController";
 
 const router = express.Router();
 
-router.get("/", GETpair);
+router.post("/", GETpair);
 
 export default router;

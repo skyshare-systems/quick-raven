@@ -8,9 +8,9 @@ import {
 
 const router = express.Router();
 
-router.get("/allowance", GETallowance);
-router.get("/balanceOf", GETbalanceOf);
-router.get("/totalSupply", GETtotalSupply);
-router.get("/reserves", GETreserves);
+router.post("/allowance", GETallowance);
+router.post("/balanceOf", GETbalanceOf);
+router.post("/totalSupply", GETtotalSupply);
+router.post("/reserves", GETreserves);
 
 export default router;
