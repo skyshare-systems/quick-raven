@@ -1,4 +1,4 @@
-import FooterPage from "components/footer";
+import FooterPage from "components/navigations/footer";
 import SwapPage from "components/swap";
 import ModalTutorialPage from "components/tutorial/modal-tutorial";
 import Image from "next/image";

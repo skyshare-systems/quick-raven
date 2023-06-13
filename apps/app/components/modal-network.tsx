@@ -2,20 +2,33 @@ import React, { useState } from "react";
 import Image from "next/image";
 // import ModalLinkEmblem from './modal-link-emblem'
 import { network } from "./network";
-import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
+import { useNetwork, useSwitchNetwork } from "wagmi";
+import {
+  useNetworkDestination,
+  useNetworkInit,
+  useSelectNetwork,
+} from "lib/stores.ts/stores";
 
-const ModalNetworkPage = ({
-  labelnetwork,
-  initNetwork,
-  isOpen,
-  handleDestinationNetwork,
-  handleInitNetwork,
-  isLoading,
-  pendingChainId,
-  onClose,
-}: any) => {
+const ModalNetworkPage = ({ isOpen }: any) => {
   const { chain } = useNetwork();
-  const { chains, switchNetwork } = useSwitchNetwork();
+  const { chains, switchNetwork, pendingChainId, isLoading } =
+    useSwitchNetwork();
+  const { labelNetwork, updateSelectNetwork } = useSelectNetwork(
+    (state) => state
+  );
+
+  const { networkName, updateNetwork: updateNetworkInit } = useNetworkInit(
+    (state) => state
+  );
+
+  const { updateNetwork: updateNetworkDestination } = useNetworkDestination(
+    (state) => state
+  );
+
+  function handleClick(name: string, imgUrl: string) {
+    updateSelectNetwork("", false);
+    updateNetworkDestination(name, imgUrl);
+  }
 
   if (!isOpen) return null;
   return (
@@ -24,11 +37,11 @@ const ModalNetworkPage = ({
         <div className="absolute flex flex-col gap-5 z-[2] w-full">
           <div className="relative flex flex-row justify-between">
             <p className="mobile-overline sm:tablet-overline lg:web-overline text-white">
-              Please choose your {labelnetwork}
+              Please choose your {labelNetwork}
             </p>
             <button
               className="absolute right-10 z-[4] duration-300 hover:scale-105 active-95"
-              onClick={() => onClose(false)}
+              onClick={() => updateSelectNetwork("", false)}
             >
               <Image
                 src={"/icons/cross-icon.svg"}
@@ -40,16 +53,14 @@ const ModalNetworkPage = ({
           </div>
 
           <div className="flex flex-wrap gap-5">
-            {labelnetwork === "Destination Network" ? (
+            {labelNetwork === "Destination Network" ? (
               <>
                 {network
-                  .filter((filterdata) => filterdata.shortname !== initNetwork)
+                  .filter((filterdata) => filterdata.shortname !== networkName)
                   .map((data, index) => {
                     return (
                       <button
-                        onClick={() =>
-                          handleDestinationNetwork(data.shortname, data.imgUrl)
-                        }
+                        onClick={() => handleClick(data.shortname, data.imgUrl)}
                         key={index}
                         className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125 duration-300 hover:scale-105 active-95"
                       >
@@ -80,11 +91,8 @@ const ModalNetworkPage = ({
                             disabled={!switchNetwork || x.id === chain?.id}
                             key={x.id}
                             onClick={() =>
-                              handleInitNetwork(
-                                x.name === data.networkname && data.shortname,
-                                data.imgUrl,
-                                x.id
-                              )
+                              switchNetwork?.(x.id) &&
+                              updateNetworkInit(data.shortname, data.imgUrl)
                             }
                             className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 duration-300 hover:brightness-125 hover:scale-105 active-95"
                           >

@@ -19,7 +19,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "components/common/Loading";
 
-import ImportTokenPage from "components/common/import-token";
+import ImportTokenPage from "utils/import-token";
 
 const ModalTutorialPage = ({ isOpen, onClose }: any) => {
   const [openTab, setOpenTab] = useState(0);

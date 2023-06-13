@@ -2,8 +2,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ConnectWallet } from "./ConnectWallet";
-import ModalTutorialPage from "./tutorial/modal-tutorial";
+import { ConnectWallet } from "../common/ConnectWallet";
+import ModalTutorialPage from "../tutorial/modal-tutorial";
 
 const NavbarPage = () => {
   const [showTutorial, setShowTutorial] = React.useState(false);
