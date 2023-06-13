@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { TokenABI, DexAggregatorABI, LPTokenABI } from "../../abi";
 
 import {
   useAccount,
@@ -9,7 +10,6 @@ import {
   useSwitchNetwork,
   useContractWrite,
   usePrepareContractWrite,
-  useToken,
   useWaitForTransaction,
 } from "wagmi";
 
@@ -17,9 +17,9 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Loading from "components/common/Loading";
+import Loading from "../../components/common/Loading";
 
-import ImportTokenPage from "utils/import-token";
+import ImportTokenPage from "../../utils/import-token";
 
 const ModalTutorialPage = ({ isOpen, onClose }: any) => {
   const [openTab, setOpenTab] = useState(0);
@@ -48,101 +48,25 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
 
   const { config: configUsdt } = usePrepareContractWrite({
     address: usdtAddress ?? "",
-    abi: [
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_account",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "_amount",
-            type: "uint256",
-          },
-        ],
-        name: "mint",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-    ],
+    abi: TokenABI,
     functionName: "mint",
     args: [account!, BigInt(1000000000000000000000)],
   });
   const { config: configUsdc } = usePrepareContractWrite({
     address: usdcAddress ?? "",
-    abi: [
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_account",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "_amount",
-            type: "uint256",
-          },
-        ],
-        name: "mint",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-    ],
+    abi: TokenABI,
     functionName: "mint",
     args: [account!, BigInt(1000000000000000000000)],
   });
   const { config: configWeth } = usePrepareContractWrite({
     address: wethAddress ?? "",
-    abi: [
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_account",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "_amount",
-            type: "uint256",
-          },
-        ],
-        name: "mint",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-    ],
+    abi: TokenABI,
     functionName: "mint",
     args: [account!, BigInt(1000000000000000000000)],
   });
   const { config: configMatic } = usePrepareContractWrite({
     address: maticAddress ?? "",
-    abi: [
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_account",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "_amount",
-            type: "uint256",
-          },
-        ],
-        name: "mint",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-    ],
+    abi: TokenABI,
     functionName: "mint",
     args: [account!, BigInt(1000000000000000000000)],
   });

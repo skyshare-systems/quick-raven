@@ -9,10 +9,10 @@ import {
   useContractRead,
   useAccount,
   useNetwork,
-  useSwitchNetwork,
   useWaitForTransaction,
+  useFeeData,
 } from "wagmi";
-import useMounted from "hooks/useMounted";
+import useMounted from "../hooks/useMounted";
 
 import { ethers, BigNumber } from "ethers";
 import { network } from "./network";
@@ -20,7 +20,7 @@ import ModalNetworkPage from "./modal-network";
 import ModalTokenPage from "./modal-token";
 import ModalTokenDestinationPage from "./modal-token-destination";
 
-import { TokenABI, DexAggregatorABI, LPTokenABI } from "abi";
+import { TokenABI, DexAggregatorABI, LPTokenABI } from "../abi";
 
 import { ConnectNetworkSelect } from "./common/ConnectNetworkSelect";
 import Loading from "./common/Loading";
@@ -31,8 +31,10 @@ import {
   useNetworkInit,
   useNetworkDestination,
   useSelectNetwork,
-} from "lib/stores.ts/stores";
+} from "../lib/stores.ts/stores";
 import TokenStatsPage from "./common/token-stats";
+import DefaultPathwayPage from "./common/default-pathway";
+import PriceBoardPage from "./common/price-board";
 
 const itemVariants: Variants = {
   open: {
@@ -179,11 +181,9 @@ const SwapPage = () => {
     args: [account!, dexAddress],
   });
 
-  // const handleDestinationNetwork = (networkname: any, imgUrl: any) => {
-  //   setDestinationNetwork(networkname);
-  //   setDestinationNetworkUrl(imgUrl);
-  //   // setShowModal(!showModal);
-  // };
+  const { data: gasfee, isLoading: isLoadingGasFee } = useFeeData({
+    watch: true,
+  });
 
   const handleSelectedTokenInit = (
     tokenName: any,
@@ -376,8 +376,6 @@ const SwapPage = () => {
 
   return (
     <section className="relative flex flex-col justify-center  pb-[3rem] pt-[7rem] items-center min-h-[100vh] lg:h-[95vh] xl:min-h-[94vh] gap-5">
-      {/* Modal  */}
-
       {isLoadingTransaction && <Loading />}
 
       <ToastContainer
@@ -407,7 +405,7 @@ const SwapPage = () => {
         onClose={() => setShowModalTokenDestination(!showModalTokenDestination)}
         handleSelectedTokenDestination={handleSelectedTokenDestination}
       />
-      {/* Swap  */}
+
       <div className="flex flex-col lg:flex-row justify-center gap-5 w-full max-w-[500px] lg:max-w-[1020px]">
         <div className="flex flex-col justify-center items-center gap-3 border-[1px] border-[#3b3b3b] bg-radial rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]">
           <div className="flex flex-row justify-between w-full py-1">
@@ -431,125 +429,8 @@ const SwapPage = () => {
               />
             </div>
           </div>
-
-          <motion.nav
-            initial={false}
-            animate={isOpen ? "open" : "closed"}
-            className="flex flex-col justify-between w-full"
-          >
-            <motion.ul
-              variants={{
-                open: {
-                  clipPath: "inset(0% 0% 0% 0%)",
-                  transition: {
-                    type: "spring",
-                    bounce: 0,
-                    duration: 0.3,
-                    delayChildren: 0.1,
-                    staggerChildren: 0.05,
-                  },
-                },
-                closed: {
-                  clipPath: "inset(10% 50% 90% 50%)",
-                  transition: {
-                    type: "spring",
-                    bounce: 0,
-                    duration: 0.3,
-                    delayChildren: 0.1,
-                  },
-                },
-              }}
-              className={`duration-300 transition ${
-                isOpen ? "flex flex-col" : "hidden"
-              }`}
-              style={{ pointerEvents: isOpen ? "auto" : "none" }}
-            >
-              <motion.li
-                variants={itemVariants}
-                className="flex flex-col justify-center bg-[#212121] border-[1px] border-[#474747] my-2 rounded-xl px-3 py-5 gap-4"
-              >
-                <div className="flex flex-col gap-2 xsm:flex-row">
-                  <div className="flex flex-col justify-center gap-2 grow">
-                    <div className="flex flex-row items-center justify-center gap-2 xsm:justify-start">
-                      <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
-                        Default Pathway
-                      </p>
-                      <Image
-                        src={"/icons/info-icon.svg"}
-                        alt={"dropdown"}
-                        height={12}
-                        width={20}
-                      />
-                    </div>
-                    <div className="flex flex-wrap justify-center gap-2 xsm:justify-start xsm:flex-row">
-                      <button className="flex items-center gap-2 text-black mobile-subtitle sm:tablet-subtitle lg:web-subtitle bg-[#1cef5f] px-4 py-2 rounded-full ">
-                        <Image
-                          src={"/icons/fastest-icon.svg"}
-                          alt={"dropdown"}
-                          height={15}
-                          width={15}
-                        />
-                        Fastest
-                      </button>
-                      <button className="flex items-center gap-2 text-white mobile-subtitle sm:tablet-subtitle lg:web-subtitle bg-[#2e2e2e] px-4 py-2 rounded-full">
-                        <Image
-                          src={"/icons/cheapest-icon.svg"}
-                          alt={"dropdown"}
-                          height={15}
-                          width={15}
-                        />
-                        Cheapest
-                      </button>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center justify-center gap-3 xsm:items-end">
-                    <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
-                      Slippage Tolerance
-                    </p>
-                    <div className="flex justify-center xsm:justify-end">
-                      <button className="flex items-center gap-2 text-white mobile-subtitle w-auto sm:tablet-subtitle lg:web-subtitle bg-[#2e2e2e] px-4 py-3 rounded-xl">
-                        3.00%
-                        <Image
-                          src={"/icons/edit-icon.svg"}
-                          alt={"dropdown"}
-                          height={15}
-                          width={15}
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <hr className="border-[#474747]" />
-
-                <div className="flex flex-wrap justify-between gap-2 xsm:flex-row">
-                  <div className="flex flex-col gap-2">
-                    <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
-                      Estimated Time:
-                    </p>
-                    <p className="text-white mobile-description sm:tablet-description lg:web-description">
-                      15 minutes
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
-                      Bridge Fee:
-                    </p>
-                    <p className="text-white mobile-description sm:tablet-description lg:web-description">
-                      2.50 USDT
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <p className="mobile-subtitle sm:tablet-subtitle lg:web-subtitle text-[#7a7a7a]">
-                      Estimated Gas Cost:
-                    </p>
-                    <p className="text-white mobile-description sm:tablet-description lg:web-description">
-                      12.47 USDT
-                    </p>
-                  </div>
-                </div>
-              </motion.li>
-            </motion.ul>
-          </motion.nav>
+          {/* Pathway  */}
+          <DefaultPathwayPage isOpen={isOpen} />
           {/* Initial Network  */}
           <div className="flex flex-row justify-between items-center w-full py-4 px-4 xsm:px-6 rounded-full bg-[#232323]/10 border-[1px] border-[#3b3b3b]">
             <p className="mobile-description sm:tablet-description lg:web-description grow text-white">
@@ -751,50 +632,17 @@ const SwapPage = () => {
               tokenName={tokenDestinationName}
             />
           </div>
-          <motion.button className="flex flex-row items-center justify-between grow border-[1px] border-[#474747] bg-[#141414] rounded-xl py-2 px-3  w-full">
-            <div className="flex flex-wrap items-center gap-2 xsm:flex-row">
-              {/*Fetch Selected Token 1 init network*/}
-              <p className="mobile-description sm:tablet-description lg:web-description">
-                1 USDT
-              </p>
-              <Image
-                src={"/icons/equals-icon.svg"}
-                alt={"dropdown"}
-                height={12}
-                width={12}
-              />
-              {/*Fetch Selected Token-2 destination network*/}
-              <p className="mobile-description sm:tablet-description lg:web-description">
-                1 AXS
-              </p>
-              {/* Equivalent */}
-              <p className="mobile-description sm:tablet-description lg:web-description text-[#7a7a7a]">
-                ($6.78)
-              </p>
-            </div>
-            {/* Gas Fees  */}
-            <div className="flex flex-wrap items-center justify-end gap-4 xsm:flex-row">
-              <div className="flex gap-2">
-                <Image
-                  src={"/icons/gas-fee-icon.svg"}
-                  alt={"dropdown"}
-                  height={15}
-                  width={15}
-                />
-                $12.47
-              </div>
 
-              <motion.div
-                variants={{
-                  open: { rotate: 180 },
-                  closed: { rotate: 0 },
-                }}
-                transition={{ duration: 0.3 }}
-                style={{ originY: 0.55 }}
-                className="flex"
-              ></motion.div>
-            </div>
-          </motion.button>
+          <PriceBoardPage
+            token0Name={tokenInitName}
+            token0Value={
+              tokenInputs === "" ? "0.00" : parseFloat(tokenInputs).toFixed(2)
+            }
+            token1Name={tokenDestinationName}
+            token1Value={minReceiveToken.toFixed(2)}
+            gasfees={gasfee?.gasPrice?.toString() ?? 0.0}
+          />
+
           {isNetworkError && (
             <div className="px-[1rem] py-[13px] flex lg:hidden flex-row justify-center items-center bg-[#534506] rounded-xl gap-5">
               <Image
