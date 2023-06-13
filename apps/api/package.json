@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "dist/app.js",
   "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.json",
     "prestart": "yarn build",
