@@ -18,8 +18,6 @@ app.use(
   })
 );
 
-// MIDDLEWARE
-
 // Routers
 app.use("/api/token", tokenRoutes);
 app.use("/api/lp", lpRoutes);

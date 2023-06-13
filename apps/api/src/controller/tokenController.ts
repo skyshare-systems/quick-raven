@@ -7,12 +7,15 @@ export const GETallowance = expressAsyncHandler(async (req, res) => {
   let allowance;
 
   try {
-    allowance = tokenContract(network, tokenAddress).allowance(owner, spender);
+    allowance = await tokenContract(network, tokenAddress).allowance(
+      owner,
+      spender
+    );
   } catch (e) {
     res.status(400).send(e);
   }
 
-  res.status(200).send(ethers.formatEther(String(allowance)));
+  res.status(200).send(String(allowance));
 });
 
 export const GETbalanceOf = expressAsyncHandler(async (req, res) => {

@@ -20,12 +20,12 @@ exports.GETallowance = (0, express_async_handler_1.default)((req, res) => __awai
     const { network, tokenAddress, owner, spender } = req.body;
     let allowance;
     try {
-        allowance = (0, data_1.tokenContract)(network, tokenAddress).allowance(owner, spender);
+        allowance = yield (0, data_1.tokenContract)(network, tokenAddress).allowance(owner, spender);
     }
     catch (e) {
         res.status(400).send(e);
     }
-    res.status(200).send(ethers_1.ethers.formatEther(String(allowance)));
+    res.status(200).send(String(allowance));
 }));
 exports.GETbalanceOf = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { network, tokenAddress, userAddress } = req.body;
