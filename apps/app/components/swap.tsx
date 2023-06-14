@@ -37,6 +37,9 @@ import {
 import TokenStatsPage from "./common/token-stats";
 import DefaultPathwayPage from "./common/default-pathway";
 import PriceBoardPage from "./common/price-board";
+import SelectTokenPage from "./common/select-token";
+import HeaderPage from "./common/header";
+import SelectNetworkPage from "./common/select-network";
 
 const SwapPage = () => {
   const { hasMounted } = useMounted();
@@ -171,15 +174,6 @@ const SwapPage = () => {
     isLoading: isLoadingApprove,
   } = useContractWrite(configApprove);
 
-  // Dynamic Allowance
-
-  // const { data: checkAllowance } = useContractRead({
-  //   address: tokenInitAddress,
-  //   abi: TokenABI,
-  //   functionName: "allowance",
-  //   args: [account!, dexAddress],
-  // });
-
   const { data: gasfee, isLoading: isLoadingGasFee } = useFeeData({
     watch: true,
   });
@@ -228,14 +222,10 @@ const SwapPage = () => {
       });
   };
 
-  const {
-    data,
-    isError,
-    isSuccess: isSwapSuccess,
-    isLoading: isLoadingTransaction,
-  } = useWaitForTransaction({
-    hash: hash,
-  });
+  const { isSuccess: isSwapSuccess, isLoading: isLoadingTransaction } =
+    useWaitForTransaction({
+      hash: hash,
+    });
 
   const handleSwapToQr = () => {
     swapToQr?.().then((res) => {
@@ -265,7 +255,7 @@ const SwapPage = () => {
           spender: "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4",
         })
         .then((response) => {
-          console.log(response.data);
+          console.log(response.data + " Test");
         });
     };
 
@@ -396,19 +386,19 @@ const SwapPage = () => {
     }
   }, [isSwapSuccess]);
 
-  // useEffect(() => {
-  //   // console.log(ethers.utils.formatEther(String(checkAllowance)));
-  //   const allowance = Number(checkAllowance);
-  //   console.log(isSwapSuccess);
-  //   if (isConnected) {
-  //     console.log(allowance);
-  //     if (tokenInputs > allowance && isSwapSuccess === false) {
-  //       setDynamicButtons("Approve");
-  //     } else {
-  //       setDynamicButtons("swap");
-  //     }
-  //   }
-  // }, []);
+  useEffect(() => {
+    // console.log(ethers.utils.formatEther(String(checkAllowance)));
+    const allowance = Number(checkAllowance);
+    console.log(isSwapSuccess);
+    if (isConnected) {
+      console.log(allowance);
+      if (tokenInputs > allowance && isSwapSuccess === false) {
+        setDynamicButtons("Approve");
+      } else {
+        setDynamicButtons("swap");
+      }
+    }
+  }, []);
 
   if (!hasMounted) {
     return null;
@@ -448,62 +438,26 @@ const SwapPage = () => {
 
       <div className="flex flex-col lg:flex-row justify-center gap-5 w-full max-w-[500px] lg:max-w-[1020px]">
         <div className="flex flex-col justify-center items-center gap-3 border-[1px] border-[#3b3b3b] bg-radial rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]">
-          <div className="flex flex-row justify-between w-full py-1">
-            <h1 className="mobile-title sm:tablet-title lg:web-title grow">
-              Swap
-            </h1>
-            <div className="flex flex-row gap-3 cursor-pointer">
-              <Image
-                src={"/icons/refresh-icon.svg"}
-                alt={"refresh"}
-                height={15}
-                width={15}
-              />
-
-              <Image
-                src={"/icons/settings-icon.svg"}
-                alt={"refresh"}
-                height={15}
-                width={15}
-                onClick={() => setIsOpen(!isOpen)}
-              />
-            </div>
-          </div>
-          {/* Pathway  */}
+          <HeaderPage isOpen={() => setIsOpen(!isOpen)} headerName={"Swap"} />
           <DefaultPathwayPage isOpen={isOpen} />
-          {/* Initial Network  */}
+
           <div className="flex flex-row justify-between items-center w-full py-4 px-4 xsm:px-6 rounded-full bg-[#232323]/10 border-[1px] border-[#3b3b3b]">
             <p className="mobile-description sm:tablet-description lg:web-description grow text-white">
               Initial Network
             </p>
 
             {isConnected ? (
-              <button
-                onClick={() => updateSelectNetwork("Initial Network", true)}
-                className={`flex flex-row items-center gap-3 w-full max-w-[150px] bg-[#1b181c] border-[1px] rounded-full border-[#3b3b3b] px-5 py-3 hover:brightness-150 duration-300`}
-              >
-                {networkName === "" ? (
-                  <p className="mobile-title py-1 sm:tablet-title lg:web-title text-[#7a7a7a]">
-                    Select Network
-                  </p>
-                ) : (
-                  <>
-                    <Image
-                      src={imgUrl}
-                      alt={"refresh"}
-                      height={20}
-                      width={20}
-                    />
-                    <p className="mobile-title sm:tablet-title lg:web-title">
-                      {networkName}
-                    </p>
-                  </>
-                )}
-              </button>
+              <SelectNetworkPage
+                networkName0={networkName}
+                networkName1={networkName}
+                imgUrl={imgUrl}
+                labelNetwork={"Initial Network"}
+              />
             ) : (
               <ConnectNetworkSelect />
             )}
           </div>
+
           <div className="relative flex flex-col w-full gap-3">
             <div className="hidden cursor-pointer center-absolute">
               <Image
@@ -534,43 +488,13 @@ const SwapPage = () => {
                 >
                   Max
                 </button>
-                <button
-                  onClick={() => setShowModalToken(!showModalToken)}
-                  disabled={networkName === ""}
-                  className={`flex flex-row items-center justify-center gap-2 bg-[#1b181c] border-[1px] rounded-md border-[#3b3b3b] w-full max-w-[150px] py-4
-                ${
-                  networkName === ""
-                    ? "cursor-not-allowed"
-                    : "hover:brightness-150 duration-300"
-                }`}
-                >
-                  {tokenInitName === "" ? (
-                    <p className=" mobile-overline sm:tablet-overline lg:web-overline ">
-                      Select Token
-                    </p>
-                  ) : (
-                    <div className="flex flex-row justify-between w-full px-4">
-                      <div className="flex justify-center items-center gap-2">
-                        <Image
-                          src={tokenInitImgUrl}
-                          alt={"refresh"}
-                          height={20}
-                          width={20}
-                        />
-                        <p className="mobile-overline sm:mobile-h3">
-                          {tokenInitName}
-                        </p>
-                      </div>
 
-                      <Image
-                        src={"/icons/dropdown-icon.svg"}
-                        alt={"refresh"}
-                        height={20}
-                        width={20}
-                      />
-                    </div>
-                  )}
-                </button>
+                <SelectTokenPage
+                  networkName={networkName}
+                  isOpen={() => setShowModalToken(true)}
+                  tokenName={tokenInitName}
+                  tokenImgUrl={tokenInitImgUrl}
+                />
               </div>
               <TokenStatsPage
                 convertedValue={123}
@@ -584,34 +508,12 @@ const SwapPage = () => {
                 Destination Network
               </p>
 
-              <button
-                disabled={networkName === ""}
-                onClick={() => updateSelectNetwork("Destination Network", true)}
-                className={`flex flex-row items-center gap-3 w-full max-w-[150px] bg-[#1b181c] border-[1px] rounded-full border-[#3b3b3b] px-4 py-2 
-                          ${
-                            networkName === ""
-                              ? "cursor-not-allowed justify-center"
-                              : "hover:brightness-150 duration-300"
-                          }`}
-              >
-                {networkDestinationName === "" ? (
-                  <p className="mobile-title py-1 sm:tablet-title lg:web-title text-[#7a7a7a]">
-                    Select Network
-                  </p>
-                ) : (
-                  <>
-                    <Image
-                      src={destinationImgUrl}
-                      alt={"refresh"}
-                      height={25}
-                      width={25}
-                    />
-                    <p className="mobile-title sm:tablet-title lg:web-title">
-                      {networkDestinationName}
-                    </p>
-                  </>
-                )}
-              </button>
+              <SelectNetworkPage
+                imgUrl={imgUrl}
+                labelNetwork={"Destination Network"}
+                networkName0={networkName}
+                networkName1={networkDestinationName}
+              />
             </div>
           </div>
           <div className="flex flex-col border-[1px] border-[#3b3b3b] px-[1rem] py-3 rounded-xl gap-2 w-full">
@@ -625,47 +527,15 @@ const SwapPage = () => {
                 className="w-full bg-transparent lg:grow"
                 disabled
               />
-              <button
-                disabled={networkDestinationName === ""}
-                onClick={() =>
+
+              <SelectTokenPage
+                networkName={networkDestinationName}
+                isOpen={() =>
                   setShowModalTokenDestination(!showModalTokenDestination)
                 }
-                className={`flex flex-row items-center justify-center gap-2 bg-[#1b181c] border-[1px] rounded-md border-[#3b3b3b] w-full max-w-[150px] py-4
-              ${
-                networkDestinationName === ""
-                  ? "cursor-not-allowed"
-                  : "hover:brightness-125 duration-300"
-              } `}
-              >
-                {tokenDestinationName === "" ? (
-                  <p className=" mobile-overline sm:tablet-overline lg:web-overline ">
-                    Select Token
-                  </p>
-                ) : (
-                  <>
-                    <div className="flex flex-row justify-between w-full px-4">
-                      <div className="flex justify-center items-center gap-2">
-                        <Image
-                          src={tokenDestinationImgUrl}
-                          alt={"refresh"}
-                          height={20}
-                          width={20}
-                        />
-                        <p className="mobile-overline sm:mobile-h3">
-                          {tokenDestinationName}
-                        </p>
-                      </div>
-
-                      <Image
-                        src={"/icons/dropdown-icon.svg"}
-                        alt={"refresh"}
-                        height={20}
-                        width={20}
-                      />
-                    </div>{" "}
-                  </>
-                )}
-              </button>
+                tokenName={tokenDestinationName}
+                tokenImgUrl={tokenDestinationImgUrl}
+              />
             </div>
             <TokenStatsPage
               convertedValue={123}
@@ -725,18 +595,6 @@ const SwapPage = () => {
               Swap Now
             </button>
           )}
-
-          {/* <button
-            disabled={isLoadingApprove}
-            className={`mobile-title sm:tablet-title lg:web-title w-full ${
-              isLoadingApprove
-                ? "bg-[#2e2e2e] cursor-not-allowed text-white"
-                : "bg-[#1CACEF] hover:scale-[1.02] active:scale-95"
-            }  text-black px-2 py-5 rounded-xl duration-300`}
-            onClick={approveToken}
-          >
-            Approve
-          </button> */}
         </div>
       </div>
     </section>

@@ -18,6 +18,10 @@ interface getBalanceOf {
   updateBalanceOf: (balanceOfToken0: number, balanceOfToken1: number) => void;
 }
 
+// interface SelectToken {
+//   token0Name
+// }
+
 export const useSelectNetwork = create<SelectNetwork>((set) => ({
   labelNetwork: "",
   showModal: false,
