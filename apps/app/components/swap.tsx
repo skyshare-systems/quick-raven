@@ -509,7 +509,7 @@ const SwapPage = () => {
               </p>
 
               <SelectNetworkPage
-                imgUrl={imgUrl}
+                imgUrl={destinationImgUrl}
                 labelNetwork={"Destination Network"}
                 networkName0={networkName}
                 networkName1={networkDestinationName}

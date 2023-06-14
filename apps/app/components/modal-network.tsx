@@ -92,7 +92,7 @@ const ModalNetworkPage = ({ isOpen }: any) => {
                             key={x.id}
                             onClick={() =>
                               switchNetwork?.(x.id) &&
-                              updateNetworkInit(data.shortname, data.imgUrl)
+                              handleClick(data.shortname, data.imgUrl)
                             }
                             className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 duration-300 hover:brightness-125 hover:scale-105 active-95"
                           >
