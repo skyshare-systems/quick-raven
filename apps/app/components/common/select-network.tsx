@@ -5,22 +5,30 @@ import { useSelectNetwork } from "lib/stores.ts/stores";
 interface SelectNetwork {
   networkName0: string;
   networkName1: string;
+  chainID: number;
   imgUrl: string;
   labelNetwork: string;
+  isOpen: any;
 }
 
 const SelectNetworkPage = ({
   networkName0,
   networkName1,
+  chainID,
   imgUrl,
   labelNetwork,
+  isOpen,
 }: SelectNetwork) => {
   const { updateSelectNetwork } = useSelectNetwork((state) => state);
 
+  function handleClick() {
+    isOpen(true);
+    updateSelectNetwork(labelNetwork, chainID, true);
+  }
   return (
     <button
       disabled={networkName0 === ""}
-      onClick={() => updateSelectNetwork(labelNetwork, true)}
+      onClick={() => handleClick()}
       className={`flex flex-row items-center gap-3 w-full max-w-[150px] bg-[#1b181c] border-[1px] rounded-full border-[#3b3b3b] px-4 py-2 
                           ${
                             networkName0 === ""

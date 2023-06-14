@@ -1,3 +1,4 @@
+import TokenList from "components/common/token-list";
 import FooterPage from "components/navigations/footer";
 import SwapPage from "components/swap";
 import ModalTutorialPage from "components/tutorial/modal-tutorial";

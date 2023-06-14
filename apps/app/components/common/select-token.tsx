@@ -1,11 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import { useSelectNetwork } from "lib/stores.ts/stores";
 
 interface Token {
   networkName: string;
   isOpen: any;
   tokenName: string;
   tokenImgUrl: string;
+  chainID: number;
+  labelNetwork: string;
 }
 
 const SelectTokenPage = ({
@@ -13,10 +16,18 @@ const SelectTokenPage = ({
   isOpen,
   tokenName,
   tokenImgUrl,
+  chainID,
+  labelNetwork,
 }: Token) => {
+  const { updateSelectNetwork } = useSelectNetwork((state) => state);
+
+  function handleClick() {
+    updateSelectNetwork(labelNetwork, chainID, false);
+    isOpen(true);
+  }
   return (
     <button
-      onClick={() => isOpen(true)}
+      onClick={() => handleClick()}
       disabled={networkName === ""}
       className={`flex flex-row items-center justify-center gap-2 bg-[#1b181c] border-[1px] rounded-md border-[#3b3b3b] w-full max-w-[150px] py-4
 ${

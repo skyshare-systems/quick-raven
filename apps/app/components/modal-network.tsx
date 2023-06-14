@@ -9,7 +9,7 @@ import {
   useSelectNetwork,
 } from "lib/stores.ts/stores";
 
-const ModalNetworkPage = ({ isOpen }: any) => {
+const ModalNetworkPage = ({ isOpen, onClose }: any) => {
   const { chain } = useNetwork();
   const { chains, switchNetwork, pendingChainId, isLoading } =
     useSwitchNetwork();
@@ -25,15 +25,16 @@ const ModalNetworkPage = ({ isOpen }: any) => {
     (state) => state
   );
 
-  function handleClick(name: string, imgUrl: string) {
-    updateSelectNetwork("", false);
+  function handleClick(name: string, chainID: number, imgUrl: string) {
+    updateSelectNetwork(labelNetwork, chainID, false);
     updateNetworkDestination(name, imgUrl);
+    onClose(false);
   }
 
   if (!isOpen) return null;
   return (
     <div className="fixed top-0 h-full w-full flex flex-col justify-center items-center bg-black/30 backdrop-blur-sm z-[3]">
-      <div className="relative flex flex-col rounded-2xl h-full w-full max-w-[500px] max-h-[250px] bg-radial-modal  p-5">
+      <div className="relative flex flex-col rounded-2xl h-full w-full max-w-[500px] max-h-[250px] bg-[#212121]  p-5">
         <div className="absolute flex flex-col gap-5 z-[2] w-full">
           <div className="relative flex flex-row justify-between">
             <p className="mobile-overline sm:tablet-overline lg:web-overline text-white">
@@ -41,7 +42,7 @@ const ModalNetworkPage = ({ isOpen }: any) => {
             </p>
             <button
               className="absolute right-10 z-[4] duration-300 hover:scale-105 active-95"
-              onClick={() => updateSelectNetwork("", false)}
+              onClick={() => onClose(false)}
             >
               <Image
                 src={"/icons/cross-icon.svg"}
@@ -60,9 +61,11 @@ const ModalNetworkPage = ({ isOpen }: any) => {
                   .map((data, index) => {
                     return (
                       <button
-                        onClick={() => handleClick(data.shortname, data.imgUrl)}
+                        onClick={() =>
+                          handleClick(data.shortname, data.chainID, data.imgUrl)
+                        }
                         key={index}
-                        className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125 duration-300 hover:scale-105 active-95"
+                        className="flex flex-row items-center gap-2 bg-[#212121] border-[1px] rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125 duration-300  active:scale-95"
                       >
                         <Image
                           src={data.imgUrl}
@@ -92,9 +95,9 @@ const ModalNetworkPage = ({ isOpen }: any) => {
                             key={x.id}
                             onClick={() =>
                               switchNetwork?.(x.id) &&
-                              handleClick(data.shortname, data.imgUrl)
+                              updateNetworkInit(data.shortname, data.imgUrl)
                             }
-                            className="flex flex-row items-center gap-2 bg-[#212121] border-2 rounded-full border-[#3b3b3b] px-3 py-2 duration-300 hover:brightness-125 hover:scale-105 active-95"
+                            className="flex flex-row items-center gap-2 bg-[#212121] border-[1px] rounded-full border-[#3b3b3b] px-3 py-2 duration-300 hover:brightness-125 active:scale-95"
                           >
                             <Image
                               src={data.imgUrl}
@@ -118,7 +121,7 @@ const ModalNetworkPage = ({ isOpen }: any) => {
             )}
           </div>
         </div>
-        <div className="absolute top-0 left-0 border-[2px] border-[#3b3b3b] h-full w-full z-[1] rounded-2xl faded-bottom" />
+        <div className="absolute top-0 left-0 border-[1px] border-[#3b3b3b] h-full w-full z-[1] rounded-2xl faded-bottom" />
       </div>
     </div>
   );

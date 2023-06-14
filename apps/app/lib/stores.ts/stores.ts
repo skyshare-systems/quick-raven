@@ -6,10 +6,20 @@ interface Network {
   updateNetwork: (networkName: string, imgUrl: string) => void;
 }
 
+interface Modal {
+  showModal: boolean;
+  updateModal: (showModal: boolean) => void;
+}
+
 interface SelectNetwork {
   labelNetwork: string;
+  chainID: number;
   showModal: boolean;
-  updateSelectNetwork: (labelNetwork: string, showModal: boolean) => void;
+  updateSelectNetwork: (
+    labelNetwork: string,
+    chainID: number,
+    showModal: boolean
+  ) => void;
 }
 
 interface getBalanceOf {
@@ -18,15 +28,28 @@ interface getBalanceOf {
   updateBalanceOf: (balanceOfToken0: number, balanceOfToken1: number) => void;
 }
 
-// interface SelectToken {
-//   token0Name
-// }
+interface SelectToken {
+  tokenName: string;
+  tokenImgUrl: string;
+  tokenAddress: `0x${string}`;
+  tokenChainID: number;
+  showModal: boolean;
+
+  updateSelectedToken: (
+    tokenName: string,
+    tokenImgUrl: string,
+    tokenAddress: `0x${string}`,
+    tokenChainID: number,
+    showModal: boolean
+  ) => void;
+}
 
 export const useSelectNetwork = create<SelectNetwork>((set) => ({
   labelNetwork: "",
+  chainID: 0,
   showModal: false,
-  updateSelectNetwork: (labelNetwork, showModal) => {
-    set((state) => ({ ...state, labelNetwork, showModal }));
+  updateSelectNetwork: (labelNetwork, chainID, showModal) => {
+    set((state) => ({ ...state, labelNetwork, chainID, showModal }));
   },
 }));
 
@@ -51,5 +74,69 @@ export const useBalanceOf = create<getBalanceOf>((set) => ({
   balanceOfToken1: 0,
   updateBalanceOf: (balanceOfToken0, balanceOfToken1) => {
     set((state) => ({ ...state, balanceOfToken0, balanceOfToken1 }));
+  },
+}));
+
+export const useSelectTokenInit = create<SelectToken>((set) => ({
+  tokenName: "",
+  tokenImgUrl: "",
+  tokenAddress: "0x",
+  tokenChainID: 0,
+  showModal: false,
+
+  updateSelectedToken: (
+    tokenName,
+    tokenImgUrl,
+    tokenAddress,
+    tokenChainID,
+    showModal
+  ) => {
+    set((state) => ({
+      ...state,
+      tokenName,
+      tokenImgUrl,
+      tokenAddress,
+      tokenChainID,
+      showModal,
+    }));
+  },
+}));
+
+export const useSelectTokenDestination = create<SelectToken>((set) => ({
+  tokenName: "",
+  tokenImgUrl: "",
+  tokenAddress: "0x",
+  tokenChainID: 0,
+  showModal: false,
+
+  updateSelectedToken: (
+    tokenName,
+    tokenImgUrl,
+    tokenAddress,
+    tokenChainID,
+    showModal
+  ) => {
+    set((state) => ({
+      ...state,
+      tokenName,
+      tokenImgUrl,
+      tokenAddress,
+      tokenChainID,
+      showModal,
+    }));
+  },
+}));
+
+export const useModal = create<Modal>((set) => ({
+  showModal: false,
+  updateModal: (showModal) => {
+    set((state) => ({ ...state, showModal }));
+  },
+}));
+
+export const useModalDestination = create<Modal>((set) => ({
+  showModal: false,
+  updateModal: (showModal) => {
+    set((state) => ({ ...state, showModal }));
   },
 }));

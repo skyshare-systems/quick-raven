@@ -28,7 +28,7 @@ const ModalTokenPage = ({
           <div className="relative flex flex-col p-5 z-[2] w-full gap-5 ">
             <div className="flex flex-row items-center justify-between ">
               <h1 className="grow mobile-description sm:tablet-description lg:web-description text-[#7a7a7a]">
-                Select a token {chainId}
+                Select a token
               </h1>
               <button
                 onClick={() => onClose(false)}

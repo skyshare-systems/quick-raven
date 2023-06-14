@@ -82,3 +82,62 @@ export const tokenbsc = [
   //   imgUrl: "/icons/matic-icon.svg",
   // },
 ];
+
+export const listOfToken = [
+  {
+    id: 1,
+    tokenName: "Matic",
+    address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
+    imgUrl: "/icons/matic-icon.svg",
+    chainID: 80001,
+  },
+  {
+    id: 1,
+    tokenName: "Matic",
+    address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
+    imgUrl: "/icons/matic-icon.svg",
+    chainID: 80001,
+  },
+  {
+    id: 1,
+    tokenName: "Matic",
+    address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
+    imgUrl: "/icons/matic-icon.svg",
+    chainID: 80001,
+  },
+  {
+    id: 1,
+    tokenName: "Matic",
+    address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
+    imgUrl: "/icons/matic-icon.svg",
+    chainID: 80001,
+  },
+  {
+    id: 1,
+    tokenName: "Matic",
+    address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
+    imgUrl: "/icons/matic-icon.svg",
+    chainID: 80001,
+  },
+  {
+    id: 1,
+    tokenName: "Matic",
+    address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
+    imgUrl: "/icons/matic-icon.svg",
+    chainID: 80001,
+  },
+  {
+    id: 1,
+    tokenName: "Matic",
+    address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
+    imgUrl: "/icons/matic-icon.svg",
+    chainID: 80001,
+  },
+  {
+    id: 2,
+    tokenName: "USDT",
+    address: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18",
+    imgUrl: "/icons/usdt-icon.svg",
+    chainID: 97,
+  },
+];

@@ -33,6 +33,8 @@ import {
   useNetworkDestination,
   useSelectNetwork,
   useBalanceOf,
+  useSelectTokenInit,
+  useModal,
 } from "../lib/stores.ts/stores";
 import TokenStatsPage from "./common/token-stats";
 import DefaultPathwayPage from "./common/default-pathway";
@@ -41,6 +43,8 @@ import SelectTokenPage from "./common/select-token";
 import HeaderPage from "./common/header";
 import SelectNetworkPage from "./common/select-network";
 
+import TokenList from "./common/token-list";
+
 const SwapPage = () => {
   const { hasMounted } = useMounted();
   const { address, connector } = useAccount();
@@ -48,7 +52,9 @@ const SwapPage = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const { showModal, updateSelectNetwork } = useSelectNetwork((state) => state);
+  const { labelNetwork, chainID, updateSelectNetwork } = useSelectNetwork(
+    (state) => state
+  );
 
   const {
     networkName,
@@ -66,14 +72,22 @@ const SwapPage = () => {
     (state) => state
   );
 
+  const {
+    tokenName: tokenInitName,
+    tokenImgUrl: tokenInitImgUrl,
+    tokenAddress: tokenInitAddress,
+    tokenChainID,
+    showModal: showModalToken,
+    updateSelectedToken: updateSelectedTokenInit,
+  } = useSelectTokenInit((state) => state);
+
+  const { showModal: showModalToken0, updateModal } = useModal(
+    (state) => state
+  );
+
   const [initChainID, setInitChainID] = useState(0);
 
-  // States Token Init Network
-  const [showModalToken, setShowModalToken] = useState(false);
-  const [tokenInitName, setTokenInitName] = useState("");
-  const [tokenInitImgUrl, setTokenInitImgUrl] = useState("");
-  const [tokenInitAddress, setTokenInitAddress] = useState<any>("");
-
+  const [showModal, setShowModal] = useState(false);
   // States Token Destination Network
   const [showModalTokenDestination, setShowModalTokenDestination] =
     useState(false);
@@ -181,14 +195,12 @@ const SwapPage = () => {
   const handleSelectedTokenInit = async (
     tokenName: any,
     imgUrl: any,
-    address: string,
+    address: `0x${string}`,
     network: number
   ) => {
-    setTokenInitName(tokenName);
-    setTokenInitImgUrl(imgUrl);
-    setTokenInitAddress(address);
-    setInitChainID(network);
-    setShowModalToken(!showModalToken);
+    updateSelectedTokenInit(tokenName, imgUrl, address, network, false);
+    updateModal(false);
+
     await axios
       .post("https://quickraven-api.onrender.com/api/token/balanceOf", {
         network: network,
@@ -317,21 +329,19 @@ const SwapPage = () => {
             // checkAllowance(data.chainID,);
           } else {
             updateNetworkDestination("", "");
-            setTokenInitName("");
-            setTokenInitImgUrl("");
+            updateSelectedTokenInit("", "", tokenInitAddress, 0, false);
+
             setTokenDestinationName("");
             setTokenDestinationImgUrl("");
             setTokenInputs("");
           }
         });
-        updateSelectNetwork("", false);
+        updateSelectNetwork("", Number(chain?.id), false);
       }
       if (!isConnected) {
         updateNetworkInit("", "");
         updateNetworkDestination("", "");
-        setTokenInitName("");
-        setTokenInitImgUrl("");
-        setTokenInitAddress("");
+        updateSelectedTokenInit("", "", "0x", 0, false);
         setTokenDestinationImgUrl("");
         setTokenDestinationName("");
       }
@@ -419,22 +429,33 @@ const SwapPage = () => {
         theme="dark"
       />
 
-      <ModalNetworkPage isOpen={showModal} />
-
-      <ModalTokenPage
-        isOpen={showModalToken}
-        initNetwork={networkName}
-        onClose={() => setShowModalToken(!showModalToken)}
-        chainId={chain?.id}
-        handleSelectedTokenInit={handleSelectedTokenInit}
+      <ModalNetworkPage
+        isOpen={showModal}
+        onClose={() => setShowModal(!showModal)}
       />
 
-      <ModalTokenDestinationPage
+      <TokenList
+        isOpen={showModalToken0}
+        labelNetwork={"Initial Network"}
+        chainID={chain?.id}
+        handleSelectToken={handleSelectedTokenInit}
+        onClose={() => updateModal(false)}
+      />
+
+      <TokenList
+        isOpen={showModalTokenDestination}
+        labelNetwork={"Destination Network"}
+        chainID={chainID}
+        handleSelectToken={handleSelectedTokenDestination}
+        onClose={() => setShowModalTokenDestination(!showModalTokenDestination)}
+      />
+
+      {/* <ModalTokenDestinationPage
         isOpen={showModalTokenDestination}
         destinationNetwork={networkDestinationName}
         onClose={() => setShowModalTokenDestination(!showModalTokenDestination)}
         handleSelectedTokenDestination={handleSelectedTokenDestination}
-      />
+      /> */}
 
       <div className="flex flex-col lg:flex-row justify-center gap-5 w-full max-w-[500px] lg:max-w-[1020px]">
         <div className="flex flex-col justify-center items-center gap-3 border-[1px] border-[#3b3b3b] bg-radial rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]">
@@ -445,13 +466,15 @@ const SwapPage = () => {
             <p className="mobile-description sm:tablet-description lg:web-description grow text-white">
               Initial Network
             </p>
-
+            {chainID} {labelNetwork}
             {isConnected ? (
               <SelectNetworkPage
                 networkName0={networkName}
                 networkName1={networkName}
                 imgUrl={imgUrl}
+                chainID={chainID}
                 labelNetwork={"Initial Network"}
+                isOpen={() => setShowModal(true)}
               />
             ) : (
               <ConnectNetworkSelect />
@@ -491,9 +514,11 @@ const SwapPage = () => {
 
                 <SelectTokenPage
                   networkName={networkName}
-                  isOpen={() => setShowModalToken(true)}
+                  isOpen={() => updateModal(!showModalToken0)}
                   tokenName={tokenInitName}
                   tokenImgUrl={tokenInitImgUrl}
+                  labelNetwork="Initial Network"
+                  chainID={chainID}
                 />
               </div>
               <TokenStatsPage
@@ -512,7 +537,9 @@ const SwapPage = () => {
                 imgUrl={destinationImgUrl}
                 labelNetwork={"Destination Network"}
                 networkName0={networkName}
+                chainID={chainID}
                 networkName1={networkDestinationName}
+                isOpen={() => setShowModal(true)}
               />
             </div>
           </div>
@@ -535,6 +562,8 @@ const SwapPage = () => {
                 }
                 tokenName={tokenDestinationName}
                 tokenImgUrl={tokenDestinationImgUrl}
+                chainID={chainID}
+                labelNetwork="Destination Network"
               />
             </div>
             <TokenStatsPage
