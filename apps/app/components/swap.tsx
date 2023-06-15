@@ -35,6 +35,7 @@ import {
   useBalanceOf,
   useSelectTokenInit,
   useModal,
+  useSelectTokenDestination,
 } from "../lib/stores.ts/stores";
 import TokenStatsPage from "./common/token-stats";
 import DefaultPathwayPage from "./common/default-pathway";
@@ -47,9 +48,7 @@ import TokenList from "./common/token-list";
 
 const SwapPage = () => {
   const { hasMounted } = useMounted();
-  const { address, connector } = useAccount();
-  // States
-
+  const { address } = useAccount();
   const [isOpen, setIsOpen] = useState(false);
 
   const { labelNetwork, chainID, updateSelectNetwork } = useSelectNetwork(
@@ -77,24 +76,24 @@ const SwapPage = () => {
     tokenImgUrl: tokenInitImgUrl,
     tokenAddress: tokenInitAddress,
     tokenChainID,
-    showModal: showModalToken,
     updateSelectedToken: updateSelectedTokenInit,
   } = useSelectTokenInit((state) => state);
+
+  const {
+    tokenName: tokenDestinationName,
+    tokenImgUrl: tokenDestinationImgUrl,
+    tokenAddress: tokenDestinationAddress,
+    updateSelectedToken: updateSelectedTokenDestination,
+  } = useSelectTokenDestination((state) => state);
 
   const { showModal: showModalToken0, updateModal } = useModal(
     (state) => state
   );
 
-  const [initChainID, setInitChainID] = useState(0);
-
   const [showModal, setShowModal] = useState(false);
   // States Token Destination Network
   const [showModalTokenDestination, setShowModalTokenDestination] =
     useState(false);
-  const [tokenDestinationName, setTokenDestinationName] = useState("");
-  const [tokenDestinationImgUrl, setTokenDestinationImgUrl] = useState("");
-  const [tokenDestinationAddress, setTokenDestinationAddress] =
-    useState<any>("");
 
   const [tokenLpAddress, setTokenLpAddress] = useState<any>("");
 
@@ -198,7 +197,7 @@ const SwapPage = () => {
     address: `0x${string}`,
     network: number
   ) => {
-    updateSelectedTokenInit(tokenName, imgUrl, address, network, false);
+    updateSelectedTokenInit(tokenName, imgUrl, address, network);
     updateModal(false);
 
     await axios
@@ -218,9 +217,7 @@ const SwapPage = () => {
     address: any,
     network: number
   ) => {
-    setTokenDestinationName(tokenName);
-    setTokenDestinationImgUrl(imgUrl);
-    setTokenDestinationAddress(address);
+    updateSelectedTokenDestination(tokenName, imgUrl, address, network);
     setShowModalTokenDestination(!showModalTokenDestination);
     await axios
       .post("https://quickraven-api.onrender.com/api/token/balanceOf", {
@@ -329,10 +326,9 @@ const SwapPage = () => {
             // checkAllowance(data.chainID,);
           } else {
             updateNetworkDestination("", "");
-            updateSelectedTokenInit("", "", tokenInitAddress, 0, false);
+            updateSelectedTokenInit("", "", tokenInitAddress, 0);
+            updateSelectedTokenDestination("", "", tokenDestinationAddress, 0);
 
-            setTokenDestinationName("");
-            setTokenDestinationImgUrl("");
             setTokenInputs("");
           }
         });
@@ -341,9 +337,8 @@ const SwapPage = () => {
       if (!isConnected) {
         updateNetworkInit("", "");
         updateNetworkDestination("", "");
-        updateSelectedTokenInit("", "", "0x", 0, false);
-        setTokenDestinationImgUrl("");
-        setTokenDestinationName("");
+        updateSelectedTokenInit("", "", "0x", 0);
+        updateSelectedTokenDestination("", "", tokenDestinationAddress, 0);
       }
     }
   }, [chain?.id, isConnected]);
@@ -466,7 +461,6 @@ const SwapPage = () => {
             <p className="mobile-description sm:tablet-description lg:web-description grow text-white">
               Initial Network
             </p>
-            {chainID} {labelNetwork}
             {isConnected ? (
               <SelectNetworkPage
                 networkName0={networkName}

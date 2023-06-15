@@ -33,14 +33,12 @@ interface SelectToken {
   tokenImgUrl: string;
   tokenAddress: `0x${string}`;
   tokenChainID: number;
-  showModal: boolean;
 
   updateSelectedToken: (
     tokenName: string,
     tokenImgUrl: string,
     tokenAddress: `0x${string}`,
-    tokenChainID: number,
-    showModal: boolean
+    tokenChainID: number
   ) => void;
 }
 
@@ -82,22 +80,14 @@ export const useSelectTokenInit = create<SelectToken>((set) => ({
   tokenImgUrl: "",
   tokenAddress: "0x",
   tokenChainID: 0,
-  showModal: false,
 
-  updateSelectedToken: (
-    tokenName,
-    tokenImgUrl,
-    tokenAddress,
-    tokenChainID,
-    showModal
-  ) => {
+  updateSelectedToken: (tokenName, tokenImgUrl, tokenAddress, tokenChainID) => {
     set((state) => ({
       ...state,
       tokenName,
       tokenImgUrl,
       tokenAddress,
       tokenChainID,
-      showModal,
     }));
   },
 }));
@@ -107,34 +97,19 @@ export const useSelectTokenDestination = create<SelectToken>((set) => ({
   tokenImgUrl: "",
   tokenAddress: "0x",
   tokenChainID: 0,
-  showModal: false,
 
-  updateSelectedToken: (
-    tokenName,
-    tokenImgUrl,
-    tokenAddress,
-    tokenChainID,
-    showModal
-  ) => {
+  updateSelectedToken: (tokenName, tokenImgUrl, tokenAddress, tokenChainID) => {
     set((state) => ({
       ...state,
       tokenName,
       tokenImgUrl,
       tokenAddress,
       tokenChainID,
-      showModal,
     }));
   },
 }));
 
 export const useModal = create<Modal>((set) => ({
-  showModal: false,
-  updateModal: (showModal) => {
-    set((state) => ({ ...state, showModal }));
-  },
-}));
-
-export const useModalDestination = create<Modal>((set) => ({
   showModal: false,
   updateModal: (showModal) => {
     set((state) => ({ ...state, showModal }));
