@@ -2,7 +2,11 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { listOfToken } from "components/network";
-import { useModal } from "lib/stores.ts/stores";
+import {
+  useModal,
+  useSelectTokenDestination,
+  useDestinationInit,
+} from "lib/stores.ts/stores";
 import { useNetwork } from "wagmi";
 
 const TokenList = ({
@@ -17,12 +21,30 @@ const TokenList = ({
   const [searchToken, setSearchToken] = useState("");
   const { showModal, updateModal } = useModal((state) => state);
   const { chain } = useNetwork();
+  const { tokenName: tokenDestinationName } = useSelectTokenDestination(
+    (state) => state
+  );
+
+  const { updateDestinationInit } = useDestinationInit((state) => state);
 
   useEffect(() => {
     isOpen
       ? (document.body.style.overflowY = hide)
       : (document.body.style.overflowY = show);
   }, [isOpen]);
+
+  useEffect(() => {
+    listOfToken
+      .filter(
+        (filter) =>
+          filter.chainID === chain?.id &&
+          filter.tokenName === tokenDestinationName
+      )
+      .map((data) => {
+        updateDestinationInit(data.address);
+      });
+  }, [tokenDestinationName]);
+
   if (!isOpen) return null;
   return (
     <div className="fixed top-0 flex justify-center items-center h-full w-full bg-black/30 backdrop-blur-sm z-[4]">
@@ -121,7 +143,7 @@ const TokenList = ({
                             data.tokenName,
                             data.imgUrl,
                             data.address,
-                            data.chainID
+                            chainID
                           );
                         }}
                       >

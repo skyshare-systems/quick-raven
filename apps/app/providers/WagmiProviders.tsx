@@ -14,7 +14,7 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import React from "react";
 
 const { chains, publicClient } = configureChains(
-  [polygonMumbai, bscTestnet],
+  [polygonMumbai, bscTestnet, gnosisChiado],
   [
     // alchemyProvider({
     //   apiKey:

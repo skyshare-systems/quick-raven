@@ -3,7 +3,8 @@ import { create } from "zustand";
 interface Network {
   networkName: string;
   imgUrl: string;
-  updateNetwork: (networkName: string, imgUrl: string) => void;
+  jsonRpcUrl: string;
+  updateNetwork: (networkName: string, imgUrl: string, jsonRpcUrl) => void;
 }
 
 interface Modal {
@@ -54,16 +55,18 @@ export const useSelectNetwork = create<SelectNetwork>((set) => ({
 export const useNetworkInit = create<Network>((set) => ({
   networkName: "",
   imgUrl: "",
-  updateNetwork: (networkName, imgUrl) => {
-    set((state) => ({ ...state, networkName, imgUrl }));
+  jsonRpcUrl: "",
+  updateNetwork: (networkName, imgUrl, jsonRpcUrl) => {
+    set((state) => ({ ...state, networkName, imgUrl, jsonRpcUrl }));
   },
 }));
 
 export const useNetworkDestination = create<Network>((set) => ({
   networkName: "",
   imgUrl: "",
-  updateNetwork: (networkName, imgUrl) => {
-    set((state) => ({ ...state, networkName, imgUrl }));
+  jsonRpcUrl: "",
+  updateNetwork: (networkName, imgUrl, jsonRpcUrl) => {
+    set((state) => ({ ...state, networkName, imgUrl, jsonRpcUrl }));
   },
 }));
 
@@ -113,5 +116,17 @@ export const useModal = create<Modal>((set) => ({
   showModal: false,
   updateModal: (showModal) => {
     set((state) => ({ ...state, showModal }));
+  },
+}));
+
+interface DestinationAddress {
+  address: string;
+  updateDestinationInit: (address: string) => void;
+}
+
+export const useDestinationInit = create<DestinationAddress>((set) => ({
+  address: "",
+  updateDestinationInit: (address) => {
+    set((state) => ({ ...state, address }));
   },
 }));

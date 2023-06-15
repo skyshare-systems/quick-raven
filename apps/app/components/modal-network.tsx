@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 // import ModalLinkEmblem from './modal-link-emblem'
 import { network } from "./network";
@@ -11,7 +11,7 @@ import {
 
 const ModalNetworkPage = ({ isOpen, onClose }: any) => {
   const { chain } = useNetwork();
-  const { chains, switchNetwork, pendingChainId, isLoading } =
+  const { chains, switchNetwork, pendingChainId, isLoading, isSuccess } =
     useSwitchNetwork();
   const { labelNetwork, updateSelectNetwork } = useSelectNetwork(
     (state) => state
@@ -21,15 +21,32 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
     (state) => state
   );
 
-  const { updateNetwork: updateNetworkDestination } = useNetworkDestination(
-    (state) => state
-  );
+  const {
+    jsonRpcUrl: jsonRpcUrlDestination,
+    updateNetwork: updateNetworkDestination,
+  } = useNetworkDestination((state) => state);
 
-  function handleClick(name: string, chainID: number, imgUrl: string) {
+  function handleClick(
+    name: string,
+    chainID: number,
+    imgUrl: string,
+    jsonRpcUrl: string
+  ) {
     updateSelectNetwork(labelNetwork, chainID, false);
-    updateNetworkDestination(name, imgUrl);
+    updateNetworkDestination(name, imgUrl, jsonRpcUrl);
     onClose(false);
   }
+
+  function handleClickInit(network: number, name: string, imgUrl: string) {
+    switchNetwork?.(network);
+    updateNetworkInit(name, imgUrl, jsonRpcUrlDestination);
+  }
+
+  useEffect(() => {
+    if (isSuccess === true) {
+      onClose(false);
+    }
+  }, [isSuccess]);
 
   if (!isOpen) return null;
   return (
@@ -62,7 +79,12 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
                     return (
                       <button
                         onClick={() =>
-                          handleClick(data.shortname, data.chainID, data.imgUrl)
+                          handleClick(
+                            data.shortname,
+                            data.chainID,
+                            data.imgUrl,
+                            data.jsonRpcUrl
+                          )
                         }
                         key={index}
                         className="flex flex-row items-center gap-2 bg-[#212121] border-[1px] rounded-full border-[#3b3b3b] px-3 py-2 hover:brightness-125 duration-300  active:scale-95"
@@ -94,8 +116,11 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
                             disabled={!switchNetwork || x.id === chain?.id}
                             key={x.id}
                             onClick={() =>
-                              switchNetwork?.(x.id) &&
-                              updateNetworkInit(data.shortname, data.imgUrl)
+                              handleClickInit(
+                                x.id,
+                                data.networkname,
+                                data.imgUrl
+                              )
                             }
                             className="flex flex-row items-center gap-2 bg-[#212121] border-[1px] rounded-full border-[#3b3b3b] px-3 py-2 duration-300 hover:brightness-125 active:scale-95"
                           >
