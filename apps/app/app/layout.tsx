@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import WagmiProviders from "providers/WagmiProviders";
 import FooterPage from "components/navigations/footer";
+import WalletProvider from "providers/RenecProviders";
 import ApolloProviders from "providers/ApolloProviders";
 
 export const metadata = {
@@ -22,13 +23,15 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, user-scalable=no" />
       </head>
       <body>
-        <WagmiProviders>
-          <ApolloProviders>
-            <NavbarPage />
-            {children}
-            <FooterPage />
-          </ApolloProviders>
-        </WagmiProviders>
+        <WalletProvider>
+          <WagmiProviders>
+            <ApolloProviders>
+              <NavbarPage />
+              {children}
+              <FooterPage />
+            </ApolloProviders>
+          </WagmiProviders>
+        </WalletProvider>
       </body>
     </html>
   );

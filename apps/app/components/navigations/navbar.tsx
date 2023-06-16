@@ -6,6 +6,14 @@ import { ConnectWallet } from "../common/ConnectWallet";
 import ModalTutorialPage from "../tutorial/modal-tutorial";
 import { useSwitchColorBg } from "lib/stores.ts/stores";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const DemonWalletConnectButton = dynamic(
+  async () =>
+    (await import("../../components/WalletButton/WalletMultiButton"))
+      .WalletMultiButton,
+  { ssr: false }
+);
 const NavbarPage = () => {
   const route = usePathname();
   const [showTutorial, setShowTutorial] = React.useState(false);
@@ -117,7 +125,11 @@ const NavbarPage = () => {
             </Link>
           </ul>
           {/* <ConnectButton showBalance={false} label="Connect" /> */}
-          <ConnectWallet />
+          {bgColor === "bg-radial-evm" ? (
+            <ConnectWallet />
+          ) : (
+            <DemonWalletConnectButton className="text-black dark:text-white hover:text-white" />
+          )}
         </div>
       </nav>
     </>
