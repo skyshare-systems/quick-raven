@@ -306,10 +306,10 @@ const SwapPage = () => {
 
       // console.info(minTokensOut);
       setMinReceiveToken(minTokensOut);
-    }
-
-    if (String(tokenInputs) === "") {
-      setMinReceiveToken(0);
+    } else {
+      if (String(tokenInputs) === "") {
+        setMinReceiveToken(0);
+      }
     }
   };
 
@@ -369,7 +369,7 @@ const SwapPage = () => {
         3
       );
     }
-  }, [calculateMinTokenOut, getReserves, tokenInputs]);
+  }, [tokenInputs]);
 
   useEffect(() => {
     console.log(effectRan.current);
@@ -521,7 +521,6 @@ const SwapPage = () => {
                     tokenInitName === "" ? "cursor-not-allowed" : "cursor-text"
                   }`}
                   onChange={(e) => setTokenInputs(Number(e.target.value))}
-                  value={tokenInputs}
                 />
 
                 <button
