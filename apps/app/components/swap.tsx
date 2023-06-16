@@ -308,7 +308,7 @@ const SwapPage = () => {
       setMinReceiveToken(minTokensOut);
     }
 
-    if (String(tokenInputs) === "") {
+    if (tokenInputs <= 0) {
       setMinReceiveToken(0);
     }
   };
@@ -549,8 +549,7 @@ const SwapPage = () => {
                         ? "cursor-not-allowed"
                         : "cursor-text"
                     }`}
-                    onChange={(e) => setTokenInputs(e.target.value)}
-                    value={tokenInputs}
+                    onChange={(e) => setTokenInputs(Number(e.target.value))}
                   />
 
                   <button
@@ -598,11 +597,9 @@ const SwapPage = () => {
                   id="fname"
                   name="fname"
                   placeholder="0.00"
-
                   value={minReceiveToken.toFixed(2)}
                   className="w-full bg-transparent lg:grow text-2xl font-[Excon]"
                   disabled
-
                 />
 
                 <SelectTokenPage
@@ -626,13 +623,14 @@ const SwapPage = () => {
             <PriceBoardPage
               token0Name={tokenInitName}
               token0Value={
-                tokenInputs === "" ? "0.00" : parseFloat(tokenInputs).toFixed(2)
+                tokenInputs <= 0
+                  ? "0.00"
+                  : parseFloat(Number(tokenInputs).toString()).toFixed(2)
               }
               token1Name={tokenDestinationName}
               token1Value={minReceiveToken.toFixed(2)}
               gasfees={gasfee?.gasPrice?.toString() ?? 0.0}
             />
-
 
             {isNetworkError && (
               <div className="px-[1rem] py-[13px] flex lg:hidden flex-row justify-center items-center bg-[#534506] rounded-xl gap-5">
