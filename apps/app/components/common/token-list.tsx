@@ -33,18 +33,6 @@ const TokenList = ({
       : (document.body.style.overflowY = show);
   }, [isOpen]);
 
-  useEffect(() => {
-    listOfToken
-      .filter(
-        (filter) =>
-          filter.chainID === chain?.id &&
-          filter.tokenName === tokenDestinationName
-      )
-      .map((data) => {
-        updateDestinationInit(data.address);
-      });
-  }, [tokenDestinationName]);
-
   if (!isOpen) return null;
   return (
     <div className="fixed top-0 flex justify-center items-center h-full w-full bg-black/30 backdrop-blur-sm z-[4]">
@@ -99,7 +87,7 @@ const TokenList = ({
                             data.tokenName,
                             data.imgUrl,
                             data.address,
-                            Number(chain?.id)
+                            chain?.id
                           );
                         }}
                       >

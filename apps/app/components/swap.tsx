@@ -15,7 +15,7 @@ import {
 import useMounted from "../hooks/useMounted";
 
 import { ethers, BigNumber } from "ethers";
-import { network } from "./network";
+import { listOfToken, network } from "./network";
 import ModalNetworkPage from "./modal-network";
 
 import { TokenABI, DexAggregatorABI, LPTokenABI } from "../abi";
@@ -127,6 +127,7 @@ const SwapPage = () => {
   const effectRan = useRef(false);
 
   const [hash, setHash] = useState<`0x${string}`>();
+  const [approveHash, setApproveHash] = useState<`0x${string}`>();
 
   const provider = new ethers.providers.JsonRpcProvider(jsonRpcUrlDestination);
   const wallet = new ethers.Wallet(
@@ -187,7 +188,8 @@ const SwapPage = () => {
   const {
     writeAsync: approveToken,
     isSuccess: isApproveSuccess,
-    isLoading: isLoadingApprove,
+    isError: isApproveError,
+    // isLoading: isLoadingApprove,
   } = useContractWrite(configApprove);
 
   const { data: gasfee, isLoading: isLoadingGasFee } = useFeeData({
@@ -261,6 +263,11 @@ const SwapPage = () => {
       hash: hash,
     });
 
+  const { isSuccess: isApprove, isLoading: isLoadingApprove } =
+    useWaitForTransaction({
+      hash: approveHash,
+    });
+
   const handleSwapToQr = () => {
     swapToQr?.().then((res) => {
       console.log(res);
@@ -269,11 +276,18 @@ const SwapPage = () => {
     });
   };
 
+  // const [isLoadingApprove, setIsLoadingApprove] = useState<boolean>(false);
+
   const handleApproveToken = () => {
-    approveToken?.().then((res) => {
-      console.log(res);
-      // setHash(res.hash);
-    });
+    approveToken?.()
+      .then((res) => {
+        console.log(res);
+
+        setApproveHash(res.hash);
+      })
+      .catch((err) => {
+        console.info(err);
+      });
   };
 
   const calculateMinTokenOut = (
@@ -316,7 +330,7 @@ const SwapPage = () => {
             updateNetworkDestination("", "", "");
             setMinReceiveToken(0);
             updateSelectedTokenInit("", "", tokenInitAddress, 0);
-            updateSelectedTokenDestination("", "", tokenDestinationAddress, 0);
+            updateSelectedTokenDestination("", "", "0x", 0);
             updateBalanceOf(0, 0);
             setTokenInputs("");
             updateDestinationInit("");
@@ -328,7 +342,7 @@ const SwapPage = () => {
         setMinReceiveToken(0);
         updateBalanceOf(0, 0);
         updateNetworkDestination("", "", "");
-        updateSelectedTokenInit("", "", "0x", 0);
+        updateSelectedTokenInit("", "", tokenInitAddress, 0);
         updateSelectedTokenDestination("", "", tokenDestinationAddress, 0);
         updateDestinationInit("");
       }
@@ -359,9 +373,7 @@ const SwapPage = () => {
 
   useEffect(() => {
     console.log(effectRan.current);
-    if (isSwapSuccess === true) {
-      checkAllowance();
-    }
+
     if (effectRan.current === false) {
       if (isSwapSuccess === true) {
         console.info("Ether setup complete");
@@ -384,6 +396,13 @@ const SwapPage = () => {
   }, [isSwapSuccess]);
 
   useEffect(() => {
+    if (isApprove === true) {
+      checkAllowance();
+      setDynamicButtons("swap");
+    }
+  }, [isApprove]);
+
+  useEffect(() => {
     if (BigInt(tokenInputs) > BigInt(allowanceValue)) {
       setDynamicButtons("Approve");
     } else {
@@ -391,10 +410,23 @@ const SwapPage = () => {
     }
   }, [tokenInputs]);
 
+  function handleSelectTokenAddress() {
+    console.log(tokenDestinationName + " Testing desName");
+    listOfToken
+      .filter((filter) => {
+        return (
+          filter.tokenName === tokenDestinationName &&
+          filter.chainID === chain?.id
+        );
+      })
+      .map((data) => {
+        console.log("Get Testing");
+        updateDestinationInit(data.address);
+      });
+  }
+
   useEffect(() => {
-    console.log(tokenInitAddress + " Testing Init");
-    console.log(tokenDestinationAddress + " Testing Destination");
-    console.log(addressDestinationInit + " Testing InitDes");
+    handleSelectTokenAddress();
   }, [tokenDestinationAddress]);
 
   if (!hasMounted) {
@@ -592,7 +624,7 @@ const SwapPage = () => {
               }  text-black px-2 py-5 rounded-xl duration-300`}
               onClick={() => handleApproveToken()}
             >
-              Approve
+              {isLoadingApprove ? "Approving..." : "Approve"}
             </button>
           ) : (
             <button
@@ -608,6 +640,18 @@ const SwapPage = () => {
               Swap Now
             </button>
           )}
+
+          <button
+            disabled={isLoadingApprove}
+            className={`mobile-title sm:tablet-title lg:web-title w-full ${
+              isLoadingApprove
+                ? "bg-[#2e2e2e] cursor-not-allowed text-white"
+                : "bg-[#1CACEF] hover:scale-[1.02] active:scale-95"
+            }  text-black px-2 py-5 rounded-xl duration-300`}
+            onClick={() => handleApproveToken()}
+          >
+            {isLoadingApprove ? "Approving..." : "Approve"}
+          </button>
         </div>
       </div>
     </section>

@@ -125,7 +125,7 @@ interface DestinationAddress {
 }
 
 export const useDestinationInit = create<DestinationAddress>((set) => ({
-  address: "",
+  address: "0x",
   updateDestinationInit: (address) => {
     set((state) => ({ ...state, address }));
   },
