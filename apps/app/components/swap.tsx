@@ -641,7 +641,7 @@ const SwapPage = () => {
             </button>
           )}
 
-          <button
+          {/* <button
             disabled={isLoadingApprove}
             className={`mobile-title sm:tablet-title lg:web-title w-full ${
               isLoadingApprove
@@ -651,7 +651,7 @@ const SwapPage = () => {
             onClick={() => handleApproveToken()}
           >
             {isLoadingApprove ? "Approving..." : "Approve"}
-          </button>
+          </button> */}
         </div>
       </div>
     </section>
