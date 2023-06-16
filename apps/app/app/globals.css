@@ -24,19 +24,37 @@
   background: #717171;
 }
 
-body {
+body #multi-chain-swap {
   background: radial-gradient(
-        48.02% 72.13% at 81.63% 45.08%,
-        rgba(171, 60, 210, 0.2) 0%,
+        51.29% 72.13% at 81.63% 45.08%,
+        rgba(171, 60, 210, 0.16) 0%,
         rgba(0, 0, 0, 0) 100%
       )
       /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
     radial-gradient(
-        40.98% 34.55% at 14.08% 26.76%,
-        rgba(64, 212, 221, 0.2) 0%,
+        65.45% 44.01% at 14.08% 26.76%,
+        rgba(64, 212, 221, 0.16) 0%,
         rgba(29, 223, 255, 0) 100%
       )
       /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
     #141414;
   background-attachment: fixed;
+}
+
+body #renec-bridge {
+  background: radial-gradient(
+      44.52% 80.09% at 50% 30.79%,
+      rgba(171, 60, 210, 0.24) 0%,
+      rgba(173, 15, 208, 0) 100%
+    ),
+    #070c13;
+}
+
+.bg-radial {
+  background: radial-gradient(
+      80.98% 100% at 50% 0%,
+      rgba(84, 84, 84, 0.15) 0%,
+      rgba(84, 84, 84, 0) 100%
+    ),
+    rgba(20, 20, 20, 0.6);
 }
