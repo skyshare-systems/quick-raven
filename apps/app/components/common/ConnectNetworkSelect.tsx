@@ -37,7 +37,7 @@ export const ConnectNetworkSelect = () => {
                   <button
                     onClick={openConnectModal}
                     type="button"
-                    className={`flex flex-row items-center gap-2  bg-[#1b181c] text-[#7a7a7a] border-2 rounded-full border-[#3b3b3b] px-3 py-2`}
+                    className={`flex flex-row items-center gap-3 w-full max-w-[150px] bg-[#1b181c] border-[1px] rounded-full border-[#3b3b3b] px-5 py-2 hover:brightness-150 duration-300`}
                   >
                     Select Network
                   </button>

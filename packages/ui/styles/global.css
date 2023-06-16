@@ -122,15 +122,6 @@
       #1dffae;
   }
 
-  .bg-radial {
-    background: radial-gradient(
-        80.98% 100% at 50% 0%,
-        rgba(84, 84, 84, 0.2) 0%,
-        rgba(84, 84, 84, 0) 100%
-      ),
-      rgba(20, 20, 20, 0.5);
-  }
-
   .bg-radial-modal {
     background: radial-gradient(
         80.98% 100% at 50% 0%,
