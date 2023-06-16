@@ -50,11 +50,34 @@ body #renec-bridge {
     #070c13;
 }
 
-.bg-radial {
+.bg-radial-evm {
   background: radial-gradient(
       80.98% 100% at 50% 0%,
       rgba(84, 84, 84, 0.15) 0%,
       rgba(84, 84, 84, 0) 100%
     ),
     rgba(20, 20, 20, 0.6);
+}
+
+.bg-radial-renec {
+  background: radial-gradient(
+      68.5% 54.58% at 50% 0%,
+      rgba(171, 60, 210, 0.37) 0%,
+      rgba(173, 15, 208, 0) 100%
+    ),
+    #0d1624;
+}
+
+.button-radial-renec {
+  background: radial-gradient(
+      103.71% 672.22% at 100% 100%,
+      rgba(104, 9, 125, 0.72) 0%,
+      rgba(69, 6, 83, 0) 100%
+    ),
+    radial-gradient(
+      61.57% 399.07% at 0% 0%,
+      rgba(244, 210, 252, 0.64) 0%,
+      rgba(244, 210, 252, 0) 100%
+    ),
+    #c91cef;
 }
