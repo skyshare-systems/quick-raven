@@ -26,6 +26,7 @@ export default function RootLayout({
           <ApolloProviders>
             <NavbarPage />
             {children}
+            <FooterPage />
           </ApolloProviders>
         </WagmiProviders>
       </body>

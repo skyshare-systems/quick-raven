@@ -1,13 +1,20 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ConnectWallet } from "../common/ConnectWallet";
 import ModalTutorialPage from "../tutorial/modal-tutorial";
-
+import { useSwitchColorBg } from "lib/stores.ts/stores";
+import { usePathname } from "next/navigation";
 const NavbarPage = () => {
+  const route = usePathname();
   const [showTutorial, setShowTutorial] = React.useState(false);
 
+  const { bgColor, updateBgColor } = useSwitchColorBg((state) => state);
+
+  useEffect(() => {
+    if (route === "/renec-bridge") setShowTutorial(false);
+  }, [route]);
   return (
     <>
       <ModalTutorialPage
@@ -35,16 +42,23 @@ const NavbarPage = () => {
               />
             </Link>
             <Link href="/">
-              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
-                Home
-              </p>
-              <Image
-                src={"/icons/home-icon.svg"}
-                alt={"logo"}
-                height={18}
-                width={18}
-                className="flex lg:hidden"
-              />
+              <div
+                className="cursor-pointer"
+                onClick={() =>
+                  updateBgColor("bg-radial-evm", "multi-chain-swap")
+                }
+              >
+                <p className="hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
+                  Home
+                </p>
+                <Image
+                  src={"/icons/home-icon.svg"}
+                  alt={"logo"}
+                  height={18}
+                  width={18}
+                  className="flex lg:hidden"
+                />
+              </div>
             </Link>
             <Link href="/">
               <p className="hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
@@ -58,40 +72,49 @@ const NavbarPage = () => {
                 className="flex lg:hidden"
               />
             </Link>
-            <div
-              onClick={() => setShowTutorial(!showTutorial)}
-              className="cursor-pointer"
-            >
-              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
-                Set Up Testnet
-              </p>
-              <Image
-                src={"/icons/test-net-icon.svg"}
-                alt={"logo"}
-                height={15}
-                width={15}
-                className="flex lg:hidden"
-              />
-            </div>
-            {/* <Link href="/">
-              <p className="flex-row gap-2 hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
+
+            {bgColor === "bg-radial-evm" && (
+              <div
+                onClick={() => setShowTutorial(!showTutorial)}
+                className="cursor-pointer"
+              >
+                <p className="hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
+                  Set Up Testnet
+                </p>
+                <Image
+                  src={"/icons/test-net-icon.svg"}
+                  alt={"logo"}
+                  height={15}
+                  width={15}
+                  className="flex lg:hidden"
+                />
+              </div>
+            )}
+
+            <Link href="/renec-bridge">
+              <div
+                className="cursor-pointer"
+                onClick={() => updateBgColor("bg-radial-renec", "renec-bridge")}
+              >
+                <p className="flex-row gap-2 hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
+                  <Image
+                    src={"/icons/star-icon.svg"}
+                    alt={"logo"}
+                    height={15}
+                    width={15}
+                    className="flex"
+                  />
+                  Renec Bridge
+                </p>
                 <Image
                   src={"/icons/star-icon.svg"}
                   alt={"logo"}
                   height={15}
                   width={15}
-                  className="flex"
+                  className="flex lg:hidden"
                 />
-                Renec Bridge
-              </p>
-              <Image
-                src={"/icons/whitepaper-icon.svg"}
-                alt={"logo"}
-                height={15}
-                width={15}
-                className="flex lg:hidden"
-              />
-            </Link> */}
+              </div>
+            </Link>
           </ul>
           {/* <ConnectButton showBalance={false} label="Connect" /> */}
           <ConnectWallet />
