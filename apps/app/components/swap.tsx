@@ -113,7 +113,7 @@ const SwapPage = () => {
   const { chain } = useNetwork();
 
   //
-  const [tokenInputs, setTokenInputs] = useState<any>(0.0);
+  const [tokenInputs, setTokenInputs] = useState<number>(0.0);
   const [minReceiveToken, setMinReceiveToken] = useState<any>(0);
 
   const [dynamicButtons, setDynamicButtons] = useState<string>("swap");
@@ -344,7 +344,7 @@ const SwapPage = () => {
             updateSelectedTokenInit("", "", tokenInitAddress, 0);
             updateSelectedTokenDestination("", "", "0x", 0);
             updateBalanceOf(0, 0);
-            setTokenInputs("");
+            setTokenInputs(0.0);
             updateDestinationInit("");
           }
         });
@@ -432,7 +432,10 @@ const SwapPage = () => {
   }, [isApprove]);
 
   useEffect(() => {
-    if (BigInt(tokenInputs) > BigInt(allowanceValue)) {
+    if (
+      BigInt(String(ethers.utils.parseEther(String(tokenInputs)))) >
+      BigInt(allowanceValue)
+    ) {
       setDynamicButtons("Approve");
     } else {
       setDynamicButtons("swap");
@@ -595,9 +598,11 @@ const SwapPage = () => {
                   id="fname"
                   name="fname"
                   placeholder="0.00"
+
                   value={minReceiveToken.toFixed(2)}
                   className="w-full bg-transparent lg:grow text-2xl font-[Excon]"
                   disabled
+
                 />
 
                 <SelectTokenPage
@@ -627,6 +632,7 @@ const SwapPage = () => {
               token1Value={minReceiveToken.toFixed(2)}
               gasfees={gasfee?.gasPrice?.toString() ?? 0.0}
             />
+
 
             {isNetworkError && (
               <div className="px-[1rem] py-[13px] flex lg:hidden flex-row justify-center items-center bg-[#534506] rounded-xl gap-5">
@@ -660,6 +666,7 @@ const SwapPage = () => {
                 onClick={() => handleSwapToQr()}
                 disabled={isSwapError}
                 className={`mobile-title sm:tablet-title lg:web-title w-full px-2 py-5 rounded-xl duration-300 
+
           ${
             isSwapError
               ? "cursor-not-allowed bg-[#2e2e2e] text-[#777a7a]"
