@@ -28,8 +28,8 @@ export const network = [
   {
     chainID: 10200,
     networkname: "Gnosis Chiado",
-    shortname: "GNO",
-    imgUrl: "/icons/gnosis-icon.png",
+    shortname: "Gnosis",
+    imgUrl: "/icons/gnosis-icon.svg",
     address: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18",
     lpAddress: "0x7a36666c7e02ED1F3517f7A921612d03B916C8DF",
     dexAggregatorAddress: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18", // spender address
@@ -51,13 +51,13 @@ export const listOfToken = [
     chainID: 80001,
     tokenName: "USDC",
     address: "0xc1D7eC1a5320ed08b6B019cACC80f29905A7EEfA",
-    imgUrl: "/icons/usdt-icon.svg",
+    imgUrl: "/icons/usdc-icon.svg",
   },
   {
     chainID: 80001,
     tokenName: "WETH",
     address: "0xe3aF098836c4641f8EcF9185E49F8C3E74d91348",
-    imgUrl: "/icons/usdt-icon.svg",
+    imgUrl: "/icons/eth-icon.svg",
   },
   {
     chainID: 80001,
@@ -75,13 +75,13 @@ export const listOfToken = [
     chainID: 97,
     tokenName: "USDC",
     address: "0x45D463BFf2e01A125298BF9271B7BAFBdBeF001f",
-    imgUrl: "/icons/usdt-icon.svg",
+    imgUrl: "/icons/usdc-icon.svg",
   },
   {
     chainID: 97,
     tokenName: "WETH",
     address: "0x0518f7B2391916021111BB9Ce53F35a6f8C40Fe3",
-    imgUrl: "/icons/usdt-icon.svg",
+    imgUrl: "/icons/eth-icon.svg",
   },
   {
     chainID: 97,
@@ -99,13 +99,13 @@ export const listOfToken = [
     chainID: 10200,
     tokenName: "USDC",
     address: "0xe3aF098836c4641f8EcF9185E49F8C3E74d91348",
-    imgUrl: "/icons/usdt-icon.svg",
+    imgUrl: "/icons/usdc-icon.svg",
   },
   {
     chainID: 10200,
     tokenName: "WETH",
     address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
-    imgUrl: "/icons/usdt-icon.svg",
+    imgUrl: "/icons/eth-icon.svg",
   },
   {
     chainID: 10200,

@@ -42,7 +42,7 @@ const SelectNetworkPage = ({
         </p>
       ) : (
         <>
-          <Image src={imgUrl} alt={"refresh"} height={20} width={20} />
+          <Image src={imgUrl} alt={"refresh"} height={25} width={25} />
           <p className="mobile-title sm:tablet-title lg:web-title">
             {networkName1}
           </p>

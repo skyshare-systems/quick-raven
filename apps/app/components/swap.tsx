@@ -397,7 +397,10 @@ const SwapPage = () => {
   }
 
   return (
-    <section className="relative flex flex-col justify-center  pb-[3rem] pt-[7rem] items-center min-h-[100vh] lg:h-[95vh] xl:min-h-[94vh] gap-5">
+    <section
+      className="relative flex flex-col justify-center  pb-[3rem] pt-[7rem] items-center min-h-[100vh] lg:h-[95vh] xl:min-h-[94vh] gap-5"
+      id="multi-chain-swap"
+    >
       {isLoadingTransaction && <Loading />}
 
       <ToastContainer

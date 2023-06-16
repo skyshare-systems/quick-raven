@@ -24,7 +24,7 @@
   background: #717171;
 }
 
-body {
+body #multi-chain-swap {
   background: radial-gradient(
         51.29% 72.13% at 81.63% 45.08%,
         rgba(171, 60, 210, 0.16) 0%,
@@ -39,6 +39,15 @@ body {
       /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
     #141414;
   background-attachment: fixed;
+}
+
+body #renec-bridge {
+  background: radial-gradient(
+      44.52% 80.09% at 50% 30.79%,
+      rgba(171, 60, 210, 0.24) 0%,
+      rgba(173, 15, 208, 0) 100%
+    ),
+    #070c13;
 }
 
 .bg-radial {

@@ -24,18 +24,18 @@ const NavbarPage = () => {
                 alt={"logo"}
                 height={200}
                 width={200}
-                className="hidden md:flex"
+                className="hidden lg:flex"
               />
               <Image
                 src={"/assets/logo.svg"}
                 alt={"logo"}
                 height={40}
                 width={40}
-                className="flex md:hidden"
+                className="flex lg:hidden"
               />
             </Link>
             <Link href="/">
-              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title md:flex">
+              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
                 Home
               </p>
               <Image
@@ -43,11 +43,11 @@ const NavbarPage = () => {
                 alt={"logo"}
                 height={18}
                 width={18}
-                className="flex md:hidden"
+                className="flex lg:hidden"
               />
             </Link>
             <Link href="/">
-              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title md:flex">
+              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
                 Whitepaper
               </p>
               <Image
@@ -55,24 +55,43 @@ const NavbarPage = () => {
                 alt={"logo"}
                 height={15}
                 width={15}
-                className="flex md:hidden"
+                className="flex lg:hidden"
               />
             </Link>
             <div
               onClick={() => setShowTutorial(!showTutorial)}
               className="cursor-pointer"
             >
-              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title md:flex">
+              <p className="hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
                 Set Up Testnet
+              </p>
+              <Image
+                src={"/icons/test-net-icon.svg"}
+                alt={"logo"}
+                height={15}
+                width={15}
+                className="flex lg:hidden"
+              />
+            </div>
+            {/* <Link href="/">
+              <p className="flex-row gap-2 hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
+                <Image
+                  src={"/icons/star-icon.svg"}
+                  alt={"logo"}
+                  height={15}
+                  width={15}
+                  className="flex"
+                />
+                Renec Bridge
               </p>
               <Image
                 src={"/icons/whitepaper-icon.svg"}
                 alt={"logo"}
                 height={15}
                 width={15}
-                className="flex md:hidden"
+                className="flex lg:hidden"
               />
-            </div>
+            </Link> */}
           </ul>
           {/* <ConnectButton showBalance={false} label="Connect" /> */}
           <ConnectWallet />
