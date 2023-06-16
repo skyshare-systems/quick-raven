@@ -26,20 +26,38 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
     updateNetwork: updateNetworkDestination,
   } = useNetworkDestination((state) => state);
 
+  //Destination
   function handleClick(
     name: string,
     chainID: number,
     imgUrl: string,
-    jsonRpcUrl: string
+    jsonRpcUrl: string,
+    lowerColor: string,
+    highColor: string
   ) {
     updateSelectNetwork(labelNetwork, chainID, false);
     updateNetworkDestination(name, imgUrl, jsonRpcUrl);
     onClose(false);
+
+    document.documentElement.style.setProperty("--bottom", lowerColor);
+    document.documentElement.style.setProperty("--borderDown", highColor);
   }
 
-  function handleClickInit(network: number, name: string, imgUrl: string) {
+  //Init
+  function handleClickInit(
+    network: number,
+    name: string,
+    imgUrl: string,
+    upperColor: string,
+    solid: string,
+    highColor: string
+  ) {
     switchNetwork?.(network);
     updateNetworkInit(name, imgUrl, jsonRpcUrlDestination);
+
+    document.documentElement.style.setProperty("--borderUp", highColor);
+    document.documentElement.style.setProperty("--top", upperColor);
+    document.documentElement.style.setProperty("--solid", solid);
   }
 
   useEffect(() => {
@@ -83,7 +101,9 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
                             data.shortname,
                             data.chainID,
                             data.imgUrl,
-                            data.jsonRpcUrl
+                            data.jsonRpcUrl,
+                            data.lowerColor,
+                            data.highColor
                           )
                         }
                         key={index}
@@ -121,7 +141,10 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
                               handleClickInit(
                                 x.id,
                                 data.networkname,
-                                data.imgUrl
+                                data.imgUrl,
+                                data.upperColor,
+                                data.solidColor,
+                                data.highColor
                               )
                             }
                             className="flex flex-row items-center gap-2 bg-[#212121] border-[1px] rounded-full border-[#3b3b3b] px-3 py-2 duration-300 hover:brightness-125 active:scale-95"
