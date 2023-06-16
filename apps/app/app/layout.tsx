@@ -1,4 +1,3 @@
-"use client";
 import NavbarPage from "components/navigations/navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
