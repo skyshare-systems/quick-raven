@@ -674,18 +674,6 @@ const SwapPage = () => {
                 Swap Now
               </button>
             )}
-
-            {/* <button
-            disabled={isLoadingApprove}
-            className={`mobile-title sm:tablet-title lg:web-title w-full ${
-              isLoadingApprove
-                ? "bg-[#2e2e2e] cursor-not-allowed text-white"
-                : "bg-[#1CACEF] hover:scale-[1.02] active:scale-95"
-            }  text-black px-2 py-5 rounded-xl duration-300`}
-            onClick={() => handleApproveToken()}
-          >
-            {isLoadingApprove ? "Approving..." : "Approve"}
-          </button> */}
           </div>
         </div>
       </div>
