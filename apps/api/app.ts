@@ -8,12 +8,15 @@ import factoryRoutes from "./src/routes/factoryRoutes";
 import routerRoutes from "./src/routes/routerRoutes";
 
 // CONFIG
-const port = 3000;
+const port = 9001;
 const app: Express = express();
 
 app.use(express.json());
-
-// MIDDLEWARE
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 // Routers
 app.use("/api/token", tokenRoutes);

@@ -27,6 +27,14 @@ const config: HardhatUserConfig = {
           "",
       ],
     },
+    chiado: {
+      url: "https://rpc.chiadochain.net	",
+      accounts: [
+        "5acc566e889da617b7f8032ed5f745af8ad695ec2f5421b42b09be517067c051" ??
+          "",
+      ],
+      gasPrice: 11000000000,
+    },
   },
   etherscan: {
     apiKey: {
@@ -36,6 +44,7 @@ const config: HardhatUserConfig = {
       sepolia: "1T7UC6DGWNA36AVHC4IGIRRE1MTGCSKE74" ?? "",
       bscTestnet: "GWKE3MR5JXP1KVY4635YHC8AKI7FI55WK3" ?? "",
       mainnet: "1T7UC6DGWNA36AVHC4IGIRRE1MTGCSKE74" ?? "",
+      chiado: "64ffadd2-2ca7-47d5-8f5d-8a91d5e25d27" ?? "",
     },
   },
 };

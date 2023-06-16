@@ -3,7 +3,7 @@ import { GETamountIn, GETamountOut } from "../controller/routerController";
 
 const router = express.Router();
 
-router.get("/amountIn", GETamountIn);
-router.get("/amountOut", GETamountOut);
+router.post("/amountIn", GETamountIn);
+router.post("/amountOut", GETamountOut);
 
 export default router;
