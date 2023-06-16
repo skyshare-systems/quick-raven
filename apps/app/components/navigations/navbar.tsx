@@ -73,7 +73,7 @@ const NavbarPage = () => {
                 className="flex lg:hidden"
               />
             </div>
-            {/* <Link href="/">
+            <Link href="/">
               <p className="flex-row gap-2 hidden text-white mobile-title sm:tablet-title lg:web-title lg:flex">
                 <Image
                   src={"/icons/star-icon.svg"}
@@ -91,7 +91,7 @@ const NavbarPage = () => {
                 width={15}
                 className="flex lg:hidden"
               />
-            </Link> */}
+            </Link>
           </ul>
           {/* <ConnectButton showBalance={false} label="Connect" /> */}
           <ConnectWallet />
