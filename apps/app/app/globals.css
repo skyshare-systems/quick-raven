@@ -1,5 +1,13 @@
 @import "ui/styles/global.css";
 
+:root {
+  --borderUp: rgba(84, 84, 84, 0.5) 0%, rgba(84, 84, 84, 0) 100%;
+  --borderDown: rgba(84, 84, 84, 0.5) 0%, rgba(84, 84, 84, 0) 100%;
+  --top: rgba(84, 84, 84, 0.24) 0%, rgba(84, 84, 84, 0) 100%;
+  --bottom: rgba(84, 84, 84, 0.12) 0%, rgba(84, 84, 84, 0) 100%;
+  --solid: #141414;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -81,33 +89,23 @@ body #renec-bridge {
     ),
     #c91cef;
 }
-
-// default
-
-body .bg-radial-defaut {
-  background: radial-gradient(
-      69.44% 97.65% at 50% 13.23%,
-      rgba(84, 84, 84, 0.24) 0%,
-      rgba(84, 84, 84, 0) 100%
-    ),
-    radial-gradient(
-      47.12% 66.26% at 50% 97.85%,
-      rgba(84, 84, 84, 0.12) 0%,
-      rgba(84, 84, 84, 0) 100%
-    ),
-    #141414;
+.app {
+  background: radial-gradient(69.44% 97.65% at 50% 13.23%, var(--top)),
+    radial-gradient(47.12% 66.26% at 50% 97.85%, var(--bottom)), var(--solid);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
-body .bg-radial-matic {
-  background: radial-gradient(
-      69.44% 97.65% at 50% 13.23%,
-      rgba(116, 27, 229, 0.24) 0%,
-      rgba(116, 27, 229, 0) 100%
-    ),
-    radial-gradient(
-      47.12% 66.26% at 50% 97.85%,
-      rgba(116, 27, 229, 0.12) 0%,
-      rgba(116, 27, 229, 0) 100%
-    ),
-    #08020f;
+.forBorder {
+  background: radial-gradient(94.87% 67.05% at 50% 0%, var(--borderUp)),
+    radial-gradient(43.62% 30.83% at 50% 100%, var(--borderDown)), var(--solid);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.innerSwap {
+  background: radial-gradient(93.76% 66.26% at 50% 97.85%, var(--bottom)),
+    radial-gradient(50% 78.18% at 50% 0%, var(--top)), var(--solid);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }

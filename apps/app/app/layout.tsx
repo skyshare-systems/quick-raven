@@ -5,7 +5,6 @@ import { Inter } from "next/font/google";
 import WagmiProviders from "providers/WagmiProviders";
 import FooterPage from "components/navigations/footer";
 import ApolloProviders from "providers/ApolloProviders";
-import { useDynamicBG } from "lib/stores.ts/stores";
 
 export const metadata = {
   title: "Quick Raven",
@@ -17,20 +16,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { bgTop, bgBottom, bgSolid } = useDynamicBG((state) => state);
-
   return (
     <html lang="en">
       <head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
       </head>
-      <body
-        style={{
-          backgroundRepeat: "no-repeat",
-          background: `radial-gradient(69.44% 97.65% at 50% 13.23%, ${bgTop}), radial-gradient(47.12% 66.26% at 50% 97.85%, ${bgBottom}), ${bgSolid};`,
-        }}
-      >
+      <body className="app">
         <WagmiProviders>
           <ApolloProviders>
             <NavbarPage />
