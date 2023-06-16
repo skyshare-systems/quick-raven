@@ -113,7 +113,7 @@ const SwapPage = () => {
   const { chain } = useNetwork();
 
   //
-  const [tokenInputs, setTokenInputs] = useState<any>(0.0);
+  const [tokenInputs, setTokenInputs] = useState<number>(0.0);
   const [minReceiveToken, setMinReceiveToken] = useState<any>(0);
 
   const [dynamicButtons, setDynamicButtons] = useState<string>("swap");
@@ -332,7 +332,7 @@ const SwapPage = () => {
             updateSelectedTokenInit("", "", tokenInitAddress, 0);
             updateSelectedTokenDestination("", "", "0x", 0);
             updateBalanceOf(0, 0);
-            setTokenInputs("");
+            setTokenInputs(0.0);
             updateDestinationInit("");
           }
         });
@@ -403,7 +403,10 @@ const SwapPage = () => {
   }, [isApprove]);
 
   useEffect(() => {
-    if (BigInt(tokenInputs) > BigInt(allowanceValue)) {
+    if (
+      BigInt(String(ethers.utils.parseEther(String(tokenInputs)))) >
+      BigInt(allowanceValue)
+    ) {
       setDynamicButtons("Approve");
     } else {
       setDynamicButtons("swap");
@@ -517,7 +520,7 @@ const SwapPage = () => {
                   className={`w-full bg-transparent lg:grow text-2xl font-[Excon] ${
                     tokenInitName === "" ? "cursor-not-allowed" : "cursor-text"
                   }`}
-                  onChange={(e) => setTokenInputs(e.target.value)}
+                  onChange={(e) => setTokenInputs(Number(e.target.value))}
                   value={tokenInputs}
                 />
 
@@ -592,7 +595,9 @@ const SwapPage = () => {
           <PriceBoardPage
             token0Name={tokenInitName}
             token0Value={
-              tokenInputs === "" ? "0.00" : parseFloat(tokenInputs).toFixed(2)
+              String(tokenInputs) === ""
+                ? "0.00"
+                : parseFloat(String(tokenInputs)).toFixed(2)
             }
             token1Name={tokenDestinationName}
             token1Value={minReceiveToken.toFixed(2)}
