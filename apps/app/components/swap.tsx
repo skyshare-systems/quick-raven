@@ -307,7 +307,7 @@ const SwapPage = () => {
       // console.info(minTokensOut);
       setMinReceiveToken(minTokensOut);
     } else {
-      if (String(tokenInputs) === "") {
+      if (tokenInputs <= 0) {
         setMinReceiveToken(0);
       }
     }
@@ -594,7 +594,7 @@ const SwapPage = () => {
           <PriceBoardPage
             token0Name={tokenInitName}
             token0Value={
-              String(tokenInputs) === ""
+              tokenInputs <= 0
                 ? "0.00"
                 : parseFloat(String(tokenInputs)).toFixed(2)
             }
