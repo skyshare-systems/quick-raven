@@ -85,7 +85,7 @@ export const listOfToken = [
   },
   {
     chainID: 97,
-    tokenName: "MATIC",
+    tokenName: "Matic",
     address: "0x9570B7D0e54f2AAed59F6615e2be18637A82d881",
     imgUrl: "/icons/matic-icon.svg",
   },
