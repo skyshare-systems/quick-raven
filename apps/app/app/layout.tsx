@@ -15,13 +15,21 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const bgTop = "rgba(116, 27, 229, 0.24) 0%, rgba(116, 27, 229, 0) 100%";
+  const bgBottom = " rgba(239, 200, 28, 0.12) 0%, rgba(239, 200, 28, 0) 100%";
+  const bgSolid = "#08020F";
+
   return (
     <html lang="en">
       <head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
       </head>
-      <body>
+      <body
+        style={{
+          background: `radial-gradient(69.44% 97.65% at 50% 13.23%, ${bgTop}), radial-gradient(47.12% 66.26% at 50% 97.85%, ${bgBottom}), ${bgSolid};`,
+        }}
+      >
         <WagmiProviders>
           <ApolloProviders>
             <NavbarPage />
