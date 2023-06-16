@@ -4,6 +4,7 @@ import Image from "next/image";
 import { network } from "./network";
 import { useNetwork, useSwitchNetwork } from "wagmi";
 import {
+  useDynamicBG,
   useNetworkDestination,
   useNetworkInit,
   useSelectNetwork,
@@ -25,6 +26,8 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
     jsonRpcUrl: jsonRpcUrlDestination,
     updateNetwork: updateNetworkDestination,
   } = useNetworkDestination((state) => state);
+
+  const { updateDynamicBG } = useDynamicBG((state) => state);
 
   function handleClick(
     name: string,

@@ -144,3 +144,19 @@ export const useSwitchColorBg = create<SwitchColorBg>((set) => ({
     set((state) => ({ ...state, bgColor, bodyBgId }));
   },
 }));
+
+interface IDynamicBG {
+  bgTop: string;
+  bgBottom: string;
+  bgSolid: string;
+  updateDynamicBG: (bgTop: string, bgBottom: string, bgSolid: string) => void;
+}
+
+export const useDynamicBG = create<IDynamicBG>((set) => ({
+  bgTop: "rgba(116, 27, 229, 0.24) 0%, rgba(116, 27, 229, 0) 100%",
+  bgBottom: "rgba(84, 84, 84, 0.12) 0%, rgba(84, 84, 84, 0) 100%",
+  bgSolid: "#141414",
+  updateDynamicBG: (bgTop, bgBottom, bgSolid) => {
+    set((state) => ({ ...state, bgTop, bgBottom, bgSolid }));
+  },
+}));

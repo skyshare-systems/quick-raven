@@ -36,6 +36,7 @@ import {
   useSelectTokenDestination,
   useDestinationInit,
   useSwitchColorBg,
+  useDynamicBG,
 } from "../lib/stores.ts/stores";
 import TokenStatsPage from "./common/token-stats";
 import DefaultPathwayPage from "./common/default-pathway";
@@ -424,6 +425,13 @@ const SwapPage = () => {
         updateDestinationInit(data.address);
       });
   }
+  const { bgTop, bgBottom, bgSolid, updateDynamicBG } = useDynamicBG(
+    (state) => state
+  );
+
+  useEffect(() => {
+    console.log(bgTop + "bg color moto");
+  }, [bgTop]);
 
   useEffect(() => {
     handleSelectTokenAddress();

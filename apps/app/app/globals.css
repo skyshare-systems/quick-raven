@@ -81,3 +81,33 @@ body #renec-bridge {
     ),
     #c91cef;
 }
+
+// default
+
+body .bg-radial-defaut {
+  background: radial-gradient(
+      69.44% 97.65% at 50% 13.23%,
+      rgba(84, 84, 84, 0.24) 0%,
+      rgba(84, 84, 84, 0) 100%
+    ),
+    radial-gradient(
+      47.12% 66.26% at 50% 97.85%,
+      rgba(84, 84, 84, 0.12) 0%,
+      rgba(84, 84, 84, 0) 100%
+    ),
+    #141414;
+}
+
+body .bg-radial-matic {
+  background: radial-gradient(
+      69.44% 97.65% at 50% 13.23%,
+      rgba(116, 27, 229, 0.24) 0%,
+      rgba(116, 27, 229, 0) 100%
+    ),
+    radial-gradient(
+      47.12% 66.26% at 50% 97.85%,
+      rgba(116, 27, 229, 0.12) 0%,
+      rgba(116, 27, 229, 0) 100%
+    ),
+    #08020f;
+}
