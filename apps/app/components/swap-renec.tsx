@@ -16,11 +16,11 @@ import useMounted from "../hooks/useMounted";
 
 import { ethers, BigNumber } from "ethers";
 import { network } from "./network";
-import ModalNetworkPage from "./modal-network";
+import ModalNetworkPage from "./renec-common/modal-network";
 
 import { TokenABI, DexAggregatorABI, LPTokenABI } from "../abi";
 
-import { ConnectNetworkSelect } from "./common/ConnectNetworkSelect";
+import { ConnectNetworkSelect } from "./renec-common/ConnectNetworkSelect";
 import Loading from "./common/Loading";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -38,22 +38,21 @@ import {
   useSwitchColorBg,
 } from "../lib/stores.ts/stores";
 import TokenStatsPage from "./common/token-stats";
-import DefaultPathwayPage from "./common/default-pathway";
-import PriceBoardPage from "./common/price-board";
-import SelectTokenPage from "./common/select-token";
+import DefaultPathwayPage from "./renec-common/default-pathway";
+import PriceBoardPage from "./renec-common/price-board";
+import SelectTokenPage from "./renec-common/select-token";
 import HeaderPage from "./common/header";
-import SelectNetworkPage from "./common/select-network";
+import SelectNetworkPage from "./renec-common/select-network";
 
-import TokenList from "./common/token-list";
+import TokenList from "./renec-common/token-list";
+import ConfirmBridge from "./renec-common/confirm-bridge";
 
-const SwapPage = () => {
+const SwapRenecPage = () => {
   const { hasMounted } = useMounted();
   const { address } = useAccount();
   const [isOpen, setIsOpen] = useState(false);
 
-  const { labelNetwork, chainID, updateSelectNetwork } = useSelectNetwork(
-    (state) => state
-  );
+  const { chainID, updateSelectNetwork } = useSelectNetwork((state) => state);
 
   const {
     networkName,
@@ -94,24 +93,18 @@ const SwapPage = () => {
     (state) => state
   );
 
-  const { bgColor, bodyBgId, updateBgColor } = useSwitchColorBg(
-    (state) => state
-  );
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
   // States Token Destination Network
   const [showModalTokenDestination, setShowModalTokenDestination] =
     useState(false);
-
   const [tokenLpAddress, setTokenLpAddress] = useState<any>("");
-
   // const [labelNetwork, setLabelNetwork] = useState("");
   const [isNetworkError, setIsNetworkError] = useState(false);
-
   // wagmi hooks
   const { isConnected, address: account } = useAccount();
   const { chain } = useNetwork();
-
   //
   const [tokenInputs, setTokenInputs] = useState<any>(0.0);
   const [minReceiveToken, setMinReceiveToken] = useState<any>(0);
@@ -173,7 +166,6 @@ const SwapPage = () => {
   });
 
   // Dynamic Approve
-
   const { config: configApprove } = usePrepareContractWrite({
     address: tokenInitAddress ?? "",
     abi: TokenABI,
@@ -391,12 +383,6 @@ const SwapPage = () => {
     }
   }, [tokenInputs]);
 
-  useEffect(() => {
-    console.log(tokenInitAddress + " Testing Init");
-    console.log(tokenDestinationAddress + " Testing Destination");
-    console.log(addressDestinationInit + " Testing InitDes");
-  }, [tokenDestinationAddress]);
-
   if (!hasMounted) {
     return null;
   }
@@ -404,7 +390,7 @@ const SwapPage = () => {
   return (
     <section
       className="relative flex flex-col justify-center  pb-[3rem] pt-[7rem] items-center min-h-[100vh] lg:h-[95vh] xl:min-h-[94vh] gap-5"
-      id={bodyBgId}
+      id="renec-bridge"
     >
       {isLoadingTransaction && <Loading />}
 
@@ -440,178 +426,186 @@ const SwapPage = () => {
         onClose={() => setShowModalTokenDestination(!showModalTokenDestination)}
       />
 
+      <ConfirmBridge
+        isOpen={showConfirmModal}
+        onClose={() => setShowConfirmModal(false)}
+      />
+
       <div className="flex flex-col lg:flex-row justify-center gap-5 w-full max-w-[500px] lg:max-w-[1020px]">
-        <div
-          className={`flex flex-col justify-center items-center gap-3 border-[1px] border-[#3b3b3b] ${bgColor} rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]`}
-        >
-          <HeaderPage isOpen={() => setIsOpen(!isOpen)} headerName={"Swap"} />
-          <DefaultPathwayPage isOpen={isOpen} />
+        <div className="rounded-xl bg-gradient-to-t from-[#23032a] to-[#ac1cfc] p-[1px]">
+          <div
+            className={`flex flex-col justify-center items-center gap-3 bg-radial-renec rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]`}
+          >
+            <HeaderPage
+              isOpen={() => setIsOpen(!isOpen)}
+              headerName={"Bridge"}
+            />
+            <DefaultPathwayPage isOpen={isOpen} />
 
-          <div className="flex flex-row justify-between items-center w-full py-4 px-4 xsm:px-6 rounded-full bg-[#232323]/10 border-[1px] border-[#3b3b3b]">
-            <p className="mobile-description sm:tablet-description lg:web-description grow text-white">
-              Initial Network
-            </p>
-            {isConnected ? (
-              <SelectNetworkPage
-                networkName0={networkName}
-                networkName1={networkName}
-                imgUrl={imgUrl}
-                chainID={chainID}
-                labelNetwork={"Initial Network"}
-                isOpen={() => setShowModal(true)}
-              />
-            ) : (
-              <ConnectNetworkSelect />
-            )}
-          </div>
-
-          <div className="relative flex flex-col w-full gap-3">
-            <div className="hidden cursor-pointer center-absolute">
-              <Image
-                src={"/icons/switch-icon.svg"}
-                alt={"refresh"}
-                height={50}
-                width={50}
-              />
+            <div className="flex flex-row justify-between items-center w-full py-4 px-4 xsm:px-6 rounded-full bg-[#0d1624]/30 border-[1px] border-[#363e4d]">
+              <p className="mobile-description sm:tablet-description lg:web-description grow text-[#636B79]">
+                Initial Network
+              </p>
+              {isConnected ? (
+                <SelectNetworkPage
+                  networkName0={networkName}
+                  networkName1={networkName}
+                  imgUrl={imgUrl}
+                  chainID={chainID}
+                  labelNetwork={"Initial Network"}
+                  isOpen={() => setShowModal(true)}
+                />
+              ) : (
+                <ConnectNetworkSelect />
+              )}
             </div>
-            <div className="flex flex-col border-[1px] border-[#3b3b3b] px-[1rem] py-3 rounded-xl gap-2">
-              <div className="flex flex-row justify-between grow gap-2">
+
+            <div className="relative flex flex-col w-full gap-3">
+              <div className="hidden cursor-pointer center-absolute">
+                <Image
+                  src={"/icons/switch-icon.svg"}
+                  alt={"refresh"}
+                  height={50}
+                  width={50}
+                />
+              </div>
+              <div className="flex flex-col border-[1px] border-[#363e4d] px-[1rem] py-3 rounded-xl gap-2">
+                <div className="flex flex-row justify-between grow gap-2">
+                  <input
+                    type="number"
+                    disabled={tokenInitName === ""}
+                    id="tokenvalue"
+                    name="tokenvalue"
+                    placeholder="0.00"
+                    className={`w-full bg-transparent lg:grow text-2xl font-[Excon] ${
+                      tokenInitName === ""
+                        ? "cursor-not-allowed"
+                        : "cursor-text"
+                    }`}
+                    onChange={(e) => setTokenInputs(e.target.value)}
+                    value={tokenInputs}
+                  />
+
+                  <button
+                    onClick={() => setTokenInputs(balanceOfToken0)}
+                    className={`flex justify-center items-center text-[#F4D2FC] bg-[#ff1cef]/10 px-3 my-2 rounded-lg uppercase mobile-title sm:tablet-title md:web-title hover:brightness-150 active:scale-95 duration-300`}
+                  >
+                    Max
+                  </button>
+
+                  <SelectTokenPage
+                    networkName={networkName}
+                    isOpen={() => updateModal(!showModalToken0)}
+                    tokenName={tokenInitName}
+                    tokenImgUrl={tokenInitImgUrl}
+                    labelNetwork="Initial Network"
+                    chainID={chainID}
+                  />
+                </div>
+                <TokenStatsPage
+                  convertedValue={123}
+                  balance={parseFloat(balanceOfToken0.toFixed(6))}
+                  tokenName={tokenInitName}
+                />
+              </div>
+              {/* Destination Network  */}
+              <div className="flex flex-row justify-between items-center w-full py-4 px-4 xsm:px-6 rounded-full bg-[#0d1624]/30 border-[1px] border-[#363e4d]">
+                <p className="w-full sm:w-auto mobile-description sm:tablet-description lg:web-description grow text-[#636B79]">
+                  Destination Network
+                </p>
+
+                <SelectNetworkPage
+                  imgUrl={destinationImgUrl}
+                  labelNetwork={"Destination Network"}
+                  networkName0={networkName}
+                  chainID={chainID}
+                  networkName1={networkDestinationName}
+                  isOpen={() => setShowModal(true)}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col border-[1px] border-[#363e4d] px-[1rem] py-3 rounded-xl gap-2 w-full">
+              <div className="flex flex-row justify-between gap-2">
                 <input
                   type="number"
-                  disabled={tokenInitName === ""}
-                  id="tokenvalue"
-                  name="tokenvalue"
+                  id="fname"
+                  name="fname"
                   placeholder="0.00"
-                  className={`w-full bg-transparent lg:grow text-2xl font-[Excon] ${
-                    tokenInitName === "" ? "cursor-not-allowed" : "cursor-text"
-                  }`}
-                  onChange={(e) => setTokenInputs(e.target.value)}
-                  value={tokenInputs}
+                  value={minReceiveToken.toFixed(2)}
+                  className="w-full bg-transparent lg:grow text-2xl font-[Excon]"
+                  disabled
                 />
 
-                <button
-                  onClick={() => setTokenInputs(balanceOfToken0)}
-                  className={`flex justify-center items-center text-[#1cacef] bg-[#1c3843] px-3 my-2 rounded-lg uppercase mobile-title sm:tablet-title md:web-title hover:opacity-60 duration-300`}
-                >
-                  Max
-                </button>
-
                 <SelectTokenPage
-                  networkName={networkName}
-                  isOpen={() => updateModal(!showModalToken0)}
-                  tokenName={tokenInitName}
-                  tokenImgUrl={tokenInitImgUrl}
-                  labelNetwork="Initial Network"
+                  networkName={networkDestinationName}
+                  isOpen={() =>
+                    setShowModalTokenDestination(!showModalTokenDestination)
+                  }
+                  tokenName={tokenDestinationName}
+                  tokenImgUrl={tokenDestinationImgUrl}
                   chainID={chainID}
+                  labelNetwork="Destination Network"
                 />
               </div>
               <TokenStatsPage
                 convertedValue={123}
-                balance={parseFloat(balanceOfToken0.toFixed(6))}
-                tokenName={tokenInitName}
-              />
-            </div>
-            {/* Destination Network  */}
-            <div className="flex flex-row justify-between items-center w-full py-4 px-4 xsm:px-6 rounded-full bg-[#232323]/10 border-[1px] border-[#3b3b3b]">
-              <p className="w-full sm:w-auto mobile-description sm:tablet-description lg:web-description grow text-white">
-                Destination Network
-              </p>
-
-              <SelectNetworkPage
-                imgUrl={destinationImgUrl}
-                labelNetwork={"Destination Network"}
-                networkName0={networkName}
-                chainID={chainID}
-                networkName1={networkDestinationName}
-                isOpen={() => setShowModal(true)}
-              />
-            </div>
-          </div>
-          <div className="flex flex-col border-[1px] border-[#3b3b3b] px-[1rem] py-3 rounded-xl gap-2 w-full">
-            <div className="flex flex-row justify-between gap-2">
-              <input
-                type="number"
-                id="fname"
-                name="fname"
-                placeholder="0.00"
-                value={minReceiveToken.toFixed(2)}
-                className="w-full bg-transparent lg:grow text-2xl font-[Excon]"
-                disabled
-              />
-
-              <SelectTokenPage
-                networkName={networkDestinationName}
-                isOpen={() =>
-                  setShowModalTokenDestination(!showModalTokenDestination)
-                }
+                balance={parseFloat(balanceOfToken1.toFixed(6))}
                 tokenName={tokenDestinationName}
-                tokenImgUrl={tokenDestinationImgUrl}
-                chainID={chainID}
-                labelNetwork="Destination Network"
               />
             </div>
-            <TokenStatsPage
-              convertedValue={123}
-              balance={parseFloat(balanceOfToken1.toFixed(6))}
-              tokenName={tokenDestinationName}
+
+            <PriceBoardPage
+              token0Name={tokenInitName}
+              token0Value={
+                tokenInputs === "" ? "0.00" : parseFloat(tokenInputs).toFixed(2)
+              }
+              token1Name={tokenDestinationName}
+              token1Value={minReceiveToken.toFixed(2)}
+              gasfees={gasfee?.gasPrice?.toString() ?? 0.0}
             />
+
+            {isNetworkError && (
+              <div className="px-[1rem] py-[13px] flex lg:hidden flex-row justify-center items-center bg-[#534506] rounded-xl gap-5">
+                <Image
+                  src={"/icons/warning-icon.svg"}
+                  alt={"dropdown"}
+                  height={35}
+                  width={35}
+                />
+                <p className="mobile-overline sm:tablet-overline lg:web-overline grow">
+                  Polygon Network is currently having a heavy network traffic.
+                  Transactions may be delayed.
+                </p>
+              </div>
+            )}
+
+            {dynamicButtons === "Approve" ? (
+              <button
+                disabled={isLoadingApprove}
+                className={`mobile-title sm:tablet-title lg:web-title w-full ${
+                  isLoadingApprove
+                    ? "bg-[#2e2e2e] cursor-not-allowed text-white"
+                    : "bg-[#1CACEF] hover:scale-[1.02] active:scale-95"
+                }  text-black px-2 py-5 rounded-xl duration-300`}
+                // onClick={() => handleApproveToken()}
+              >
+                Approve
+              </button>
+            ) : (
+              <button
+                onClick={() => setShowConfirmModal(true)}
+                // onClick={() => handleSwapToQr()}
+                // disabled={isSwapError}
+                className={`mobile-title sm:tablet-title lg:web-title w-full px-2 py-6 rounded-xl duration-300 hover:brightness-75 cursor-pointer button-radial-renec text-white  hover:scale-[1.02] active:scale-95 `}
+              >
+                Bridge Now
+              </button>
+            )}
           </div>
-
-          <PriceBoardPage
-            token0Name={tokenInitName}
-            token0Value={
-              tokenInputs === "" ? "0.00" : parseFloat(tokenInputs).toFixed(2)
-            }
-            token1Name={tokenDestinationName}
-            token1Value={minReceiveToken.toFixed(2)}
-            gasfees={gasfee?.gasPrice?.toString() ?? 0.0}
-          />
-
-          {isNetworkError && (
-            <div className="px-[1rem] py-[13px] flex lg:hidden flex-row justify-center items-center bg-[#534506] rounded-xl gap-5">
-              <Image
-                src={"/icons/warning-icon.svg"}
-                alt={"dropdown"}
-                height={35}
-                width={35}
-              />
-              <p className="mobile-overline sm:tablet-overline lg:web-overline grow">
-                Polygon Network is currently having a heavy network traffic.
-                Transactions may be delayed.
-              </p>
-            </div>
-          )}
-
-          {dynamicButtons === "Approve" ? (
-            <button
-              disabled={isLoadingApprove}
-              className={`mobile-title sm:tablet-title lg:web-title w-full ${
-                isLoadingApprove
-                  ? "bg-[#2e2e2e] cursor-not-allowed text-white"
-                  : "bg-[#1CACEF] hover:scale-[1.02] active:scale-95"
-              }  text-black px-2 py-5 rounded-xl duration-300`}
-              onClick={() => handleApproveToken()}
-            >
-              Approve
-            </button>
-          ) : (
-            <button
-              onClick={() => handleSwapToQr()}
-              disabled={isSwapError}
-              className={`mobile-title sm:tablet-title lg:web-title w-full px-2 py-5 rounded-xl duration-300 
-          ${
-            isSwapError
-              ? "cursor-not-allowed bg-[#2e2e2e] text-[#777a7a]"
-              : "hover:brightness-75 cursor-pointer bg-radial-button text-black  hover:scale-[1.02] active:scale-95 duration-300"
-          }`}
-            >
-              Swap Now
-            </button>
-          )}
         </div>
       </div>
     </section>
   );
 };
 
-export default SwapPage;
+export default SwapRenecPage;

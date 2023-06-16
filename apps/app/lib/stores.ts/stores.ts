@@ -130,3 +130,17 @@ export const useDestinationInit = create<DestinationAddress>((set) => ({
     set((state) => ({ ...state, address }));
   },
 }));
+
+interface SwitchColorBg {
+  bgColor: string;
+  bodyBgId: string;
+  updateBgColor: (bgColor: string, bodyBgId: string) => void;
+}
+
+export const useSwitchColorBg = create<SwitchColorBg>((set) => ({
+  bgColor: "bg-radial-evm",
+  bodyBgId: "multi-chain-swap",
+  updateBgColor: (bgColor, bodyBgId) => {
+    set((state) => ({ ...state, bgColor, bodyBgId }));
+  },
+}));
