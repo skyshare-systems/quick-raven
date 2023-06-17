@@ -36,6 +36,37 @@ const ConfirmBridge = ({ isOpen, onClose }: any) => {
 
           <div className="flex flex-col sm:flex-row justify-between items-center p-2 bg-[#151E2C] rounded-lg gap-3">
             <div className="flex flex-col w-full max-w-[151px] p-2 gap-2">
+              <h1 className="text-[#D2EEFC] text-center p-2 rounded-lg uppercase mobile-title sm:tablet-title md:web-title bg-[#1cacef]/25">
+                Polygon
+              </h1>
+
+              <div className="flex flex-row items-center gap-3 w-full px-1">
+                <Image
+                  src={"/icons/matic-icon.svg"}
+                  alt={"cross"}
+                  height={25}
+                  width={25}
+                />
+
+                <div className="flex flex-col gap-2">
+                  <h1 className="mobile-tile sm:tablet-title md:web-title text-white">
+                    1 Matic
+                  </h1>
+                  <h1 className="mobile-overline sm:tablet-overline md:web-overline text-[#838383]">
+                    ~$0.99
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <Image
+              src={"/icons/arrow-right-icon.svg"}
+              alt={"cross"}
+              height={20}
+              width={20}
+              className="rotate-90 sm:rotate-0 brightness-200"
+            />
+
+            <div className="flex flex-col w-full max-w-[151px] p-2 gap-2">
               <h1 className="text-[#F4D2FC] text-center p-2 rounded-lg uppercase mobile-title sm:tablet-title md:web-title bg-[#c91cef]/25">
                 Renec
               </h1>
@@ -58,42 +89,10 @@ const ConfirmBridge = ({ isOpen, onClose }: any) => {
                 </div>
               </div>
             </div>
-
-            <Image
-              src={"/icons/arrow-right-icon.svg"}
-              alt={"cross"}
-              height={20}
-              width={20}
-              className="rotate-90 sm:rotate-0 brightness-200"
-            />
-
-            <div className="flex flex-col w-full max-w-[151px] p-2 gap-2">
-              <h1 className="text-[#D2EEFC] text-center p-2 rounded-lg uppercase mobile-title sm:tablet-title md:web-title bg-[#1cacef]/25">
-                ETHEREUM
-              </h1>
-
-              <div className="flex flex-row items-center gap-3 w-full px-1">
-                <Image
-                  src={"/icons/eth-icon.svg"}
-                  alt={"cross"}
-                  height={25}
-                  width={25}
-                />
-
-                <div className="flex flex-col gap-2">
-                  <h1 className="mobile-tile sm:tablet-title md:web-title text-white">
-                    1 ETH
-                  </h1>
-                  <h1 className="mobile-overline sm:tablet-overline md:web-overline text-[#838383]">
-                    ~$0.99
-                  </h1>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div className="flex flex-col gap-4">
-            <div className="flex flex-row items-center gap-2">
+            {/* <div className="flex flex-row items-center gap-2">
               <span className="flex justify-center items-center mobile-overline sm:tablet-overline md:web-overline text-white bg-[#363e4d] rounded-full h-8 w-8">
                 1
               </span>
@@ -101,20 +100,9 @@ const ConfirmBridge = ({ isOpen, onClose }: any) => {
               <p className="mobile-description sm:tablet-description md:web-description text-[#636B79]">
                 Select Source Wallet
               </p>
-            </div>
+            </div> */}
 
-            <div className="flex flex-col sm:flex-row justify-center sm:justify-evenly sm:items-center gap-2">
-              <button className="flex flex-row gap-3 items-center border-[1px] border-[#1CEF5F] w-full p-2 mobile-title sm:tablet-title md:web-title bg-[#1cef5f]/30 text-white rounded-lg hover:brightness-150 active:scale-95 duration-300">
-                <Image
-                  src={"/icons/demon-wallet-icon.svg"}
-                  alt={"cross"}
-                  height={25}
-                  width={25}
-                  className="rounded-full"
-                />{" "}
-                Demon Wallet
-              </button>
-
+            {/* <div className="flex flex-col sm:flex-row justify-center sm:justify-evenly sm:items-center gap-2">
               <button className="flex flex-row gap-3 items-center w-full p-2 mobile-title sm:tablet-title md:web-title bg-[#151E2C] text-white rounded-lg hover:brightness-150 active:scale-95 duration-300">
                 <Image
                   src={"/icons/metamask-icon.svg"}
@@ -125,17 +113,28 @@ const ConfirmBridge = ({ isOpen, onClose }: any) => {
                 />{" "}
                 Metamask
               </button>
-            </div>
+
+              <button className="flex flex-row gap-3 items-center border-[1px] border-[#1CEF5F] w-full p-2 mobile-title sm:tablet-title md:web-title bg-[#1cef5f]/30 text-white rounded-lg hover:brightness-150 active:scale-95 duration-300">
+                <Image
+                  src={"/icons/demon-wallet-icon.svg"}
+                  alt={"cross"}
+                  height={25}
+                  width={25}
+                  className="rounded-full"
+                />{" "}
+                Demon Wallet
+              </button>
+            </div> */}
           </div>
 
           <div className="flex flex-col gap-4">
             <div className="flex flex-row items-center gap-2">
               <span className="flex justify-center items-center mobile-overline sm:tablet-overline md:web-overline text-white bg-[#363e4d] rounded-full h-8 w-8">
-                2
+                1
               </span>
 
               <p className="mobile-description sm:tablet-description md:web-description text-[#636B79]">
-                Input Metamask address
+                Input Demon Wallet address
               </p>
             </div>
 

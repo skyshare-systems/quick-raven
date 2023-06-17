@@ -50,6 +50,41 @@ export const network = [
     lowerColor: "rgba(22, 229, 142, 0.12) 0%, rgba(22, 229, 142, 0) 100%",
     solidColor: "#061810",
   },
+
+  {
+    chainID: 10200,
+    networkname: "Gnosis Chiado",
+    shortname: "Gnosis",
+    imgUrl: "/icons/gnosis-icon.svg",
+    address: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18",
+    lpAddress: "0x7a36666c7e02ED1F3517f7A921612d03B916C8DF",
+    dexAggregatorAddress: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18", // spender address
+    dexRouterAddress: {
+      uniswap: "0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF",
+    },
+    jsonRpcUrl: "https://rpc.chiadochain.net",
+    highColor: "rgba(22, 229, 142, 1) 0%, rgba(22, 229, 142, 0) 100%",
+    upperColor: "rgba(22, 229, 142, 0.24) 0%, rgba(22, 229, 142, 0) 100%",
+    lowerColor: "rgba(22, 229, 142, 0.12) 0%, rgba(22, 229, 142, 0) 100%",
+    solidColor: "#061810",
+  },
+  {
+    chainID: 99999,
+    networkname: "Renec Testnet",
+    shortname: "Renec",
+    imgUrl: "/icons/gnosis-icon.svg",
+    address: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18",
+    lpAddress: "0x7a36666c7e02ED1F3517f7A921612d03B916C8DF",
+    dexAggregatorAddress: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18", // spender address
+    dexRouterAddress: {
+      uniswap: "0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF",
+    },
+    jsonRpcUrl: "https://rpc.chiadochain.net",
+    highColor: "rgba(22, 229, 142, 1) 0%, rgba(22, 229, 142, 0) 100%",
+    upperColor: "rgba(22, 229, 142, 0.24) 0%, rgba(22, 229, 142, 0) 100%",
+    lowerColor: "rgba(22, 229, 142, 0.12) 0%, rgba(22, 229, 142, 0) 100%",
+    solidColor: "#061810",
+  },
 ];
 
 export const listOfToken = [
@@ -122,6 +157,12 @@ export const listOfToken = [
   {
     chainID: 10200,
     tokenName: "Matic",
+    address: "0x71e711Cd6b13125f53A5c238B015841a3c8315D7",
+    imgUrl: "/icons/matic-icon.svg",
+  },
+  {
+    chainID: 99999,
+    tokenName: "RE-USDT",
     address: "0x71e711Cd6b13125f53A5c238B015841a3c8315D7",
     imgUrl: "/icons/matic-icon.svg",
   },
