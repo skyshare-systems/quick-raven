@@ -641,7 +641,7 @@ const SwapPage = () => {
                   width={35}
                 />
                 <p className="mobile-overline sm:tablet-overline lg:web-overline grow">
-                  Polygon Network is currently having a heavy network traffic.
+                  Polygon Network is currently having heavy network traffic.
                   Transactions may be delayed.
                 </p>
               </div>
