@@ -124,12 +124,13 @@ const NavbarPage = () => {
               </div>
             </Link>
           </ul>
+          <ConnectWallet />
           {/* <ConnectButton showBalance={false} label="Connect" /> */}
-          {bgColor === "bg-radial-evm" ? (
+          {/* {bgColor === "bg-radial-evm" ? (
             <ConnectWallet />
           ) : (
-            <DemonWalletConnectButton className="text-black dark:text-white hover:text-white" />
-          )}
+            <DemonWalletConnectButton className="text-black hidden dark:text-white hover:text-white" />
+          )} */}
         </div>
       </nav>
     </>

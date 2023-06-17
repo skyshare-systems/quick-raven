@@ -585,7 +585,7 @@ const SwapRenecPage = () => {
               </div>
             )}
 
-            {dynamicButtons === "Approve" ? (
+            {dynamicButtons === "" ? (
               <button
                 disabled={isLoadingApprove}
                 className={`mobile-title sm:tablet-title lg:web-title w-full ${

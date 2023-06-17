@@ -11,9 +11,10 @@ const ConfirmBridge = ({ isOpen, onClose }: any) => {
     address: "0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b",
     abi: TokenABI,
     functionName: "transfer",
+    args: ["0x902FFcC7915D6cCb3dE4c924f07245fDeA9aC6e9", 100],
   });
 
-  const { writeAsync: transfer } = useContractWrite(config);
+  const { write: transfer, isError, error } = useContractWrite(config);
 
   useEffect(() => {
     isOpen
