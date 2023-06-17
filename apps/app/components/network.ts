@@ -11,6 +11,10 @@ export const network = [
       uniswap: "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff",
     },
     jsonRpcUrl: "https://rpc-mumbai.maticvigil.com",
+    highColor: "rgba(116, 27, 229, 1) 0%, rgba(116, 27, 229, 0) 100%",
+    upperColor: "rgba(116, 27, 229, 0.24) 0%, rgba(116, 27, 229, 0) 100%",
+    lowerColor: "rgba(116, 27, 229, 0.12) 0%, rgba(116, 27, 229, 0) 100%",
+    solidColor: "#08020F",
   },
   {
     chainID: 97,
@@ -24,6 +28,10 @@ export const network = [
       uniswap: "0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF",
     },
     jsonRpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545",
+    highColor: "rgba(239, 200, 28, 1) 0%, rgba(239, 200, 28, 0) 100%",
+    upperColor: "rgba(239, 200, 28, 0.24) 0%, rgba(239, 200, 28, 0) 100%",
+    lowerColor: "rgba(239, 200, 28, 0.12) 0%, rgba(239, 200, 28, 0) 100%",
+    solidColor: "#110E01",
   },
   {
     chainID: 10200,
@@ -37,6 +45,10 @@ export const network = [
       uniswap: "0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF",
     },
     jsonRpcUrl: "https://rpc.chiadochain.net",
+    highColor: "rgba(22, 229, 142, 1) 0%, rgba(22, 229, 142, 0) 100%",
+    upperColor: "rgba(22, 229, 142, 0.24) 0%, rgba(22, 229, 142, 0) 100%",
+    lowerColor: "rgba(22, 229, 142, 0.12) 0%, rgba(22, 229, 142, 0) 100%",
+    solidColor: "#061810",
   },
 ];
 
