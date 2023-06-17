@@ -1,9 +1,19 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
+import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import { TokenABI } from "abi";
 
 const ConfirmBridge = ({ isOpen, onClose }: any) => {
   const hide = "hidden";
   const show = "auto";
+
+  const { config } = usePrepareContractWrite({
+    address: "0xa80f9A21dD4938Ef9Cc4a5CFd97d2e27973b491b",
+    abi: TokenABI,
+    functionName: "transfer",
+  });
+
+  const { writeAsync: transfer } = useContractWrite(config);
 
   useEffect(() => {
     isOpen
@@ -155,9 +165,7 @@ const ConfirmBridge = ({ isOpen, onClose }: any) => {
             </div>
 
             <button
-              // onClick={() => setShowConfirmModal(true)}
-              // onClick={() => handleSwapToQr()}
-              // disabled={isSwapError}
+              onClick={() => transfer?.()}
               className={`mobile-title sm:tablet-title lg:web-title w-full px-2 py-5 rounded-xl duration-300 hover:brightness-75 cursor-pointer button-radial-renec text-white  hover:scale-[1.02] active:scale-95 `}
             >
               Confirm Bridge

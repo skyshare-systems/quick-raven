@@ -10,7 +10,6 @@ import {
   useNetwork,
   useWaitForTransaction,
   useFeeData,
-  useSwitchNetwork,
 } from "wagmi";
 import useMounted from "../hooks/useMounted";
 

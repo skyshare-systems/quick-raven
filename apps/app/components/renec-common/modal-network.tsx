@@ -110,7 +110,9 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
                     <>
                       {chains
                         .filter(
-                          (filterData) => filterData.name === data.networkname
+                          (filterData) =>
+                            filterData.name === data.networkname &&
+                            filterData.id !== 99999
                         )
                         .map((x) => (
                           <button

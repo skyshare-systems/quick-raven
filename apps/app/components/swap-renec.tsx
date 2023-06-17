@@ -225,6 +225,9 @@ const SwapRenecPage = () => {
         console.log(response.data + " Test");
         setAllowanceValue(response.data);
         // console.log(BigInt(response.data) + " Testing");
+      })
+      .catch((err) => {
+        console.info(err);
       });
   };
 
@@ -245,6 +248,9 @@ const SwapRenecPage = () => {
       .then((response) => {
         console.log(response.data);
         updateBalanceOf(balanceOfToken0, response.data);
+      })
+      .catch((err) => {
+        console.info(err);
       });
   };
 
