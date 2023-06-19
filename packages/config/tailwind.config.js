@@ -8,6 +8,23 @@ module.exports = {
     "../../apps/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    colors: {
+      primary: "#1CACEF",
+      secondary: "#EFC81C",
+      accent: "#C91CEF",
+      error: "#EF1C42",
+      success: "#1CEF5F",
+      black: "#101010",
+      white: "#FFFFFF",
+    },
+
+    //Opacity
+    opacity: {
+      8: ".08",
+      12: ".12",
+      16: ".16",
+      32: ".32",
+    },
     extend: {
       //Screens
       screens: {
@@ -28,24 +45,6 @@ module.exports = {
         "2xl": "1536px",
         // => @media (min-width: 1440px) { ... }
       },
-
-      //Colors
-
-      colors: {
-        primary: {
-          100: "#D2EEFC",
-          200: "#A4DEF9",
-        },
-      },
-
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-      },
-
-      // backgroundImage: {
-      //   neutral:
-      //     "radial-gradient(80.98% 100% at 50% 0%, #545454 0%, rgba(84, 84, 84, 0) 100%), #141414)",
-      // },
     },
   },
   plugins: [],

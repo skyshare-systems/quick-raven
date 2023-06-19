@@ -21,7 +21,7 @@ const NavbarPage = () => {
         isOpen={showTutorial}
         onClose={() => setShowTutorial(!showTutorial)}
       />
-      <nav className="fixed top-0 flex flex-row justify-center items-center backdrop-filter z-[4] w-full">
+      <nav className="fixed top-0 flex flex-row justify-center items-center backdrop-filter bg-white/32 z-[4] w-full">
         <div className="flex flex-row justify-between max-w-[80rem] xsm:px-5 lg:px-0 py-4 grow">
           {" "}
           <ul className="flex flex-row items-center gap-5 md:gap-11">
