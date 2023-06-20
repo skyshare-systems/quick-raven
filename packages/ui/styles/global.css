@@ -114,12 +114,17 @@
   }
 
   .bg-radial-button {
-    background: radial-gradient(
-        80.98% 100% at 50% 0%,
-        #1ddfff 0%,
-        rgba(29, 223, 255, 0) 100%
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0) 100%
       ),
-      #1dffae;
+      linear-gradient(
+        90deg,
+        rgba(201, 28, 239, 0) 0%,
+        rgba(202, 32, 234, 0.5) 100%
+      ),
+      #1cacef;
   }
 
   .bg-radial-modal {

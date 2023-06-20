@@ -183,7 +183,7 @@ const SwapPage = () => {
     args: [
       dexAggregatorAddress ?? "",
       BigInt(String(ethers.constants.MaxUint256)),
-    ], // dex aggregator address
+    ],
   });
 
   const {

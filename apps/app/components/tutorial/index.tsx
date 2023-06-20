@@ -21,6 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Loading from "../../components-backup/common/Loading";
 
 import ImportTokenPage from "../../utils/import-token";
+import shortenName from "utils/limit-text";
 
 const ModalTutorialPage = ({ isOpen, onClose }: any) => {
   const [openTab, setOpenTab] = useState(0);
@@ -399,7 +400,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                       }`}
                     >
                       <p className="mobile-title sm:tablet-title lg:web-title">
-                        {x.name}
+                        {shortenName(x.name)}
                       </p>
                     </button>
                   ))}

@@ -22,8 +22,8 @@ const SelectNetworkPage = ({
   const { updateLabelNetwork } = useLabelNetwork((state) => state);
 
   function handleClick() {
-    isOpen(true);
     updateLabelNetwork(labelNetwork, chainID);
+    isOpen(true);
   }
 
   return (

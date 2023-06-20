@@ -6,7 +6,7 @@ import { ConnectNetworkSelect } from "components/common/network-select";
 import SelectNetworkPage from "components/common/select-network";
 import TitlePage from "components/common/title";
 import useMounted from "hooks/useMounted";
-import { network } from "lib/json/network";
+import { listOfToken, network } from "lib/json/network";
 import React, { useEffect, useState } from "react";
 import shortenName from "utils/limit-text";
 import {
@@ -16,6 +16,7 @@ import {
   useSwitchNetwork,
   useWaitForTransaction,
   useContractWrite,
+  useContractRead,
 } from "wagmi";
 import {
   useNetworkInit,
@@ -34,8 +35,9 @@ import TokenStatsPage from "components/common/token-stats";
 import PriceBoardPage from "components/common/price-board";
 import axios from "axios";
 import { ethers, BigNumber } from "ethers";
-import { DexAggregatorABI } from "lib/abi";
+import { DexAggregatorABI, LPTokenABI, TokenABI } from "lib/abi";
 import { ConnectWallet } from "components/common/connect-wallet";
+import { ConnectWalletSwap } from "components/common/connect-wallet-swap";
 
 const SwapPage = () => {
   const { isConnected, address: account } = useAccount();
@@ -53,6 +55,7 @@ const SwapPage = () => {
   );
 
   const [tokenInputs, setTokenInputs] = useState<number>(0.0);
+  const [minReceiveToken, setMinReceiveToken] = useState<number>(0);
 
   const [dexRouterAddress, setDexRouterAddress] = useState<string>("");
   const [dexAggregatorAddress, setDexAggregatorAddress] = useState<any>("");
@@ -61,6 +64,8 @@ const SwapPage = () => {
   const [allowanceValue, setAllowanceValue] = useState<string>("");
   const [approveHash, setApproveHash] = useState<`0x${string}`>();
   const [hash, setHash] = useState<`0x${string}`>();
+
+  const [input, setInput] = useState("");
 
   const { chainID } = useLabelNetwork((state) => state);
 
@@ -99,6 +104,15 @@ const SwapPage = () => {
     (state) => state
   );
 
+  // const provider = new ethers.providers.JsonRpcProvider(jsonRpcUrlDestination);
+  // const wallet = new ethers.Wallet(
+  //   "5acc566e889da617b7f8032ed5f745af8ad695ec2f5421b42b09be517067c051"
+  // );
+  // // connect the wallet to the provider
+  // const signer = wallet.connect(provider);
+  // const abi = TokenABI;
+  // const contract = new ethers.Contract(tokenDestinationAddress, abi, provider);
+
   const { isSuccess: isApprove, isLoading: isLoadingApprove } =
     useWaitForTransaction({
       hash: approveHash,
@@ -107,9 +121,11 @@ const SwapPage = () => {
   // Dynamic SwapToQr
 
   const token0 =
-    String(tokenInputs) === ""
+    tokenInputs > 0
       ? ethers.utils.parseEther("1")
       : ethers.utils.parseEther(tokenInputs.toString());
+
+  // Config
 
   const { config, isError: isConfigSwapError } = usePrepareContractWrite({
     address: dexAggregatorAddress ?? "",
@@ -126,19 +142,47 @@ const SwapPage = () => {
           : String(ethers.utils.parseEther(String(1)))
       ),
     ],
-    enabled: false,
+  });
+  const { config: configApprove } = usePrepareContractWrite({
+    address: tokenInitAddress ?? "",
+    abi: TokenABI,
+    functionName: "approve",
+    args: [
+      dexAggregatorAddress ?? "",
+      BigInt(String(ethers.constants.MaxUint256)),
+    ],
+  });
+  const { data: getReserves } = useContractRead({
+    address: tokenLpAddress ?? "",
+    abi: LPTokenABI,
+    functionName: "getReserves",
   });
 
-  const { writeAsync: swapToQr } = useContractWrite(config);
-
   //functions
+  const { writeAsync: swapToQr } = useContractWrite(config);
+  const { writeAsync: approveToken } = useContractWrite(configApprove);
 
   const handleSwapToQr = () => {
-    swapToQr?.().then((res) => {
-      console.log(res);
-      // toast("Transaction has been created");
-      setHash(res.hash);
-    });
+    swapToQr?.()
+      .then((res) => {
+        console.log(res);
+        setHash(res.hash);
+      })
+      .catch((err) => {
+        console.info(err);
+      });
+  };
+
+  const handleApproveToken = () => {
+    approveToken?.()
+      .then((res) => {
+        console.log(res);
+
+        setApproveHash(res.hash);
+      })
+      .catch((err) => {
+        console.info(err);
+      });
   };
 
   const handleSelectedTokenInit = async (
@@ -182,6 +226,43 @@ const SwapPage = () => {
       });
   };
 
+  function handleSelectTokenAddress() {
+    console.log(tokenDestinationName + " Testing desName");
+    listOfToken
+      .filter((filter) => {
+        return (
+          filter.tokenName === tokenDestinationName &&
+          filter.chainID === chain?.id
+        );
+      })
+      .map((data) => {
+        console.log("Get Testing");
+        updateDestinationInit(data.address);
+      });
+  }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const calculateMinTokenOut = (
+    tokenIn: any,
+    reserveIn: any,
+    reserveOut: any,
+    slippage: any
+  ) => {
+    if (tokenInputs > 0) {
+      const idealOutput =
+        Number(reserveOut) -
+        (Number(reserveIn) * Number(reserveOut)) /
+          (Number(reserveIn) + tokenIn);
+
+      const minTokensOut = idealOutput * (1 - slippage / 100);
+
+      // console.info(minTokensOut);
+      setMinReceiveToken(minTokensOut);
+    } else {
+      setMinReceiveToken(0);
+    }
+  };
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const checkAllowance = async () => {
     await axios
@@ -194,8 +275,11 @@ const SwapPage = () => {
       .then((response) => {
         console.log(response.data + " Test");
         setAllowanceValue(response.data);
-        // console.log(BigInt(response.data) + " Testing");
       });
+  };
+
+  const onSubmit = (e) => {
+    e.target.reset();
   };
 
   //load
@@ -213,10 +297,24 @@ const SwapPage = () => {
         );
         document.documentElement.style.setProperty("--top", data.upperColor);
         document.documentElement.style.setProperty("--solid", data.solidColor);
-      } else if (!isConnected) {
+      } else {
+        updateNetworkDestination("", "", "");
+        updateSelectedTokenInit("", "", "0x", 0);
+        updateSelectedTokenDestination("", "", "0x", 0);
+        updateBalanceOf(0, 0);
+        setTokenInputs(0.0);
+        setMinReceiveToken(0);
+        updateDestinationInit("");
+        setInput("0");
+      }
+      if (!isConnected) {
+        setInput("0");
         updateNetworkInit("", "", "");
         updateSelectedTokenInit("", "", "0x", 0);
         updateDestinationInit("");
+        updateSelectedTokenDestination("", "", "0x", 0);
+        updateBalanceOf(0, 0);
+        setTokenInputs(0.0);
         updateNetworkDestination("", "", "");
         document.documentElement.style.setProperty(
           "--top",
@@ -237,16 +335,29 @@ const SwapPage = () => {
         document.documentElement.style.setProperty("--solid", "#141414");
       }
     });
-  }, [
-    chain?.name,
-    isConnected,
-    isSuccess,
-    jsonRpcUrlDestination,
-    updateDestinationInit,
-    updateNetworkDestination,
-    updateNetworkInit,
-    updateSelectedTokenInit,
-  ]);
+  }, [chain?.name, isConnected]);
+
+  useEffect(() => {
+    let reservezero;
+    let reserveone;
+
+    try {
+      reservezero = ethers.utils.formatEther(BigNumber.from(getReserves?.[0]));
+
+      reserveone = ethers.utils.formatEther(BigNumber.from(getReserves?.[1]));
+    } catch (e) {
+      console.info(e);
+    }
+
+    if (tokenDestinationName !== "") {
+      calculateMinTokenOut(
+        Number(tokenInputs),
+        Number(reservezero),
+        Number(reserveone),
+        3
+      );
+    }
+  }, [calculateMinTokenOut, getReserves, tokenDestinationName, tokenInputs]);
 
   useEffect(() => {
     if (isApprove === true) {
@@ -264,11 +375,14 @@ const SwapPage = () => {
     } else {
       setDynamicButtons("swap");
     }
-
     if (!isConnected) {
       setDynamicButtons("connectwallet");
     }
   }, [allowanceValue, isConnected, tokenInputs]);
+
+  useEffect(() => {
+    handleSelectTokenAddress();
+  }, [tokenDestinationAddress]);
 
   const getDynamicButtons = () => {
     switch (dynamicButtons) {
@@ -282,7 +396,7 @@ const SwapPage = () => {
                   ? "bg-[#2e2e2e] cursor-not-allowed text-white"
                   : "bg-white hover:scale-[1.02] active:scale-95"
               }  text-black px-2 py-5 rounded-xl duration-300`}
-              // onClick={() => handleApproveToken()}
+              onClick={() => handleApproveToken()}
             >
               {isLoadingApprove ? "Approving..." : "Approve"}
             </button>
@@ -291,7 +405,7 @@ const SwapPage = () => {
       case "connectwallet":
         return (
           <>
-            <ConnectWallet />
+            <ConnectWalletSwap />
           </>
         );
       case "swap":
@@ -380,13 +494,14 @@ const SwapPage = () => {
             <div className="flex flex-col border-[1px] border-[#3b3b3b] px-[1rem] py-3 rounded-xl gap-2">
               <div className="flex flex-row justify-between grow gap-2">
                 <input
-                  type="number"
+                  type="text"
                   disabled={tokenInitName === ""}
                   id="tokenvalue"
                   name="tokenvalue"
                   placeholder="0.00"
+                  value={tokenInputs}
+                  onBlur={(e) => setTokenInputs(Number(e.target.value))}
                   className={`w-full bg-transparent lg:grow text-2xl font-[Excon] 
-              
                   `}
                   onChange={(e) => setTokenInputs(Number(e.target.value))}
                 />
@@ -437,7 +552,7 @@ const SwapPage = () => {
                 id="fname"
                 name="fname"
                 placeholder="0.00"
-                // value={minReceiveToken.toFixed(2)}
+                value={minReceiveToken.toFixed(6)}
                 className="w-full bg-transparent lg:grow text-2xl font-[Excon]"
                 disabled
               />
@@ -468,8 +583,7 @@ const SwapPage = () => {
                 : parseFloat(Number(tokenInputs).toString()).toFixed(2)
             }
             token1Name={tokenDestinationName}
-            token1Value={0}
-            // token1Value={minReceiveToken.toFixed(2)}
+            token1Value={minReceiveToken.toFixed(2)}
             // gasfees={gasfee?.gasPrice?.toString() ?? 0.0}
             gasfees={0.0}
           />

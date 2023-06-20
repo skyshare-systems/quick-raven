@@ -5,7 +5,7 @@ interface StatsPrice {
   token0Name: string;
   token0Value: any;
   token1Name: string;
-  token1Value: number;
+  token1Value: any;
   gasfees: any;
 }
 
