@@ -30,7 +30,7 @@ const InfoSectionPage = () => {
           DEXes and Bridges
         </h2>
         <p
-          className="mobile-description sm:tablet-description md:web-description text-white text-center max-w-[600px]"
+          className="mobile-description sm:tablet-description md:web-description text-[#D4D4D4] text-center max-w-[600px]"
           data-aos="fade-up"
           data-aos-delay="200"
           data-aos-easing="ease-in-out"

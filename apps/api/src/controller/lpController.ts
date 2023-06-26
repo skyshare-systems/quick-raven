@@ -1,25 +1,30 @@
 import expressAsyncHandler from "express-async-handler";
-import { allowance, balanceOf, totalSupply, reserves } from "../hooks/lpData";
+import { lpTokenContract, tokenContract } from "../config/data";
 
 export const GETallowance = expressAsyncHandler(async (req, res) => {
-  const { network, owner, spender, tokenAddress } = req.body;
-  let currAllowance: string;
+  const { network, tokenAddress, owner, spender } = req.body;
+  let currAllowance: string = "";
 
   try {
-    currAllowance = await allowance(network, tokenAddress, owner, spender);
+    currAllowance = await lpTokenContract(network, tokenAddress).allowance(
+      owner,
+      spender
+    );
   } catch (e) {
     res.status(400).send(e);
   }
 
-  res.status(200).send(allowance);
+  res.status(200).send(currAllowance);
 });
 
 export const GETbalanceOf = expressAsyncHandler(async (req, res) => {
-  const { address, tokenAddress, network } = req.body;
+  const { network, tokenAddress, userAddress } = req.body;
   let balance;
 
   try {
-    balance = await balanceOf(address, network);
+    balance = await lpTokenContract(network, tokenAddress).balanceOf(
+      userAddress
+    );
   } catch (e) {
     res.status(400).send(e);
   }
@@ -28,24 +33,24 @@ export const GETbalanceOf = expressAsyncHandler(async (req, res) => {
 });
 
 export const GETtotalSupply = expressAsyncHandler(async (req, res) => {
-  const { address, network } = req.body;
+  const { network, tokenAddress } = req.body;
   let supply;
 
   try {
-    supply = await totalSupply(address, network);
+    supply = await lpTokenContract(network, tokenAddress).totalSupply();
   } catch (e) {
     res.status(400).send(e);
   }
 
-  res.send(totalSupply);
+  res.send(supply);
 });
 
 export const GETreserves = expressAsyncHandler(async (req, res) => {
-  const { network, address } = req.body;
+  const { network, tokenAddress } = req.body;
   let tokenReserves;
 
   try {
-    tokenReserves = await reserves(network, address);
+    tokenReserves = await lpTokenContract(network, tokenAddress).reserves();
   } catch (e) {
     res.status(400).send(e);
   }

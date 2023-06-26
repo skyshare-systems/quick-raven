@@ -1,8 +1,8 @@
-import NavbarPage from "components/navbar";
+import NavbarPage from "components/navigations/navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import WagmiProviders from "providers/WagmiProviders";
-import FooterPage from "components/footer";
+import FooterPage from "components/navigations/footer";
 import ApolloProviders from "providers/ApolloProviders";
 
 export const metadata = {
@@ -21,11 +21,12 @@ export default function RootLayout({
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
       </head>
-      <body>
+      <body className="app">
         <WagmiProviders>
           <ApolloProviders>
             <NavbarPage />
             {children}
+            <FooterPage />
           </ApolloProviders>
         </WagmiProviders>
       </body>

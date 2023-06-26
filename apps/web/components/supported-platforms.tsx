@@ -4,7 +4,7 @@ import Image from "next/image";
 const availabletokens = [
   {
     id: 1,
-    name: "BTC",
+    name: "WBTC",
     imgUrl: "/icons/available-coins/btc-icon.svg",
     width: "max-w-[90px]",
   },
@@ -218,13 +218,13 @@ const crosschainbridge = [
     width: "max-w-[140px]",
     isLive: true,
   },
-  {
-    id: 2,
-    name: "Matic",
-    imgUrl: "/icons/cross-chain-bridge/matic-icon.svg",
-    width: "max-w-[140px]",
-    isLive: true,
-  },
+  // {
+  //   id: 2,
+  //   name: "Matic",
+  //   imgUrl: "/icons/cross-chain-bridge/matic-icon.svg",
+  //   width: "max-w-[140px]",
+  //   isLive: true,
+  // },
   {
     id: 3,
     name: "Synapse",
@@ -300,7 +300,6 @@ const SupportedPlatformPage = () => {
     }
   }, [triggerID]);
 
-  console.log(triggerID);
   return (
     <div
       className="relative flex flex-col py-[1rem] h-auto justify-center items-center gap-5"
@@ -336,8 +335,8 @@ const SupportedPlatformPage = () => {
               src={"/assets/supported-platforms/glow-supported-platform.svg"}
               alt={"line"}
               width={100}
-              height={10}
-              className={`absolute top-5 duration-1000 -z-[1] ${
+              height={200}
+              className={`absolute top-16 duration-1000 scale-[4] -z-[1] ${
                 triggerID === 1 ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -403,7 +402,7 @@ const SupportedPlatformPage = () => {
               alt={"line"}
               width={100}
               height={10}
-              className={`absolute top-5 duration-1000 -z-[1] ${
+              className={`absolute top-16 duration-1000 scale-[4] -z-[1] ${
                 triggerID === 2 ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -462,7 +461,7 @@ const SupportedPlatformPage = () => {
               alt={"line"}
               width={100}
               height={10}
-              className={`absolute top-5 duration-1000 -z-[1] ${
+              className={`absolute top-16 duration-1000 scale-[4] -z-[1] ${
                 triggerID === 3 ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -521,7 +520,7 @@ const SupportedPlatformPage = () => {
               alt={"line"}
               width={100}
               height={10}
-              className={`absolute top-5 duration-1000 -z-[1] ${
+              className={`absolute top-16 duration-1000 scale-[4] -z-[1] ${
                 triggerID === 4 ? "opacity-100" : "opacity-0"
               }`}
             />

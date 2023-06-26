@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "main": "dist/app.js",
   "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.json",
     "prestart": "yarn build",
-    "start": "node dist/index.js",
+    "start": "node dist/app.js",
     "preserve": "yarn build",
-    "serve": "tsc -w & nodemon dist/index.js"
+    "serve": "tsc -w & nodemon dist/app.js"
   },
   "dependencies": {
     "@types/cors": "^2.8.13",

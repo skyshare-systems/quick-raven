@@ -1,9 +1,9 @@
 import expressAsyncHandler from "express-async-handler";
 import { tokenContract } from "../config/data";
-import { test } from "../hooks/tokenData";
+import { ethers } from "ethers";
 
 export const GETallowance = expressAsyncHandler(async (req, res) => {
-  const { network, owner, spender, tokenAddress } = req.body;
+  const { network, tokenAddress, owner, spender } = req.body;
   let allowance;
 
   try {
@@ -15,33 +15,33 @@ export const GETallowance = expressAsyncHandler(async (req, res) => {
     res.status(400).send(e);
   }
 
-  res.status(200).send(allowance);
+  res.status(200).send(String(allowance));
 });
 
 export const GETbalanceOf = expressAsyncHandler(async (req, res) => {
-  const { address, tokenAddress, network } = req.body;
+  const { network, tokenAddress, userAddress } = req.body;
   let balance;
 
   try {
-    balance = await tokenContract(network, tokenAddress).balanceOf(address);
+    balance = await tokenContract(network, tokenAddress).balanceOf(userAddress);
   } catch (e) {
     res.status(400).send(e);
   }
 
-  res.status(200).send(balance);
+  res.status(200).send(ethers.formatEther(String(balance)));
 });
 
 export const GETtotalSupply = expressAsyncHandler(async (req, res) => {
-  const { address, network } = req.body;
+  const { network, tokenAddress } = req.body;
   let totalSupply;
 
   try {
-    totalSupply = await tokenContract(network, address).totalSupply();
+    totalSupply = await tokenContract(network, tokenAddress).totalSupply();
   } catch (e) {
     res.status(400).send(e);
   }
 
-  res.status(200).send(totalSupply);
+  res.status(200).send(ethers.formatEther(totalSupply));
 });
 
 export const GETname = expressAsyncHandler(async (req, res) => {
@@ -58,6 +58,7 @@ export const GETname = expressAsyncHandler(async (req, res) => {
 });
 
 export const GETtest = expressAsyncHandler(async (req, res) => {
-  const message = test();
+  const message = "working";
+
   res.status(200).send(message);
 });

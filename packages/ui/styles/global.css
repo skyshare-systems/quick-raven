@@ -6,80 +6,80 @@
   /* fontsize mobile  */
 
   .mobile-subtitle {
-    @apply text-[8px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
+    @apply text-[8px] font-[600] leading-[12px] font-[Switzer];
   }
   .mobile-overline {
-    @apply text-[10px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
+    @apply text-[10px] font-[400] leading-[12px] font-[Switzer];
   }
   .mobile-description {
-    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
+    @apply text-[12px] font-[400] leading-[12px] font-[Switzer];
   }
   .mobile-title {
-    @apply text-[12px] font-[700] leading-[12px] font-[Switzer] tracking-[0.5px];
+    @apply text-[12px] font-[700] leading-[12px] font-[Switzer];
   }
   .mobile-h4 {
-    @apply text-[14px] font-[700] leading-[16px] font-[Excon] tracking-[0.5px];
+    @apply text-[14px] font-[700] leading-[16px] font-[Excon];
   }
   .mobile-h3 {
-    @apply text-[18px] font-[700] leading-[28px] font-[Excon] tracking-[0.5px];
+    @apply text-[18px] font-[700] leading-[28px] font-[Excon];
   }
   .mobile-h2 {
-    @apply text-[24px] font-[700] leading-[28px] font-[Excon] tracking-[0.5px];
+    @apply text-[24px] font-[700] leading-[28px] font-[Excon];
   }
   .mobile-h1 {
-    @apply text-[32px] font-[700] leading-[36px] font-[Excon] tracking-[0.5px];
+    @apply text-[32px] font-[700] leading-[36px] font-[Excon];
   }
 
   /* Font Size Tablet  */
   .tablet-overline {
-    @apply text-[12px] font-[400] leading-[12px] font-[Switzer] tracking-[0.5px];
+    @apply text-[12px] font-[400] leading-[12px] font-[Switzer];
   }
   .tablet-subtitle {
-    @apply text-[12px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
+    @apply text-[12px] font-[600] leading-[12px] font-[Switzer];
   }
   .tablet-description {
-    @apply text-[14px] font-[400] leading-[14px] font-[Switzer] tracking-[0.5px];
+    @apply text-[14px] font-[400] leading-[14px] font-[Switzer];
   }
   .tablet-title {
-    @apply text-[14px] font-[700] leading-[14px] font-[Switzer] tracking-[0.5px];
+    @apply text-[14px] font-[700] leading-[14px] font-[Switzer];
   }
   .tablet-h4 {
-    @apply text-[18px] font-[700] leading-[20px] font-[Excon] tracking-[0.5px];
+    @apply text-[18px] font-[700] leading-[20px] font-[Excon];
   }
   .tablet-h3 {
-    @apply text-[22px] font-[700] leading-[31px] font-[Excon] tracking-[0.5px];
+    @apply text-[22px] font-[700] leading-[31px] font-[Excon];
   }
   .tablet-h2 {
-    @apply text-[36px] font-[700] leading-[51px] font-[Excon] tracking-[0.5px];
+    @apply text-[36px] font-[700] leading-[51px] font-[Excon];
   }
   .tablet-h1 {
-    @apply text-[64px] font-[700] leading-[91px] font-[Excon] tracking-[0.5px];
+    @apply text-[64px] font-[700] leading-[91px] font-[Excon];
   }
 
   /* font size web  */
   .web-overline {
-    @apply text-[14px] font-[400] leading-[15px] font-[Switzer] tracking-[0.5px];
+    @apply text-[14px] font-[400] leading-[15px] font-[Switzer];
   }
   .web-subtitle {
-    @apply text-[14px] font-[600] leading-[12px] font-[Switzer] tracking-[0.5px];
+    @apply text-[14px] font-[600] leading-[12px] font-[Switzer];
   }
   .web-description {
-    @apply text-[16px] font-[400] leading-[16px] font-[Switzer] tracking-[0.5px];
+    @apply text-[16px] font-[500] leading-[16px] font-[Switzer];
   }
   .web-title {
-    @apply text-[16px] font-[700] leading-[16px] font-[Switzer] tracking-[0.5px];
+    @apply text-[16px] font-[600] leading-[16px] font-[Switzer];
   }
   .web-h4 {
-    @apply text-[20px] font-[700] leading-[28px] font-[Excon] tracking-[0.5px];
+    @apply text-[20px] font-[700] leading-[28px] font-[Excon];
   }
   .web-h3 {
-    @apply text-[24px] font-[700] leading-[34px] font-[Excon] tracking-[0.5px];
+    @apply text-[24px] font-[700] leading-[34px] font-[Excon];
   }
   .web-h2 {
-    @apply text-[48px] font-[700] leading-[68px] font-[Excon] tracking-[0.5px];
+    @apply text-[48px] font-[700] leading-[68px] font-[Excon];
   }
   .web-h1 {
-    @apply text-[96px] font-[700] leading-[136px] font-[Excon] tracking-[0.5px];
+    @apply text-[96px] font-[700] leading-[136px] font-[Excon];
   }
 
   .center-absolute {
@@ -120,15 +120,6 @@
         rgba(29, 223, 255, 0) 100%
       ),
       #1dffae;
-  }
-
-  .bg-radial {
-    background: radial-gradient(
-        80.98% 100% at 50% 0%,
-        rgba(84, 84, 84, 0.2) 0%,
-        rgba(84, 84, 84, 0) 100%
-      ),
-      rgba(20, 20, 20, 0.5);
   }
 
   .bg-radial-modal {
