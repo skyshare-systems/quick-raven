@@ -10,172 +10,172 @@ import GlowRight from "public/assets/supported-platforms/s3-stats-glow-right.svg
 
 const bridge = [
   {
-    imgUrl: "/icons/bridge/item.png",
+    imgUrl: "/icons/Bridge/item.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/bridge/item-1.png",
+    imgUrl: "/icons/Bridge/item-1.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/bridge/item-2.png",
+    imgUrl: "/icons/Bridge/item-2.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/bridge/item-3.png",
+    imgUrl: "/icons/Bridge/item-3.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/bridge/item-4.png",
+    imgUrl: "/icons/Bridge/item-4.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/bridge/item-5.png",
+    imgUrl: "/icons/Bridge/item-5.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/bridge/item-6.png",
+    imgUrl: "/icons/Bridge/item-6.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/bridge/item-7.png",
+    imgUrl: "/icons/Bridge/item-7.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/bridge/item-8.png",
+    imgUrl: "/icons/Bridge/item-8.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/bridge/item-9.png",
+    imgUrl: "/icons/Bridge/item-9.png",
     isLive: false,
   },
 ];
 
 const dexs = [
   {
-    imgUrl: "/icons/dexs/item.png",
+    imgUrl: "/icons/DEXs/item.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/dexs/item-1.png",
+    imgUrl: "/icons/DEXs/item-1.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/dexs/item-2.png",
+    imgUrl: "/icons/DEXs/item-2.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/dexs/item-3.png",
+    imgUrl: "/icons/DEXs/item-3.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/dexs/item-4.png",
+    imgUrl: "/icons/DEXs/item-4.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/dexs/item-5.png",
+    imgUrl: "/icons/DEXs/item-5.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/dexs/item-6.png",
+    imgUrl: "/icons/DEXs/item-6.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/dexs/item-7.png",
+    imgUrl: "/icons/DEXs/item-7.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/dexs/item-8.png",
+    imgUrl: "/icons/DEXs/item-8.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/dexs/item-9.png",
+    imgUrl: "/icons/DEXs/item-9.png",
     isLive: false,
   },
 ];
 
 const chains = [
   {
-    imgUrl: "/icons/chains/item.png",
+    imgUrl: "/icons/Chains/item.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/chains/item-1.png",
+    imgUrl: "/icons/Chains/item-1.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/chains/item-2.png",
+    imgUrl: "/icons/Chains/item-2.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/chains/item-3.png",
+    imgUrl: "/icons/Chains/item-3.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/chains/item-4.png",
+    imgUrl: "/icons/Chains/item-4.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/chains/item-5.png",
+    imgUrl: "/icons/Chains/item-5.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/chains/item-6.png",
+    imgUrl: "/icons/Chains/item-6.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/chains/item-7.png",
+    imgUrl: "/icons/Chains/item-7.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/chains/item-8.png",
+    imgUrl: "/icons/Chains/item-8.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/chains/item-9.png",
+    imgUrl: "/icons/Chains/item-9.png",
     isLive: false,
   },
 ];
 
 const wallet = [
   {
-    imgUrl: "/icons/wallets/item.png",
+    imgUrl: "/icons/Wallets/item.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/wallets/item-1.png",
+    imgUrl: "/icons/Wallets/item-1.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/wallets/item-2.png",
+    imgUrl: "/icons/Wallets/item-2.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/wallets/item-3.png",
+    imgUrl: "/icons/Wallets/item-3.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/wallets/item-4.png",
+    imgUrl: "/icons/Wallets/item-4.png",
     isLive: true,
   },
   {
-    imgUrl: "/icons/wallets/item-5.png",
+    imgUrl: "/icons/Wallets/item-5.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/wallets/item-6.png",
+    imgUrl: "/icons/Wallets/item-6.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/wallets/item-7.png",
+    imgUrl: "/icons/Wallets/item-7.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/wallets/item-8.png",
+    imgUrl: "/icons/Wallets/item-8.png",
     isLive: false,
   },
   {
-    imgUrl: "/icons/wallets/item-9.png",
+    imgUrl: "/icons/Wallets/item-9.png",
     isLive: false,
   },
 ];
