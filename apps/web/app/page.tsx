@@ -20,13 +20,15 @@ export default function Home() {
     <>
       <NavbarPage />
       <HeroSectionPage />
-      <TransactionPage />
-      <SupportedPlatformPage />
+
       <InfoSectionPage />
-      <PartnerPage />
+      <SupportedPlatformPage />
+
+      {/* <SupportedPlatformPage /> */}
+      {/* <TransactionPage />
       <PartnerTeamPage />
       <ContactUsPage />
-      <FooterPage />
+      <FooterPage /> */}
     </>
   );
 }
