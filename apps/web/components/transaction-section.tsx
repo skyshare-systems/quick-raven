@@ -17,7 +17,7 @@ export default function TransactionPage() {
   }
 
   return (
-    <div className="flex justify-center lg:w-full px-5 lg:px-0">
+    <div className="relative flex justify-center lg:w-full px-5 lg:px-0">
       <Squircle
         cornerRadius={30}
         cornerSmoothing={1}
