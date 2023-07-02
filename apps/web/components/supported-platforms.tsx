@@ -8,6 +8,178 @@ import GlowTop from "public/assets/supported-platforms/s3-glow-top.svg";
 import GlowLeft from "public/assets/supported-platforms/s3-stats-glow-left.svg";
 import GlowRight from "public/assets/supported-platforms/s3-stats-glow-right.svg";
 
+const bridge = [
+  {
+    imgUrl: "/icons/bridge/item.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/bridge/item-1.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/bridge/item-2.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/bridge/item-3.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/bridge/item-4.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/bridge/item-5.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/bridge/item-6.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/bridge/item-7.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/bridge/item-8.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/bridge/item-9.png",
+    isLive: false,
+  },
+];
+
+const dexs = [
+  {
+    imgUrl: "/icons/dexs/item.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/dexs/item-1.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/dexs/item-2.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/dexs/item-3.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/dexs/item-4.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/dexs/item-5.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/dexs/item-6.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/dexs/item-7.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/dexs/item-8.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/dexs/item-9.png",
+    isLive: false,
+  },
+];
+
+const chains = [
+  {
+    imgUrl: "/icons/chains/item.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/chains/item-1.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/chains/item-2.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/chains/item-3.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/chains/item-4.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/chains/item-5.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/chains/item-6.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/chains/item-7.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/chains/item-8.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/chains/item-9.png",
+    isLive: false,
+  },
+];
+
+const wallet = [
+  {
+    imgUrl: "/icons/wallets/item.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/wallets/item-1.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/wallets/item-2.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/wallets/item-3.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/wallets/item-4.png",
+    isLive: true,
+  },
+  {
+    imgUrl: "/icons/wallets/item-5.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/wallets/item-6.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/wallets/item-7.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/wallets/item-8.png",
+    isLive: false,
+  },
+  {
+    imgUrl: "/icons/wallets/item-9.png",
+    isLive: false,
+  },
+];
+
 const SupportedPlatformPage = () => {
   return (
     <div
@@ -109,175 +281,3 @@ const SupportedPlatformPage = () => {
 };
 
 export default SupportedPlatformPage;
-
-export const bridge = [
-  {
-    imgUrl: "/icons/bridge/item.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/bridge/item-1.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/bridge/item-2.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/bridge/item-3.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/bridge/item-4.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/bridge/item-5.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/bridge/item-6.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/bridge/item-7.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/bridge/item-8.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/bridge/item-9.png",
-    isLive: false,
-  },
-];
-
-export const dexs = [
-  {
-    imgUrl: "/icons/dexs/item.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/dexs/item-1.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/dexs/item-2.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/dexs/item-3.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/dexs/item-4.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/dexs/item-5.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/dexs/item-6.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/dexs/item-7.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/dexs/item-8.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/dexs/item-9.png",
-    isLive: false,
-  },
-];
-
-export const chains = [
-  {
-    imgUrl: "/icons/chains/item.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/chains/item-1.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/chains/item-2.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/chains/item-3.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/chains/item-4.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/chains/item-5.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/chains/item-6.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/chains/item-7.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/chains/item-8.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/chains/item-9.png",
-    isLive: false,
-  },
-];
-
-export const wallet = [
-  {
-    imgUrl: "/icons/wallets/item.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/wallets/item-1.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/wallets/item-2.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/wallets/item-3.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/wallets/item-4.png",
-    isLive: true,
-  },
-  {
-    imgUrl: "/icons/wallets/item-5.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/wallets/item-6.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/wallets/item-7.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/wallets/item-8.png",
-    isLive: false,
-  },
-  {
-    imgUrl: "/icons/wallets/item-9.png",
-    isLive: false,
-  },
-];
