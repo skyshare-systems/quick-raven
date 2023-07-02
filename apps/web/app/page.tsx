@@ -24,11 +24,9 @@ export default function Home() {
       <InfoSectionPage />
       <SupportedPlatformPage />
 
-      {/* <SupportedPlatformPage /> */}
-      {/* <TransactionPage />
       <PartnerTeamPage />
       <ContactUsPage />
-      <FooterPage /> */}
+      <FooterPage />
     </>
   );
 }
