@@ -38,3 +38,36 @@
 body {
   overflow-x: hidden;
 }
+
+.swap-bg {
+  background: linear-gradient(
+      0deg,
+      rgba(28, 172, 239, 0.08) 0%,
+      rgba(28, 172, 239, 0.08) 100%
+    ),
+    rgba(0, 0, 0, 0.5);
+}
+
+.user-bg {
+  background: linear-gradient(
+      0deg,
+      rgba(28, 172, 239, 0.08) 0%,
+      rgba(28, 172, 239, 0.08) 100%
+    ),
+    rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+}
+
+.transaction-bg {
+  border-radius: 32px;
+  background: radial-gradient(
+      200% 32.77% at 100% 100%,
+      rgba(9, 88, 125, 0.32) 0%,
+      rgba(6, 59, 83, 0) 100%
+    ),
+    radial-gradient(
+      215.46% 35.3% at 0% 0%,
+      rgba(9, 88, 125, 0.32) 0%,
+      rgba(6, 59, 83, 0) 100%
+    );
+}
