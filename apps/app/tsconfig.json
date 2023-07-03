@@ -10,8 +10,8 @@
     ],
 
     "module": "esnext",
-    "target": "ESNext"
-    // "lib": ["ES2017", "DOM", "DOM.Iterable", "ESNext"]
+    "target": "ESNext",
+    "lib": ["ES2017", "DOM", "DOM.Iterable", "ESNext"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
