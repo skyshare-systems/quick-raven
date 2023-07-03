@@ -1,10 +1,8 @@
-import SwapPage from "components/swap";
-import ModalTutorialPage from "components/tutorial/modal-tutorial";
+import SwapPage from "views/main-view";
 
 export default function Home() {
   return (
     <>
-      <ModalTutorialPage />
       <SwapPage />
     </>
   );
