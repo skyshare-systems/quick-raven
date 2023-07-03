@@ -3,7 +3,7 @@ import { tokenData } from "./data/token";
 
 async function main() {
   const Token = await ethers.getContractFactory("Token");
-  const token = await upgrades.deployProxy(Token, ["Test", "TEST"]);
+  // const token = await upgrades.deployProxy(Token, ["Test", "TEST"]);
 
   // console.info("Deploying Tokens...");
   // await token.deployed();
