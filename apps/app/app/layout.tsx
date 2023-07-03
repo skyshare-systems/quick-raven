@@ -1,9 +1,6 @@
-import NavbarPage from "components/navigations/navbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
 import WagmiProviders from "providers/WagmiProviders";
-import FooterPage from "components/navigations/footer";
-import ApolloProviders from "providers/ApolloProviders";
+import NavbarPage from "components/navbar";
 
 export const metadata = {
   title: "Quick Raven",
@@ -23,11 +20,9 @@ export default function RootLayout({
       </head>
       <body className="app">
         <WagmiProviders>
-          <ApolloProviders>
-            <NavbarPage />
-            {children}
-            <FooterPage />
-          </ApolloProviders>
+          <NavbarPage />
+          {children}
+          {/* <FooterPage /> */}
         </WagmiProviders>
       </body>
     </html>
