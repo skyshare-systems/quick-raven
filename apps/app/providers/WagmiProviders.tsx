@@ -32,6 +32,7 @@ const { chains, publicClient } = configureChains(
 
 const { connectors } = getDefaultWallets({
   appName: "Quick Raven",
+  projectId: "QUICK_RAVEN",
   chains,
 });
 
@@ -42,7 +43,7 @@ const wagmiConfig = createConfig({
 });
 
 interface Rainbow {
-  children: React.ReactNode;
+  children: any;
 }
 
 const WagmiProviders = ({ children }: Rainbow) => {

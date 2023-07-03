@@ -1,7 +1,6 @@
 {
   "extends": "tsconfig/nextjs.json",
   "compilerOptions": {
-    "noImplicitAny": false,
     "baseUrl": ".",
     "noEmit": true,
     "plugins": [
@@ -11,16 +10,9 @@
     ],
 
     "module": "esnext",
-    "target": "ESNext",
-    "lib": ["ES2017", "DOM", "DOM.Iterable", "ESNext"]
+    "target": "ESNext"
+    // "lib": ["ES2017", "DOM", "DOM.Iterable", "ESNext"]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "./components/**/*.ts",
-    "./components/**/*.tsx"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

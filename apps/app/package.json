@@ -12,7 +12,7 @@
     "@apollo/client": "^3.7.14",
     "@iconify/icons-cryptocurrency": "^1.2.5",
     "@metamask/detect-provider": "^2.0.0",
-    "@rainbow-me/rainbowkit": "^1.0.0",
+    "@rainbow-me/rainbowkit": "1.0.0",
     "@types/node": "20.1.1",
     "@types/react": "18.2.6",
     "@types/react-copy-to-clipboard": "^5.0.4",
@@ -34,11 +34,11 @@
     "ts-config": "*",
     "typescript": "5.0.4",
     "ui": "*",
-    "viem": "^0.3.22",
-    "wagmi": "^1.0.2",
+    "viem": "0.3.22",
+    "wagmi": "1.0.2",
     "zustand": "^4.3.8"
   },
   "devDependencies": {
-    "@wagmi/cli": "^1.0.1"
+    "@wagmi/cli": "1.0.1"
   }
 }
