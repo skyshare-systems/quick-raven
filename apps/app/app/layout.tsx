@@ -22,7 +22,6 @@ export default function RootLayout({
         <WagmiProviders>
           <NavbarPage />
           {children}
-          {/* <FooterPage /> */}
         </WagmiProviders>
       </body>
     </html>
