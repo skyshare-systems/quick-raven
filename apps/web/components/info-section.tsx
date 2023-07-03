@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import SwapButton from "public/assets/info/s2-swap-img.svg";
 import RatesButton from "public/assets/info/s2-rates-img.svg";
 import QuickRavenText from "public/assets/quickraven-text.svg";
@@ -30,7 +29,7 @@ const InfoSectionPage = () => {
           <div className="flex flex-col justify-end gap-11 p-8 pt-16 grow max-w-[576px] sm:max-h-[400px] border-[1px] border-[#1CACEF]/30 swap-bg rounded-2xl">
             <SwapButton className="w-full xsm:w-64" />
 
-            <h1 className="font-[Excon] text-white/90 font-bold text-2xl md:text-4xl">
+            <h1 className="font-[Excon] text-white/90 font-bold text-2xl text-white md:text-4xl">
               Achieve a seamless cross-chain swap with a single click
             </h1>
             <p className="font-[Switzer] text-white text-base text-white/80">
@@ -44,7 +43,7 @@ const InfoSectionPage = () => {
           <div className="flex flex-col justify-end gap-11 p-8 pt-16 grow max-w-[576px] sm:max-h-[400px] border-[1px] border-[#1CACEF]/30 swap-bg rounded-2xl">
             <RatesButton className="w-full xsm:w-64" />
 
-            <h1 className="font-[Excon] text-white/90 font-bold text-2xl md:text-4xl">
+            <h1 className="font-[Excon] text-white/90 font-bold text-2xl text-white md:text-4xl">
               Offering optimal rates to maximize trading efficiency
             </h1>
             <p className="font-[Switzer] text-white text-base text-white/80">

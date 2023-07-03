@@ -45,10 +45,10 @@ const HeroSectionPage = () => {
           <h1 className=" mobile-h1 sm:leading-[60px] sm:tablet-h1 md:leading-[90px] md:web-h1 text-white">
             Your one-stop
           </h1>
-          <h1 className=" mobile-h1 sm:leading-[60px] sm:tablet-h1 md:leading-[90px] md:web-h1 text-transparent bg-clip-text bg-gradient-to-t from-[#1df0d3] to-[#1df6c4]">
+          <h1 className=" mobile-h1 sm:leading-[60px] sm:tablet-h1 md:leading-[90px] md:web-h1 text-white text-transparent bg-clip-text bg-gradient-to-t from-[#1df0d3] to-[#1df6c4]">
             cross-chain
           </h1>
-          <h1 className=" mobile-h1 sm:leading-[80px] sm:tablet-h1 md:leading-[120px] md:web-h1 text-transparent bg-clip-text bg-gradient-to-t from-[#1dfab9] to-[#1dffae]">
+          <h1 className=" mobile-h1 sm:leading-[80px] sm:tablet-h1 md:leading-[120px] md:web-h1 text-white text-transparent bg-clip-text bg-gradient-to-t from-[#1dfab9] to-[#1dffae]">
             swapping solution
           </h1>
         </div>
