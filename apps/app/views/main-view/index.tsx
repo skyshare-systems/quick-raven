@@ -276,9 +276,9 @@ const SwapPage = () => {
       });
   };
 
-  const onSubmit = (e) => {
-    e.target.reset();
-  };
+  // const onSubmit = (e) => {
+  //   e.target.reset();
+  // };
 
   //load
 
@@ -338,7 +338,9 @@ const SwapPage = () => {
     let reserveone;
 
     try {
-      reservezero = ethers.utils.formatEther(BigNumber.from(getReserves?.[0]));
+      reservezero = ethers.utils.formatEther(
+        BigNumber.from(getReserves?.[0] ?? {})
+      );
 
       reserveone = ethers.utils.formatEther(BigNumber.from(getReserves?.[1]));
     } catch (e) {

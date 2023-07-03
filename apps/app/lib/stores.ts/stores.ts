@@ -4,7 +4,11 @@ interface Network {
   networkName: string;
   imgUrl: string;
   jsonRpcUrl: string;
-  updateNetwork: (networkName: string, imgUrl: string, jsonRpcUrl) => void;
+  updateNetwork: (
+    networkName: string,
+    imgUrl: string,
+    jsonRpcUrl: string
+  ) => void;
 }
 
 interface Modal {
