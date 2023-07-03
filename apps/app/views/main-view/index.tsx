@@ -65,8 +65,6 @@ const SwapPage = () => {
   const [approveHash, setApproveHash] = useState<`0x${string}`>();
   const [hash, setHash] = useState<`0x${string}`>();
 
-  const [input, setInput] = useState("");
-
   const { chainID } = useLabelNetwork((state) => state);
 
   const {
@@ -305,10 +303,8 @@ const SwapPage = () => {
         setTokenInputs(0.0);
         setMinReceiveToken(0);
         updateDestinationInit("");
-        setInput("0");
       }
       if (!isConnected) {
-        setInput("0");
         updateNetworkInit("", "", "");
         updateSelectedTokenInit("", "", "0x", 0);
         updateDestinationInit("");
