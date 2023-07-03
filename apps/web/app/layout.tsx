@@ -1,4 +1,6 @@
+import NavbarPage from "components/navigations/navbar";
 import "./globals.css";
+import FooterPage from "components/navigations/footer";
 
 export const metadata = {
   title: "Quick Raven",

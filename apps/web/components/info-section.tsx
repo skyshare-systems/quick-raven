@@ -10,11 +10,12 @@ import Grid from "public/assets/info/s2-grid.svg";
 import GlowTop from "public/assets/info/s2-glow-top.svg";
 import GlowLeft from "public/assets/info/s2-glow-left.svg";
 import GlowRight from "public/assets/info/s2-glow-right.svg";
+import { ParallaxLayer } from "@react-spring/parallax";
 
 const InfoSectionPage = () => {
   return (
     <div
-      className="relative flex flex-row py-[5rem] h-auto 2xl:h-[100vh] justify-center items-center"
+      className="relative flex flex-row py-[5rem] h-auto 2xl:max-h-[100dvh] justify-center items-center"
       id="info-section"
     >
       <Grid className="absolute top-0 left-1/2 transform -translate-x-1/2 object-fill w-full 2xl:opacity-0 max-h-[100vh]" />

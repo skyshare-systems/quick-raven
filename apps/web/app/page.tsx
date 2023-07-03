@@ -10,7 +10,6 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import NavbarPage from "components/navigations/navbar";
 import FooterPage from "components/navigations/footer";
-import PartnerPage from "components/partner-section";
 
 export default function Home() {
   useEffect(() => {
@@ -20,10 +19,8 @@ export default function Home() {
     <>
       <NavbarPage />
       <HeroSectionPage />
-
       <InfoSectionPage />
       <SupportedPlatformPage />
-
       <PartnerTeamPage />
       <ContactUsPage />
       <FooterPage />

@@ -76,27 +76,14 @@ const PartnerTeamPage = () => {
         className="absolute left-0 -scale-x-100 max-w-[100px] sm:max-w-[200px] md:max-w-[400px] 2xl:max-w-[650px]"
       />
       <div className="flex flex-col justify-center items-center max-w-[1400px] grow gap-16 px-5 lg:px-0">
-        <h2
-          className="mobile-h2 sm:tablet-h2 md:web-h2 text-white"
-          data-aos="fade-up"
-          data-aos-delay={`200`}
-          data-aos-easing="ease-in-out"
-          data-aos-once="true"
-        >
+        <h2 className="mobile-h2 sm:tablet-h2 md:web-h2 text-white">
           Meet The Team
         </h2>
 
         <div className="flex flex-wrap gap-16 items-center justify-center">
           {TeamMember.map((data, index) => {
             return (
-              <div
-                key={index}
-                className="flex flex-col items-center gap-4"
-                data-aos="fade-up"
-                data-aos-delay={`${index}00`}
-                data-aos-easing="ease-in-out"
-                data-aos-once="true"
-              >
+              <div key={index} className="flex flex-col items-center gap-4">
                 <Image
                   src={data.imgUrl}
                   alt={data.name}

@@ -13,17 +13,6 @@ const HeroSectionPage = () => {
       className="relative flex flex-row py-[10rem] h-auto lg:h-[100vh] justify-center items-center"
       id="hero-section"
     >
-      {/* <Image
-        className="absolute right-0 -z-[1] hidden md:flex"
-        src={"/assets/hero/landing-hero.svg"}
-        alt={"hero"}
-        width={1100}
-        height={1100}
-        data-aos="fade-zoom-in"
-        data-aos-easing="ease-in-out"
-        data-aos-delay="300"
-        data-aos-offset="0"
-      /> */}
       <Grid className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full -rotate-90 lg:rotate-0" />
 
       <HeroImage
