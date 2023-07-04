@@ -10,20 +10,20 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import NavbarPage from "components/navigations/navbar";
 import FooterPage from "components/navigations/footer";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 export default function Home() {
-  useEffect(() => {
-    AOS.init();
-  }, []);
   return (
     <>
-      <NavbarPage />
-      <HeroSectionPage />
-      <InfoSectionPage />
-      <SupportedPlatformPage />
-      <PartnerTeamPage />
-      <ContactUsPage />
-      <FooterPage />
+      <ParallaxProvider scrollAxis="vertical">
+        <NavbarPage />
+        <HeroSectionPage />
+        <InfoSectionPage />
+        <SupportedPlatformPage />
+        <PartnerTeamPage />
+        <ContactUsPage />
+        <FooterPage />
+      </ParallaxProvider>
     </>
   );
 }

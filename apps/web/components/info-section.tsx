@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import SwapButton from "public/assets/info/s2-swap-img.svg";
 import RatesButton from "public/assets/info/s2-rates-img.svg";
