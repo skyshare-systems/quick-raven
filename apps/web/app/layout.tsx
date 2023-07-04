@@ -1,4 +1,6 @@
+"use client";
 import "./globals.css";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 export const metadata = {
   title: "Quick Raven",
@@ -16,7 +18,9 @@ export default function RootLayout({
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta name="viewport" content="width=device-width, user-scalable=no" />
       </head>
-      <body>{children}</body>
+      <body>
+        <ParallaxProvider>{children}</ParallaxProvider>
+      </body>
     </html>
   );
 }

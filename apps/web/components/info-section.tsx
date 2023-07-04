@@ -9,21 +9,63 @@ import Grid from "public/assets/info/s2-grid.svg";
 import GlowTop from "public/assets/info/s2-glow-top.svg";
 import GlowLeft from "public/assets/info/s2-glow-left.svg";
 import GlowRight from "public/assets/info/s2-glow-right.svg";
-import { ParallaxLayer } from "@react-spring/parallax";
+import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
 
 const InfoSectionPage = () => {
   return (
-    <div
-      className="relative flex flex-row py-[5rem] h-auto 2xl:max-h-[100dvh] justify-center items-center"
+    <ParallaxBanner
+      className="relative flex flex-row py-[10rem] h-auto 2xl:max-h-[200dvh] 2xl:h-full justify-center items-center faded-corners"
       id="info-section"
-    >
-      <Grid className="absolute top-0 left-1/2 transform -translate-x-1/2 object-fill w-full 2xl:opacity-0 max-h-[100vh]" />
-      <Grid className="absolute bottom-0 left-1/2 transform -translate-x-1/2 object-fill w-full 2xl:opacity-0 max-h-[100vh]" />
-      <Grid className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-h-[100vh]" />
+      layers={[
+        {
+          children: (
+            <>
+              <Grid className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-h-[100vh]" />
+              <Grid className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-h-[100vh]" />
+              <Grid className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-h-[100vh]" />
+            </>
+          ),
+          expanded: false,
+          speed: -10,
+          scale: [0.7, 1.5],
+          opacity: [0.9, 1],
+        },
 
-      <GlowTop className="absolute top-[0] sm:-top-[10rem] left-1/2 transform -translate-x-1/2 w-full sm:w-[40rem]" />
-      <GlowLeft className="absolute bottom-0 left-0 w-full sm:w-[40rem]" />
-      <GlowRight className="absolute top-1/2 right-0 transform -translate-y-1/2 2xl:bottom-0 2xl:right-0 w-full sm:w-[40rem]" />
+        {
+          children: (
+            <GlowTop className="absolute top-[10rem] sm:top-[10rem] left-1/2 transform -translate-x-1/2 w-full sm:w-[40rem]" />
+          ),
+          expanded: false,
+          speed: -25,
+          scale: [0.8, 1.5],
+          opacity: [0.8, 1],
+        },
+
+        {
+          children: (
+            <GlowLeft className="absolute bottom-0 left-0 w-full sm:w-[40rem]" />
+          ),
+          expanded: false,
+          speed: -20,
+          scale: [1.2, 1],
+          opacity: [0.5, 1],
+        },
+
+        {
+          children: (
+            <GlowRight className="absolute top-1/2 right-0 transform -translate-y-1/2 2xl:bottom-0 2xl:right-0 w-full sm:w-[40rem]" />
+          ),
+          expanded: false,
+          speed: -20,
+          scale: [1.2, 1],
+          opacity: [0.5, 1],
+        },
+      ]}
+    >
+      {/* <Grid className="absolute top-0 left-1/2 transform -translate-x-1/2 object-fill w-full 2xl:opacity-0 max-h-[100vh]" />
+      <Grid className="absolute bottom-0 left-1/2 transform -translate-x-1/2 object-fill w-full 2xl:opacity-0 max-h-[100vh]" /> */}
+      {/* <Grid className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-h-[100vh]" /> */}
+
       <div className="flex flex-col justify-center items-center max-w-[1200px] grow gap-11 px-[1rem] lg:px-0">
         <div className="flex flex-wrap justify-center gap-5 md:gap-11 items-center h-full w-full">
           <div className="flex flex-col justify-end gap-11 p-8 pt-16 grow max-w-[576px] sm:max-h-[400px] border-[1px] border-[#1CACEF]/30 swap-bg rounded-2xl">
@@ -99,7 +141,7 @@ const InfoSectionPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ParallaxBanner>
   );
 };
 
