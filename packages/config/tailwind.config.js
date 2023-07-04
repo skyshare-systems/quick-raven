@@ -8,21 +8,22 @@ module.exports = {
     "../../apps/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      primary: "#1CACEF",
-      secondary: "#EFC81C",
-      accent: "#C91CEF",
-      error: "#EF1C42",
-      success: "#1CEF5F",
-      black: "#101010",
-      white: "#FFFFFF",
-    },
+    // colors: {
+    //   primary: "#1CACEF",
+    //   secondary: "#EFC81C",
+    //   accent: "#C91CEF",
+    //   error: "#EF1C42",
+    //   success: "#1CEF5F",
+    //   black: "#101010",
+    //   white: "#FFFFFF",
+    // },
     opacity: {
       8: 0.08,
       12: 0.12,
       16: 0.16,
       32: 0.32,
       50: 0.5,
+      100: 1.0,
     },
     extend: {
       screens: {

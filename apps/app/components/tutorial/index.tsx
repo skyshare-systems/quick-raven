@@ -323,7 +323,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                       d8f6F8916A3B18722669
                     </h1>
                     <div className="flex flex-row justify-between gap-2  w-full">
-                      <CopyToClipboard text="0xDe7B766c83ddd2177087d8f6F8916A3B18722669">
+                      {/* <CopyToClipboard text="0xDe7B766c83ddd2177087d8f6F8916A3B18722669">
                         <button
                           className="bg-[#252525] text-[#c6c6c6] w-full flex flex-row gap-2 items-center justify-center px-3 py-3 uppercase rounded-md mobile-tile sm:tablet-title lg:web-title hover:scale-105 active:scale-95 duration-300"
                           onClick={() => copiedMatic()}
@@ -336,7 +336,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                           />
                           {visible ? "Copied" : "Copy"}
                         </button>
-                      </CopyToClipboard>
+                      </CopyToClipboard> */}
 
                       <ImportTokenPage
                         name={"Matic"}
@@ -358,7 +358,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                     </p>
 
                     <div className="flex flex-row justify-between gap-2  w-full">
-                      <CopyToClipboard text="0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18">
+                      {/* <CopyToClipboard text="0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18">
                         <button
                           className="bg-[#252525] text-[#c6c6c6] w-full flex flex-row gap-2 items-center justify-center px-3 py-3 uppercase rounded-md mobile-tile sm:tablet-title lg:web-title hover:scale-105 active:scale-95 duration-300"
                           onClick={() => copiedUsdt()}
@@ -371,7 +371,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                           />
                           {visibleUsdt ? "Copied" : "Copy"}
                         </button>
-                      </CopyToClipboard>
+                      </CopyToClipboard> */}
 
                       <ImportTokenPage
                         name={"USDT"}
