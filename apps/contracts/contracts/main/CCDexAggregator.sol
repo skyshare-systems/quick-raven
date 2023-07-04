@@ -19,6 +19,7 @@ contract CCDexAggregator is OwnableUpgradeable {
         address destDexRouter;
         address tokenIn;
         address tokenOut;
+        address destTokenOut;
         uint256 amountIn;
         uint256 amountOutMin;
         address to;
@@ -128,10 +129,7 @@ contract CCDexAggregator is OwnableUpgradeable {
         address _token,
         uint256 _amount
     ) internal {
-        require(
-            msg.sender == gatewayContractAddress,
-            "QuickRaven :: Not gateway"
-        );
+        require(msg.sender == operator, "QuickRaven :: Not operator");
         ERC20 token = ERC20(_token);
         token.transfer(_user, _amount);
     }
@@ -187,7 +185,7 @@ contract CCDexAggregator is OwnableUpgradeable {
 
         directToUser(
             swapParams.to,
-            swapParams.tokenOut,
+            swapParams.destTokenOut,
             swapParams.amountOutMin
         );
 

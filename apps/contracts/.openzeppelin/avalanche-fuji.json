@@ -9,6 +9,11 @@
       "address": "0x0bD204768fbf7CDd7C45D0f837AD3C156E077098",
       "txHash": "0x3dd27b33e7b831155c6699e3d22d968ba6c1b8d077a395e6b1bfcbd4b03cdccc",
       "kind": "transparent"
+    },
+    {
+      "address": "0x600C74e3058cD8A9246b5E9c543261f73279f010",
+      "txHash": "0x54322f319777de454506622b20eeda86eb230c487cd2fbb94ce11a9668cd8cf9",
+      "kind": "transparent"
     }
   ],
   "impls": {
@@ -90,6 +95,130 @@
             "type": "t_address",
             "contract": "CCDexAggregator",
             "src": "contracts/main/CCDexAggregator.sol:35"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_string_storage)": {
+            "label": "mapping(string => string)",
+            "numberOfBytes": "32"
+          },
+          "t_string_memory_ptr": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "c0fb64b6fc10fedc319ca4735e92108def1ba5602721351feae8da61e25087fd": {
+      "address": "0x98b7e8B3d79412bc47796423990287766d0a9aE3",
+      "txHash": "0x78c9fe362d1e8e36ca581690e60be98e0f92a70d64088a0b2330570ef13ae451",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "gatewayContractAddress",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_address",
+            "contract": "CCDexAggregator",
+            "src": "contracts/main/CCDexAggregator.sol:28"
+          },
+          {
+            "label": "contractList",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_mapping(t_string_memory_ptr,t_string_storage)",
+            "contract": "CCDexAggregator",
+            "src": "contracts/main/CCDexAggregator.sol:31"
+          },
+          {
+            "label": "dexRouters",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "CCDexAggregator",
+            "src": "contracts/main/CCDexAggregator.sol:34"
+          },
+          {
+            "label": "operator",
+            "offset": 0,
+            "slot": "104",
+            "type": "t_address",
+            "contract": "CCDexAggregator",
+            "src": "contracts/main/CCDexAggregator.sol:36"
           }
         ],
         "types": {

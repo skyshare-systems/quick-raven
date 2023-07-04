@@ -18,6 +18,10 @@ async function main() {
   );
   console.info("Done!");
 
+  console.info("Setting up operator...");
+  await dex.setOperator(operator);
+  console.info("Done!");
+
   console.info("\nVerify contract", dex.address);
   try {
     await run("verify:verify", {

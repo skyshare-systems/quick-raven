@@ -163,6 +163,11 @@ const SwapPage = () => {
   const { writeAsync: approveToken } = useContractWrite(configApprove);
 
   const handleSwapToQr = () => {
+    console.log(dexRouterAddress + "TESTING");
+    console.log(tokenInitAddress + "TESTING");
+    console.log(tokenDestinationAddress + "TESTING");
+    console.log(token0.toString() + "TESTING");
+    console.log(minReceiveToken + "TESTING");
     swapToQr?.()
       .then((res) => {
         console.log(res);
