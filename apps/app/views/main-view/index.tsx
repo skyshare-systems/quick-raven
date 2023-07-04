@@ -397,7 +397,7 @@ const SwapPage = () => {
       checkAllowance();
       setDynamicButtons("swap");
     }
-  }, [checkAllowance, isApprove, tokenInputs]);
+  }, [isApprove, tokenInputs]);
 
   useEffect(() => {
     if (
