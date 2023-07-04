@@ -249,7 +249,7 @@ const SupportedPlatformPage = () => {
                       key={index}
                       height={35}
                       width={35}
-                      className={` ${data.isLive ? "opacity-1" : "opacity-40"}`}
+                      className={` ${data.isLive ? "opacity-1" : "opacity-50"}`}
                     />
                     <ReactTooltip
                       anchorId={data.anchorId}
@@ -277,7 +277,7 @@ const SupportedPlatformPage = () => {
                       key={index}
                       height={35}
                       width={35}
-                      className={` ${data.isLive ? "opacity-1" : "opacity-40"}`}
+                      className={` ${data.isLive ? "opacity-1" : "opacity-50"}`}
                     />
                     <ReactTooltip
                       anchorId={data.anchorId}
@@ -307,7 +307,7 @@ const SupportedPlatformPage = () => {
                       key={index}
                       height={35}
                       width={35}
-                      className={` ${data.isLive ? "opacity-1" : "opacity-40"}`}
+                      className={` ${data.isLive ? "opacity-1" : "opacity-50"}`}
                     />
                     <ReactTooltip
                       anchorId={data.anchorId}
@@ -333,7 +333,7 @@ const SupportedPlatformPage = () => {
                       key={index}
                       height={35}
                       width={35}
-                      className={` ${data.isLive ? "opacity-1" : "opacity-40"}`}
+                      className={` ${data.isLive ? "opacity-1" : "opacity-50"}`}
                     />
                     <ReactTooltip
                       anchorId={data.anchorId}

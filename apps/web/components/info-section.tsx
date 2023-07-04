@@ -69,7 +69,7 @@ const InfoSectionPage = () => {
 
       <div className="flex flex-col justify-center items-center max-w-[1200px] grow gap-11 px-[1rem] lg:px-0">
         <div className="flex flex-wrap justify-center gap-5 md:gap-11 items-center h-full w-full">
-          <div className="flex flex-col justify-end gap-11 p-8 pt-16 grow max-w-[576px] sm:max-h-[400px] border-[1px] border-[#1CACEF]/30 swap-bg rounded-2xl">
+          <div className="flex flex-col justify-end gap-11 p-8 pt-16 grow max-w-[576px] sm:max-h-[400px] border-[1px] border-[#1CACEF]/32 swap-bg rounded-2xl">
             <SwapButton className="w-full xsm:w-64" />
 
             <h1 className="font-[Excon] text-white/90 font-bold text-2xl text-white md:text-4xl">
@@ -83,7 +83,7 @@ const InfoSectionPage = () => {
             </p>
           </div>
 
-          <div className="flex flex-col justify-end gap-11 p-8 pt-16 grow max-w-[576px] sm:max-h-[400px] border-[1px] border-[#1CACEF]/30 swap-bg rounded-2xl">
+          <div className="flex flex-col justify-end gap-11 p-8 pt-16 grow max-w-[576px] sm:max-h-[400px] border-[1px] border-[#1CACEF]/32 swap-bg rounded-2xl">
             <RatesButton className="w-full xsm:w-64" />
 
             <h1 className="font-[Excon] text-white/90 font-bold text-2xl text-white md:text-4xl">
@@ -97,14 +97,14 @@ const InfoSectionPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center gap-5 p-8 pt-16 grow w-full border-[1px] border-[#1CACEF]/30 swap-bg rounded-2xl">
+        <div className="flex flex-col justify-center gap-5 p-8 pt-16 grow w-full border-[1px] border-[#1CACEF]/32 swap-bg rounded-2xl">
           <div className="flex flex-col">
             <QuickRavenText className="w-full xsm:w-72" />
             <h3 className="mobile-h3 text-white">made with ❤️ for</h3>
           </div>
 
           <div className="flex flex-wrap justify-center gap-5 md:gap-11 items-center h-full w-full">
-            <div className="flex flex-col justify-between gap-11 p-8 grow max-w-[544px] border-[1px] border-[#1CACEF]/30 user-bg rounded-2xl">
+            <div className="flex flex-col justify-between gap-11 p-8 grow max-w-[544px] border-[1px] border-[#1CACEF]/32 user-bg rounded-2xl">
               <div className="flex flex-col sm:flex-row gap-4">
                 <UserIcon className="w-10" />
                 <div className="flex flex-col gap-2 items-start">
@@ -122,7 +122,7 @@ const InfoSectionPage = () => {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between gap-11 p-8 grow max-w-[544px] border-[1px] border-[#1CACEF]/30 user-bg rounded-2xl">
+            <div className="flex flex-col justify-between gap-11 p-8 grow max-w-[544px] border-[1px] border-[#1CACEF]/32 user-bg rounded-2xl">
               <div className="flex flex-col sm:flex-row gap-4">
                 <UserIcon className="w-10" />
                 <div className="flex flex-col gap-2 items-start">

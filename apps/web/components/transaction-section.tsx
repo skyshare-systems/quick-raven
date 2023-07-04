@@ -24,18 +24,18 @@ export default function TransactionPage() {
         className="lg:grow max-w-[1400px]"
         style={{
           padding: "1px 1px",
-          background: "rgb(13, 68, 94,0.4)",
+          background: "rgb(13, 68, 94,0.5)",
           borderBottomWidth: 0,
         }}
       >
         <Squircle
-          className="group relative px-8 py-0 bg-[black]/40 shadow-2xl"
+          className="group relative px-8 py-0 bg-[black]/32 shadow-2xl"
           onMouseMove={handleMouseMove}
           cornerRadius={30}
           cornerSmoothing={1}
         >
           <motion.div
-            className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+            className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-50"
             style={{
               background: useMotionTemplate`
             radial-gradient(
