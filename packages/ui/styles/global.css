@@ -185,10 +185,10 @@
 
 @font-face {
   font-family: "Switzer";
-  src: url("./fonts/Switzer-Regular.otf");
+  src: url("../../ui/styles/fonts/Switzer-Regular.otf");
 }
 
 @font-face {
   font-family: "Excon";
-  src: url("./fonts/Excon-Regular.otf");
+  src: url("../../ui/styles/fonts/Excon-Regular.otf");
 }

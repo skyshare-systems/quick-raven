@@ -65,7 +65,7 @@ const PartnerTeamPage = () => {
         alt={"bird"}
         height={650}
         width={650}
-        className="absolute right-0 max-w-[100px] sm:max-w-[200px] md:max-w-[400px] 2xl:max-w-[650px]"
+        className="absolute -z-[1] right-0 max-w-[100px] sm:max-w-[200px] md:max-w-[400px] 2xl:max-w-[650px]"
       />
 
       <Image
@@ -73,7 +73,7 @@ const PartnerTeamPage = () => {
         alt={"bird"}
         height={650}
         width={650}
-        className="absolute left-0 -scale-x-100 max-w-[100px] sm:max-w-[200px] md:max-w-[400px] 2xl:max-w-[650px]"
+        className="absolute -z-[1] left-0 -scale-x-100 max-w-[100px] sm:max-w-[200px] md:max-w-[400px] 2xl:max-w-[650px]"
       />
       <div className="flex flex-col justify-center items-center max-w-[1400px] grow gap-16 px-5 lg:px-0">
         <h2 className="mobile-h2 sm:tablet-h2 md:web-h2 text-white">
