@@ -93,7 +93,7 @@ const NavbarPage = () => {
               </div>
             )}
 
-            <Link href="/renec-bridge">
+            {/* <Link href="/renec-bridge">
               <div
                 className="cursor-pointer"
                 onClick={() => updateBgColor("bg-radial-renec", "renec-bridge")}
@@ -116,7 +116,7 @@ const NavbarPage = () => {
                   className="flex lg:hidden"
                 />
               </div>
-            </Link>
+            </Link> */}
           </ul>
           {/* <ConnectButton showBalance={false} label="Connect" /> */}
           <ConnectWallet />

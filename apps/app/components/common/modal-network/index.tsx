@@ -82,7 +82,7 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed top-0 h-full w-full flex flex-col justify-center items-center bg-black/50 backdrop-blur-md z-[3]">
+    <div className="fixed top-0 left-0 h-full w-full flex flex-col justify-center items-center bg-black/50 backdrop-blur-md z-[3]">
       <div className="relative flex flex-col rounded-2xl h-full w-full max-w-[500px] max-h-[250px] bg-[#212121]  p-5">
         <div className="absolute flex flex-col gap-5 z-[2] w-full">
           <div className="relative flex flex-row justify-between">
@@ -106,7 +106,12 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
             {labelNetwork === "Destination Network" ? (
               <>
                 {network
-                  .filter((filterdata) => filterdata.shortname !== networkName)
+                  .filter(
+                    (filterdata) =>
+                      filterdata.shortname !== networkName &&
+                      filterdata.shortname !== "Gnosis" &&
+                      filterdata.shortname !== "BSC"
+                  )
                   .map((data, index) => {
                     return (
                       <button

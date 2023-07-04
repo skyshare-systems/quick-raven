@@ -35,9 +35,15 @@ import TokenStatsPage from "components/common/token-stats";
 import PriceBoardPage from "components/common/price-board";
 import axios from "axios";
 import { ethers, BigNumber } from "ethers";
-import { DexAggregatorABI, LPTokenABI, TokenABI } from "lib/abi";
+import {
+  CCDexAggregatorABI,
+  DexAggregatorABI,
+  LPTokenABI,
+  TokenABI,
+} from "lib/abi";
 import { ConnectWallet } from "components/common/connect-wallet";
 import { ConnectWalletSwap } from "components/common/connect-wallet-swap";
+import { Notification } from "ui/components";
 
 const SwapPage = () => {
   const { isConnected, address: account } = useAccount();
@@ -84,7 +90,7 @@ const SwapPage = () => {
     tokenName: tokenDestinationName,
     tokenImgUrl: tokenDestinationImgUrl,
     tokenAddress: tokenDestinationAddress,
-    tokenChainID,
+    tokenChainID: chainIdDestination,
     updateSelectedToken: updateSelectedTokenDestination,
   } = useSelectTokenDestination((state) => state);
 
@@ -116,6 +122,11 @@ const SwapPage = () => {
       hash: approveHash,
     });
 
+  const { isSuccess: isSwapSuccess, isLoading: isLoadingTransaction } =
+    useWaitForTransaction({
+      hash: hash,
+    });
+
   // Dynamic SwapToQr
 
   const token0 =
@@ -127,18 +138,24 @@ const SwapPage = () => {
 
   const { config, isError: isConfigSwapError } = usePrepareContractWrite({
     address: dexAggregatorAddress ?? "",
-    abi: DexAggregatorABI,
+    abi: CCDexAggregatorABI,
     functionName: "swapToQr",
     args: [
-      dexRouterAddress, // dex router address
-      tokenInitAddress, // token init address MATIC
-      addressDestinationInit, // token destination address USDT
-      BigInt(token0.toString()),
-      BigInt(
-        tokenInputs > 0
-          ? String(ethers.utils.parseEther(String(1)))
-          : String(ethers.utils.parseEther(String(1)))
-      ),
+      chainIdDestination, // chain id destination
+      "0x00000000000f4240000000000000000000000000000f42400000000000000000000000000000000000000000000000000000",
+      [
+        dexRouterAddress,
+        "0x0000000000000000000000000000000000000000", // dex router address
+        tokenInitAddress, // token init address MATIC
+        addressDestinationInit, // token destination address USDT
+        BigInt(token0.toString()),
+        BigInt(
+          tokenInputs > 0
+            ? String(ethers.utils.parseEther(String(0)))
+            : String(ethers.utils.parseEther(String(0)))
+        ),
+        account,
+      ],
     ],
   });
   const { config: configApprove } = usePrepareContractWrite({
@@ -340,7 +357,6 @@ const SwapPage = () => {
     const getReserve: any = getReserves;
 
     try {
-      console.log(getReserves);
       reservezero = ethers.utils.formatEther(BigNumber.from(getReserve?.[0]));
 
       reserveone = ethers.utils.formatEther(BigNumber.from(getReserve?.[1]));
@@ -435,6 +451,7 @@ const SwapPage = () => {
 
   return (
     <ContainerWrapper>
+      <Notification />
       <ModalNetworkPage
         isOpen={showModal}
         onClose={() => setShowModal(!showModal)}
