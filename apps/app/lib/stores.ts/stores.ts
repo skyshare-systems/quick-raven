@@ -4,23 +4,16 @@ interface Network {
   networkName: string;
   imgUrl: string;
   jsonRpcUrl: string;
-  updateNetwork: (networkName: string, imgUrl: string, jsonRpcUrl) => void;
+  updateNetwork: (
+    networkName: string,
+    imgUrl: string,
+    jsonRpcUrl: string
+  ) => void;
 }
 
 interface Modal {
   showModal: boolean;
   updateModal: (showModal: boolean) => void;
-}
-
-interface SelectNetwork {
-  labelNetwork: string;
-  chainID: number;
-  showModal: boolean;
-  updateSelectNetwork: (
-    labelNetwork: string,
-    chainID: number,
-    showModal: boolean
-  ) => void;
 }
 
 interface getBalanceOf {
@@ -43,12 +36,16 @@ interface SelectToken {
   ) => void;
 }
 
-export const useSelectNetwork = create<SelectNetwork>((set) => ({
+interface SelectLabelNetwork {
+  labelNetwork: string;
+  chainID: number;
+  updateLabelNetwork: (labelNetwork: string, chainID: number) => void;
+}
+export const useLabelNetwork = create<SelectLabelNetwork>((set) => ({
   labelNetwork: "",
   chainID: 0,
-  showModal: false,
-  updateSelectNetwork: (labelNetwork, chainID, showModal) => {
-    set((state) => ({ ...state, labelNetwork, chainID, showModal }));
+  updateLabelNetwork: (labelNetwork, chainID) => {
+    set((state) => ({ ...state, labelNetwork, chainID }));
   },
 }));
 

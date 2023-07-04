@@ -16,7 +16,7 @@ const config: HardhatUserConfig = {
     mumbai: {
       url: "https://polygon-mumbai.infura.io/v3/7367c86527024f0daa1d03b7b64faa7d",
       accounts: [
-        "b37c78f8f8a1d43856ab00a860296a05a294a25ede282334a0eb55af85ee8abf" ??
+        "5acc566e889da617b7f8032ed5f745af8ad695ec2f5421b42b09be517067c051" ??
           "",
       ],
     },
@@ -35,6 +35,13 @@ const config: HardhatUserConfig = {
       ],
       gasPrice: 11000000000,
     },
+    avalancheFujiTestnet: {
+      url: "https://avalanche-fuji-c-chain.publicnode.com	",
+      accounts: [
+        "5acc566e889da617b7f8032ed5f745af8ad695ec2f5421b42b09be517067c051" ??
+          "",
+      ],
+    },
   },
   etherscan: {
     apiKey: {
@@ -45,6 +52,7 @@ const config: HardhatUserConfig = {
       bscTestnet: "GWKE3MR5JXP1KVY4635YHC8AKI7FI55WK3" ?? "",
       mainnet: "1T7UC6DGWNA36AVHC4IGIRRE1MTGCSKE74" ?? "",
       chiado: "64ffadd2-2ca7-47d5-8f5d-8a91d5e25d27" ?? "",
+      avalancheFujiTestnet: "PC8ZV53MFPKCJDDTQSTUVAJ3EYKPUFHDWV" ?? "",
     },
   },
 };

@@ -1,9 +1,9 @@
 import { ethers, run, upgrades } from "hardhat";
 
-const dexAddress = "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4";
+const dexAddress = "0x29Ef7732832a7a19f7a40267F73f47af6cd69F9B";
 
 async function main() {
-  const Dex = await ethers.getContractFactory("DexAggregator");
+  const Dex = await ethers.getContractFactory("CCDexAggregator");
   const dex = await upgrades.upgradeProxy(dexAddress, Dex);
 
   console.info("Upgrading dex...");

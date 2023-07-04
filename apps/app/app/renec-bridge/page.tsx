@@ -1,8 +1,8 @@
 import React from "react";
-import SwapRenecPage from "components/swap-renec";
+// import SwapRenecPage from "components/swap-renec";
 
 const RenecBridgePage = () => {
-  return <SwapRenecPage />;
+  return <>Renec</>;
 };
 
 export default RenecBridgePage;

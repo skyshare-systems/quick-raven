@@ -18,6 +18,14 @@ export const blockchainKeys = (chainId: number) => {
       wss: "",
     };
   }
+
+  if (chainId === 43113) {
+    return {
+      key: "",
+      https: "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc	",
+      wss: "",
+    };
+  }
 };
 
 export const tokenContract = (network: number, address: string) => {
