@@ -32,6 +32,8 @@ contract CCDexAggregator is OwnableUpgradeable {
     // address of Dex router => is enabled
     mapping(address => bool) public dexRouters;
 
+    address public operator;
+
     /**
      * Initializer
      */
@@ -174,7 +176,7 @@ contract CCDexAggregator is OwnableUpgradeable {
         bytes calldata packet,
         string calldata srcChainId
     ) external returns (bytes memory) {
-        require(msg.sender == address(gatewayContractAddress), "only gateway");
+        require(msg.sender == operator, "only operator");
         require(
             keccak256(bytes(contractList[srcChainId])) ==
                 keccak256(bytes(requestSender))
@@ -221,6 +223,10 @@ contract CCDexAggregator is OwnableUpgradeable {
         string memory _contract
     ) external onlyOwner {
         contractList[_chainId] = _contract;
+    }
+
+    function setOperator(address _operator) external onlyOwner {
+        operator = _operator;
     }
 
     receive() external payable {}
