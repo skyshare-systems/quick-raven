@@ -62,7 +62,7 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
     highColor: string
   ) {
     switchNetwork?.(network);
-    setName(shortenName(name));
+    setName(name);
     setImgUrl(imgUrl);
     setUColor(upperColor);
     setHColor(highColor);
@@ -72,13 +72,14 @@ const ModalNetworkPage = ({ isOpen, onClose }: any) => {
   useEffect(() => {
     if (isSuccess === true) {
       updateNetworkInit(name, imgUrl, jsonRpcUrlDestination);
+      console.log(name + "Testing");
 
       document.documentElement.style.setProperty("--borderUp", hColor);
       document.documentElement.style.setProperty("--top", uColor);
       document.documentElement.style.setProperty("--solid", sColor);
       onClose(false);
     }
-  }, [imgUrl, isSuccess, jsonRpcUrlDestination, name]);
+  }, [imgUrl, isSuccess, name]);
 
   if (!isOpen) return null;
   return (

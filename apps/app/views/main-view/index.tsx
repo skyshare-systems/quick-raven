@@ -35,13 +35,7 @@ import TokenStatsPage from "components/common/token-stats";
 import PriceBoardPage from "components/common/price-board";
 import axios from "axios";
 import { ethers, BigNumber } from "ethers";
-import {
-  CCDexAggregatorABI,
-  DexAggregatorABI,
-  LPTokenABI,
-  TokenABI,
-} from "lib/abi";
-import { ConnectWallet } from "components/common/connect-wallet";
+import { CCDexAggregatorABI, LPTokenABI, TokenABI } from "lib/abi";
 import { ConnectWalletSwap } from "components/common/connect-wallet-swap";
 import { Notification } from "ui/components";
 
@@ -108,15 +102,6 @@ const SwapPage = () => {
     (state) => state
   );
 
-  // const provider = new ethers.providers.JsonRpcProvider(jsonRpcUrlDestination);
-  // const wallet = new ethers.Wallet(
-  //   "5acc566e889da617b7f8032ed5f745af8ad695ec2f5421b42b09be517067c051"
-  // );
-  // // connect the wallet to the provider
-  // const signer = wallet.connect(provider);
-  // const abi = TokenABI;
-  // const contract = new ethers.Contract(tokenDestinationAddress, abi, provider);
-
   const { isSuccess: isApprove, isLoading: isLoadingApprove } =
     useWaitForTransaction({
       hash: approveHash,
@@ -131,8 +116,8 @@ const SwapPage = () => {
 
   const token0 =
     tokenInputs > 0
-      ? ethers.utils.parseEther("1")
-      : ethers.utils.parseEther(tokenInputs.toString());
+      ? ethers.utils.parseEther(tokenInputs.toString())
+      : ethers.utils.parseEther("0");
 
   // Config
 
@@ -147,11 +132,11 @@ const SwapPage = () => {
         dexRouterAddress,
         "0x0000000000000000000000000000000000000000", // dex router address
         tokenInitAddress, // token init address MATIC
-        addressDestinationInit, // token destination address USDT
+        tokenDestinationAddress, // token destination address USDT
         BigInt(token0.toString()),
         BigInt(
-          tokenInputs > 0
-            ? String(ethers.utils.parseEther(String(0)))
+          minReceiveToken > 0
+            ? String(ethers.utils.parseEther(String(minReceiveToken)))
             : String(ethers.utils.parseEther(String(0)))
         ),
         account,
@@ -292,10 +277,6 @@ const SwapPage = () => {
         setAllowanceValue(response.data);
       });
   };
-
-  // const onSubmit = (e) => {
-  //   e.target.reset();
-  // };
 
   //load
 
