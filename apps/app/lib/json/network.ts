@@ -6,7 +6,8 @@ export const network = [
     imgUrl: "/icons/polygon-logo.svg",
     address: "0x815Ac5d36d71E191aAe34f9b5979b68Ab0d2A1F4",
     lpAddress: "0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b",
-    dexAggregatorAddress: "0xb23392e752fD38Aed184AAc1eD1cea13c615C24C", // spender address
+    factoryAddress: "0x5757371414417b8c6caad45baef941abc7d3ab32",
+    dexAggregatorAddress: "0x066deA3C411387a5A1ee74654cE16dC88e537EBb", // spender address
     dexRouterAddress: {
       uniswap: "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff",
     },
@@ -23,6 +24,8 @@ export const network = [
     imgUrl: "/icons/bsc-icon.svg",
     address: "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3",
     lpAddress: "0x7a36666c7e02ED1F3517f7A921612d03B916C8DF",
+    factoryAddress: "0x46e9ad48575d08072e9a05a9bde4f22973628a8e",
+
     dexAggregatorAddress: "0x46d0E2C12C0F785Bb0bd4AE391eb82008B9C23D3", // spender address
     dexRouterAddress: {
       uniswap: "0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF",
@@ -40,6 +43,7 @@ export const network = [
     imgUrl: "/icons/gnosis-icon.svg",
     address: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18",
     lpAddress: "0x7a36666c7e02ED1F3517f7A921612d03B916C8DF",
+    factoryAddress: "",
     dexAggregatorAddress: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18", // spender address
     dexRouterAddress: {
       uniswap: "0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF",
@@ -57,10 +61,11 @@ export const network = [
     shortname: "Avalanche",
     imgUrl: "/icons/avalanche.webp",
     address: "0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18",
-    lpAddress: "0x7a36666c7e02ED1F3517f7A921612d03B916C8DF",
-    dexAggregatorAddress: "0x29Ef7732832a7a19f7a40267F73f47af6cd69F9B", // spender address
+    lpAddress: "",
+    factoryAddress: "",
+    dexAggregatorAddress: "0x600C74e3058cD8A9246b5E9c543261f73279f010", // spender address
     dexRouterAddress: {
-      uniswap: "0xDE2Db97D54a3c3B008a097B2260633E6cA7DB1AF",
+      uniswap: "",
     },
     jsonRpcUrl: "https://rpc.chiadochain.net",
     highColor: "rgba(232, 65, 66, 1) 0%, rgba(232, 65, 66, 0) 100%",

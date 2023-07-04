@@ -67,6 +67,8 @@ const SwapPage = () => {
 
   const { chainID } = useLabelNetwork((state) => state);
 
+  const [factoryAddress, setFactoryAddress] = useState<string>("");
+
   const {
     networkName,
     imgUrl,
@@ -114,10 +116,9 @@ const SwapPage = () => {
 
   // Dynamic SwapToQr
 
-  const token0 =
-    tokenInputs > 0
-      ? ethers.utils.parseEther(tokenInputs.toString())
-      : ethers.utils.parseEther("0");
+  const token0 = ethers.utils.parseEther(tokenInputs.toString());
+
+  const token1 = ethers.utils.parseEther(minReceiveToken.toString());
 
   // Config
 
@@ -126,19 +127,16 @@ const SwapPage = () => {
     abi: CCDexAggregatorABI,
     functionName: "swapToQr",
     args: [
-      chainIdDestination, // chain id destination
-      "0x00000000000f4240000000000000000000000000000f42400000000000000000000000000000000000000000000000000000",
+      chainID, // chain id destination
+      "0x00000000000f4240000000000000000000000000000f42400000000000000000000000000000000000000000000000000000", // request metadata
       [
-        dexRouterAddress,
-        "0x0000000000000000000000000000000000000000", // dex router address
+        dexRouterAddress, // dex router address
+        "0x0000000000000000000000000000000000000000",
         tokenInitAddress, // token init address MATIC
-        tokenDestinationAddress, // token destination address USDT
-        BigInt(token0.toString()),
-        BigInt(
-          minReceiveToken > 0
-            ? String(ethers.utils.parseEther(String(minReceiveToken)))
-            : String(ethers.utils.parseEther(String(0)))
-        ),
+        addressDestinationInit, // token destination address
+        tokenDestinationAddress, // token destination address
+        BigInt(token0.toString()), // amount in
+        BigInt(token1.toString()), // amount out
         account,
       ],
     ],
@@ -157,6 +155,20 @@ const SwapPage = () => {
     abi: LPTokenABI,
     functionName: "getReserves",
   });
+
+  useEffect(() => {
+    console.log("Testing SwapToQr Params");
+    // console.log(dexAggregatorAddress + "CC Dex");
+    console.log(chainIdDestination + " Chain Id Destination");
+
+    console.log(dexRouterAddress + " Dex Router");
+    console.log(tokenInitAddress + " Token Init Address");
+    console.log(addressDestinationInit + " Token Destination Address");
+    console.log(tokenDestinationAddress + " Token Destination Address");
+    console.log(BigInt(token0.toString()) + " Token 0");
+    console.log(BigInt(token1.toString()) + " Token 1");
+    console.log(account + " Address");
+  }, [dexAggregatorAddress, chainIdDestination, token0, token1]);
 
   //functions
   const { writeAsync: swapToQr } = useContractWrite(config);
@@ -283,7 +295,25 @@ const SwapPage = () => {
       });
   };
 
+  const getLpTokenAddress = async () => {
+    await axios
+      .post("https://quickraven-api.onrender.com/api/factory", {
+        network: chain?.id,
+        factoryAddress: factoryAddress,
+        tokenA: tokenInitAddress,
+        tokenB: addressDestinationInit,
+      })
+      .then((response) => {
+        setTokenLpAddress(response.data);
+      });
+  };
   //load
+
+  useEffect(() => {
+    if (tokenInitAddress && tokenDestinationAddress) {
+      getLpTokenAddress();
+    }
+  }, [tokenInitAddress, tokenDestinationAddress]);
 
   useEffect(() => {
     network.map((data) => {
@@ -291,7 +321,7 @@ const SwapPage = () => {
         updateNetworkInit(data.shortname, data.imgUrl, jsonRpcUrlDestination);
         setDexAggregatorAddress(data.dexAggregatorAddress);
         setDexRouterAddress(data.dexRouterAddress["uniswap"]);
-        setTokenLpAddress(data.lpAddress);
+        setFactoryAddress(data.factoryAddress);
         document.documentElement.style.setProperty(
           "--borderUp",
           data.highColor
@@ -361,11 +391,13 @@ const SwapPage = () => {
   }, [calculateMinTokenOut, getReserves, tokenDestinationName, tokenInputs]);
 
   useEffect(() => {
+    if (tokenInitAddress) checkAllowance();
+
     if (isApprove === true) {
       checkAllowance();
       setDynamicButtons("swap");
     }
-  }, [checkAllowance, isApprove]);
+  }, [checkAllowance, isApprove, tokenInputs]);
 
   useEffect(() => {
     if (
