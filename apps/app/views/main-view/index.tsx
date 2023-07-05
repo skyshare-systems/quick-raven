@@ -327,23 +327,74 @@ const SwapPage = () => {
   useEffect(() => {
     const pairs = tokenInitName + "-" + tokenDestinationName;
 
-    console.log(tokenLpAddress + " testing");
-
     switch (pairs) {
       case "USDT-USDC":
-        return setTokenLpAddress("0xf98809B88c5143cd6abcBb7431CE5F9A76e53126");
+        return (
+          setTokenLpAddress("0xf98809B88c5143cd6abcBb7431CE5F9A76e53126"),
+          console.log(tokenLpAddress + " testing")
+        );
+      case "USDC-USDT":
+        return (
+          setTokenLpAddress("0xf98809B88c5143cd6abcBb7431CE5F9A76e53126"),
+          console.log(tokenLpAddress + " testing")
+        );
+
       case "USDT-WETH":
-        return setTokenLpAddress("0xF3eC1ce03b6a2EC17e90FA0340DcB8E260922D00");
+        return (
+          setTokenLpAddress("0xF3eC1ce03b6a2EC17e90FA0340DcB8E260922D00"),
+          console.log(tokenLpAddress + " testing")
+        );
+      case "WETH-USDT":
+        return (
+          setTokenLpAddress("0xF3eC1ce03b6a2EC17e90FA0340DcB8E260922D00"),
+          console.log(tokenLpAddress + " testing")
+        );
+
+      case "MATIC-USDT":
+        return (
+          setTokenLpAddress("0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b"),
+          console.log(tokenLpAddress + " testing")
+        );
       case "USDT-MATIC":
-        return setTokenLpAddress("0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b");
+        return (
+          setTokenLpAddress("0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b"),
+          console.log(tokenLpAddress + " testing")
+        );
+
       case "USDC-WETH":
-        return setTokenLpAddress("0x0ceD130cdb3966b04B46d0E08776b71ce65230BF");
+        return (
+          setTokenLpAddress("0x0ceD130cdb3966b04B46d0E08776b71ce65230BF"),
+          console.log(tokenLpAddress + " testing")
+        );
+      case "WETH-USDC":
+        return (
+          setTokenLpAddress("0x0ceD130cdb3966b04B46d0E08776b71ce65230BF"),
+          console.log(tokenLpAddress + " testing")
+        );
+
       case "USDC-MATIC":
-        return setTokenLpAddress("0x12f0E87724054057c240f39cc3466bbD9b6Ef9AF");
+        return (
+          setTokenLpAddress("0x12f0E87724054057c240f39cc3466bbD9b6Ef9AF"),
+          console.log(tokenLpAddress + " testing")
+        );
+      case "MATIC-USDC":
+        return (
+          setTokenLpAddress("0x12f0E87724054057c240f39cc3466bbD9b6Ef9AF"),
+          console.log(tokenLpAddress + " testing")
+        );
+
       case "WETH-MATIC":
-        return setTokenLpAddress("0x0b5249aA44039a6305597C329E2d790E0DfF6142");
+        return (
+          setTokenLpAddress("0x0b5249aA44039a6305597C329E2d790E0DfF6142"),
+          console.log(tokenLpAddress + " testing")
+        );
+      case "MATIC-WETH":
+        return (
+          setTokenLpAddress("0x0b5249aA44039a6305597C329E2d790E0DfF6142"),
+          console.log(tokenLpAddress + " testing")
+        );
     }
-  }, [tokenInitName, tokenDestinationName]);
+  }, [tokenDestinationAddress, tokenInitAddress]);
 
   useEffect(() => {
     network.map((data) => {
