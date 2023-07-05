@@ -6,14 +6,12 @@ import { ConnectNetworkSelect } from "components/common/network-select";
 import SelectNetworkPage from "components/common/select-network";
 import TitlePage from "components/common/title";
 import useMounted from "hooks/useMounted";
-import { listOfToken, network } from "lib/json/network";
+import { network } from "lib/json/network";
 import React, { useEffect, useState } from "react";
-import shortenName from "utils/limit-text";
 import {
   useAccount,
   useNetwork,
   usePrepareContractWrite,
-  useSwitchNetwork,
   useWaitForTransaction,
   useContractWrite,
   useContractRead,
@@ -33,40 +31,49 @@ import SelectTokenPage from "components/common/select-token";
 import ListOfToken from "components/common/list-of-token";
 import TokenStatsPage from "components/common/token-stats";
 import PriceBoardPage from "components/common/price-board";
-import axios from "axios";
 import { ethers, BigNumber } from "ethers";
 import { CCDexAggregatorABI, LPTokenABI, TokenABI } from "lib/abi";
 import { ConnectWalletSwap } from "components/common/connect-wallet-swap";
 import { Notification } from "ui/components";
+import useSwap from "hooks/useSwap";
 
 const SwapPage = () => {
   const { isConnected, address: account } = useAccount();
   const { chain } = useNetwork();
   const { hasMounted } = useMounted();
-  const { isSuccess } = useSwitchNetwork();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showModal, setShowModal] = useState(false);
   const [dynamicButtons, setDynamicButtons] = useState<string>("swap");
-  const [showModalTokenDestination, setShowModalTokenDestination] =
-    useState(false);
+
   const { showModal: showModalToken0, updateModal } = useModal(
     (state) => state
   );
 
   const [tokenInputs, setTokenInputs] = useState<number>(0.0);
-  const [minReceiveToken, setMinReceiveToken] = useState<number>(0.0);
 
-  const [dexRouterAddress, setDexRouterAddress] = useState<string>("");
-  const [dexAggregatorAddress, setDexAggregatorAddress] = useState<any>("");
-  const [tokenLpAddress, setTokenLpAddress] = useState<any>("0x");
+  const {
+    minReceiveToken,
+    dexAggregatorAddress,
+    showModalTokenDestination,
+    approveHash,
+    allowanceValue,
+    tokenLpAddress,
+    dexRouterAddress,
 
-  const [allowanceValue, setAllowanceValue] = useState<string>("");
-  const [approveHash, setApproveHash] = useState<`0x${string}`>();
+    setMinReceiveToken,
+    calculateMinTokenOut,
+    checkAllowance,
+    setDexAggregatorAddress,
+    setDexRouterAddress,
+    approveToken,
+    setShowModalTokenDestination,
+    selectedToken0,
+    selectedToken1,
+  } = useSwap(account);
+
   const [hash, setHash] = useState<`0x${string}`>();
-
   const { chainID } = useLabelNetwork((state) => state);
-
   const [factoryAddress, setFactoryAddress] = useState<string>("");
 
   const {
@@ -144,38 +151,15 @@ const SwapPage = () => {
       ],
     ],
   });
-  const { config: configApprove } = usePrepareContractWrite({
-    address: tokenInitAddress ?? "",
-    abi: TokenABI,
-    functionName: "approve",
-    args: [
-      dexAggregatorAddress ?? "",
-      BigInt(String(ethers.constants.MaxUint256)),
-    ],
-  });
+
   const { data: getReserves } = useContractRead({
     address: tokenLpAddress ?? "",
     abi: LPTokenABI,
     functionName: "getReserves",
   });
 
-  // useEffect(() => {
-  //   console.log("Testing SwapToQr Params");
-  //   // console.log(dexAggregatorAddress + "CC Dex");
-  //   console.log(chainIdDestination + " Chain Id Destination");
-
-  //   console.log(dexRouterAddress + " Dex Router");
-  //   console.log(tokenInitAddress + " Token Init Address");
-  //   console.log(addressDestinationInit + " Token Destination Address");
-  //   console.log(tokenDestinationAddress + " Token Destination Address");
-  //   console.log(BigInt(token0.toString()) + " Token 0");
-  //   console.log(BigInt(token1.toString()) + " Token 1");
-  //   console.log(account + " Address");
-  // }, [dexAggregatorAddress, chainIdDestination, token0, token1]);
-
   //functions
   const { writeAsync: swapToQr } = useContractWrite(config);
-  const { writeAsync: approveToken } = useContractWrite(configApprove);
 
   const handleSwapToQr = () => {
     swapToQr?.()
@@ -187,214 +171,6 @@ const SwapPage = () => {
         console.info(err);
       });
   };
-
-  const handleApproveToken = () => {
-    approveToken?.()
-      .then((res) => {
-        console.log(res);
-
-        setApproveHash(res.hash);
-      })
-      .catch((err) => {
-        console.info(err);
-      });
-  };
-
-  const handleSelectedTokenInit = async (
-    tokenName: any,
-    imgUrl: any,
-    address: `0x${string}`,
-    network: number
-  ) => {
-    updateSelectedTokenInit(tokenName, imgUrl, address, network);
-    updateModal(false);
-    // setIsFetchBalance(false);
-    await axios
-      .post("https://quickraven-api.onrender.com/api/token/balanceOf", {
-        network: network,
-        tokenAddress: address,
-        userAddress: account,
-      })
-      .then((response) => {
-        updateBalanceOf(response.data, 0);
-        // setIsFetchBalance(true);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const handleSelectedTokenDestination = async (
-    tokenName: any,
-    imgUrl: any,
-    address: any,
-    network: number
-  ) => {
-    updateSelectedTokenDestination(tokenName, imgUrl, address, network);
-    setShowModalTokenDestination(!showModalTokenDestination);
-    await axios
-      .post("https://quickraven-api.onrender.com/api/token/balanceOf", {
-        network: network,
-        tokenAddress: address,
-        userAddress: account,
-      })
-      .then((response) => {
-        console.log(response.data);
-        updateBalanceOf(balanceOfToken0, response.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  function handleSelectTokenAddress() {
-    // console.log(tokenDestinationName + " Testing desName");
-    listOfToken
-      .filter((filter) => {
-        return (
-          filter.tokenName === tokenDestinationName &&
-          filter.chainID === chain?.id
-        );
-      })
-      .map((data) => {
-        // console.log("Get Testing");
-        updateDestinationInit(data.address);
-      });
-  }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const calculateMinTokenOut = (
-    tokenIn: any,
-    reserveIn: any,
-    reserveOut: any,
-    slippage: any
-  ) => {
-    if (tokenInputs > 0) {
-      const idealOutput =
-        Number(reserveOut) -
-        (Number(reserveIn) * Number(reserveOut)) /
-          (Number(reserveIn) + tokenIn);
-
-      const minTokensOut = idealOutput * (1 - slippage / 100);
-
-      // console.info(minTokensOut);
-      setMinReceiveToken(minTokensOut);
-    } else {
-      setMinReceiveToken(0.0);
-    }
-  };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const checkAllowance = async () => {
-    await axios
-      .post("https://quickraven-api.onrender.com/api/token/allowance", {
-        network: chain?.id,
-        tokenAddress: tokenInitAddress,
-        owner: account,
-        spender: dexAggregatorAddress,
-      })
-      .then((response) => {
-        // console.log(response.data + " Test");
-        setAllowanceValue(response.data);
-      })
-      .catch((err) => {
-        console.info(err);
-      });
-  };
-
-  // const getLpTokenAddress = async () => {
-  //   await axios
-  //     .post("https://quickraven-api.onrender.com/api/factory", {
-  //       network: chain?.id,
-  //       factoryAddress: factoryAddress,
-  //       tokenA: tokenInitAddress,
-  //       tokenB: addressDestinationInit,
-  //     })
-  //     .then((response) => {
-  //       setTokenLpAddress(response.data);
-  //       console.log(response.data + " ADDRESSTEST");
-  //     })
-  //     .catch((err) => {
-  //       setTokenLpAddress("0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b");
-  //       console.info(err);
-  //     });
-  // };
-
-  //load
-
-  // useEffect(() => {
-  //   if (tokenInitAddress && tokenDestinationAddress) {
-  //     getLpTokenAddress();
-  //   }
-  // }, [tokenInitAddress, tokenDestinationAddress]);
-
-  useEffect(() => {
-    const pairs = tokenInitName + "-" + tokenDestinationName;
-
-    switch (pairs) {
-      case "USDT-USDC":
-        return (
-          setTokenLpAddress("0xf98809B88c5143cd6abcBb7431CE5F9A76e53126"),
-          console.log(tokenLpAddress + " testing")
-        );
-      case "USDC-USDT":
-        return (
-          setTokenLpAddress("0xf98809B88c5143cd6abcBb7431CE5F9A76e53126"),
-          console.log(tokenLpAddress + " testing")
-        );
-
-      case "USDT-WETH":
-        return (
-          setTokenLpAddress("0xF3eC1ce03b6a2EC17e90FA0340DcB8E260922D00"),
-          console.log(tokenLpAddress + " testing")
-        );
-      case "WETH-USDT":
-        return (
-          setTokenLpAddress("0xF3eC1ce03b6a2EC17e90FA0340DcB8E260922D00"),
-          console.log(tokenLpAddress + " testing")
-        );
-
-      case "MATIC-USDT":
-        return (
-          setTokenLpAddress("0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b"),
-          console.log(tokenLpAddress + " testing")
-        );
-      case "USDT-MATIC":
-        return (
-          setTokenLpAddress("0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b"),
-          console.log(tokenLpAddress + " testing")
-        );
-
-      case "USDC-WETH":
-        return (
-          setTokenLpAddress("0x0ceD130cdb3966b04B46d0E08776b71ce65230BF"),
-          console.log(tokenLpAddress + " testing")
-        );
-      case "WETH-USDC":
-        return (
-          setTokenLpAddress("0x0ceD130cdb3966b04B46d0E08776b71ce65230BF"),
-          console.log(tokenLpAddress + " testing")
-        );
-
-      case "USDC-MATIC":
-        return (
-          setTokenLpAddress("0x12f0E87724054057c240f39cc3466bbD9b6Ef9AF"),
-          console.log(tokenLpAddress + " testing")
-        );
-      case "MATIC-USDC":
-        return (
-          setTokenLpAddress("0x12f0E87724054057c240f39cc3466bbD9b6Ef9AF"),
-          console.log(tokenLpAddress + " testing")
-        );
-
-      case "WETH-MATIC":
-        return (
-          setTokenLpAddress("0x0b5249aA44039a6305597C329E2d790E0DfF6142"),
-          console.log(tokenLpAddress + " testing")
-        );
-      case "MATIC-WETH":
-        return (
-          setTokenLpAddress("0x0b5249aA44039a6305597C329E2d790E0DfF6142"),
-          console.log(tokenLpAddress + " testing")
-        );
-    }
-  }, [tokenDestinationAddress, tokenInitAddress]);
 
   useEffect(() => {
     network.map((data) => {
@@ -425,6 +201,7 @@ const SwapPage = () => {
         updateSelectedTokenDestination("", "", "0x", 0);
         updateBalanceOf(0, 0);
         setTokenInputs(0.0);
+        setMinReceiveToken(0);
         updateNetworkDestination("", "", "");
         document.documentElement.style.setProperty(
           "--top",
@@ -466,19 +243,11 @@ const SwapPage = () => {
         Number(tokenInputs),
         Number(reservezero),
         Number(reserveone),
-        3
+        3,
+        tokenInputs
       );
     }
-  }, [tokenDestinationName, tokenInputs]);
 
-  // useEffect(() => {
-  //   if (isApprove === true) {
-  //     checkAllowance();
-  //     setDynamicButtons("swap");
-  //   }
-  // }, [isApprove]);
-
-  useEffect(() => {
     if (BigInt(token0.toString()) > BigInt(allowanceValue)) {
       setDynamicButtons("approve");
     } else {
@@ -488,18 +257,13 @@ const SwapPage = () => {
     if (isApprove === true) {
       setDynamicButtons("swap");
     }
+
     if (!isConnected) {
       setDynamicButtons("connectwallet");
     }
-  }, [allowanceValue, isConnected, tokenInputs]);
 
-  useEffect(() => {
-    handleSelectTokenAddress();
-  }, [tokenDestinationAddress]);
-
-  useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      checkAllowance();
+      if (tokenInputs > 0) checkAllowance();
     }, 3000);
 
     return () => clearTimeout(delayDebounceFn);
@@ -517,7 +281,7 @@ const SwapPage = () => {
                   ? "bg-[#2e2e2e] cursor-not-allowed text-white"
                   : "bg-white hover:scale-[1.02] active:scale-95"
               }  text-black px-2 py-5 rounded-xl duration-300`}
-              onClick={() => handleApproveToken()}
+              onClick={() => approveToken()}
             >
               {isLoadingApprove ? "Approving..." : "Approve"}
             </button>
@@ -567,7 +331,7 @@ const SwapPage = () => {
         isOpen={showModalToken0}
         labelNetwork={"Initial Network"}
         chainID={chain?.id}
-        handleSelectToken={handleSelectedTokenInit}
+        handleSelectToken={selectedToken0}
         onClose={() => updateModal(false)}
       />
 
@@ -575,7 +339,7 @@ const SwapPage = () => {
         isOpen={showModalTokenDestination}
         labelNetwork={"Destination Network"}
         chainID={chainID}
-        handleSelectToken={handleSelectedTokenDestination}
+        handleSelectToken={selectedToken1}
         onClose={() => setShowModalTokenDestination(!showModalTokenDestination)}
       />
 
@@ -644,7 +408,7 @@ const SwapPage = () => {
                 />
               </div>
               <TokenStatsPage
-                convertedValue={123}
+                convertedValue={0}
                 balance={parseFloat(balanceOfToken0.toFixed(6))}
                 tokenName={tokenInitName}
               />
@@ -690,7 +454,7 @@ const SwapPage = () => {
               />
             </div>
             <TokenStatsPage
-              convertedValue={123}
+              convertedValue={0}
               balance={parseFloat(balanceOfToken1.toFixed(6))}
               tokenName={tokenDestinationName}
             />
