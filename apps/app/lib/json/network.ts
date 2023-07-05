@@ -96,7 +96,7 @@ export const listOfToken = [
   },
   {
     chainID: 80001,
-    tokenName: "Matic",
+    tokenName: "MATIC",
     address: "0xDe7B766c83ddd2177087d8f6F8916A3B18722669",
     imgUrl: "/icons/matic-icon.svg",
   },
@@ -120,7 +120,7 @@ export const listOfToken = [
   },
   {
     chainID: 97,
-    tokenName: "Matic",
+    tokenName: "MATIC",
     address: "0x9570B7D0e54f2AAed59F6615e2be18637A82d881",
     imgUrl: "/icons/matic-icon.svg",
   },
@@ -144,7 +144,7 @@ export const listOfToken = [
   },
   {
     chainID: 10200,
-    tokenName: "Matic",
+    tokenName: "MATIC",
     address: "0x71e711Cd6b13125f53A5c238B015841a3c8315D7",
     imgUrl: "/icons/matic-icon.svg",
   },
@@ -169,7 +169,7 @@ export const listOfToken = [
   },
   {
     chainID: 43113,
-    tokenName: "Matic",
+    tokenName: "MATIC",
     address: "0x6Af6D7E7F48D10aBAe3CBf60BDD5f252f1B026a4",
     imgUrl: "/icons/matic-icon.svg",
   },

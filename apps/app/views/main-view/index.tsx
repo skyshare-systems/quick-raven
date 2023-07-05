@@ -55,11 +55,11 @@ const SwapPage = () => {
   );
 
   const [tokenInputs, setTokenInputs] = useState<number>(0.0);
-  const [minReceiveToken, setMinReceiveToken] = useState<number>(0);
+  const [minReceiveToken, setMinReceiveToken] = useState<number>(0.0);
 
   const [dexRouterAddress, setDexRouterAddress] = useState<string>("");
   const [dexAggregatorAddress, setDexAggregatorAddress] = useState<any>("");
-  const [tokenLpAddress, setTokenLpAddress] = useState<any>("");
+  const [tokenLpAddress, setTokenLpAddress] = useState<any>("0x");
 
   const [allowanceValue, setAllowanceValue] = useState<string>("");
   const [approveHash, setApproveHash] = useState<`0x${string}`>();
@@ -118,7 +118,10 @@ const SwapPage = () => {
 
   const token0 = ethers.utils.parseEther(tokenInputs.toString());
 
-  const token1 = ethers.utils.parseEther(minReceiveToken.toString());
+  const token1 =
+    tokenInputs > 0
+      ? ethers.utils.parseEther(minReceiveToken.toString())
+      : ethers.utils.parseEther(String(1));
 
   // Config
 
@@ -156,30 +159,25 @@ const SwapPage = () => {
     functionName: "getReserves",
   });
 
-  useEffect(() => {
-    console.log("Testing SwapToQr Params");
-    // console.log(dexAggregatorAddress + "CC Dex");
-    console.log(chainIdDestination + " Chain Id Destination");
+  // useEffect(() => {
+  //   console.log("Testing SwapToQr Params");
+  //   // console.log(dexAggregatorAddress + "CC Dex");
+  //   console.log(chainIdDestination + " Chain Id Destination");
 
-    console.log(dexRouterAddress + " Dex Router");
-    console.log(tokenInitAddress + " Token Init Address");
-    console.log(addressDestinationInit + " Token Destination Address");
-    console.log(tokenDestinationAddress + " Token Destination Address");
-    console.log(BigInt(token0.toString()) + " Token 0");
-    console.log(BigInt(token1.toString()) + " Token 1");
-    console.log(account + " Address");
-  }, [dexAggregatorAddress, chainIdDestination, token0, token1]);
+  //   console.log(dexRouterAddress + " Dex Router");
+  //   console.log(tokenInitAddress + " Token Init Address");
+  //   console.log(addressDestinationInit + " Token Destination Address");
+  //   console.log(tokenDestinationAddress + " Token Destination Address");
+  //   console.log(BigInt(token0.toString()) + " Token 0");
+  //   console.log(BigInt(token1.toString()) + " Token 1");
+  //   console.log(account + " Address");
+  // }, [dexAggregatorAddress, chainIdDestination, token0, token1]);
 
   //functions
   const { writeAsync: swapToQr } = useContractWrite(config);
   const { writeAsync: approveToken } = useContractWrite(configApprove);
 
   const handleSwapToQr = () => {
-    console.log(dexRouterAddress + "TESTING");
-    console.log(tokenInitAddress + "TESTING");
-    console.log(tokenDestinationAddress + "TESTING");
-    console.log(token0.toString() + "TESTING");
-    console.log(minReceiveToken + "TESTING");
     swapToQr?.()
       .then((res) => {
         console.log(res);
@@ -220,7 +218,8 @@ const SwapPage = () => {
       .then((response) => {
         updateBalanceOf(response.data, 0);
         // setIsFetchBalance(true);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleSelectedTokenDestination = async (
@@ -240,11 +239,12 @@ const SwapPage = () => {
       .then((response) => {
         console.log(response.data);
         updateBalanceOf(balanceOfToken0, response.data);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   function handleSelectTokenAddress() {
-    console.log(tokenDestinationName + " Testing desName");
+    // console.log(tokenDestinationName + " Testing desName");
     listOfToken
       .filter((filter) => {
         return (
@@ -253,7 +253,7 @@ const SwapPage = () => {
         );
       })
       .map((data) => {
-        console.log("Get Testing");
+        // console.log("Get Testing");
         updateDestinationInit(data.address);
       });
   }
@@ -276,7 +276,7 @@ const SwapPage = () => {
       // console.info(minTokensOut);
       setMinReceiveToken(minTokensOut);
     } else {
-      setMinReceiveToken(0);
+      setMinReceiveToken(0.0);
     }
   };
 
@@ -290,30 +290,60 @@ const SwapPage = () => {
         spender: dexAggregatorAddress,
       })
       .then((response) => {
-        console.log(response.data + " Test");
+        // console.log(response.data + " Test");
         setAllowanceValue(response.data);
+      })
+      .catch((err) => {
+        console.info(err);
       });
   };
 
-  const getLpTokenAddress = async () => {
-    await axios
-      .post("https://quickraven-api.onrender.com/api/factory", {
-        network: chain?.id,
-        factoryAddress: factoryAddress,
-        tokenA: tokenInitAddress,
-        tokenB: addressDestinationInit,
-      })
-      .then((response) => {
-        setTokenLpAddress(response.data);
-      });
-  };
+  // const getLpTokenAddress = async () => {
+  //   await axios
+  //     .post("https://quickraven-api.onrender.com/api/factory", {
+  //       network: chain?.id,
+  //       factoryAddress: factoryAddress,
+  //       tokenA: tokenInitAddress,
+  //       tokenB: addressDestinationInit,
+  //     })
+  //     .then((response) => {
+  //       setTokenLpAddress(response.data);
+  //       console.log(response.data + " ADDRESSTEST");
+  //     })
+  //     .catch((err) => {
+  //       setTokenLpAddress("0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b");
+  //       console.info(err);
+  //     });
+  // };
+
   //load
 
+  // useEffect(() => {
+  //   if (tokenInitAddress && tokenDestinationAddress) {
+  //     getLpTokenAddress();
+  //   }
+  // }, [tokenInitAddress, tokenDestinationAddress]);
+
   useEffect(() => {
-    if (tokenInitAddress && tokenDestinationAddress) {
-      getLpTokenAddress();
+    const pairs = tokenInitName + "-" + tokenDestinationName;
+
+    console.log(tokenLpAddress + " testing");
+
+    switch (pairs) {
+      case "USDT-USDC":
+        return setTokenLpAddress("0xf98809B88c5143cd6abcBb7431CE5F9A76e53126");
+      case "USDT-WETH":
+        return setTokenLpAddress("0xF3eC1ce03b6a2EC17e90FA0340DcB8E260922D00");
+      case "USDT-MATIC":
+        return setTokenLpAddress("0x8d1D0089736a2f3A9eCAe08a356dCB337F55234b");
+      case "USDC-WETH":
+        return setTokenLpAddress("0x0ceD130cdb3966b04B46d0E08776b71ce65230BF");
+      case "USDC-MATIC":
+        return setTokenLpAddress("0x12f0E87724054057c240f39cc3466bbD9b6Ef9AF");
+      case "WETH-MATIC":
+        return setTokenLpAddress("0x0b5249aA44039a6305597C329E2d790E0DfF6142");
     }
-  }, [tokenInitAddress, tokenDestinationAddress]);
+  }, [tokenInitName, tokenDestinationName]);
 
   useEffect(() => {
     network.map((data) => {
@@ -388,24 +418,23 @@ const SwapPage = () => {
         3
       );
     }
-  }, [calculateMinTokenOut, getReserves, tokenDestinationName, tokenInputs]);
+  }, [tokenDestinationName, tokenInputs]);
+
+  // useEffect(() => {
+  //   if (isApprove === true) {
+  //     checkAllowance();
+  //     setDynamicButtons("swap");
+  //   }
+  // }, [isApprove]);
 
   useEffect(() => {
-    if (tokenInitAddress) checkAllowance();
-
-    if (isApprove === true) {
-      checkAllowance();
-      setDynamicButtons("swap");
-    }
-  }, [isApprove, tokenInputs]);
-
-  useEffect(() => {
-    if (
-      BigInt(String(ethers.utils.parseEther(String(tokenInputs)))) >
-      BigInt(allowanceValue)
-    ) {
+    if (BigInt(token0.toString()) > BigInt(allowanceValue)) {
       setDynamicButtons("approve");
     } else {
+      setDynamicButtons("swap");
+    }
+
+    if (isApprove === true) {
       setDynamicButtons("swap");
     }
     if (!isConnected) {
@@ -416,6 +445,14 @@ const SwapPage = () => {
   useEffect(() => {
     handleSelectTokenAddress();
   }, [tokenDestinationAddress]);
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      checkAllowance();
+    }, 3000);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [tokenInputs]);
 
   const getDynamicButtons = () => {
     switch (dynamicButtons) {
@@ -528,12 +565,11 @@ const SwapPage = () => {
             <div className="flex flex-col border-[1px] border-[#3b3b3b] px-[1rem] py-3 rounded-xl gap-2">
               <div className="flex flex-row justify-between grow gap-2">
                 <input
-                  type="text"
+                  type="number"
                   disabled={tokenInitName === ""}
                   id="tokenvalue"
                   name="tokenvalue"
                   placeholder="0.00"
-                  value={tokenInputs}
                   onBlur={(e) => setTokenInputs(Number(e.target.value))}
                   className={`w-full bg-transparent lg:grow text-2xl font-[Excon] 
                   `}
