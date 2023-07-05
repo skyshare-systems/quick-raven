@@ -10,8 +10,9 @@ export const GETallowance = expressAsyncHandler(async (req, res) => {
       owner,
       spender
     );
-  } catch (e) {
+  } catch (e: any) {
     res.status(400).send("Error" + e);
+    return;
   }
 
   res.status(200).send(currAllowance);
@@ -25,8 +26,9 @@ export const GETbalanceOf = expressAsyncHandler(async (req, res) => {
     balance = await lpTokenContract(network, tokenAddress).balanceOf(
       userAddress
     );
-  } catch (e) {
+  } catch (e: any) {
     res.status(400).send("Error" + e);
+    return;
   }
 
   res.send(balance);
@@ -38,8 +40,9 @@ export const GETtotalSupply = expressAsyncHandler(async (req, res) => {
 
   try {
     supply = await lpTokenContract(network, tokenAddress).totalSupply();
-  } catch (e) {
+  } catch (e: any) {
     res.status(400).send("Error" + e);
+    return;
   }
 
   res.send(supply);
@@ -51,8 +54,9 @@ export const GETreserves = expressAsyncHandler(async (req, res) => {
 
   try {
     tokenReserves = await lpTokenContract(network, tokenAddress).reserves();
-  } catch (e) {
+  } catch (e: any) {
     res.status(400).send("Error" + e);
+    return;
   }
 
   res.status(200).send(tokenReserves);
