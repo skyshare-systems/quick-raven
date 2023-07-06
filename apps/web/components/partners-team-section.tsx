@@ -85,7 +85,7 @@ const PartnerTeamPage = () => {
             return (
               <div
                 key={index}
-                className="flex flex-col items-center gap-8 team-bg p-9 rounded-lg border-[1px] border-[#1cacef]"
+                className="flex flex-col items-center gap-8 team-bg p-9 rounded-lg border-[1px] border-[#1cacef]/32"
                 data-aos="fade-up"
                 data-aos-delay={index + "00"}
                 data-aos-duration="2000"
