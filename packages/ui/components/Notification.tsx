@@ -46,15 +46,15 @@ const Notification = ({
 }: NotificationProps) => {
   const [show, setShow] = useState(true);
 
-  // useEffect(() => {
-  //   const timeId = setTimeout(() => {
-  //     setShow(false);
-  //   }, 3000);
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setShow(false);
+    }, 3000);
 
-  //   return () => {
-  //     clearTimeout(timeId);
-  //   };
-  // }, []);
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, []);
 
   if (!show) {
     return null;

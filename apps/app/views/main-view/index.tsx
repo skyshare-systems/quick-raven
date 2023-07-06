@@ -373,22 +373,6 @@ const SwapPage = () => {
         </Notification>
       )}
 
-      <Notification variant="success">
-        <div className="bg-[#7ed321]/32 rounded-md">
-          <Lottie
-            options={successOptions}
-            height={100}
-            width={100}
-            isClickToPauseDisabled={true}
-          />
-        </div>
-
-        <div className="flex flex-col px-2 max-w-[800px]">
-          <h1 className="text-2xl font-medium">Sucess</h1>
-          <p className="text-white/50">Transaction Complete!</p>
-        </div>
-      </Notification>
-
       {isErrorApprove && (
         <Notification variant="error">
           <div className="bg-[#f72929]/32 rounded-md">
