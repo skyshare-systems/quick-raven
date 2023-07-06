@@ -230,8 +230,8 @@ const SupportedPlatformPage = () => {
       <ParallaxBannerLayer
         expanded={false}
         speed={-20}
-        opacity={[0.5, 1]}
-        scale={[1.2, 1]}
+        opacity={[0, 1]}
+        scale={[1.7, 1]}
       >
         <Grid className="-z-[1] absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-full" />
       </ParallaxBannerLayer>
