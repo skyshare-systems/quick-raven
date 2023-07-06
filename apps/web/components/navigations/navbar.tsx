@@ -6,7 +6,7 @@ import Link from "next/link";
 const NavbarPage = () => {
   return (
     <>
-      <nav className="fixed top-0 flex flex-row justify-center items-center backdrop-filter backdrop-blur-md z-[4] w-full bg-black/10 px-5 lg:px-0">
+      <nav className="fixed top-0 flex flex-row justify-center items-center backdrop-filter backdrop-blur-md border-b-[1px] border-white/8 z-[4] w-full bg-black/10 px-5 lg:px-0">
         <div className="flex flex-row justify-between max-w-[80rem] xsm:px-5 lg:px-0 py-4 grow">
           {" "}
           <ul className="flex flex-row items-center gap-5 md:gap-11">

@@ -11,14 +11,25 @@ import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
 const HeroSectionPage = () => {
   return (
     <ParallaxBanner
-      className="relative flex flex-row py-[10rem] h-auto lg:h-[100vh] justify-center items-center"
+      className="relative flex flex-row pt-[10rem] pb-[5rem] h-auto 2xl:h-[100dvh] justify-center items-center"
       id="hero-section"
     >
-      <Grid className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full -rotate-90 lg:rotate-0" />
-
-      <HeroImage className="absolute right-[0] hidden 2xl:flex 2xl:w-[60rem]" />
-
-      <div className="flex flex-col justify-center px-5 lg:px-0 max-w-[1400px] grow gap-5">
+      <ParallaxBannerLayer expanded={false} speed={-30} scale={[0.8, 1]}>
+        <Grid className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full -rotate-90 lg:rotate-0" />
+      </ParallaxBannerLayer>
+      <div
+        className="relative flex flex-col justify-center px-5 lg:px-0 max-w-[1500px] w-full gap-5 items-center 2xl:items-stretch"
+        data-aos="fade-up"
+        data-aos-offset="500"
+        data-aos-duration="1000"
+      >
+        <HeroImage
+          className="absolute right-[0] 2xl:-right-[5rem] hidden 2xl:flex 2xl:w-[60rem] -z-[1]"
+          data-aos="fade-down"
+          data-aos-offset="500"
+          data-aos-delay="500"
+          data-aosduration="1000"
+        />
         <Image
           className="flex 2xl:hidden"
           src={"/assets/hero/landing-hero.svg"}
@@ -28,13 +39,13 @@ const HeroSectionPage = () => {
         />
 
         <div className="flex flex-col">
-          <h1 className=" mobile-h1 sm:leading-[60px] sm:tablet-h1 md:leading-[90px] md:web-h1 text-white">
+          <h1 className="text-center 2xl:text-left mobile-h1 sm:leading-[60px] sm:tablet-h1 md:leading-[90px] md:web-h1 text-white">
             Your one-stop
           </h1>
-          <h1 className=" mobile-h1 sm:leading-[60px] sm:tablet-h1 md:leading-[90px] md:web-h1 text-transparent bg-clip-text bg-gradient-to-t from-[#1dfab9] to-[#1dffae]">
+          <h1 className="text-center 2xl:text-left mobile-h1 sm:leading-[60px] sm:tablet-h1 md:leading-[90px] md:web-h1 text-transparent bg-clip-text bg-gradient-to-t from-[#1dfab9] to-[#1dffae]">
             cross-chain
           </h1>
-          <h1 className=" mobile-h1 sm:leading-[80px] sm:tablet-h1 md:leading-[120px] md:web-h1 text-transparent bg-clip-text bg-gradient-to-t from-[#1dfab9] to-[#1dffae]">
+          <h1 className="text-center 2xl:text-left mobile-h1 sm:leading-[80px] sm:tablet-h1 md:leading-[120px] md:web-h1 text-transparent bg-clip-text bg-gradient-to-t from-[#1dfab9] to-[#1dffae]">
             swapping solution
           </h1>
         </div>

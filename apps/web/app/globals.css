@@ -200,3 +200,12 @@ body {
     transparent 100%
   );
 }
+
+.team-bg {
+  background: linear-gradient(
+      0deg,
+      rgba(28, 172, 239, 0.08) 0%,
+      rgba(28, 172, 239, 0.08) 100%
+    ),
+    rgba(0, 0, 0, 0.5);
+}

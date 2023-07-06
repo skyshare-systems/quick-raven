@@ -3,11 +3,11 @@ import Image from "next/image";
 
 import TransactionPage from "./transaction-section";
 
-import Grid from "public/assets/supported-platforms/s3-grid.svg";
+import Grid from "public/assets/supported-platforms/s3-grid-top.svg";
 import GlowTop from "public/assets/supported-platforms/s3-glow-top.svg";
-import GlowLeft from "public/assets/supported-platforms/s3-stats-glow-left.svg";
-import GlowRight from "public/assets/supported-platforms/s3-stats-glow-right.svg";
+
 import { Tooltip as ReactTooltip } from "react-tooltip";
+import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
 
 const chains = [
   {
@@ -223,22 +223,35 @@ const wallet = [
 
 const SupportedPlatformPage = () => {
   return (
-    <div
-      className="relative flex flex-col py-[10rem] h-auto lg:h-[150vh] justify-between items-center gap-9"
+    <ParallaxBanner
+      className="relative flex flex-col pt-[10rem] pb-[2rem] h-auto justify-between 2xl:min-h-[1200px] items-center gap-11 faded-corners"
       id="supported-platform-section"
     >
-      <Grid className="-z-[1] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full" />
-      <GlowTop className="-z-[1] absolute top-[0] left-1/2 transform -translate-x-1/2 w-full sm:w-[40rem]" />
-      <GlowLeft className="-z-[1] absolute bottom-[10rem] left-0 w-full sm:w-[25rem]" />
-      <GlowRight className="-z-[1] absolute -bottom-[5rem] right-0 w-full sm:w-[25rem]" />
-      <div className="flex flex-col gap-16 w-full justify-center items-center max-w-[1200px] px-5 lg:px-0">
-        <h2 className="text-center mobile-h2 sm:tablet-h2 md:web-h2 text-white">
-          Supported Platforms
-        </h2>
-        <div className="flex flex-col lg:flex-row justify-between items-center w-full max-w-[800px] gap-9">
-          <div className="flex flex-col justify-center gap-9">
+      <ParallaxBannerLayer
+        expanded={false}
+        speed={-20}
+        opacity={[0.5, 1]}
+        scale={[1.2, 1]}
+      >
+        <Grid className="-z-[1] absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-full" />
+      </ParallaxBannerLayer>
+
+      <ParallaxBannerLayer
+        expanded={false}
+        speed={-20}
+        opacity={[1, 0]}
+        scale={[1.7, 1]}
+      >
+        <GlowTop className="absolute top-[15rem] left-1/2 transform -translate-x-1/2 w-full sm:w-[40rem] -z-[1]" />
+      </ParallaxBannerLayer>
+      <h2 className="text-center mobile-h2 sm:tablet-h2 md:web-h2 text-white mb-10">
+        Supported Platforms
+      </h2>
+      <div className="flex flex-col gap-9 lg:gap-20 w-full justify-center items-center max-w-[1400px] px-5 lg:px-0">
+        <div className="flex flex-col lg:flex-row justify-between items-center w-full max-w-[1000px] gap-9">
+          <div className="flex flex-col justify-center gap-9 p-9 bg-black/8 backdrop-blur-sm rounded-[36px] border-[1px] border-white/8">
             <h4 className="web-h4 text-white text-center">Chains</h4>
-            <div className="flex flex-wrap gap-9 justify-center items-center max-w-[340px]">
+            <div className="flex flex-wrap gap-9 justify-center items-center max-w-[390px]">
               {chains.map((data, index) => {
                 return (
                   <>
@@ -247,8 +260,8 @@ const SupportedPlatformPage = () => {
                       alt={data.imgUrl}
                       id={data.anchorId}
                       key={index}
-                      height={35}
-                      width={35}
+                      height={36}
+                      width={36}
                       className={` ${data.isLive ? "opacity-1" : "opacity-50"}`}
                     />
                     <ReactTooltip
@@ -262,11 +275,11 @@ const SupportedPlatformPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center gap-9">
+          <div className="flex flex-col justify-center gap-9 p-9 bg-black/8 backdrop-blur-sm rounded-[36px] border-[1px] border-white/8">
             <h4 className="web-h4 text-white text-center">
               Decentralized Exchanges
             </h4>
-            <div className="flex flex-wrap gap-9 justify-center items-center max-w-[340px]">
+            <div className="flex flex-wrap gap-9 justify-center items-center max-w-[390px]">
               {dexs.map((data, index) => {
                 return (
                   <>
@@ -275,8 +288,8 @@ const SupportedPlatformPage = () => {
                       alt={data.imgUrl}
                       id={data.anchorId}
                       key={index}
-                      height={35}
-                      width={35}
+                      height={36}
+                      width={36}
                       className={` ${data.isLive ? "opacity-1" : "opacity-50"}`}
                     />
                     <ReactTooltip
@@ -291,12 +304,12 @@ const SupportedPlatformPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row justify-between items-center w-full max-w-[800px] gap-9">
-          <div className="flex flex-col justify-center gap-9">
+        <div className="flex flex-col lg:flex-row justify-between items-center w-full max-w-[1000px] gap-9">
+          <div className="flex flex-col justify-center gap-9 p-9 bg-black/8 backdrop-blur-sm rounded-[36px] border-[1px] border-white/8">
             <h4 className="web-h4 text-white text-center">
               Cross-chain Bridges
             </h4>
-            <div className="flex flex-wrap gap-9 justify-center items-center max-w-[340px]">
+            <div className="flex flex-wrap gap-9 justify-center items-center max-w-[390px]">
               {bridge.map((data, index) => {
                 return (
                   <>
@@ -305,8 +318,8 @@ const SupportedPlatformPage = () => {
                       alt={data.imgUrl}
                       id={data.anchorId}
                       key={index}
-                      height={35}
-                      width={35}
+                      height={36}
+                      width={36}
                       className={` ${data.isLive ? "opacity-1" : "opacity-50"}`}
                     />
                     <ReactTooltip
@@ -320,9 +333,9 @@ const SupportedPlatformPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center gap-9">
+          <div className="flex flex-col justify-center gap-9 p-9 bg-black/8 backdrop-blur-sm rounded-[36px] border-[1px] border-white/8">
             <h4 className="web-h4 text-white text-center">Crypto Wallets</h4>
-            <div className="flex flex-wrap gap-9 justify-center items-center max-w-[340px]">
+            <div className="flex flex-wrap gap-9 justify-center items-center max-w-[390px]">
               {wallet.map((data, index) => {
                 return (
                   <>
@@ -331,8 +344,8 @@ const SupportedPlatformPage = () => {
                       alt={data.imgUrl}
                       id={data.anchorId}
                       key={index}
-                      height={35}
-                      width={35}
+                      height={36}
+                      width={36}
                       className={` ${data.isLive ? "opacity-1" : "opacity-50"}`}
                     />
                     <ReactTooltip
@@ -349,7 +362,7 @@ const SupportedPlatformPage = () => {
       </div>
 
       <TransactionPage />
-    </div>
+    </ParallaxBanner>
   );
 };
 
