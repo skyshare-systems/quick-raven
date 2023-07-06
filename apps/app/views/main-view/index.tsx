@@ -320,163 +320,167 @@ const SwapPage = () => {
   }
 
   return (
-    <ContainerWrapper>
-      <Notification />
-      <ModalNetworkPage
-        isOpen={showModal}
-        onClose={() => setShowModal(!showModal)}
-      />
+    <>
+      <ContainerWrapper>
+        <Notification />
+        <ModalNetworkPage
+          isOpen={showModal}
+          onClose={() => setShowModal(!showModal)}
+        />
 
-      <ListOfToken
-        isOpen={showModalToken0}
-        labelNetwork={"Initial Network"}
-        chainID={chain?.id}
-        handleSelectToken={selectedToken0}
-        onClose={() => updateModal(false)}
-      />
+        <ListOfToken
+          isOpen={showModalToken0}
+          labelNetwork={"Initial Network"}
+          chainID={chain?.id}
+          handleSelectToken={selectedToken0}
+          onClose={() => updateModal(false)}
+        />
 
-      <ListOfToken
-        isOpen={showModalTokenDestination}
-        labelNetwork={"Destination Network"}
-        chainID={chainID}
-        handleSelectToken={selectedToken1}
-        onClose={() => setShowModalTokenDestination(!showModalTokenDestination)}
-      />
+        <ListOfToken
+          isOpen={showModalTokenDestination}
+          labelNetwork={"Destination Network"}
+          chainID={chainID}
+          handleSelectToken={selectedToken1}
+          onClose={() =>
+            setShowModalTokenDestination(!showModalTokenDestination)
+          }
+        />
 
-      <div className="forBorder rounded-xl p-[1px]">
-        <div
-          className={`innerSwap flex flex-col justify-center items-center gap-3 rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]`}
-        >
-          <TitlePage isOpen={() => setIsOpen(!isOpen)} headerName={"Swap"} />
-          <DefaultPathwayPage isOpen={isOpen} />
+        <div className="forBorder rounded-xl p-[1px]">
+          <div
+            className={`innerSwap flex flex-col justify-center items-center gap-3 rounded-xl text-white px-[12px] py-[16px] w-full max-w-[500px]`}
+          >
+            <TitlePage isOpen={() => setIsOpen(!isOpen)} headerName={"Swap"} />
+            <DefaultPathwayPage isOpen={isOpen} />
 
-          <div className="flex flex-row justify-between items-center w-full py-4 px-4 xsm:px-6 rounded-full bg-[#00000030] border-[1px] border-[#ffffff30]">
-            <p className="mobile-description sm:tablet-description lg:web-description grow text-white">
-              Initial Network
-            </p>
-            {isConnected ? (
-              <SelectNetworkPage
-                networkName0={networkName}
-                networkName1={networkName}
-                imgUrl={imgUrl}
-                chainID={chain?.id ?? 0}
-                labelNetwork={"Initial Network"}
-                isOpen={() => setShowModal(true)}
-              />
-            ) : (
-              <ConnectNetworkSelect />
-            )}
-          </div>
-
-          <div className="relative flex flex-col w-full gap-3">
-            <div className="hidden cursor-pointer center-absolute">
-              <Image
-                src={"/icons/switch-icon.svg"}
-                alt={"refresh"}
-                height={50}
-                width={50}
-              />
+            <div className="flex flex-row justify-between items-center w-full py-4 px-4 xsm:px-6 rounded-full bg-[#00000030] border-[1px] border-[#ffffff30]">
+              <p className="mobile-description sm:tablet-description lg:web-description grow text-white">
+                Initial Network
+              </p>
+              {isConnected ? (
+                <SelectNetworkPage
+                  networkName0={networkName}
+                  networkName1={networkName}
+                  imgUrl={imgUrl}
+                  chainID={chain?.id ?? 0}
+                  labelNetwork={"Initial Network"}
+                  isOpen={() => setShowModal(true)}
+                />
+              ) : (
+                <ConnectNetworkSelect />
+              )}
             </div>
-            <div className="flex flex-col border-[1px] border-[#3b3b3b] px-[1rem] py-3 rounded-xl gap-2">
-              <div className="flex flex-row justify-between grow gap-2">
+
+            <div className="relative flex flex-col w-full gap-3">
+              <div className="hidden cursor-pointer center-absolute">
+                <Image
+                  src={"/icons/switch-icon.svg"}
+                  alt={"refresh"}
+                  height={50}
+                  width={50}
+                />
+              </div>
+              <div className="flex flex-col border-[1px] border-[#3b3b3b] px-[1rem] py-3 rounded-xl gap-2">
+                <div className="flex flex-row justify-between grow gap-2">
+                  <input
+                    type="number"
+                    disabled={tokenInitName === ""}
+                    id="tokenvalue"
+                    name="tokenvalue"
+                    placeholder="0.00"
+                    onBlur={(e) => setTokenInputs(Number(e.target.value))}
+                    className={`w-full bg-transparent lg:grow text-2xl font-[Excon] 
+                  `}
+                    onChange={(e) => setTokenInputs(Number(e.target.value))}
+                  />
+
+                  <button
+                    onClick={() => setTokenInputs(balanceOfToken0)}
+                    className={`flex justify-center items-center text-[#1cacef] bg-[#1c3843] px-3 my-2 rounded-lg uppercase mobile-title sm:tablet-title md:web-title hover:opacity-60 duration-300`}
+                  >
+                    Max
+                  </button>
+
+                  <SelectTokenPage
+                    networkName={networkName}
+                    isOpen={() => updateModal(!showModalToken0)}
+                    tokenName={tokenInitName}
+                    tokenImgUrl={tokenInitImgUrl}
+                    labelNetwork="Initial Network"
+                    chainID={chainID}
+                  />
+                </div>
+                <TokenStatsPage
+                  convertedValue={0}
+                  balance={parseFloat(balanceOfToken0.toFixed(6))}
+                  tokenName={tokenInitName}
+                />
+              </div>
+              {/* Destination Network  */}
+              <div className="flex flex-row justify-between items-center w-full py-4 px-4 xsm:px-6 rounded-full bg-[#232323]/10 border-[1px] border-[#3b3b3b]">
+                <p className="w-full sm:w-auto mobile-description sm:tablet-description lg:web-description grow text-white">
+                  Destination Network
+                </p>
+
+                <SelectNetworkPage
+                  imgUrl={destinationImgUrl}
+                  labelNetwork={"Destination Network"}
+                  networkName0={networkName}
+                  chainID={chainID}
+                  networkName1={networkDestinationName}
+                  isOpen={() => setShowModal(true)}
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col border-[1px] border-[#3b3b3b] px-[1rem] py-3 rounded-xl gap-2 w-full">
+              <div className="flex flex-row justify-between gap-2">
                 <input
                   type="number"
-                  disabled={tokenInitName === ""}
-                  id="tokenvalue"
-                  name="tokenvalue"
+                  id="fname"
+                  name="fname"
                   placeholder="0.00"
-                  onBlur={(e) => setTokenInputs(Number(e.target.value))}
-                  className={`w-full bg-transparent lg:grow text-2xl font-[Excon] 
-                  `}
-                  onChange={(e) => setTokenInputs(Number(e.target.value))}
+                  value={minReceiveToken.toFixed(6)}
+                  className="w-full bg-transparent lg:grow text-2xl font-[Excon]"
+                  disabled
                 />
 
-                <button
-                  onClick={() => setTokenInputs(balanceOfToken0)}
-                  className={`flex justify-center items-center text-[#1cacef] bg-[#1c3843] px-3 my-2 rounded-lg uppercase mobile-title sm:tablet-title md:web-title hover:opacity-60 duration-300`}
-                >
-                  Max
-                </button>
-
                 <SelectTokenPage
-                  networkName={networkName}
-                  isOpen={() => updateModal(!showModalToken0)}
-                  tokenName={tokenInitName}
-                  tokenImgUrl={tokenInitImgUrl}
-                  labelNetwork="Initial Network"
+                  networkName={networkDestinationName}
+                  isOpen={() =>
+                    setShowModalTokenDestination(!showModalTokenDestination)
+                  }
+                  tokenName={tokenDestinationName}
+                  tokenImgUrl={tokenDestinationImgUrl}
                   chainID={chainID}
+                  labelNetwork="Destination Network"
                 />
               </div>
               <TokenStatsPage
                 convertedValue={0}
-                balance={parseFloat(balanceOfToken0.toFixed(6))}
-                tokenName={tokenInitName}
-              />
-            </div>
-            {/* Destination Network  */}
-            <div className="flex flex-row justify-between items-center w-full py-4 px-4 xsm:px-6 rounded-full bg-[#232323]/10 border-[1px] border-[#3b3b3b]">
-              <p className="w-full sm:w-auto mobile-description sm:tablet-description lg:web-description grow text-white">
-                Destination Network
-              </p>
-
-              <SelectNetworkPage
-                imgUrl={destinationImgUrl}
-                labelNetwork={"Destination Network"}
-                networkName0={networkName}
-                chainID={chainID}
-                networkName1={networkDestinationName}
-                isOpen={() => setShowModal(true)}
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col border-[1px] border-[#3b3b3b] px-[1rem] py-3 rounded-xl gap-2 w-full">
-            <div className="flex flex-row justify-between gap-2">
-              <input
-                type="number"
-                id="fname"
-                name="fname"
-                placeholder="0.00"
-                value={minReceiveToken.toFixed(6)}
-                className="w-full bg-transparent lg:grow text-2xl font-[Excon]"
-                disabled
-              />
-
-              <SelectTokenPage
-                networkName={networkDestinationName}
-                isOpen={() =>
-                  setShowModalTokenDestination(!showModalTokenDestination)
-                }
+                balance={parseFloat(balanceOfToken1.toFixed(6))}
                 tokenName={tokenDestinationName}
-                tokenImgUrl={tokenDestinationImgUrl}
-                chainID={chainID}
-                labelNetwork="Destination Network"
               />
             </div>
-            <TokenStatsPage
-              convertedValue={0}
-              balance={parseFloat(balanceOfToken1.toFixed(6))}
-              tokenName={tokenDestinationName}
+
+            <PriceBoardPage
+              token0Name={tokenInitName}
+              token0Value={
+                tokenInputs <= 0
+                  ? "0.00"
+                  : parseFloat(Number(tokenInputs).toString()).toFixed(2)
+              }
+              token1Name={tokenDestinationName}
+              token1Value={minReceiveToken.toFixed(2)}
+              // gasfees={gasfee?.gasPrice?.toString() ?? 0.0}
+              gasfees={0.0}
             />
+
+            {getDynamicButtons()}
           </div>
-
-          <PriceBoardPage
-            token0Name={tokenInitName}
-            token0Value={
-              tokenInputs <= 0
-                ? "0.00"
-                : parseFloat(Number(tokenInputs).toString()).toFixed(2)
-            }
-            token1Name={tokenDestinationName}
-            token1Value={minReceiveToken.toFixed(2)}
-            // gasfees={gasfee?.gasPrice?.toString() ?? 0.0}
-            gasfees={0.0}
-          />
-
-          {getDynamicButtons()}
         </div>
-      </div>
-    </ContainerWrapper>
+      </ContainerWrapper>
+    </>
   );
 };
 

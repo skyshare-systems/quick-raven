@@ -1,3 +1,21 @@
+// {
+//   "extends": "tsconfig/nextjs.json",
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "noEmit": true,
+//     "plugins": [
+//       {
+//         "name": "next"
+//       }
+//     ],
+
+//     "module": "esnext",
+//     "target": "ESNext",
+//     "lib": ["ES2017", "DOM", "DOM.Iterable", "ESNext"]
+//   },
+//   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+//   "exclude": ["node_modules"]
+// }
 {
   "extends": "tsconfig/nextjs.json",
   "compilerOptions": {
@@ -8,9 +26,6 @@
         "name": "next"
       }
     ],
-
-    "module": "esnext",
-    "target": "ESNext",
     "lib": ["ES2017", "DOM", "DOM.Iterable", "ESNext"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
