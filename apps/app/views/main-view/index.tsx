@@ -1,4 +1,5 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import ContainerWrapper from "components/common/container-wrapper";
 import DefaultPathwayPage from "components/common/default-pathway";
 import ModalNetworkPage from "components/common/modal-network";
@@ -7,7 +8,6 @@ import SelectNetworkPage from "components/common/select-network";
 import TitlePage from "components/common/title";
 import useMounted from "hooks/useMounted";
 import { network } from "lib/json/network";
-import React, { useEffect, useState } from "react";
 import {
   useAccount,
   useNetwork,
@@ -36,8 +36,31 @@ import { CCDexAggregatorABI, LPTokenABI, TokenABI } from "lib/abi";
 import { ConnectWalletSwap } from "components/common/connect-wallet-swap";
 import { Notification } from "ui/components";
 import useSwap from "hooks/useSwap";
+import Loading from "components/common/loading/loading";
+
+import Lottie from "react-lottie";
+import SuccessAnim from "public/lottie-files-assets/success-icon.json";
+import ErrorAnim from "public/lottie-files-assets/error-icon.json";
 
 const SwapPage = () => {
+  const successOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: SuccessAnim,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid meet",
+    },
+  };
+
+  const errorOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: ErrorAnim,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid meet",
+    },
+  };
+
   const { isConnected, address: account } = useAccount();
   const { chain } = useNetwork();
   const { hasMounted } = useMounted();
@@ -111,15 +134,23 @@ const SwapPage = () => {
     (state) => state
   );
 
-  const { isSuccess: isApprove, isLoading: isLoadingApprove } =
-    useWaitForTransaction({
-      hash: approveHash,
-    });
+  const {
+    isSuccess: isApprove,
+    isLoading: isLoadingApprove,
+    isError: isErrorApprove,
+    error: errorApprove,
+  } = useWaitForTransaction({
+    hash: approveHash,
+  });
 
-  const { isSuccess: isSwapSuccess, isLoading: isLoadingTransaction } =
-    useWaitForTransaction({
-      hash: hash,
-    });
+  const {
+    isSuccess: isSuccessTransaction,
+    isLoading: isLoadingTransaction,
+    isError: isErrorTransaction,
+    error: errorTransaction,
+  } = useWaitForTransaction({
+    hash: hash,
+  });
 
   // Dynamic SwapToQr
 
@@ -321,8 +352,80 @@ const SwapPage = () => {
 
   return (
     <>
+      {(isLoadingApprove && <Loading />) ||
+        (isLoadingTransaction && <Loading />)}
+
+      {isSuccessTransaction && (
+        <Notification variant="success">
+          <div className="bg-[#7ed321]/32 rounded-md">
+            <Lottie
+              options={successOptions}
+              height={100}
+              width={100}
+              isClickToPauseDisabled={true}
+            />
+          </div>
+
+          <div className="flex flex-col px-2 max-w-[800px]">
+            <h1 className="text-2xl font-medium">Sucess</h1>
+            <p className="text-white/50">Transaction Complete!</p>
+          </div>
+        </Notification>
+      )}
+
+      <Notification variant="success">
+        <div className="bg-[#7ed321]/32 rounded-md">
+          <Lottie
+            options={successOptions}
+            height={100}
+            width={100}
+            isClickToPauseDisabled={true}
+          />
+        </div>
+
+        <div className="flex flex-col px-2 max-w-[800px]">
+          <h1 className="text-2xl font-medium">Sucess</h1>
+          <p className="text-white/50">Transaction Complete!</p>
+        </div>
+      </Notification>
+
+      {isErrorApprove && (
+        <Notification variant="error">
+          <div className="bg-[#f72929]/32 rounded-md">
+            <Lottie
+              options={errorOptions}
+              height={100}
+              width={100}
+              isClickToPauseDisabled={true}
+            />
+          </div>
+
+          <div className="flex flex-col px-2 max-w-[800px]">
+            <h1 className="text-2xl font-medium">Error</h1>
+            <p className="text-white/50">{errorApprove?.message}</p>
+          </div>
+        </Notification>
+      )}
+
+      {isErrorTransaction && (
+        <Notification variant="error">
+          <div className="bg-[#f72929]/32 rounded-md">
+            <Lottie
+              options={errorOptions}
+              height={100}
+              width={100}
+              isClickToPauseDisabled={true}
+            />
+          </div>
+
+          <div className="flex flex-col px-2 max-w-[800px]">
+            <h1 className="text-2xl font-medium">Error</h1>
+            <p className="text-white/50">{errorTransaction?.message}</p>
+          </div>
+        </Notification>
+      )}
+
       <ContainerWrapper>
-        <Notification />
         <ModalNetworkPage
           isOpen={showModal}
           onClose={() => setShowModal(!showModal)}
