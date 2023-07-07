@@ -57,7 +57,7 @@ const TeamMember = [
 const PartnerTeamPage = () => {
   return (
     <div
-      className="relative flex flex-row py-[5rem] h-auto lg:h-[100vh] justify-center items-center"
+      className="relative flex flex-row py-[5rem] h-auto justify-center items-center"
       id="partner-team-section"
     >
       <Image
@@ -83,14 +83,20 @@ const PartnerTeamPage = () => {
         <div className="flex flex-wrap gap-16 items-center justify-center">
           {TeamMember.map((data, index) => {
             return (
-              <div key={index} className="flex flex-col items-center gap-4">
+              <div
+                key={index}
+                className="flex flex-col items-center gap-8 team-bg p-9 rounded-lg border-[1px] border-[#1cacef]/32"
+                data-aos="fade-up"
+                data-aos-delay={index + "00"}
+                data-aos-duration="2000"
+              >
                 <Image
                   src={data.imgUrl}
                   alt={data.name}
                   height={150}
                   width={150}
                 />
-                <div className="flex flex-col items-center gap-1">
+                <div className="flex flex-col items-center gap-2">
                   <h1 className="font-bold mobile-title sm:tablet-title md:web-title text-white">
                     {data.name}
                   </h1>
