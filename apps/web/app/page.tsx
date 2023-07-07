@@ -13,6 +13,11 @@ import FooterPage from "components/navigations/footer";
 import { ParallaxProvider } from "react-scroll-parallax";
 
 export default function Home() {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+    });
+  }, []);
   return (
     <>
       <ParallaxProvider scrollAxis="vertical">
