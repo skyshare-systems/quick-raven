@@ -1,8 +1,25 @@
+// {
+//   "extends": "tsconfig/react-library.json",
+//   "compilerOptions": {
+//     "resolveJsonModule": true
+//   },
+//   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "pages/**/*", "src/**/*"],
+//   "exclude": ["dist", "build", "node_modules"]
+// }
+
 {
   "extends": "tsconfig/react-library.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "lib": ["ES2017", "DOM"],
     "resolveJsonModule": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "pages/**/*", "src/**/*"],
+  "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }
