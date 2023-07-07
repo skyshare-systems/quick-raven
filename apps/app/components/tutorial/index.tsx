@@ -100,6 +100,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
 
   const copiedMatic = () => {
     setVisible(true);
+    navigator.clipboard.writeText("0xDe7B766c83ddd2177087d8f6F8916A3B18722669");
     setTimeout(() => {
       setVisible(false);
     }, 2000);
@@ -107,6 +108,7 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
 
   const copiedUsdt = () => {
     setVisibleUsdt(true);
+    navigator.clipboard.writeText("0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18");
     setTimeout(() => {
       setVisibleUsdt(false);
     }, 2000);
@@ -323,20 +325,18 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                       d8f6F8916A3B18722669
                     </h1>
                     <div className="flex flex-row justify-between gap-2  w-full">
-                      {/* <CopyToClipboard text="0xDe7B766c83ddd2177087d8f6F8916A3B18722669">
-                        <button
-                          className="bg-[#252525] text-[#c6c6c6] w-full flex flex-row gap-2 items-center justify-center px-3 py-3 uppercase rounded-md mobile-tile sm:tablet-title lg:web-title hover:scale-105 active:scale-95 duration-300"
-                          onClick={() => copiedMatic()}
-                        >
-                          <Image
-                            src={"/icons/modal/copy-icon.svg"}
-                            alt={"copy-icon"}
-                            height={15}
-                            width={15}
-                          />
-                          {visible ? "Copied" : "Copy"}
-                        </button>
-                      </CopyToClipboard> */}
+                      <button
+                        className="bg-[#252525] text-[#c6c6c6] w-full flex flex-row gap-2 items-center justify-center px-3 py-3 uppercase rounded-md mobile-tile sm:tablet-title lg:web-title hover:scale-105 active:scale-95 duration-300"
+                        onClick={() => copiedMatic()}
+                      >
+                        <Image
+                          src={"/icons/modal/copy-icon.svg"}
+                          alt={"copy-icon"}
+                          height={15}
+                          width={15}
+                        />
+                        {visible ? "Copied" : "Copy"}
+                      </button>
 
                       <ImportTokenPage
                         name={"Matic"}
@@ -358,20 +358,18 @@ const ModalTutorialPage = ({ isOpen, onClose }: any) => {
                     </p>
 
                     <div className="flex flex-row justify-between gap-2  w-full">
-                      {/* <CopyToClipboard text="0x44fDA5d55Cd5bFD262DcF0b90F2F105211131d18">
-                        <button
-                          className="bg-[#252525] text-[#c6c6c6] w-full flex flex-row gap-2 items-center justify-center px-3 py-3 uppercase rounded-md mobile-tile sm:tablet-title lg:web-title hover:scale-105 active:scale-95 duration-300"
-                          onClick={() => copiedUsdt()}
-                        >
-                          <Image
-                            src={"/icons/modal/copy-icon.svg"}
-                            alt={"copy-icon"}
-                            height={15}
-                            width={15}
-                          />
-                          {visibleUsdt ? "Copied" : "Copy"}
-                        </button>
-                      </CopyToClipboard> */}
+                      <button
+                        className="bg-[#252525] text-[#c6c6c6] w-full flex flex-row gap-2 items-center justify-center px-3 py-3 uppercase rounded-md mobile-tile sm:tablet-title lg:web-title hover:scale-105 active:scale-95 duration-300"
+                        onClick={() => copiedUsdt()}
+                      >
+                        <Image
+                          src={"/icons/modal/copy-icon.svg"}
+                          alt={"copy-icon"}
+                          height={15}
+                          width={15}
+                        />
+                        {visibleUsdt ? "Copied" : "Copy"}
+                      </button>
 
                       <ImportTokenPage
                         name={"USDT"}
