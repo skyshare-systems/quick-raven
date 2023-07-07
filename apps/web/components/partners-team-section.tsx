@@ -57,7 +57,7 @@ const TeamMember = [
 const PartnerTeamPage = () => {
   return (
     <div
-      className="relative flex flex-row py-[5rem] h-auto lg:h-[100vh] justify-center items-center"
+      className="relative flex flex-row py-[5rem] h-auto justify-center items-center"
       id="partner-team-section"
     >
       <Image
