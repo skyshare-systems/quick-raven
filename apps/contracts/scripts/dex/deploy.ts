@@ -1,6 +1,7 @@
 import { ethers, run, upgrades } from "hardhat";
 
 const gatewayAddress = "0x94caA85bC578C05B22BDb00E6Ae1A34878f047F7";
+const operator = "0x94caA85bC578C05B22BDb00E6Ae1A34878f047F7";
 
 async function main() {
   const Dex = await ethers.getContractFactory("CCDexAggregator");
@@ -15,6 +16,10 @@ async function main() {
     gatewayAddress,
     "0x8bcdCAcC2eA3ef45B60Ae555Fef20B2b4EC81241"
   );
+  console.info("Done!");
+
+  console.info("Setting up operator...");
+  await dex.setOperator(operator);
   console.info("Done!");
 
   console.info("\nVerify contract", dex.address);

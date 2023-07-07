@@ -1,6 +1,6 @@
 import { ethers, run, upgrades } from "hardhat";
 
-const dexAddress = "0x29Ef7732832a7a19f7a40267F73f47af6cd69F9B";
+const dexAddress = "0x066deA3C411387a5A1ee74654cE16dC88e537EBb";
 
 async function main() {
   const Dex = await ethers.getContractFactory("CCDexAggregator");

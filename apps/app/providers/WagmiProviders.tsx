@@ -13,6 +13,7 @@ import {
   bscTestnet,
   gnosisChiado,
   polygon,
+  avalancheFuji,
 } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -20,7 +21,11 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import React from "react";
 
 const { chains, publicClient } = configureChains(
-  [polygonMumbai, bscTestnet, gnosisChiado],
+  [
+    polygonMumbai,
+    avalancheFuji,
+    // bscTestnet, gnosisChiado
+  ],
   [
     // alchemyProvider({
     //   apiKey:
