@@ -38,7 +38,6 @@ import { Notification } from "ui/components";
 import useSwap from "hooks/useSwap";
 import Loading from "components/common/loading/loading";
 
-import Lottie from "react-lottie";
 import SuccessAnim from "public/lottie-files-assets/success-icon.json";
 import ErrorAnim from "public/lottie-files-assets/error-icon.json";
 
@@ -357,14 +356,14 @@ const SwapPage = () => {
 
       {isSuccessTransaction && (
         <Notification variant="success">
-          <div className="bg-[#7ed321]/32 rounded-md">
+          {/* <div className="bg-[#7ed321]/32 rounded-md">
             <Lottie
               options={successOptions}
               height={100}
               width={100}
               isClickToPauseDisabled={true}
             />
-          </div>
+          </div> */}
 
           <div className="flex flex-col px-2 max-w-[800px]">
             <h1 className="text-2xl font-medium">Sucess</h1>
@@ -375,14 +374,14 @@ const SwapPage = () => {
 
       {isErrorApprove && (
         <Notification variant="error">
-          <div className="bg-[#f72929]/32 rounded-md">
+          {/* <div className="bg-[#f72929]/32 rounded-md">
             <Lottie
               options={errorOptions}
               height={100}
               width={100}
               isClickToPauseDisabled={true}
             />
-          </div>
+          </div> */}
 
           <div className="flex flex-col px-2 max-w-[800px]">
             <h1 className="text-2xl font-medium">Error</h1>
@@ -393,14 +392,14 @@ const SwapPage = () => {
 
       {isErrorTransaction && (
         <Notification variant="error">
-          <div className="bg-[#f72929]/32 rounded-md">
+          {/* <div className="bg-[#f72929]/32 rounded-md">
             <Lottie
               options={errorOptions}
               height={100}
               width={100}
               isClickToPauseDisabled={true}
             />
-          </div>
+          </div> */}
 
           <div className="flex flex-col px-2 max-w-[800px]">
             <h1 className="text-2xl font-medium">Error</h1>
