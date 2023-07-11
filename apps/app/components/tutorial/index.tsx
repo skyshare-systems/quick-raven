@@ -18,7 +18,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Loading from "../../components-backup/common/Loading";
+import Loading from "components/common/loading";
 
 import ImportTokenPage from "../../utils/import-token";
 import shortenName from "utils/limit-text";
