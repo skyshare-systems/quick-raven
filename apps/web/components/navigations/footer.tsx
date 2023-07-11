@@ -29,21 +29,21 @@ const FooterPage = () => {
       id: 4,
       name: "Discord",
       imgUrl: "/icons/footer/discord.png",
-      linkUrl: "#",
+      linkUrl: "",
       isLive: false,
     },
     {
       id: 5,
       name: "Github",
       imgUrl: "/icons/footer/git.png",
-      linkUrl: "#",
+      linkUrl: "",
       isLive: false,
     },
     {
       id: 5,
       name: "Gitbook",
       imgUrl: "/icons/footer/gitbook.png",
-      linkUrl: "#",
+      linkUrl: "",
       isLive: false,
     },
   ];
@@ -68,7 +68,11 @@ const FooterPage = () => {
                   alt={data.name}
                   width={20}
                   height={20}
-                  className="grayscale hover:grayscale-0 transition ease-in-out duration-300 opacity-50 hover:opacity-100"
+                  className={`grayscale ${
+                    data.isLive
+                      ? "hover:grayscale-0 hover:opacity-100 cursor-pointer"
+                      : "cursor-not-allowed"
+                  } transition ease-in-out duration-300 opacity-50`}
                 />
               </Link>
             );
