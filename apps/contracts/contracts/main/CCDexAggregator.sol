@@ -19,6 +19,7 @@ contract CCDexAggregator is OwnableUpgradeable {
         address destDexRouter;
         address tokenIn;
         address tokenOut;
+        address destTokenOut;
         uint256 amountIn;
         uint256 amountOutMin;
         address to;
@@ -31,6 +32,8 @@ contract CCDexAggregator is OwnableUpgradeable {
 
     // address of Dex router => is enabled
     mapping(address => bool) public dexRouters;
+
+    address public operator;
 
     /**
      * Initializer
@@ -126,10 +129,7 @@ contract CCDexAggregator is OwnableUpgradeable {
         address _token,
         uint256 _amount
     ) internal {
-        require(
-            msg.sender == gatewayContractAddress,
-            "QuickRaven :: Not gateway"
-        );
+        require(msg.sender == operator, "QuickRaven :: Not operator");
         ERC20 token = ERC20(_token);
         token.transfer(_user, _amount);
     }
@@ -174,18 +174,18 @@ contract CCDexAggregator is OwnableUpgradeable {
         bytes calldata packet,
         string calldata srcChainId
     ) external returns (bytes memory) {
-        require(msg.sender == address(gatewayContractAddress), "only gateway");
-        require(
-            keccak256(bytes(contractList[srcChainId])) ==
-                keccak256(bytes(requestSender))
-        );
+        require(msg.sender == operator, "only operator");
+        // require(
+        //     keccak256(bytes(contractList[srcChainId])) ==
+        //         keccak256(bytes(requestSender))
+        // );
 
         // decoding our payload
         SwapParams memory swapParams = abi.decode(packet, (SwapParams));
 
         directToUser(
             swapParams.to,
-            swapParams.tokenOut,
+            swapParams.destTokenOut,
             swapParams.amountOutMin
         );
 
@@ -221,6 +221,10 @@ contract CCDexAggregator is OwnableUpgradeable {
         string memory _contract
     ) external onlyOwner {
         contractList[_chainId] = _contract;
+    }
+
+    function setOperator(address _operator) external onlyOwner {
+        operator = _operator;
     }
 
     receive() external payable {}

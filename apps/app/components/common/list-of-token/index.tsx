@@ -35,7 +35,7 @@ const ListOfToken = ({
 
   if (!isOpen) return null;
   return (
-    <div className="fixed top-0 flex justify-center items-center h-full w-full bg-black/50 backdrop-blur-md z-[4]">
+    <div className="fixed top-0 left-0 flex justify-center items-center h-full w-full bg-black/50 backdrop-blur-md z-[4]">
       <div className="flex justify-center items-center grow p-[1px] max-w-[420px] rounded-2xl bg-gradient-to-t from-[#212121] to-[#353535]">
         <div className="relative flex flex-col rounded-2xl h-full grow max-w-[420px] max-h-[520px] bg-[#212121] p-5 gap-5">
           <div className="flex flex-row items-center justify-between">
