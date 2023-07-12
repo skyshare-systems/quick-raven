@@ -13,8 +13,9 @@ export const GETamountIn = expressAsyncHandler(async (req, res) => {
       lpTokenAddress,
       amountOut
     );
-  } catch (e) {
-    res.status(400).send(e);
+  } catch (e: any) {
+    res.status(400).send("Error" + e);
+    return;
   }
 
   res.status(200).send(price);
@@ -32,7 +33,7 @@ export const GETamountOut = expressAsyncHandler(async (req, res) => {
       amountIn
     );
   } catch (e: any) {
-    res.status(400).send(e);
+    res.status(400).send("Error" + e);
   }
 
   res.status(200).send(price);

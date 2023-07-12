@@ -32,7 +32,7 @@ const HeroSectionPage = () => {
         />
 
         <div
-          className="flex flex-col"
+          className="flex flex-col justify-center items-center 2xl:items-start"
           data-aos="fade-up"
           data-aos-offset="500"
           data-aos-duration="1000"
@@ -46,7 +46,7 @@ const HeroSectionPage = () => {
           <h1 className="text-center 2xl:text-left mobile-h1 sm:leading-[80px] sm:tablet-h1 md:leading-[120px] md:web-h1 text-transparent bg-clip-text bg-gradient-to-t from-[#1dfab9] to-[#1dffae]">
             swapping solution
           </h1>
-          <h4 className="mobile-h4 sm:tablet-h4 md:web-h4 text-white my-2">
+          <h4 className="text-center 2xl:text-left mobile-h4 sm:tablet-h4 md:web-h4 text-white my-2">
             No more hectic transactions for a simple swap
           </h4>
 
@@ -54,7 +54,7 @@ const HeroSectionPage = () => {
             style={{
               borderBottomWidth: 0,
             }}
-            className="flex group overflow-hidden bg-[#ffffff] justify-center items-center w-full xsm:w-32 sm:w-44 transition ease-in-out duration-300 hover:bg-[#ffffff12] hover:backdrop-blur-md"
+            className="flex flex-row group overflow-hidden bg-[#ffffff] justify-center items-center w-full max-w-[150px] transition ease-in-out duration-300 hover:bg-[#ffffff12] hover:backdrop-blur-md"
             cornerSmoothing={1}
             cornerRadius={12}
           >
@@ -62,7 +62,7 @@ const HeroSectionPage = () => {
               href="https://docs.google.com/forms/d/e/1FAIpQLSfcDqh2BRvX6kMiGa7mV3RMjfrNbatcpxodMzOdId0e-eDCLA/viewform"
               target="_blank"
             >
-              <button className="w-full py-8 sm:py-4 px-4 mobile-title sm:tablet-title md:web-title text-black transition ease-in-out duration-300 group-hover:text-white">
+              <button className="w-full py-4 sm:py-4 px-4 mobile-title sm:tablet-title md:web-title text-black transition ease-in-out duration-300 group-hover:text-white">
                 Join the waitlist
               </button>
             </Link>

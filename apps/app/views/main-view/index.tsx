@@ -36,7 +36,7 @@ import { CCDexAggregatorABI, LPTokenABI, TokenABI } from "lib/abi";
 import { ConnectWalletSwap } from "components/common/connect-wallet-swap";
 import { Notification } from "ui/components";
 import useSwap from "hooks/useSwap";
-import Loading from "components/common/loading/loading";
+import Loading from "components/common/loading";
 
 import SuccessAnim from "public/lottie-files-assets/success-icon.json";
 import ErrorAnim from "public/lottie-files-assets/error-icon.json";

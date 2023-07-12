@@ -11,7 +11,8 @@ export const GETpair = expressAsyncHandler(async (req, res) => {
       tokenB
     );
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send("Error" + e);
+    return;
   }
 
   res.status(200).send(pair);

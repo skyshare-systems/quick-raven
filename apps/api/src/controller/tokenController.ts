@@ -11,8 +11,9 @@ export const GETallowance = expressAsyncHandler(async (req, res) => {
       owner,
       spender
     );
-  } catch (e) {
-    res.status(400).send(e);
+  } catch (e: any) {
+    res.status(400).send("Error" + e);
+    return;
   }
 
   res.status(200).send(String(allowance));
@@ -24,8 +25,9 @@ export const GETbalanceOf = expressAsyncHandler(async (req, res) => {
 
   try {
     balance = await tokenContract(network, tokenAddress).balanceOf(userAddress);
-  } catch (e) {
-    res.status(400).send(e);
+  } catch (e: any) {
+    res.status(400).send("Error" + e);
+    return;
   }
 
   res.status(200).send(ethers.formatEther(String(balance)));
@@ -37,8 +39,9 @@ export const GETtotalSupply = expressAsyncHandler(async (req, res) => {
 
   try {
     totalSupply = await tokenContract(network, tokenAddress).totalSupply();
-  } catch (e) {
-    res.status(400).send(e);
+  } catch (e: any) {
+    res.status(400).send("Error" + e);
+    return;
   }
 
   res.status(200).send(ethers.formatEther(totalSupply));
@@ -50,8 +53,9 @@ export const GETname = expressAsyncHandler(async (req, res) => {
 
   try {
     name = await tokenContract(network, tokenAddress).name();
-  } catch (e) {
-    res.status(400).send(e);
+  } catch (e: any) {
+    res.status(400).send("Error" + e);
+    return;
   }
 
   res.status(200).send(name);
