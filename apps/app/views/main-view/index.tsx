@@ -155,10 +155,7 @@ const SwapPage = () => {
 
   const token0 = ethers.utils.parseEther(tokenInputs.toString());
 
-  const token1 =
-    tokenInputs > 0
-      ? ethers.utils.parseEther(minReceiveToken.toString())
-      : ethers.utils.parseEther(String(1));
+  const token1 = ethers.utils.formatEther(minReceiveToken.toString());
 
   // Config
 
