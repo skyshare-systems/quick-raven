@@ -153,9 +153,19 @@ const SwapPage = () => {
 
   // Dynamic SwapToQr
 
-  const token0 = ethers.utils.parseEther(tokenInputs.toString());
+  // const token0 = ethers.utils.parseEther(tokenInputs.toString());
 
-  const token1 = ethers.utils.formatEther(minReceiveToken.toString());
+  // const token1 = ethers.utils.parseEther(minReceiveToken.toString());
+
+  const token0 =
+    tokenInputs > 0
+      ? ethers.utils.parseEther(tokenInputs.toString())
+      : BigInt(1);
+
+  const token1 =
+    tokenInputs > 0
+      ? ethers.utils.parseEther(minReceiveToken.toString())
+      : BigInt(1);
 
   // Config
 
@@ -173,7 +183,7 @@ const SwapPage = () => {
         addressDestinationInit, // token destination address
         tokenDestinationAddress, // token destination address
         BigInt(token0.toString()), // amount in
-        BigInt(token1.toString()), // amount out
+        token1, // amount out
         account,
       ],
     ],
