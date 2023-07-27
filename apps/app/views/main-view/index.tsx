@@ -358,10 +358,10 @@ const SwapPage = () => {
 
   return (
     <>
-      {(isLoadingApprove && <Loading />) ||
-        (isLoadingTransaction && <Loading />)}
+      {(isLoadingApprove && approveHash !== "0x" && <Loading />) ||
+        (isLoadingTransaction && hash !== "0x" && <Loading />)}
 
-      {isSuccessTransaction && (
+      {isSuccessTransaction && hash !== "0x" && (
         <Notification variant="success">
           {/* <div className="bg-[#7ed321]/32 rounded-md">
             <Lottie
@@ -379,7 +379,7 @@ const SwapPage = () => {
         </Notification>
       )}
 
-      {isErrorApprove && (
+      {isErrorApprove && approveHash !== "0x" && (
         <Notification variant="error">
           {/* <div className="bg-[#f72929]/32 rounded-md">
             <Lottie
@@ -397,7 +397,7 @@ const SwapPage = () => {
         </Notification>
       )}
 
-      {isErrorTransaction && (
+      {isErrorTransaction && hash !== "0x" && (
         <Notification variant="error">
           {/* <div className="bg-[#f72929]/32 rounded-md">
             <Lottie
