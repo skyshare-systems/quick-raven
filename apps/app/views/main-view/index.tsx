@@ -42,23 +42,23 @@ import SuccessAnim from "public/lottie-files-assets/success-icon.json";
 import ErrorAnim from "public/lottie-files-assets/error-icon.json";
 
 const SwapPage = () => {
-  const successOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: SuccessAnim,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid meet",
-    },
-  };
+  // const successOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: SuccessAnim,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid meet",
+  //   },
+  // };
 
-  const errorOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: ErrorAnim,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid meet",
-    },
-  };
+  // const errorOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: ErrorAnim,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid meet",
+  //   },
+  // };
 
   const { isConnected, address: account } = useAccount();
   const { chain } = useNetwork();
