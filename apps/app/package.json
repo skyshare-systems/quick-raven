@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
-    "@iconify/icons-cryptocurrency": "^1.2.5",
-    "@metamask/detect-provider": "^2.0.0",
+    "@iconify/icons-cryptocurrency": "1.2.5",
+    "@metamask/detect-provider": "2.0.0",
     "@rainbow-me/rainbowkit": "1.0.0",
     "@types/node": "20.3.1",
     "@types/react": "18.2.12",
@@ -38,7 +38,7 @@
     "ui": "*",
     "viem": "0.3.22",
     "wagmi": "1.0.2",
-    "zustand": "^4.3.8"
+    "zustand": "4.3.8"
   },
   "devDependencies": {
     "@wagmi/cli": "1.0.1"

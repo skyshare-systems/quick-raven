@@ -42,23 +42,23 @@ import SuccessAnim from "public/lottie-files-assets/success-icon.json";
 import ErrorAnim from "public/lottie-files-assets/error-icon.json";
 
 const SwapPage = () => {
-  const successOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: SuccessAnim,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid meet",
-    },
-  };
+  // const successOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: SuccessAnim,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid meet",
+  //   },
+  // };
 
-  const errorOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: ErrorAnim,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid meet",
-    },
-  };
+  // const errorOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: ErrorAnim,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid meet",
+  //   },
+  // };
 
   const { isConnected, address: account } = useAccount();
   const { chain } = useNetwork();
@@ -153,12 +153,19 @@ const SwapPage = () => {
 
   // Dynamic SwapToQr
 
-  const token0 = ethers.utils.parseEther(tokenInputs.toString());
+  // const token0 = ethers.utils.parseEther(tokenInputs.toString());
+
+  // const token1 = ethers.utils.parseEther(minReceiveToken.toString());
+
+  const token0 =
+    tokenInputs > 0
+      ? ethers.utils.parseEther(tokenInputs.toString())
+      : BigInt(1);
 
   const token1 =
     tokenInputs > 0
       ? ethers.utils.parseEther(minReceiveToken.toString())
-      : ethers.utils.parseEther(String(1));
+      : BigInt(1);
 
   // Config
 
@@ -176,7 +183,7 @@ const SwapPage = () => {
         addressDestinationInit, // token destination address
         tokenDestinationAddress, // token destination address
         BigInt(token0.toString()), // amount in
-        BigInt(token1.toString()), // amount out
+        token1, // amount out
         account,
       ],
     ],
@@ -351,10 +358,10 @@ const SwapPage = () => {
 
   return (
     <>
-      {(isLoadingApprove && <Loading />) ||
-        (isLoadingTransaction && <Loading />)}
+      {(isLoadingApprove && approveHash !== "0x" && <Loading />) ||
+        (isLoadingTransaction && hash !== "0x" && <Loading />)}
 
-      {isSuccessTransaction && (
+      {isSuccessTransaction && hash !== "0x" && (
         <Notification variant="success">
           {/* <div className="bg-[#7ed321]/32 rounded-md">
             <Lottie
@@ -372,7 +379,7 @@ const SwapPage = () => {
         </Notification>
       )}
 
-      {isErrorApprove && (
+      {isErrorApprove && approveHash !== "0x" && (
         <Notification variant="error">
           {/* <div className="bg-[#f72929]/32 rounded-md">
             <Lottie
@@ -390,7 +397,7 @@ const SwapPage = () => {
         </Notification>
       )}
 
-      {isErrorTransaction && (
+      {isErrorTransaction && hash !== "0x" && (
         <Notification variant="error">
           {/* <div className="bg-[#f72929]/32 rounded-md">
             <Lottie
