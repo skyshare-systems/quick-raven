@@ -23,13 +23,13 @@ import React from "react";
 const { chains, publicClient } = configureChains(
   [
     polygonMumbai,
-    bscTestnet,
-    avalancheFuji,
+    // bscTestnet,
+    // avalancheFuji,
     // bscTestnet, gnosisChiado
   ],
   [
     alchemyProvider({
-      apiKey: "D-gMfYzrLwM96gUZQ_3AmgTV5MOpw3hk",
+      apiKey: "rLc98yWplzZqRlAZwg9RwiT-PMM0BKXi",
     }),
     publicProvider(),
   ]
